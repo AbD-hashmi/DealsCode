@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <!--
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical">-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:background="@color/White"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:padding="20dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/thank_you_icon" />
+
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                android:id="@+id/tvresend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/logo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Thank You for Payment"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/redcolor"
+                android:textStyle="italic" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    android:id="@+id/tvtrans"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Your TransactionID is:"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/greyfontcol" />
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                    android:id="@+id/tvtransaction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:text="98765432165977654"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/greyfontcol" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:visibility="gone">
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    android:id="@+id/tvQR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Your QRcode is:"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/greyfontcol" />
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                    android:id="@+id/tvQRcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="98765432165977654"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/greyfontcol" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivQRnew"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp" />
+            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:id="@+id/ins"
+                android:layout_width="wrap_content"
+                android:textColor="#000000"
+                android:layout_height="wrap_content" />
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                android:id="@+id/tvsubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@color/red"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Continue Shopping"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/White" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- </LinearLayout>-->
+</android.support.v7.widget.CardView>

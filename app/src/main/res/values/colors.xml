@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#a60000</color>
+    <color name="colorPrimaryDark">#a60000</color>
+    <color name="colorAccent">#a60000</color>
+
+    <color name="background">#ffe1e4</color>
+    <color name="buttoncol">#EEBC38</color>
+    <color name="buttoncolnew">#3b5999</color>
+
+    <color name="redcolor">#a60000</color>
+    <color name="yellowcol">#eeba30</color>
+    <color name="white">#eeeeee</color>
+    <color name="blackfontcolor">#212121</color>
+    <color name="greyfontcol">#616161</color>
+    <color name="whitetrans">#60FFFFFF</color>
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="navigationBarColor">#000000</color>
+    <color name="colorEvaluation">#E7E7E9</color>
+    <color name="notifBackgroundColor">#F19D13</color>
+    <color name="footerColor">#01356F</color>
+    <color name="darkGray">#E7E7E9</color>
+    <color name="redFont">#c04000</color>
+    <color name="red">#CF1A21</color>
+    <color name="darkBlue">#016698</color>
+    <color name="tab_background_selected">#01356F</color>
+    <color name="tab_background_unselected">#F4F4F4</color>
+    <color name="ProgressBarColor">#FFFFFF</color>
+    <color name="Black">#000000</color>
+    <color name="White">#FFFFFF</color>
+    <color name="blur_color">#30000000</color>
+    <color name="grey">#F5F5DC</color>
+    <color name="lightblue">#ccf2ff</color>
+
+
+    <!--    &lt;!&ndash; Screens background color&ndash;&gt;
+        <color name="bg_screen1">#000000</color>
+        <color name="bg_screen2">#000000</color>
+        <color name="bg_screen3">#000000</color>-->
+
+
+    <!-- dots inactive colors -->
+    <color name="dot_dark_screen1">#a49f9f</color>
+    <color name="dot_dark_screen2">#a49f9f</color>
+    <color name="dot_dark_screen3">#a49f9f</color>
+
+
+    <!-- dots active colors -->
+    <color name="dot_light_screen1">#a60000</color>
+    <color name="dot_light_screen2">#a60000</color>
+    <color name="dot_light_screen3">#a60000</color>
+
+
+    <array name="array_dot_active">
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen2</item>
+        <item>@color/dot_light_screen3</item>
+
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/dot_dark_screen1</item>
+        <item>@color/dot_dark_screen2</item>
+        <item>@color/dot_dark_screen3</item>
+
+    </array>
+</resources>

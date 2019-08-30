@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darkGray"
+    android:orientation="vertical"
+    tools:context="com.hmi.dealsnxt.Activity.ProfileActivity">
+
+    <RelativeLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="right"
+        tools:openDrawer="right">
+
+        <RelativeLayout
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:fitsSystemWindows="true">
+
+            <LinearLayout
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:background="#95FFFFFF"
+                android:orientation="vertical">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#95FFFFFF"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#95FFFFFF"
+                        android:orientation="vertical">
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#95FFFFFF"
+                            android:gravity="center|left"
+                            android:padding="10dp"
+                            android:text="Filter"
+                            android:textColor="@color/blackfontcolor" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#95FFFFFF"
+                            android:orientation="vertical"
+                            android:paddingBottom="10dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:gravity="center|left"
+                                android:padding="5dp"
+                                android:text="Select Location"
+                                android:textColor="@color/blackfontcolor" />
+
+                            <android.support.v7.widget.SearchView
+                                android:id="@+id/ivsearch"
+                                style="@style/MySearchViewStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_toLeftOf="@+id/my_loc"
+                                android:background="@drawable/edittext_border_new"
+                                android:clickable="false"
+                                android:goIcon="@drawable/map_black"
+                                android:searchIcon="@drawable/map_black"
+                                app:defaultQueryHint="Start Trying you location...." />
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:id="@+id/tvdetectlocation"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:background="@color/redcolor"
+                                android:drawableLeft="@drawable/location_filter"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingTop="5dp"
+                                android:text="Detect my location"
+                                android:textColor="@color/White" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:textColor="@color/grey" />
+
+                        <LinearLayout
+                            android:id="@+id/LLtrading"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#95FFFFFF"
+                            android:orientation="vertical"
+                            android:padding="15dp">
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_marginRight="5dp"
+                                android:background="#95FFFFFF"
+                                android:drawablePadding="10dp"
+                                android:gravity="center|left"
+                                android:text="What Time?"
+                                android:textColor="@color/Black" />
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/time_recycler_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:background="#95FFFFFF" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#95FFFFFF"
+                            android:orientation="vertical"
+                            android:padding="15dp">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:background="#95FFFFFF"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                    android:id="@+id/price"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_centerInParent="true"
+                                    android:layout_gravity="left"
+                                    android:layout_marginRight="5dp"
+                                    android:drawablePadding="10dp"
+                                    android:gravity="center|left"
+                                    android:text="Price"
+                                    android:textAppearance="?android:textAppearanceSmall"
+                                    android:textColor="@color/blackfontcolor" />
+
+                                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                    android:id="@+id/tvpricerangstart"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerInParent="true"
+                                    android:layout_gravity="left"
+                                    android:layout_marginRight="5dp"
+                                    android:drawablePadding="10dp"
+                                    android:gravity="center|left"
+                                    android:text="100-2000"
+                                    android:textAppearance="?android:textAppearanceSmall"
+                                    android:textColor="@color/blackfontcolor" />
+
+                                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                    android:id="@+id/tvpricerangend"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerInParent="true"
+                                    android:layout_gravity="left"
+                                    android:layout_marginRight="5dp"
+                                    android:drawablePadding="10dp"
+                                    android:gravity="center|left"
+                                    android:text="100-2000"
+                                    android:textAppearance="?android:textAppearanceSmall"
+                                    android:textColor="@color/blackfontcolor" />
+                            </RelativeLayout>
+
+                            <!--  <io.apptik.widget.MultiSlider
+                                  android:id="@+id/range_slider1"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  app:drawThumbsApart="true"
+                                  app:stepsThumbsApart="5"
+                                  app:thumbNumber="2" />-->
+
+                            <SeekBar
+                                android:id="@+id/seekbar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_marginTop="5dp"
+                                android:max="2000"
+                                android:progress="50"
+                                android:progressTint="@color/Black"
+                                android:scrollIndicators="left" />
+
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:textColor="@color/grey" />
+
+                        <RelativeLayout
+                            android:id="@+id/LL20off"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="#95FFFFFF"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:paddingTop="10dp">
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginRight="5dp"
+                                android:layout_toLeftOf="@+id/switch2"
+                                android:drawablePadding="10dp"
+                                android:text="20% off"
+                                android:textColor="@color/Black" />
+
+                            <!-- <ToggleButton
+                                 android:id="@+id/toggle2"
+                                 android:layout_width="55dp"
+                                 android:layout_height="20dp"
+                                 android:layout_alignParentRight="true"
+                                 android:layout_centerInParent="true"
+                                 android:layout_gravity="right"
+                                 android:layout_margin="5dp"
+                                 android:background="@drawable/toggl_button_selector"
+                                 android:checked="false"
+                                 android:gravity="right"
+                                 android:textOff=""
+                                 android:textOn="" />-->
+
+                            <Switch
+                                android:id="@+id/switch2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="right"
+                                android:layout_marginTop="20dp"
+                                android:checked="false"
+                                android:textOff="Off"
+                                android:textOn="On" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/LL30off"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="#95FFFFFF"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp">
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginRight="5dp"
+                                android:layout_toLeftOf="@+id/switch3"
+                                android:drawablePadding="10dp"
+                                android:text="30% off"
+                                android:textColor="@color/Black" />
+
+                            <Switch
+                                android:id="@+id/switch3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="right"
+                                android:checked="false"
+                                android:textOff="Off"
+                                android:textOn="On" />
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/LL40off"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="#95FFFFFF"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp">
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginRight="5dp"
+                                android:layout_toLeftOf="@+id/switch4"
+                                android:drawablePadding="10dp"
+                                android:text="40% off"
+                                android:textColor="@color/Black" />
+
+                            <!--    <ToggleButton
+                                    android:id="@+id/toggle4"
+                                    android:layout_width="55dp"
+                                    android:layout_height="20dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerInParent="true"
+                                    android:layout_gravity="right"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/toggl_button_selector"
+                                    android:checked="false"
+                                    android:gravity="right"
+                                    android:textOff=""
+                                    android:textOn="" />-->
+
+                            <Switch
+                                android:id="@+id/switch4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="right"
+                                android:layout_marginTop="20dp"
+                                android:checked="false"
+                                android:textOff="Off"
+                                android:textOn="On" />
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/LL50off"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="#95FFFFFF"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp">
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginRight="5dp"
+                                android:layout_toLeftOf="@+id/switch5"
+                                android:drawablePadding="10dp"
+                                android:text="50% off"
+                                android:textColor="@color/Black" />
+
+                            <!--       <ToggleButton
+                                       android:id="@+id/toggle5"
+                                       android:layout_width="55dp"
+                                       android:layout_height="20dp"
+                                       android:layout_alignParentRight="true"
+                                       android:layout_centerInParent="true"
+                                       android:layout_gravity="right"
+                                       android:layout_margin="5dp"
+                                       android:background="@drawable/toggl_button_selector"
+                                       android:checked="false"
+                                       android:gravity="right"
+                                       android:textOff=""
+                                       android:textOn="" />-->
+
+
+                            <Switch
+                                android:id="@+id/switch5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="right"
+                                android:checked="false"
+                                android:textOff="Off"
+                                android:textOn="On" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:textColor="@color/grey" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:background="#95FFFFFF"
+                            android:orientation="vertical"
+                            android:padding="15dp">
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:id="@+id/btnshare"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:gravity="center|left"
+                                android:text="Other Filters"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/blackfontcolor" />
+
+                            <!--  </LinearLayout>
+
+                              <View
+                                  android:layout_width="match_parent"
+                                  android:layout_height="1dp"
+                                  android:textColor="@color/grey" />
+
+                              <LinearLayout
+                                  android:id="@+id/LLNotification"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:background="#95FFFFFF"
+                                  android:orientation="horizontal"
+                                  android:padding="15dp">-->
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".8"
+                                    android:orientation="vertical"
+                                    android:padding="3dp">
+
+                                    <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                                        android:id="@+id/tvfiltertype1name"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="left"
+                                        android:gravity="center|left"
+                                        android:text="Cousin &amp; Food Types"
+                                        android:textAppearance="?android:textAppearanceSmall"
+                                        android:textColor="@color/blackfontcolor" />
+
+                                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                        android:id="@+id/tvfiltertype1value"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="left"
+                                        android:gravity="center|left"
+                                        android:text="All Type"
+                                        android:textAppearance="?android:textAppearanceSmall"
+                                        android:textColor="@color/blackfontcolor" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/LLfilter1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:orientation="horizontal"
+                                    android:padding="3dp">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/left_arrow" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:textColor="@color/grey" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".8"
+                                    android:orientation="vertical"
+                                    android:padding="3dp">
+
+                                    <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                                        android:id="@+id/tvfiltertype2name"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="left"
+                                        android:gravity="center|left"
+                                        android:text="Time of Day"
+                                        android:textAppearance="?android:textAppearanceSmall"
+                                        android:textColor="@color/blackfontcolor" />
+
+                                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                        android:id="@+id/tvfiltertype2value"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="left"
+                                        android:gravity="center|left"
+                                        android:text="Any Time"
+                                        android:textAppearance="?android:textAppearanceSmall"
+                                        android:textColor="@color/blackfontcolor" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/LLfilter2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:orientation="horizontal"
+                                    android:padding="3dp">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/left_arrow" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:textColor="@color/grey" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".8"
+                                    android:orientation="vertical"
+                                    android:padding="3dp">
+
+                                    <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                                        android:id="@+id/tvfiltertype3name"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="left"
+                                        android:gravity="center|left"
+                                        android:text="Resturant Type"
+                                        android:textAppearance="?android:textAppearanceSmall"
+                                        android:textColor="@color/blackfontcolor" />
+
+                                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                        android:id="@+id/tvfiltertype3value"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="left"
+                                        android:gravity="center|left"
+                                        android:text="All Type"
+                                        android:textAppearance="?android:textAppearanceSmall"
+                                        android:textColor="@color/blackfontcolor" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/LLfilter3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:orientation="horizontal"
+                                    android:padding="3dp">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/left_arrow" />
+
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:textColor="@color/grey" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".8"
+                                    android:orientation="vertical"
+                                    android:padding="3dp">
+
+                                    <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                                        android:id="@+id/tvfiltertype4name"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="left"
+                                        android:gravity="center|left"
+                                        android:text="Day of Week"
+                                        android:textAppearance="?android:textAppearanceSmall"
+                                        android:textColor="@color/blackfontcolor" />
+
+                                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                        android:id="@+id/tvfiltertype4value"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="left"
+                                        android:gravity="center|left"
+                                        android:text="Any Time"
+                                        android:textAppearance="?android:textAppearanceSmall"
+                                        android:textColor="@color/blackfontcolor" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/LLfilter4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:orientation="horizontal"
+                                    android:padding="3dp">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/left_arrow" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/btnsearch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:background="@color/redcolor"
+                            android:gravity="center"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="5dp"
+                            android:text="Search"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/White" />
+
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/ProgressBarColor"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

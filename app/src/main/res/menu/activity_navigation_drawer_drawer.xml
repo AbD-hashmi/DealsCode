@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/INTHENEWS"
+        android:icon="@drawable/refertofriend"
+        android:title="sdgdggdfg" />
+    <item
+        android:id="@+id/TOPICOFTHEMONTH"
+        android:icon="@drawable/thank_you_icon"
+        android:title="zgdrcgrsgsrg" />
+
+
+
+
+</menu>

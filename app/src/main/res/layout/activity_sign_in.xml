@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:orientation="vertical"
+    tools:context="com.hmi.dealsnxt.Activity.ProfileActivity">
+
+    <include
+        layout="@layout/activity_toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbarnew"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:id="@+id/LLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/White"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:id="@+id/josefinSansRegularTextView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/name"
+                android:drawablePadding="15dp"
+                android:gravity="center_vertical"
+                android:text="Name"
+
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/Black" />
+
+            <EditText
+                android:id="@+id/etname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="left"
+
+                android:backgroundTint="@color/blur_color"
+                android:gravity="center|left"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:paddingLeft="45dp"
+
+
+                android:singleLine="true"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/blackfontcolor"
+                android:textCursorDrawable="@null" />
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/blur_color"
+                android:drawableLeft="@drawable/mail"
+                android:drawablePadding="15dp"
+                android:gravity="center_vertical"
+                android:text="Email Address"
+
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/Black" />
+
+            <EditText
+                android:id="@+id/etemail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="left"
+
+                android:backgroundTint="@color/blur_color"
+                android:gravity="center|left"
+                android:inputType="textEmailAddress"
+
+                android:maxLines="1"
+                android:paddingLeft="45dp"
+                android:singleLine="true"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/blackfontcolor"
+                android:textCursorDrawable="@null" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/LLL"
+            android:background="@color/White"
+            android:orientation="horizontal"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:weightSum="1">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:orientation="vertical">
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    android:id="@+id/josefinSansRegularTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:background="@android:color/transparent"
+                    android:drawableLeft="@drawable/deal_gender"
+                    android:drawablePadding="15dp"
+                    android:gravity="center_vertical"
+                    android:text="Gender"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/Black" />
+
+                <LinearLayout
+                    android:id="@+id/LLspin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/josefinSansRegularTextView"
+                    android:orientation="vertical">
+
+                    <Spinner
+                        android:id="@+id/spinnergender"
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:background="@drawable/custom_spin"
+                        android:gravity="left"
+                        android:paddingLeft="20dp"
+                        android:spinnerMode="dropdown"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="@color/Black" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignBottom="@+id/LLspin"
+                    android:background="@color/Black" />
+
+                <EditText
+                    android:id="@+id/etgender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:inputType="textPersonName|textAutoComplete|textAutoCorrect"
+                    android:maxLength="5"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/Black"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/LLcalender"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:orientation="vertical">
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    android:id="@+id/tvcalender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:background="@android:color/transparent"
+                    android:drawableLeft="@drawable/calender_new"
+                    android:drawablePadding="15dp"
+                    android:gravity="center_vertical"
+                    android:text="DOB"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/Black" />
+
+                <EditText
+                    android:id="@+id/etdob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="5dp"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:gravity="center"
+                    android:hint="dd/mm/yyyy"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/Black" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/ll"
+            android:padding="15dp">
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:id="@+id/tvsignin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center"
+                android:background="@color/buttoncol"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Sign Up"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/White" />
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:id="@+id/x"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/circle_border_white"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="OR"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/Black"
+                android:textStyle="bold" />
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:visibility="invisible" />
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:id="@+id/fbbutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@color/buttoncolnew"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Sign Up with Facebook"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/White" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/ProgressBarColor"
+        android:visibility="gone" />
+</RelativeLayout>
+

@@ -1,0 +1,1077 @@
+<?xml version="1.0" encoding="utf-8"?><!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">-->
+
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:openDrawer="right">
+
+    <android.support.design.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/htab_maincontent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/htab_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/htab_collapse_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="275dp"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:titleEnabled="false">
+
+                <include
+                    layout="@layout/activity_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="165dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical"
+                    app:layout_collapseMode="parallax">
+
+                    <ImageView
+                        android:id="@+id/dealimg"
+                        android:layout_width="match_parent"
+                        android:layout_height="145dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/banner_new" />
+
+                    <RelativeLayout
+                        android:id="@+id/Rllikecount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:paddingTop="5dp">
+
+                        <ImageView
+                            android:id="@+id/ivlike"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/like_selector" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/tvlike"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignEnd="@+id/ivlike"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignRight="@+id/ivlike"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/abstract_back"
+                            android:gravity="center_vertical"
+                            android:text="99"
+                            android:textColor="@color/White"
+                            android:textSize="10dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/RLpercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/Rllikecount"
+                        android:layout_gravity="left|bottom"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/tvdiscount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:text="30%"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/yellowcol" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/tvdiscount"
+                            android:gravity="left"
+                            android:text="OFF"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/yellowcol" />
+                    </RelativeLayout>
+
+                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                        android:id="@+id/tvdealname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@+id/RLpercent"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="left|center_vertical"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:text="Cafe Coffe Day"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="@color/White" />
+
+                    <LinearLayout
+                        android:id="@+id/LL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvdealname"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:weightSum="1">
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/tvlocation"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight=".4"
+                            android:drawableLeft="@drawable/location2"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="Gurgaon"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/White" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="15dp"
+                            android:layout_gravity="center_vertical|bottom"
+                            android:layout_toRightOf="@+id/tvlocation"
+                            android:background="@color/White" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/tvstartime"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight=".2"
+                            android:drawableLeft="@drawable/timer"
+                            android:drawablePadding="5dp"
+                            android:gravity="left"
+                            android:text="4pm"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/White" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_toRightOf="@+id/tvstartime"
+                            android:text="-"
+                            android:textColor="@color/White"
+                            android:textStyle="bold" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/tvendtime"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight=".2"
+                            android:drawablePadding="5dp"
+                            android:gravity="left"
+                            android:text="10pm"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/White" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/LLoption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/LL"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="3dp"
+                        android:weightSum="1">
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/tvoptionone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="left"
+                            android:maxLength="10"
+                            android:maxLines="1"
+                            android:text="Gurgaon"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/White" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/tvlocation"
+                            android:background="@color/White" />
+
+                        <RelativeLayout
+                            android:id="@+id/RLAmount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="5dp">
+
+                            <View
+                                android:id="@+id/viewline"
+                                android:layout_width="30dp"
+                                android:layout_height="3dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center"
+                                android:background="@color/yellowcol"
+                                android:gravity="left"
+                                android:visibility="visible" />
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:id="@+id/tvactualprice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="bottom"
+                                android:maxLines="1"
+                                android:text="99999"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/White" />
+
+                        </RelativeLayout>
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/tvwaiveoffrs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="bottom"
+                            android:maxLines="1"
+                            android:text="33333"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/White" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="top"
+                    android:minHeight="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/htab_tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="200dp"
+                    android:background="@color/White"
+                    android:minHeight="20dp"
+                    app:tabMinWidth="20dp"
+                    app:tabMode="scrollable" />
+
+                <!--   <com.astuetz.PagerSlidingTabStrip
+                       android:id="@+id/tabs"
+                       android:layout_width="match_parent"
+                       android:layout_height="?attr/actionBarSize"
+                       android:background="?attr/colorPrimary" />
+-->
+
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.AppBarLayout>
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/htab_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    </android.support.design.widget.CoordinatorLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        app:layout_behavior="@string/bottom_sheet_behavior">
+
+        <include
+            layout="@layout/activity_footer_new"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+    </LinearLayout>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:fitsSystemWindows="true"
+        app:itemBackground="@android:color/transparent"
+        app:itemTextColor="#000000">
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <!--         <Button
+                                 android:id="@+id/btmore"
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:layout_gravity="center"
+                                 android:background="#ffffff"
+                                 android:drawablePadding="10dp"
+                                 android:drawableRight="@drawable/arrow"
+                                 android:gravity="center"
+                                 android:paddingRight="20dp"
+                                 android:text="More"
+                                 android:textAppearance="?android:textAppearanceMedium"
+                                 android:textColor="@color/blackfontcolor" />-->
+
+                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                        android:id="@+id/tvmore"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#95FFFFFF"
+                        android:drawablePadding="20dp"
+                        android:drawableRight="@drawable/cross"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="More"
+                        android:textColor="@color/blackfontcolor" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:textColor="@color/greyfontcol" />
+
+                    <LinearLayout
+                        android:id="@+id/LLorder"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#95FFFFFF"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:weightSum="1">
+
+                        <ImageView
+                            android:id="@+id/ivorder"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:padding="10dp"
+                            android:src="@drawable/myorder" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/btorder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:drawablePadding="10dp"
+                            android:drawableRight="@drawable/arrow"
+                            android:gravity="center|left"
+                            android:text="My Orders"
+                            android:textColor="@color/blackfontcolor" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:textColor="@color/greyfontcol" />
+
+                    <LinearLayout
+                        android:id="@+id/LLtrading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#95FFFFFF"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:id="@+id/trading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:padding="10dp"
+                            android:src="@drawable/trendingdeals" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/btntrading"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:drawablePadding="10dp"
+                            android:drawableRight="@drawable/arrow"
+                            android:gravity="center|left"
+                            android:text="Tranding Deals"
+
+                            android:textColor="@color/blackfontcolor" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:textColor="@color/greyfontcol" />
+
+                    <LinearLayout
+                        android:id="@+id/LLproximity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#95FFFFFF"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:id="@+id/ivproximity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:padding="10dp"
+                            android:src="@drawable/dealsinprosperity" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/btnproximity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:drawablePadding="10dp"
+                            android:drawableRight="@drawable/arrow"
+                            android:gravity="center|left"
+                            android:text="Deals in Proximity"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/blackfontcolor" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:textColor="@color/greyfontcol" />
+
+                    <LinearLayout
+                        android:id="@+id/LLpopulardeals"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#95FFFFFF"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:id="@+id/ivpopular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:padding="10dp"
+                            android:src="@drawable/populardeals" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/btnpopulardeals"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:drawablePadding="10dp"
+                            android:drawableRight="@drawable/arrow"
+                            android:gravity="center|left"
+                            android:text="Popular Deals"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/blackfontcolor" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:textColor="@color/greyfontcol" />
+
+                    <LinearLayout
+                        android:id="@+id/LLshare"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#95FFFFFF"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:id="@+id/ivshare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:padding="10dp"
+                            android:src="@drawable/share" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/btnshare"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:drawablePadding="10dp"
+                            android:drawableRight="@drawable/arrow"
+                            android:gravity="center|left"
+                            android:text="Share &amp; Like"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/blackfontcolor" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:textColor="@color/greyfontcol" />
+
+                    <LinearLayout
+                        android:id="@+id/LLNotification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#95FFFFFF"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:id="@+id/ivnotification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:padding="10dp"
+                            android:src="@drawable/notification" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/btnnotification"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:drawablePadding="10dp"
+                            android:drawableRight="@drawable/arrow"
+                            android:gravity="center|left"
+                            android:text="Notifications"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/blackfontcolor" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:textColor="@color/greyfontcol" />
+
+                    <LinearLayout
+                        android:id="@+id/LLRefer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#95FFFFFF"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:id="@+id/ivrefer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:padding="10dp"
+                            android:src="@drawable/refertofriend" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/btnrefer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:drawablePadding="10dp"
+                            android:drawableRight="@drawable/arrow"
+                            android:gravity="center|left"
+                            android:text="Refer To Friends"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/blackfontcolor" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:textColor="@color/greyfontcol" />
+
+                    <LinearLayout
+                        android:id="@+id/LLPrivacy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#95FFFFFF"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:id="@+id/ivprivacy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:padding="10dp"
+                            android:src="@drawable/privacy" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/btnprivacy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:drawablePadding="10dp"
+                            android:drawableRight="@drawable/arrow"
+                            android:gravity="center|left"
+                            android:text="Privacy Policy"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/blackfontcolor" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:textColor="@color/greyfontcol" />
+
+                    <LinearLayout
+                        android:id="@+id/LLUse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#95FFFFFF"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:id="@+id/ivuse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:padding="10dp"
+                            android:src="@drawable/terms" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/btnuse"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:drawablePadding="10dp"
+                            android:drawableRight="@drawable/arrow"
+                            android:gravity="center|left"
+                            android:text="Terms of Use"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/blackfontcolor" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:textColor="@color/greyfontcol" />
+
+                    <LinearLayout
+                        android:id="@+id/LLAbout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#95FFFFFF"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:id="@+id/ivabout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:padding="10dp"
+                            android:src="@drawable/aboutus" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/btnabout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:drawablePadding="10dp"
+                            android:drawableRight="@drawable/arrow"
+                            android:gravity="center|left"
+                            android:text="About Us"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/blackfontcolor" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:textColor="@color/greyfontcol" />
+
+                    <LinearLayout
+                        android:id="@+id/LLcontact"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#95FFFFFF"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:id="@+id/ivcontact"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:padding="10dp"
+                            android:src="@drawable/contactus" />
+
+                        <TextView
+                            android:id="@+id/btncontactus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+
+                            android:drawablePadding="10dp"
+                            android:drawableRight="@drawable/arrow"
+                            android:gravity="center|left"
+                            android:text="Contact Us"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/blackfontcolor" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:textColor="@color/greyfontcol" />
+
+                    <LinearLayout
+                        android:id="@+id/LLlogout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#95FFFFFF"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:id="@+id/ivlogout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:padding="10dp"
+                            android:src="@drawable/logout" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/btnlogout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:drawablePadding="10dp"
+                            android:drawableRight="@drawable/arrow"
+                            android:gravity="center|left"
+                            android:text="Logout"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/blackfontcolor" />
+
+                    </LinearLayout>
+
+                    <!--   <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:background="@color/background"
+                           android:orientation="horizontal"
+                           android:weightSum="1">
+
+                           <Button
+                               android:id="@+id/btnshare"
+                               android:layout_width="0dp"
+                               android:layout_height="wrap_content"
+                               android:layout_gravity="center"
+                               android:layout_weight=".8"
+                               android:background="#ffffff"
+                               android:drawableLeft="@drawable/share"
+                               android:drawablePadding="20dp"
+                               android:gravity="center|left"
+                               android:paddingLeft="20dp"
+                               android:text="Share &amp; Like"
+                               android:textAppearance="?android:textAppearanceMedium"
+                               android:textColor="@color/blackfontcolor" />
+
+                           <ImageView
+                               android:layout_width="0dp"
+                               android:layout_height="match_parent"
+                               android:layout_weight=".2"
+                               android:scaleType="center"
+                               android:src="@drawable/cross" />
+
+                       </LinearLayout>
+
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:background="@color/background"
+                           android:orientation="horizontal"
+                           android:weightSum="1">
+
+                           <Button
+                               android:id="@+id/btnotification"
+                               android:layout_width="0dp"
+                               android:layout_height="wrap_content"
+                               android:layout_gravity="center"
+                               android:layout_weight=".8"
+                               android:background="#ffffff"
+                               android:drawableLeft="@drawable/notification"
+                               android:drawablePadding="20dp"
+                               android:gravity="center|left"
+                               android:paddingLeft="20dp"
+                               android:text="Notifications"
+                               android:textAppearance="?android:textAppearanceMedium"
+                               android:textColor="@color/blackfontcolor" />
+
+                           <ImageView
+                               android:layout_width="0dp"
+                               android:layout_height="match_parent"
+                               android:layout_weight=".2"
+                               android:scaleType="center"
+                               android:src="@drawable/cross" />
+
+                       </LinearLayout>
+
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:background="@color/background"
+                           android:orientation="horizontal"
+                           android:weightSum="1">
+
+                           <Button
+                               android:id="@+id/btnrefer"
+                               android:layout_width="0dp"
+                               android:layout_height="wrap_content"
+                               android:layout_gravity="center"
+                               android:layout_weight=".8"
+                               android:background="#ffffff"
+                               android:drawableLeft="@drawable/refertofriend"
+                               android:drawablePadding="20dp"
+                               android:gravity="center|left"
+                               android:paddingLeft="20dp"
+                               android:text="Refer to Friends"
+                               android:textAppearance="?android:textAppearanceMedium"
+                               android:textColor="@color/blackfontcolor" />
+
+                           <ImageView
+                               android:layout_width="0dp"
+                               android:layout_height="match_parent"
+                               android:layout_weight=".2"
+                               android:scaleType="center"
+                               android:src="@drawable/cross" />
+
+                       </LinearLayout>
+
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:background="@color/background"
+                           android:orientation="horizontal"
+                           android:weightSum="1">
+
+                           <Button
+                               android:id="@+id/btnprivacy"
+                               android:layout_width="0dp"
+                               android:layout_height="wrap_content"
+                               android:layout_gravity="center"
+                               android:layout_weight=".8"
+                               android:background="#ffffff"
+                               android:drawableLeft="@drawable/privacy"
+                               android:drawablePadding="20dp"
+                               android:gravity="center|left"
+                               android:paddingLeft="20dp"
+                               android:text="Privacy Policy"
+                               android:textAppearance="?android:textAppearanceMedium"
+                               android:textColor="@color/blackfontcolor" />
+
+                           <ImageView
+                               android:layout_width="0dp"
+                               android:layout_height="match_parent"
+                               android:layout_weight=".2"
+                               android:scaleType="center"
+                               android:src="@drawable/cross" />
+
+                       </LinearLayout>
+
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:background="@color/background"
+                           android:orientation="horizontal"
+                           android:weightSum="1">
+
+                           <Button
+                               android:id="@+id/btnterms"
+                               android:layout_width="0dp"
+                               android:layout_height="wrap_content"
+                               android:layout_gravity="center"
+                               android:layout_weight=".8"
+                               android:background="#ffffff"
+                               android:drawableLeft="@drawable/terms"
+                               android:drawablePadding="20dp"
+                               android:gravity="center|left"
+                               android:paddingLeft="20dp"
+                               android:text="Terms of Use"
+                               android:textAppearance="?android:textAppearanceMedium"
+                               android:textColor="@color/blackfontcolor" />
+
+                           <ImageView
+                               android:layout_width="0dp"
+                               android:layout_height="match_parent"
+                               android:layout_weight=".2"
+                               android:scaleType="center"
+                               android:src="@drawable/cross" />
+
+                       </LinearLayout>
+
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:background="@color/background"
+                           android:orientation="horizontal"
+                           android:weightSum="1">
+
+                           <Button
+                               android:id="@+id/btnabout"
+                               android:layout_width="0dp"
+                               android:layout_height="wrap_content"
+                               android:layout_gravity="center"
+                               android:layout_weight=".8"
+                               android:background="#ffffff"
+                               android:drawableLeft="@drawable/aboutus"
+                               android:drawablePadding="20dp"
+                               android:gravity="center|left"
+                               android:paddingLeft="20dp"
+                               android:text="About Us"
+                               android:textAppearance="?android:textAppearanceMedium"
+                               android:textColor="@color/blackfontcolor" />
+
+                           <ImageView
+                               android:layout_width="0dp"
+                               android:layout_height="match_parent"
+                               android:layout_weight=".2"
+                               android:scaleType="center"
+                               android:src="@drawable/cross" />
+
+                       </LinearLayout>
+
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:background="@color/background"
+                           android:orientation="horizontal"
+                           android:weightSum="1">
+
+                           <Button
+                               android:id="@+id/btnlogout"
+                               android:layout_width="0dp"
+                               android:layout_height="wrap_content"
+                               android:layout_gravity="center"
+                               android:layout_weight=".8"
+                               android:background="#ffffff"
+                               android:drawableLeft="@drawable/logout"
+                               android:drawablePadding="20dp"
+                               android:gravity="center|left"
+                               android:paddingLeft="20dp"
+                               android:text="Logout"
+                               android:textAppearance="?android:textAppearanceMedium"
+                               android:textColor="@color/blackfontcolor" />
+
+                           <ImageView
+                               android:layout_width="0dp"
+                               android:layout_height="match_parent"
+                               android:layout_weight=".2"
+                               android:scaleType="center"
+                               android:src="@drawable/cross" />
+
+                       </LinearLayout>
+
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:background="@color/background"
+                           android:orientation="horizontal"
+                           android:weightSum="1">
+
+                           <Button
+                               android:id="@+id/btncontact"
+                               android:layout_width="0dp"
+                               android:layout_height="wrap_content"
+                               android:layout_gravity="center"
+                               android:layout_weight=".8"
+                               android:background="#ffffff"
+                               android:drawableLeft="@drawable/contactus"
+                               android:drawablePadding="20dp"
+                               android:gravity="center|left"
+                               android:paddingLeft="20dp"
+                               android:text="My Order"
+                               android:textAppearance="?android:textAppearanceMedium"
+                               android:textColor="@color/blackfontcolor" />
+
+                           <ImageView
+                               android:layout_width="0dp"
+                               android:layout_height="match_parent"
+                               android:layout_weight=".2"
+                               android:scaleType="center"
+                               android:src="@drawable/cross" />
+
+                       </LinearLayout>-->
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+    </android.support.design.widget.BottomNavigationView>
+
+</android.support.v4.widget.DrawerLayout>
+
+

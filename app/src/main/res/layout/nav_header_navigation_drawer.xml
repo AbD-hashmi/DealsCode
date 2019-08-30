@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:orientation="vertical"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btmore"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".8"
+                    android:background="#ffffff"
+                    android:drawablePadding="20dp"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:text="More"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/blackfontcolor" />
+
+                <ImageView
+                    android:id="@+id/imagvnvneView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".2"
+                    android:scaleType="center"
+                    android:src="@drawable/cross" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btnoder"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".8"
+                    android:background="#ffffff"
+                    android:drawableLeft="@drawable/myorder"
+                    android:drawablePadding="20dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="20dp"
+                    android:text="My Order"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/blackfontcolor" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".2"
+                    android:scaleType="center"
+                    android:src="@drawable/arrow" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btntrading"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".8"
+                    android:background="#ffffff"
+                    android:drawableLeft="@drawable/trendingdeals"
+                    android:drawablePadding="20dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="20dp"
+                    android:text="Tranding Deals"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/blackfontcolor" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".2"
+                    android:scaleType="center"
+                    android:src="@drawable/arrow" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btndealproximity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".8"
+                    android:background="#ffffff"
+                    android:drawableLeft="@drawable/dealsinprosperity"
+                    android:drawablePadding="20dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="20dp"
+                    android:text="Deals in Proximity"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/blackfontcolor" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".2"
+                    android:scaleType="center"
+                    android:src="@drawable/arrow" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btnpopulardeal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".8"
+                    android:background="#ffffff"
+                    android:drawableLeft="@drawable/populardeals"
+                    android:drawablePadding="20dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="20dp"
+                    android:text="Popular Deals"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/blackfontcolor" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".2"
+                    android:scaleType="center"
+                    android:src="@drawable/arrow" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btnshare"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".8"
+                    android:background="#ffffff"
+                    android:drawableLeft="@drawable/share"
+                    android:drawablePadding="20dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="20dp"
+                    android:text="Share &amp; Like"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/blackfontcolor" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".2"
+                    android:scaleType="center"
+                    android:src="@drawable/arrow" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btnotification"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".8"
+                    android:background="#ffffff"
+                    android:drawableLeft="@drawable/notification"
+                    android:drawablePadding="20dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="20dp"
+                    android:text="Notifications"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/blackfontcolor" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".2"
+                    android:scaleType="center"
+                    android:src="@drawable/arrow" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btnrefer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".8"
+                    android:background="#ffffff"
+                    android:drawableLeft="@drawable/refertofriend"
+                    android:drawablePadding="20dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="20dp"
+                    android:text="Refer to Friends"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/blackfontcolor" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".2"
+                    android:scaleType="center"
+                    android:src="@drawable/arrow" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btnprivacy"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".8"
+                    android:background="#ffffff"
+                    android:drawableLeft="@drawable/privacy"
+                    android:drawablePadding="20dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="20dp"
+                    android:text="Privacy Policy"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/blackfontcolor" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".2"
+                    android:scaleType="center"
+                    android:src="@drawable/arrow" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btnterms"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".8"
+                    android:background="#ffffff"
+                    android:drawableLeft="@drawable/terms"
+                    android:drawablePadding="20dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="20dp"
+                    android:text="Terms of Use"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/blackfontcolor" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".2"
+                    android:scaleType="center"
+                    android:src="@drawable/arrow" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btnabout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".8"
+                    android:background="#ffffff"
+                    android:drawableLeft="@drawable/aboutus"
+                    android:drawablePadding="20dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="20dp"
+                    android:text="About Us"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/blackfontcolor" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".2"
+                    android:scaleType="center"
+                    android:src="@drawable/arrow" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btnlogout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".8"
+                    android:background="#ffffff"
+                    android:drawableLeft="@drawable/logout"
+                    android:drawablePadding="20dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="20dp"
+                    android:text="Logout"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/blackfontcolor" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".2"
+                    android:scaleType="center"
+                    android:src="@drawable/arrow" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btncontact"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".8"
+                    android:background="#ffffff"
+                    android:drawableLeft="@drawable/contactus"
+                    android:drawablePadding="20dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="20dp"
+                    android:text="My Order"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/blackfontcolor" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".2"
+                    android:scaleType="center"
+                    android:src="@drawable/arrow" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>

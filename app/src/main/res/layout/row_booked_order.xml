@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/Rldeal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:background="@color/White"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <RelativeLayout
+            android:id="@+id/RLdata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:id="@+id/tvdiscount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/redFont" />
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:id="@+id/tvdealname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/tvdiscount"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/blackfontcolor" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/LL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/RLdata"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <RelativeLayout
+                android:id="@+id/RLAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="center_vertical"
+                android:padding="5dp">
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    android:id="@+id/tvactualprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:maxLines="1"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textColor="@color/darkGray" />
+
+            </RelativeLayout>
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:id="@+id/tvafterdisprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/RLAmount"
+                android:gravity="bottom"
+                android:maxLines="1"
+                android:padding="5dp"
+
+          android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/blackfontcolor" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    android:id="@+id/tv_orderno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_toRightOf="@+id/tvstartime"
+
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textColor="@color/Black"
+                    android:textColorHint="@color/Black" />
+                
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

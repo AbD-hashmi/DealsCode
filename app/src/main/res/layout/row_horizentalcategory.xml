@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LLcatelist"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@color/grey"
+    android:padding="10dp">
+
+
+    <ImageView
+        android:id="@+id/iv_horizental"
+        android:layout_width="50dp"
+        android:scaleType="fitXY"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:id="@+id/tv_horizental"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="top|center_horizontal"
+        android:maxLines="1"
+        android:text="niraj\nniraj"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/Black" />
+
+</LinearLayout>

@@ -1,0 +1,216 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Black"
+    android:orientation="vertical"
+    tools:context="com.hmi.dealsnxt.Activity.OTPActivity">
+
+    <!--    android:background="@drawable/otp_bg"-->
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="25dp"
+        android:padding="20dp"
+        android:src="@drawable/logo" />
+
+    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        android:text="We have sent you an access code via SMS for mobile number verifications"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:textColor="@color/white" />
+
+
+
+
+    <!--    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical|left|bottom"
+        android:orientation="horizontal"
+        android:padding="5dp">-->
+
+    <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/img"
+        android:gravity="center_vertical|left|bottom"
+        android:inputType="textCapWords|textPersonName"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:id="@+id/tvtop"
+        android:text="Enter your mobile number"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/white" />
+
+    <!--            </LinearLayout>-->
+
+    <!--    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/Black"
+            android:orientation="horizontal"
+            android:padding="5dp">
+-->
+    <EditText
+        android:id="@+id/etmobno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:maxLength="13"
+        android:maxLines="1"
+        android:text="+91"
+        android:selectAllOnFocus="true"
+        android:layout_below="@+id/tvtop"
+        android:singleLine="true"
+        android:background="@color/darkGray"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/blackfontcolor" />
+    <!--     </LinearLayout>-->
+
+    <!--         <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical|left|bottom"
+        android:orientation="horizontal">-->
+
+    <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:drawableLeft="@drawable/referral_new"
+        android:drawablePadding="15dp"
+        android:gravity="center_vertical|left|bottom"
+        android:inputType="textCapWords|textPersonName"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="15dp"
+        android:paddingTop="10dp"
+        android:text="Referal Code If Any"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/white"
+        android:visibility="gone" />
+    <!--        </LinearLayout>-->
+
+
+    <EditText
+        android:id="@+id/etcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:nextFocusDown="@+id/tvagree"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/white"
+        android:visibility="gone" />
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        >
+
+        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingTop="5dp"
+            android:id="@+id/by"
+            android:text="By signing up I agree to the"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/white" />
+
+        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+            android:id="@+id/tvprivacy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Privacy Policy"
+            android:layout_below="@+id/by"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/yellowcol" />
+
+        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+            android:id="@+id/and"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/by"
+            android:text=" and "
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@+id/tvprivacy" />
+
+        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+            android:id="@+id/tvtnc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Terms of use"
+            android:layout_below="@+id/by"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/yellowcol"
+            android:layout_toRightOf="@+id/and" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/tvagree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_arrow_forward_black_24dp"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:layout_alignParentEnd="true"
+            android:paddingRight="20dp"
+            android:theme="@style/AppTheme.button"
+            android:paddingTop="10dp"
+            android:layout_alignParentRight="true" />
+
+    </RelativeLayout>
+
+    <CheckBox
+        android:id="@+id/chkselect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:checked="false"
+        android:hint="Subscribe me to email newsletters"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:textColor="@color/Black"
+        android:visibility="gone" />
+
+
+
+    <ProgressBar
+        android:layout_below="@+id/card"
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+
+</RelativeLayout>

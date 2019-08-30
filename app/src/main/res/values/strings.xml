@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">DealsNxt</string>
+    <string name="ConnectionErrorResponse">Oops! Please check your Internet Connection</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <string name="HotDeals">Hot Deals</string>
+    <string name="FoodDrink">Food &amp; Drink</string>
+    <string name="Hotel">Hotel</string>
+    <string name="Spa">Spa</string>
+    <string name="Rs">\u20B9</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="google_maps_key">AIzaSyDvr3t5VrzyWWnnqdl1zXYdpPsbgw5TNtw</string>
+    <!--<string name="google_maps_key">AIzaSyBujGz-4D54bqUVcYc_vL2T0-vslcU9Ee0</string>-->
+    <!--<string name="google_maps_key_new">AIzaSyDd_nUAMYU3veRhQ-q5iyVmQ476dFyegN0</string>-->
+
+
+    <string name="GCMSenderID">501378068844</string>
+    <string name="ServerAPIKey">AIzaSyAyLkqW08IR-ZTTu19XcmaMPuOGyi13RrQ</string>
+
+
+    <!--<string name="facebook_app_id">310407562776971</string>
+    <string name="fb_login_protocol_scheme">fb310407562776971</string>-->
+    <string name="title_activity_order_activtiy">OrderActivtiy</string>
+
+    <string name="facebook_app_id">310407562776971</string>
+    <string name="fb_login_protocol_scheme">fb310407562776971</string>
+    <string name="title_activity_notification">NotificationActivity</string>
+    <string name="title_activity_near_by">Map</string>
+
+
+</resources>

@@ -1,0 +1,352 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbarnew"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="40dp"
+            android:background="@color/darkGray"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/RLdealdata"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/White">
+
+                    <ImageView
+                        android:id="@+id/ivdeal"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:scaleType="centerCrop"
+
+                        android:src="@drawable/banner_new" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ivdeal"
+                        android:orientation="vertical"
+                        android:padding="5dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_gravity="center_vertical"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:text="Voucher ID :"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/blackfontcolor" />
+
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                                android:id="@+id/tvvoucherid"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="5dp"
+                                android:layout_toRightOf="@+id/tvview"
+                                android:gravity="center_vertical"
+
+                                android:padding="3dp"
+                                android:textAppearance="?android:textAppearanceMedium"
+                                android:textColor="@color/Black" />
+                            <!--         android:background="@color/buttoncol"-->
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:id="@+id/tvoff"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_gravity="top"
+                                android:gravity="left"
+                                android:text=""
+                                android:textAppearance="?android:textAppearanceMedium"
+                                android:textColor="@color/blackfontcolor" />
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                                android:id="@+id/tvdealname"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:gravity="left"
+                                android:text=""
+                                android:textAppearance="?android:textAppearanceMedium"
+                                android:textColor="@color/blackfontcolor"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_toLeftOf="@+id/ivQR"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical">
+
+                                <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                                    android:id="@+id/tvoutletname"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="left"
+                                    android:padding="3dp"
+                                    android:text=""
+                                    android:textAppearance="?android:textAppearanceMedium"
+                                    android:textColor="@color/blackfontcolor"
+                                    android:textStyle="bold" />
+
+                                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                    android:id="@+id/tvoutletaddress"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:padding="3dp"
+                                    android:text=""
+                                    android:textAppearance="?android:textAppearanceSmall"
+                                    android:textColor="@color/blackfontcolor"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:orientation="horizontal"
+                                    android:padding="3dp">
+
+                                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                        android:id="@+id/tvstartime"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_gravity="center_vertical"
+                                        android:drawableLeft="@drawable/time_black"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="center_vertical"
+                                        android:textAppearance="?android:textAppearanceSmall"
+                                        android:textColor="@color/blackfontcolor" />
+
+                                    <TextView
+                                        android:id="@+id/tvview"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_toRightOf="@+id/tvstartime"
+                                        android:text="-"
+                                        android:textColor="@color/blackfontcolor"
+                                        android:textStyle="bold"
+                                        android:visibility="gone" />
+
+                                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                        android:id="@+id/tvendtime"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_toRightOf="@+id/tvview"
+                                        android:gravity="center_horizontal"
+                                        android:text="10pm"
+                                        android:textAppearance="?android:textAppearanceSmall"
+                                        android:textColor="@color/blackfontcolor"
+                                        android:visibility="gone" />
+
+                                    <View
+                                        android:layout_width="1dp"
+                                        android:layout_height="15dp"
+                                        android:layout_centerInParent="true"
+                                        android:layout_gravity="center"
+                                        android:layout_marginLeft="10dp"
+                                        android:background="@color/Black" />
+
+                                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                        android:id="@+id/tvdealdate"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginLeft="5dp"
+                                        android:drawableLeft="@drawable/calender"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="center_vertical"
+                                        android:textAppearance="?android:textAppearanceSmall"
+                                        android:textColor="@color/blackfontcolor"
+                                        android:textSize="12sp" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/ivQR"
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp" />
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/LLlist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/RLdealdata"
+                    android:background="#ffffff"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/viewlist"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/White" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        style="?android:attr/progressBarStyleSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:indeterminateTint="@color/ProgressBarColor"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/RLAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/White"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:gravity="center_horizontal"
+                        android:text="Transaction ID"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textColor="@color/blackfontcolor" />
+
+                    <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                        android:id="@+id/tvtransactionId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center_horizontal"
+                        android:padding="5dp"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textColor="@color/blackfontcolor" />
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/LLpayment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/buttoncol"
+        android:orientation="vertical">
+
+        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:background="@color/buttoncol"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:text="Total"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/White" />
+
+        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+            android:id="@+id/tvtotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:background="@color/buttoncol"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:text="Rs 30000"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/White" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

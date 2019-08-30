@@ -1,0 +1,834 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:orientation="vertical"
+    tools:context="com.hmi.dealsnxt.Activity.ProfileActivity">
+
+    <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:openDrawer="right">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@+id/toolbarnew"
+            android:layout_weight=".92"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/head"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@drawable/profile_banner">
+
+                <RelativeLayout
+                    android:id="@id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@android:color/transparent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imback"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:padding="10dp"
+                        android:src="@drawable/back" />
+
+                    <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                        android:id="@+id/tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="Profile"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="@color/White"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/ivsignout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:padding="10dp"
+                        android:src="@drawable/signout" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/head"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:id="@+id/LL1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".88"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/RL"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:weightSum="1">
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularEditText
+                                android:id="@+id/etname"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:layout_weight=".9"
+                                android:backgroundTint="@android:color/transparent"
+                                android:enabled="false"
+                                android:gravity="center"
+                                android:hint="Name"
+                                android:inputType="textCapWords|textPersonName"
+                                android:maxLines="1"
+                                android:nextFocusDown="@+id/etFullName"
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                android:textAppearance="?android:textAppearanceMedium"
+                                android:textColor="@color/Black"
+                                android:textColorHint="@color/Black" />
+
+                            <ImageView
+                                android:id="@+id/ivEditIcon"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/etname"
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="bottom"
+                                android:layout_toRightOf="@+id/etname"
+                                android:layout_weight=".1"
+                                android:visibility="gone"
+                                android:padding="5dp"
+                                android:src="@drawable/edit" />
+
+                        </LinearLayout>
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularEditText
+                            android:id="@+id/etemail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/RL"
+                            android:layout_gravity="left"
+                            android:layout_marginTop="10dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:enabled="false"
+                            android:gravity="center"
+                            android:hint="Email Id"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:nextFocusDown="@+id/etname"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:textAppearance="?android:textAppearanceMedium"
+                            android:textColor="@color/Black"
+                            android:textColorHint="@color/Black" />
+
+                        <LinearLayout
+                            android:id="@+id/lll"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/etemail"
+                            android:orientation="vertical">
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:id="@+id/etDOB"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/etemail"
+                                android:layout_gravity="left"
+                                android:layout_marginTop="10dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:enabled="false"
+                                android:gravity="center"
+                                android:hint="DOB"
+                                android:inputType="number"
+                                android:maxLines="1"
+                                android:nextFocusDown="@+id/etemail"
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                android:textAppearance="?android:textAppearanceMedium"
+                                android:textColor="@color/Black"
+                                android:textColorHint="@color/Black" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/lll"
+                            android:orientation="vertical">
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:id="@+id/gender_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginTop="5dp"
+                                android:textAppearance="?android:textAppearanceMedium"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center" />
+
+                            <Spinner
+                                android:id="@+id/genderSpinner"
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_gravity="center"
+                                android:background="@drawable/edittext_border"
+                                android:drawSelectorOnTop="true"
+                                android:gravity="center"
+                                android:inputType="textCapWords|textPersonName"
+                                android:spinnerMode="dropdown"
+                                android:textAlignment="center"
+                                android:textAppearance="?android:textAppearanceMedium"
+                                android:textColor="@color/Black"
+                                android:textColorHint="@color/Black" />
+
+                        </LinearLayout>
+
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularEditText
+                            android:id="@+id/etmobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ll"
+                            android:layout_gravity="left"
+
+                            android:backgroundTint="@android:color/transparent"
+                            android:enabled="false"
+                            android:gravity="center"
+                            android:hint="Mobile Number"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:nextFocusDown="@+id/etFullName"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:textAppearance="?android:textAppearanceMedium"
+                            android:textColor="@color/Black"
+                            android:textColorHint="@color/Black" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                            android:id="@+id/save"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:background="@color/buttoncol"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="Save"
+                            android:textAppearance="?android:textAppearanceMedium"
+                            android:textColor="@color/White" />
+                    </RelativeLayout>
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar"
+                        style="?android:attr/progressBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:indeterminateTint="@color/ProgressBarColor"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <include
+                    layout="@layout/activity_footer_new"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+
+                    android:layout_weight=".12" />
+
+            </LinearLayout>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userimage"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="80dp"
+                android:src="@drawable/profileimages"
+                app:civ_border_color="#FFFFFF"
+                app:civ_border_width="3dp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            app:layout_behavior="@string/bottom_sheet_behavior">
+
+            <include
+                layout="@layout/activity_footer_new"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="50dp" />
+        </LinearLayout>
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:fitsSystemWindows="true"
+            app:itemBackground="@android:color/transparent"
+            app:itemTextColor="#000000">
+
+            <LinearLayout
+                android:layout_width="220dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <!--         <Button
+                                     android:id="@+id/btmore"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="wrap_content"
+                                     android:layout_gravity="center"
+                                     android:background="#ffffff"
+                                     android:drawablePadding="10dp"
+                                     android:drawableRight="@drawable/arrow"
+                                     android:gravity="center"
+                                     android:paddingRight="20dp"
+                                     android:text="More"
+                                     android:textAppearance="?android:textAppearanceMedium"
+                                     android:textColor="@color/blackfontcolor" />-->
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/tvmore"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#95FFFFFF"
+                            android:drawablePadding="15dp"
+                            android:drawableRight="@drawable/cross"
+                            android:gravity="center"
+                            android:padding="15dp"
+                            android:paddingTop="10dp"
+                            android:text="More"
+                            android:textColor="@color/blackfontcolor"
+                            android:visibility="gone" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:textColor="@color/greyfontcol" />
+
+                        <LinearLayout
+                            android:id="@+id/LLorder"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#95FFFFFF"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="1">
+
+                            <ImageView
+                                android:id="@+id/ivorder"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:src="@drawable/myorder" />
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:id="@+id/btorder"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="5dp"
+                                android:drawablePadding="10dp"
+                                android:drawableRight="@drawable/left_arrow"
+                                android:gravity="center|left"
+                                android:text="My Orders"
+                                android:textColor="@color/blackfontcolor" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:textColor="@color/greyfontcol" />
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/LLtrading"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#95FFFFFF"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <ImageView
+                                android:id="@+id/trading"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:src="@drawable/trendingdeals" />
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:id="@+id/btntrading"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="5dp"
+                                android:drawablePadding="10dp"
+                                android:drawableRight="@drawable/left_arrow"
+                                android:gravity="center|left"
+                                android:text="Tranding Deals"
+                                android:textColor="@color/blackfontcolor" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:textColor="@color/greyfontcol" />
+
+                        <LinearLayout
+                            android:id="@+id/LLproximity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#95FFFFFF"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <ImageView
+                                android:id="@+id/ivproximity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:src="@drawable/dealsinprosperity" />
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:id="@+id/btnproximity"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="5dp"
+                                android:drawablePadding="10dp"
+                                android:drawableRight="@drawable/left_arrow"
+                                android:gravity="center|left"
+                                android:text="Deals in Proximity"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/blackfontcolor" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:textColor="@color/greyfontcol" />
+
+                        <LinearLayout
+                            android:id="@+id/LLpopulardeals"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#95FFFFFF"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:visibility="gone">
+
+                            <ImageView
+                                android:id="@+id/ivpopular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:src="@drawable/populardeals" />
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:id="@+id/btnpopulardeals"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="5dp"
+                                android:drawablePadding="10dp"
+                                android:drawableRight="@drawable/left_arrow"
+                                android:gravity="center|left"
+                                android:text="Popular Deals"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/blackfontcolor" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:textColor="@color/greyfontcol" />
+
+                        <LinearLayout
+                            android:id="@+id/LLshare"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#95FFFFFF"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <ImageView
+                                android:id="@+id/ivshare"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:src="@drawable/share" />
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:id="@+id/btnshare"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="5dp"
+                                android:drawablePadding="10dp"
+                                android:drawableRight="@drawable/left_arrow"
+                                android:gravity="center|left"
+                                android:text="Share"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/blackfontcolor" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:textColor="@color/greyfontcol" />
+
+                        <LinearLayout
+                            android:id="@+id/LLrate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#95FFFFFF"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <ImageView
+                                android:id="@+id/ivrate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:src="@drawable/share" />
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:id="@+id/btnrate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="5dp"
+                                android:drawablePadding="10dp"
+                                android:drawableRight="@drawable/left_arrow"
+                                android:gravity="center|left"
+                                android:text="Rate Us"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/blackfontcolor" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:textColor="@color/greyfontcol" />
+
+                        <LinearLayout
+                            android:id="@+id/LLNotification"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#95FFFFFF"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <ImageView
+                                android:id="@+id/ivnotification"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:src="@drawable/notification" />
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:id="@+id/btnnotification"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="5dp"
+                                android:drawablePadding="10dp"
+                                android:drawableRight="@drawable/left_arrow"
+                                android:gravity="center|left"
+                                android:text="Notifications"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/blackfontcolor" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:textColor="@color/greyfontcol" />
+
+                        <LinearLayout
+                            android:id="@+id/LLRefer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#95FFFFFF"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <ImageView
+                                android:id="@+id/ivrefer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:src="@drawable/refertofriend" />
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:id="@+id/btnrefer"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="5dp"
+                                android:drawablePadding="10dp"
+                                android:drawableRight="@drawable/left_arrow"
+                                android:gravity="center|left"
+                                android:text="Refer To Friends"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/blackfontcolor" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:textColor="@color/greyfontcol" />
+
+                        <LinearLayout
+                            android:id="@+id/LLPrivacy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#95FFFFFF"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <ImageView
+                                android:id="@+id/ivprivacy"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:src="@drawable/privacy" />
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:id="@+id/btnprivacy"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="5dp"
+                                android:drawablePadding="10dp"
+                                android:drawableRight="@drawable/left_arrow"
+                                android:gravity="center|left"
+                                android:text="Privacy Policy"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/blackfontcolor" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:textColor="@color/greyfontcol" />
+
+                        <LinearLayout
+                            android:id="@+id/LLUse"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#95FFFFFF"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <ImageView
+                                android:id="@+id/ivuse"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:src="@drawable/terms" />
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:id="@+id/btnuse"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="5dp"
+                                android:drawablePadding="10dp"
+                                android:drawableRight="@drawable/left_arrow"
+                                android:gravity="center|left"
+                                android:text="Terms of Use"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/blackfontcolor" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:textColor="@color/greyfontcol" />
+
+                        <LinearLayout
+                            android:id="@+id/LLAbout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#95FFFFFF"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <ImageView
+                                android:id="@+id/ivabout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:src="@drawable/aboutus" />
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:id="@+id/btnabout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="5dp"
+                                android:drawablePadding="10dp"
+                                android:drawableRight="@drawable/left_arrow"
+                                android:gravity="center|left"
+                                android:text="About Us"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/blackfontcolor" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:textColor="@color/greyfontcol" />
+
+                        <LinearLayout
+                            android:id="@+id/LLcontact"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#95FFFFFF"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <ImageView
+                                android:id="@+id/ivcontact"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:src="@drawable/contactus" />
+
+                            <TextView
+                                android:id="@+id/btncontactus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="5dp"
+
+                                android:drawablePadding="10dp"
+                                android:drawableRight="@drawable/left_arrow"
+                                android:gravity="center|left"
+                                android:text="Contact Us"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/blackfontcolor" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:textColor="@color/greyfontcol" />
+
+                        <LinearLayout
+                            android:id="@+id/LLlogout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#95FFFFFF"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <ImageView
+                                android:id="@+id/ivlogout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:src="@drawable/logout" />
+
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:id="@+id/btnlogout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="5dp"
+                                android:drawablePadding="10dp"
+                                android:drawableRight="@drawable/left_arrow"
+                                android:gravity="center|left"
+                                android:text="Logout"
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/blackfontcolor" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+
+        </android.support.design.widget.BottomNavigationView>
+
+    </android.support.v4.widget.DrawerLayout>
+
+
+</RelativeLayout>
+

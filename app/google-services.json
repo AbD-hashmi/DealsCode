@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "501378068844",
+    "project_id": "dealsnxt"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501378068844:android:e3b966a2f0aeaf2f",
+        "android_client_info": {
+          "package_name": "com.hmi.dealsnxt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "501378068844-mfb3d7d61o5b8rkam86fh56gqh656hdu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_jU1jacpkZFwINCkoG95_q7WISzbzEmA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hmi.dealsnxt.Activity.ContactUsActivity">
+
+    <include
+        layout="@layout/activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    android:id="@+id/etmobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:backgroundTint="@android:color/transparent"
+                    android:drawableLeft="@drawable/mobile"
+                    android:drawablePadding="15dp"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:text="91-9876543210"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/blackfontcolor"
+                    android:textStyle="bold" />
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    android:id="@+id/etaddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/etmobile"
+                    android:layout_gravity="left"
+                    android:backgroundTint="@android:color/transparent"
+                    android:drawableLeft="@drawable/active_map"
+                    android:drawablePadding="15dp"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:text="304 &amp; 306, IIIrd Floor,Suncity Arcade, Sec-54, Suncity Township,Golf Road,Gurgaon   "
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/blackfontcolor"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/greyfontcol" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                    android:id="@+id/tvname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:drawableLeft="@drawable/mobile"
+                    android:drawablePadding="15dp"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:text="Name"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/blackfontcolor"
+                    android:textStyle="bold" />
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    android:id="@+id/tvvname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvname"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:drawableLeft="@drawable/edittext_border"
+                    android:hint="Name"
+                    android:inputType="textAutoComplete|text|textCapSentences|textMultiLine"
+                    android:padding="5dp"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/blackfontcolor"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/greyfontcol" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                    android:id="@+id/tvquery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:drawableLeft="@drawable/mobile"
+                    android:drawablePadding="15dp"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:text="Query"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/blackfontcolor"
+                    android:textStyle="bold" />
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularEditText
+                    android:id="@+id/etQuery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvquery"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusable="false"
+                    android:gravity="start"
+                    android:hint="Type Here Query"
+                    android:inputType="text"
+                    android:padding="5dp"
+                    android:scrollbars="vertical"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/blackfontcolor"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/greyfontcol" />
+
+        </LinearLayout>
+
+        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+            android:id="@+id/tvsubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_margin="10dp"
+            android:background="@drawable/button_gradient_image"
+            android:gravity="center|bottom"
+            android:padding="10dp"
+            android:text="Submit"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/Black" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

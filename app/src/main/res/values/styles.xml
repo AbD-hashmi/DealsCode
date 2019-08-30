@@ -1,0 +1,48 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.button" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorAccent">@color/yellowcol</item>
+    </style>
+
+    <style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <!-- Search button icon -->
+        <item name="searchIcon">@drawable/inactive_search</item>
+        <item name="searchHintIcon">@drawable/inactive_search</item>
+        <item name="android:editTextColor">#ffffff</item>
+    </style>
+
+
+    <style name="NavigationViewStyle">
+        <item name="android:listPreferredItemHeightSmall">32dp</item>
+    </style>
+
+
+    <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- <item name="colorPrimary">@color/colorPrimary</item>
+         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+         <item name="colorAccent">@color/colorPrimary</item>-->
+        <!--   <item name="colorPrimary">@color/btncol</item>
+        <item name="colorPrimaryDark">@color/btncol</item>
+        <item name="colorAccent">@color/btncol</item>-->
+    </style>
+
+    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="colorAccent">@color/redcolor</item>
+    </style>
+
+</resources>

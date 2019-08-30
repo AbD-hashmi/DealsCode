@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hmi.dealsnxt.Activity.AboutUsActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbarnew"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/LLbanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/banner"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:id="@+id/Rllikecount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/ivlike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/like_selector" />
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    android:id="@+id/tvlike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/ivlike"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignRight="@+id/ivlike"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/abstract_back"
+                    android:gravity="center_vertical"
+                    android:text="99"
+                    android:textColor="@color/White"
+                    android:textSize="10dp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/RLpercent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|bottom"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                        android:id="@+id/tvdiscount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="30%"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textColor="@color/White" />
+
+                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/tvdiscount"
+                        android:gravity="left"
+                        android:text="OFF"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textColor="@color/White" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:id="@+id/tvdealname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="5dp"
+                android:gravity="left|center_vertical"
+                android:maxLines="1"
+                android:paddingBottom="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="5dp"
+                android:text="Cafe Coffe Day"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/White" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="5dp"
+                android:weightSum="1">
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    android:id="@+id/tvlocation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight=".4"
+                    android:drawableLeft="@drawable/location2"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="Gurgaon"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textColor="@color/White" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical|bottom"
+                    android:layout_toRightOf="@+id/tvlocation"
+                    android:background="@color/White" />
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    android:id="@+id/tvstartime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight=".2"
+                    android:drawableLeft="@drawable/timer"
+                    android:drawablePadding="5dp"
+                    android:gravity="left"
+                    android:text="4pm"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textColor="@color/White" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_toRightOf="@+id/tvstartime"
+                    android:text="-"
+                    android:textColor="@color/White"
+                    android:textStyle="bold" />
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    android:id="@+id/tvendtime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight=".2"
+                    android:drawablePadding="5dp"
+                    android:gravity="left"
+                    android:text="10pm"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textColor="@color/White" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LLoption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:weightSum="1">
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    android:id="@+id/tvoptionone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="left"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="Gurgaon"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textColor="@color/White" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical|bottom"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/tvlocation"
+                    android:background="@color/White" />
+
+                <RelativeLayout
+                    android:id="@+id/RLAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp">
+
+                    <View
+                        android:id="@+id/viewline"
+                        android:layout_width="35dp"
+                        android:layout_height="3dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/darkGray"
+                        android:gravity="left"
+                        android:visibility="visible" />
+
+                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                        android:id="@+id/tvactualprice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/rupees1"
+                        android:gravity="bottom"
+                        android:maxLength="4"
+                        android:maxLines="1"
+                        android:text="999"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textColor="@color/White" />
+
+                </RelativeLayout>
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    android:id="@+id/tvwaiveoffrs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:drawableLeft="@drawable/rupees1"
+                    android:gravity="bottom"
+                    android:maxLength="4"
+                    android:maxLines="1"
+                    android:text="333"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textColor="@color/White" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+            android:id="@+id/tvcoupondetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/LLbanner"
+            android:layout_marginTop="10dp"
+            android:padding="20dp"
+            android:textColor="@color/Black" />
+
+        <ImageView
+            android:id="@+id/QRcode"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/tvcoupondetail"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp" />
+
+        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+            android:id="@+id/tvtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/QRcode"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="Scan Your QR Code"
+            android:textColor="@color/Black" />
+
+
+    </RelativeLayout>
+
+    <include
+        layout="@layout/activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</RelativeLayout>
+
+

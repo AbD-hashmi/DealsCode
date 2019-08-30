@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:facebook="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    tools:context="com.hmi.dealsnxt.Activity.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:id="@+id/ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/White"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="left"
+                    android:background="@android:color/transparent"
+                    android:drawableLeft="@drawable/mobile"
+                    android:drawablePadding="15dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="10dp"
+                    android:text="Mobile No / Email Address"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/Black" />
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edittext_border"
+                    android:drawablePadding="15dp"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="10dp"
+                    android:singleLine="true"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/darkGray" />
+            </LinearLayout>
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:id="@+id/tvLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@color/buttoncol"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Login"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/White" />
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:id="@+id/or"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvLogin"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/circle_border_white"
+                android:padding="10dp"
+                android:text="OR"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/Black"
+                android:textStyle="bold" />
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:id="@+id/tvfblogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/or"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:background="@color/buttoncolnew"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Login with facebook"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/White" />
+
+
+            <!--     <com.facebook.login.widget.LoginButton
+                     android:id="@+id/login_button"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center_vertical|center"
+                     android:layout_marginTop="10dp"
+                     android:gravity="center"
+                     android:paddingLeft="10dp"
+                     android:paddingRight="10dp"
+                     android:paddingTop="15dp"
+                     android:paddingBottom="15dp"
+                     android:textAppearance="?android:attr/textAppearanceMedium"
+                     android:textColor="@color/White"
+                     android:textStyle="bold" />
+     -->
+
+            <!--     <com.facebook.login.widget.LoginButton
+                     android:id="@+id/login_button"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_centerInParent="true"
+                     android:layout_marginTop="10dp"
+                     android:background="@color/buttoncolnew"
+                     android:paddingBottom="15dp"
+                     android:paddingLeft="10dp"
+                     android:paddingRight="10dp"
+                     android:paddingTop="15dp"
+                     android:text="xfgdfgfdgdfgdfggdfg" />-->
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleInverse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+</RelativeLayout>
