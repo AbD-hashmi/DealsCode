@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/White"
+    android:background="@drawable/gradient"
     android:orientation="vertical"
     tools:context="com.hmi.dealsnxt.Activity.ProfileActivity">
 
@@ -26,8 +26,7 @@
             <RelativeLayout
                 android:id="@+id/head"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:background="@drawable/profile_banner">
+                android:layout_height="160dp">
 
                 <RelativeLayout
                     android:id="@id/toolbar"
@@ -96,7 +95,6 @@
                             android:id="@+id/RL"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
                             android:weightSum="1">
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularEditText
@@ -108,7 +106,6 @@
                                 android:layout_weight=".9"
                                 android:backgroundTint="@android:color/transparent"
                                 android:enabled="false"
-                                android:gravity="center"
                                 android:hint="Name"
                                 android:inputType="textCapWords|textPersonName"
                                 android:maxLines="1"
@@ -116,8 +113,8 @@
                                 android:padding="10dp"
                                 android:singleLine="true"
                                 android:textAppearance="?android:textAppearanceMedium"
-                                android:textColor="@color/Black"
-                                android:textColorHint="@color/Black" />
+                                android:textColor="@color/white"
+                                android:textColorHint="@color/white" />
 
                             <ImageView
                                 android:id="@+id/ivEditIcon"
@@ -143,7 +140,6 @@
                             android:layout_marginTop="10dp"
                             android:backgroundTint="@android:color/transparent"
                             android:enabled="false"
-                            android:gravity="center"
                             android:hint="Email Id"
                             android:inputType="textEmailAddress"
                             android:maxLines="1"
@@ -151,8 +147,8 @@
                             android:padding="10dp"
                             android:singleLine="true"
                             android:textAppearance="?android:textAppearanceMedium"
-                            android:textColor="@color/Black"
-                            android:textColorHint="@color/Black" />
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white" />
 
                         <LinearLayout
                             android:id="@+id/lll"
@@ -170,7 +166,6 @@
                                 android:layout_marginTop="10dp"
                                 android:backgroundTint="@android:color/transparent"
                                 android:enabled="false"
-                                android:gravity="center"
                                 android:hint="DOB"
                                 android:inputType="number"
                                 android:maxLines="1"
@@ -178,8 +173,8 @@
                                 android:padding="10dp"
                                 android:singleLine="true"
                                 android:textAppearance="?android:textAppearanceMedium"
-                                android:textColor="@color/Black"
-                                android:textColorHint="@color/Black" />
+                                android:textColor="@color/white"
+                                android:textColorHint="@color/white" />
 
                         </LinearLayout>
 
@@ -223,7 +218,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/ll"
-                            android:layout_gravity="left"
 
                             android:backgroundTint="@android:color/transparent"
                             android:enabled="false"

@@ -6,12 +6,12 @@
     android:clickable="false"
 
     android:orientation="horizontal">
+    <!--  android:background="#950401"-->
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
-        android:background="@drawable/gradient"
         android:clickable="false"
         android:gravity="center_vertical"
         android:orientation="horizontal"

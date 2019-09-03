@@ -18,10 +18,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -30,7 +32,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,16 +72,15 @@ import static android.Manifest.permission.RECEIVE_SMS;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class OTPActivity extends AppCompatActivity {
-    TextView tvSkip, tvOTP1, tvOTP2, tvOTP3, tvOTP4, tvresend;
-    ImageView ivsubmit;
-    View promptView;
+
     FloatingActionButton tvagree;
     public EditText etmobno, etcode, etotp;
     CheckBox chkselect;
+    LinearLayout linearLayout;
     android.app.AlertDialog alert;
     public String DeviceOSVersion = null;
-    int count = 0;
-    public String OTP;
+    RelativeLayout relativeLayout;
+    Spinner spinner;
     TextView tvtnc, tvprivacy;
     public ResponseReceiver receiver;
     public static final String MainPP_SP = "MainPP_data";
@@ -96,7 +100,6 @@ public class OTPActivity extends AppCompatActivity {
             String OTP = OTPInboxMessageReceiver.OTP;
             if (OTP != null) {
                 etotp.setText(OTP);
-                //   UserRegistration();
                 otpverification();
             }
         }
@@ -112,6 +115,26 @@ public class OTPActivity extends AppCompatActivity {
         setContentView(R.layout.activity_otp);
         progress_bar = (ProgressBar) findViewById(R.id.progress_bar);
         progress_bar.setVisibility(View.GONE);
+
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_top);
+        toolbar.setTitle("");
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        linearLayout=(LinearLayout)findViewById(R.id.linearLayout);
+        relativeLayout=(RelativeLayout) findViewById(R.id.relative_layout);
+        spinner=(Spinner)findViewById(R.id.spinner);
+
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         if (!checkPermission()) {
             requestPermission();
@@ -145,6 +168,7 @@ public class OTPActivity extends AppCompatActivity {
                 if (checkValidation()) {
                     if (Global.isInternetAvail(OTPActivity.this)) {
                         Common.hideKeyboard(v, OTPActivity.this);
+
                         UserRegistration();
                     } else {
                         Toast.makeText(OTPActivity.this, R.string.ConnectionErrorResponse, Toast.LENGTH_LONG).show();
@@ -167,7 +191,12 @@ public class OTPActivity extends AppCompatActivity {
 
     public void UserRegistration() {
         String url = Constaints.UserRegistrationURL;
+
+        linearLayout.setVisibility(View.GONE);
+
         progressDialog.show();
+        relativeLayout.setVisibility(View.VISIBLE);
+
         final Animation bottomUp = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.bottom_down);
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -180,20 +209,13 @@ public class OTPActivity extends AppCompatActivity {
                     if (Status == 1) {
                         SessionManager.setUserID(getApplicationContext(), jSONObject.optString("id"));
                         SessionManager.setMobileno(getApplicationContext(), jSONObject.optString("phone"));
-                        LayoutInflater layoutInflater = LayoutInflater.from(OTPActivity.this);
-                        promptView = layoutInflater.inflate(R.layout.popup_otp, null);
-                        android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(OTPActivity.this);
-                        alertDialogBuilder.setView(promptView);
-                        alertDialogBuilder.setCancelable(false);
-                        alert = alertDialogBuilder.create();
-                        alert.show();
 
                         final Handler handler = new Handler();
-                        final TextView tvnmobile = (TextView) promptView.findViewById(R.id.tvnmobile);
-                        etotp = (EditText) promptView.findViewById(R.id.etotp);
-                        final TextView tverify = (TextView) promptView.findViewById(R.id.tverify);
-                        final ImageView image = (ImageView) promptView.findViewById(R.id.image);
-                        tvnmobile.setText("+91" + "-" + etmobno.getText().toString());
+                        final TextView tvnmobile = (TextView) findViewById(R.id.tvnmobile);
+                        etotp = (EditText) findViewById(R.id.etotp);
+                        final FloatingActionButton tverify = (FloatingActionButton) findViewById(R.id.tverify);
+                        final ImageView image = (ImageView) findViewById(R.id.image);
+                        tvnmobile.setText("+91" + " " + etmobno.getText().toString());
 
                         //  etotp.setText(OTP.toString());
 
@@ -203,16 +225,11 @@ public class OTPActivity extends AppCompatActivity {
                                 image.startAnimation(bottomUp);
                                 bottomUp.setAnimationListener(new Animation.AnimationListener() {
                                     @Override
-                                    public void onAnimationStart(Animation animation) {
-                                    }
-
+                                    public void onAnimationStart(Animation animation) {}
                                     @Override
-                                    public void onAnimationEnd(Animation animation) {
-                                    }
-
+                                    public void onAnimationEnd(Animation animation) { }
                                     @Override
-                                    public void onAnimationRepeat(Animation animation) {
-                                    }
+                                    public void onAnimationRepeat(Animation animation) { }
                                 });
                             }
                         };
@@ -226,7 +243,7 @@ public class OTPActivity extends AppCompatActivity {
                                     alert.dismiss();
                                     finish();
                                     SessionManager.setIsRegistered(getApplicationContext(), true);
-                                    Intent i = new Intent(OTPActivity.this, LandingNewActivity.class);
+                                    Intent i = new Intent(OTPActivity.this, Dashboard.class);
                                     startActivity(i);
                                 }*/
                                 if (checkValidation_new()) {
@@ -242,6 +259,8 @@ public class OTPActivity extends AppCompatActivity {
 
                 } catch (Exception e) {
                     Log.e("", e.getMessage());
+
+                    System.out.println("   ooppop"+e.getMessage());
                     Toast.makeText(OTPActivity.this, R.string.ConnectionErrorResponse, Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
                 }
@@ -298,7 +317,7 @@ public class OTPActivity extends AppCompatActivity {
                     if (Status == 1) {
                         //{"status":1,"message":"","info":[{"id":29,"role_id":"3","name":"Hh","email":"sd@gmail.com","phone":"9812273583","merchant_commission_percentage":"","status":"1","otp":"0","user_dp":null,"created_at":"2017-11-28 13:44:25","updated_at":"2017-12-11 12:06:28","dob":"0000-00-00","gender":"Male"}]}
                         //{"status":1,"message":"","info":[{"id":41,"role_id":"3","name":"","email":"","phone":"9812273583","merchant_commission_percentage":"","status":"1","otp":"0","user_dp":null,"created_at":"2017-12-13 18:48:53","updated_at":"2017-12-13 18:49:03","dob":null,"gender":""}]}
-                        alert.dismiss();
+                       // alert.dismiss();
                         JSONArray jsonArray = jSONObject.optJSONArray("info");
                         JSONObject jsonObject = jsonArray.optJSONObject(0);
                         String email = jsonObject.optString("email");
@@ -329,7 +348,11 @@ public class OTPActivity extends AppCompatActivity {
                         }
                         progressDialog.dismiss();
                     } else {
-                        Toast.makeText(OTPActivity.this, jSONObject.optString("message"), Toast.LENGTH_LONG).show();
+                        Intent i = new Intent(OTPActivity.this, SignInActivity.class);
+                        startActivity(i);
+                        finish();
+
+                      //  Toast.makeText(OTPActivity.this, jSONObject.optString("message"), Toast.LENGTH_LONG).show();
                         progressDialog.show();
                     }
                 } catch (Exception e) {
@@ -344,6 +367,8 @@ public class OTPActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progress_bar.setVisibility(View.GONE);
+
+                System.out.println("   ooppop"+error.getMessage());
                 progressDialog.dismiss();
             }
         }) {
@@ -406,7 +431,7 @@ public class OTPActivity extends AppCompatActivity {
                 ret = false;
             }
         } else {
-            etotp.setError("Plz provide OTP number");
+            etotp.setError("Please provide OTP number");
             ret = false;
         }
         return ret;
@@ -459,5 +484,38 @@ public class OTPActivity extends AppCompatActivity {
 
         ActivityCompat.requestPermissions(this, permissionsRequired, PERMISSION_REQUEST_CODE);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        linearLayout.setVisibility(View.VISIBLE);
+        relativeLayout.setVisibility(View.GONE);
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (linearLayout.getVisibility()==View.VISIBLE){
+            super.onBackPressed();
+        }
+        else {
+            linearLayout.setVisibility(View.VISIBLE);
+            relativeLayout.setVisibility(View.GONE);
+            return;
+        }
+    }
+
+    /**
+     * Making notification bar transparent
+     */
+
+
+    private void changeStatusBarColor() {
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        );
+    }
+
 
 }

@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -117,6 +118,9 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_profile);
 
 
@@ -191,7 +195,7 @@ public class ProfileActivity extends AppCompatActivity {
                         editor.clear();
                         editor.commit();
                         finish();
-                        Intent i = new Intent(LandingNewActivity.this, AftersplashActivity.class);
+                        Intent i = new Intent(Dashboard.this, AftersplashActivity.class);
                         startActivity(i);*/
                         SessionManager.setIsRegistered(getApplicationContext(), false);
                         SessionManager.setIssignup(getApplicationContext(), false);
@@ -313,7 +317,7 @@ public class ProfileActivity extends AppCompatActivity {
                 tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
                 tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
-                Intent i = new Intent(ProfileActivity.this, LandingNewActivity.class);
+                Intent i = new Intent(ProfileActivity.this, Dashboard.class);
                 startActivity(i);
             }
         });
@@ -349,7 +353,7 @@ public class ProfileActivity extends AppCompatActivity {
                 tvFavourite.setTextColor(getResources().getColor(R.color.redcolor));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
                 tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
-                // Intent i = new Intent(ProfileActivity.this, LandingNewActivity.class);
+                // Intent i = new Intent(ProfileActivity.this, Dashboard.class);
                 // startActivity(i);
             }
         });
@@ -750,7 +754,7 @@ public class ProfileActivity extends AppCompatActivity {
                                 SessionManager.setUserImagePath(getApplicationContext(), Path + "/" + ProfileInfo.optString("user_dp"));
                                 Toast.makeText(getApplicationContext(), jSONObject.optString("message").toString(), Toast.LENGTH_LONG).show();
                                 progressDialog.show();
-                                Intent i = new Intent(ProfileActivity.this, LandingNewActivity.class);
+                                Intent i = new Intent(ProfileActivity.this, Dashboard.class);
                                 startActivity(i);
                             } else {
                                 progressDialog.dismiss();

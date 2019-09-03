@@ -62,7 +62,7 @@ public class AftersplashActivity extends AppCompatActivity  {
          DisplayImageOptions defaultOptions;
 
         tvstart = (TextView) findViewById(R.id.tvstart);
-
+        changeStatusBarColor();
         options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.drawable.circle_border_red)
                 .showImageOnLoading(R.drawable.circle_border_red)
@@ -146,12 +146,9 @@ public class AftersplashActivity extends AppCompatActivity  {
         public void onPageSelected(int position) {
             addBottomDots(position);
         }
-
         @Override
         public void onPageScrolled(int arg0, float arg1, int arg2) {
-
         }
-
         @Override
         public void onPageScrollStateChanged(int arg0) {
 
@@ -162,11 +159,11 @@ public class AftersplashActivity extends AppCompatActivity  {
      * Making notification bar transparent
      */
     private void changeStatusBarColor() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-        }
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        );
     }
 
     /**
@@ -205,9 +202,6 @@ public class AftersplashActivity extends AppCompatActivity  {
             container.removeView(view);
         }
     }
-
-
-
 
     private boolean isLocationEnabled() {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);

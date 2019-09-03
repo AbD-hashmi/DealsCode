@@ -5,7 +5,6 @@
     android:id="@+id/tab"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:text="xfgffffsdsd"
     android:gravity="center"
-    android:textColor="@color/blackfontcolor"
+    android:textColor="@color/white"
     android:textAppearance="?android:textAppearanceSmall" />

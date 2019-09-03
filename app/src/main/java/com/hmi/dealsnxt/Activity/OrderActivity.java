@@ -13,7 +13,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -149,7 +148,7 @@ public class OrderActivity extends FragmentActivity {
                 tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
                 tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
-                Intent i = new Intent(OrderActivity.this, LandingNewActivity.class);
+                Intent i = new Intent(OrderActivity.this, Dashboard.class);
                 startActivity(i);
             }
         });
@@ -184,7 +183,7 @@ public class OrderActivity extends FragmentActivity {
                 tvFavourite.setTextColor(getResources().getColor(R.color.redcolor));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
                 tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
-                //    Intent i = new Intent(OrderActivity.this, LandingNewActivity.class);
+                //    Intent i = new Intent(OrderActivity.this, Dashboard.class);
                 //     startActivity(i);
             }
         });

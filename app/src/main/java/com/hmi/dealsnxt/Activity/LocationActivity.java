@@ -12,7 +12,6 @@ import android.graphics.Rect;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
-import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,7 +24,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
@@ -57,9 +55,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.hmi.dealsnxt.CustomControl.DataParser;
 import com.hmi.dealsnxt.CustomControl.DownloadUrl;
-import com.hmi.dealsnxt.CustomControl.GetNearbyPlacesData;
 import com.hmi.dealsnxt.HelperClass.Constaints;
-import com.hmi.dealsnxt.HelperClass.Global;
 import com.hmi.dealsnxt.HelperClass.SessionManager;
 import com.hmi.dealsnxt.Model.CityModel;
 import com.hmi.dealsnxt.R;
@@ -77,17 +73,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -315,11 +304,11 @@ public class LocationActivity extends AppCompatActivity implements GoogleApiClie
                 SessionManager.setIsloc(getApplicationContext(), true);
                 location_nameis = "";
                 if (SessionManager.getIsloc(getApplicationContext()) == false) {
-                    Intent i = new Intent(LocationActivity.this, LandingNewActivity.class);
+                    Intent i = new Intent(LocationActivity.this, Dashboard.class);
                     startActivity(i);
                     finish();
                 } else {
-                    Intent i = new Intent(LocationActivity.this, LandingNewActivity.class);
+                    Intent i = new Intent(LocationActivity.this, Dashboard.class);
                     startActivity(i);
                     finish();
                 }
@@ -346,11 +335,11 @@ public class LocationActivity extends AppCompatActivity implements GoogleApiClie
                 SessionManager.setlocation_name(getApplicationContext(), locality_list.get(position).getName());
                 location_nameis = locality_list.get(position).getName();
                 if (SessionManager.getIsloc(getApplicationContext()) == false) {
-                    Intent i = new Intent(LocationActivity.this, LandingNewActivity.class);
+                    Intent i = new Intent(LocationActivity.this, Dashboard.class);
                     startActivity(i);
                     finish();
                 } else {
-                    Intent i = new Intent(LocationActivity.this, LandingNewActivity.class);
+                    Intent i = new Intent(LocationActivity.this, Dashboard.class);
                     startActivity(i);
                     finish();
                 }
@@ -529,14 +518,14 @@ public class LocationActivity extends AppCompatActivity implements GoogleApiClie
 
                 SessionManager.setCityid(getApplicationContext(), "");
                 if (SessionManager.getIsloc(getApplicationContext()) == false) {
-                    Intent i = new Intent(LocationActivity.this, LandingNewActivity.class);
+                    Intent i = new Intent(LocationActivity.this, Dashboard.class);
 
                     startActivity(i);
                     location_nameis = "";
                     finish();
                     progressDialog.dismiss();
                 } else {
-                    Intent i = new Intent(LocationActivity.this, LandingNewActivity.class);
+                    Intent i = new Intent(LocationActivity.this, Dashboard.class);
                     location_nameis = "";
                     startActivity(i);
                     finish();
@@ -545,7 +534,7 @@ public class LocationActivity extends AppCompatActivity implements GoogleApiClie
 
             } else {
                 if (SessionManager.getIsloc(getApplicationContext()) == false) {
-                    Intent i = new Intent(LocationActivity.this, LandingNewActivity.class);
+                    Intent i = new Intent(LocationActivity.this, Dashboard.class);
                     location_nameis = "";
                     SessionManager.setIsloc(getApplicationContext(), true);
                     startActivity(i);

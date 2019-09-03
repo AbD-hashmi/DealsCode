@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/White"
+    android:background="@drawable/gradiant_bottom_to_top"
     android:orientation="vertical"
     tools:context="com.hmi.dealsnxt.Activity.ProfileActivity">
 
@@ -28,7 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:background="@color/White"
             android:orientation="vertical"
             android:padding="15dp">
 
@@ -42,9 +41,8 @@
                 android:drawablePadding="15dp"
                 android:gravity="center_vertical"
                 android:text="Name"
-
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/Black" />
+                android:textColor="@color/windowBackground" />
 
             <EditText
                 android:id="@+id/etname"
@@ -52,17 +50,14 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_gravity="left"
-
-                android:backgroundTint="@color/blur_color"
+                android:backgroundTint="@color/white"
                 android:gravity="center|left"
                 android:inputType="textPersonName"
                 android:maxLines="1"
                 android:paddingLeft="45dp"
-
-
                 android:singleLine="true"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/blackfontcolor"
+                android:textColor="@color/white"
                 android:textCursorDrawable="@null" />
 
             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -77,7 +72,7 @@
                 android:text="Email Address"
 
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/Black" />
+                android:textColor="@color/white" />
 
             <EditText
                 android:id="@+id/etemail"
@@ -85,17 +80,14 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_gravity="left"
-
-                android:backgroundTint="@color/blur_color"
+                android:backgroundTint="@color/white"
                 android:gravity="center|left"
                 android:inputType="textEmailAddress"
-
                 android:maxLines="1"
                 android:paddingLeft="45dp"
                 android:singleLine="true"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/blackfontcolor"
-                android:textCursorDrawable="@null" />
+                android:textColor="@color/white"/>
         </LinearLayout>
 
         <LinearLayout
@@ -103,7 +95,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/LLL"
-            android:background="@color/White"
             android:orientation="horizontal"
             android:paddingBottom="15dp"
             android:paddingLeft="15dp"
@@ -127,7 +118,7 @@
                     android:gravity="center_vertical"
                     android:text="Gender"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textColor="@color/Black" />
+                    android:textColor="@color/white" />
 
                 <LinearLayout
                     android:id="@+id/LLspin"
@@ -140,12 +131,13 @@
                         android:id="@+id/spinnergender"
                         android:layout_width="match_parent"
                         android:layout_height="42dp"
-                        android:background="@drawable/custom_spin"
                         android:gravity="left"
+                        android:background="@drawable/custom_spin"
                         android:paddingLeft="20dp"
                         android:spinnerMode="dropdown"
+                        android:theme="@style/AppTheme.buttonnew"
                         android:textAppearance="?android:textAppearanceMedium"
-                        android:textColor="@color/Black" />
+                        android:textColor="@color/white" />
 
                 </LinearLayout>
 
@@ -153,7 +145,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_alignBottom="@+id/LLspin"
-                    android:background="@color/Black" />
+                    android:background="@color/white" />
 
                 <EditText
                     android:id="@+id/etgender"
@@ -168,7 +160,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textColor="@color/Black"
+                    android:textColor="@color/white"
                     android:visibility="gone" />
             </RelativeLayout>
 
@@ -190,7 +182,7 @@
                     android:gravity="center_vertical"
                     android:text="DOB"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textColor="@color/Black" />
+                    android:textColor="@color/white" />
 
                 <EditText
                     android:id="@+id/etdob"
@@ -206,9 +198,10 @@
                     android:hint="dd/mm/yyyy"
                     android:inputType="number"
                     android:maxLines="1"
+                    android:textColorHint="@color/white"
                     android:singleLine="true"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textColor="@color/Black" />
+                    android:textColor="@color/white" />
             </LinearLayout>
         </LinearLayout>
 
@@ -227,12 +220,12 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_gravity="center"
-                android:background="@color/buttoncol"
+                android:background="@drawable/button_gradient"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="Sign Up"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/White" />
+                android:textColor="@color/blackfontcolor" />
 
             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                 android:id="@+id/x"

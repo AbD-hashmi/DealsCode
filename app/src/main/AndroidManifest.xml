@@ -24,18 +24,21 @@
     <application
         android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:roundIcon="@mipmap/ic_launcher"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <activity android:name=".Activity.Dashboard">
+        </activity>
         <activity
             android:name=".Activity.SplashSplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -49,9 +52,6 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-
-
         <activity
             android:name=".Activity.OfferEngagementActivity"
             android:screenOrientation="portrait" />
@@ -61,7 +61,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.OTPActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Activity.ContactUsActivity"
             android:configChanges="keyboardHidden|orientation"
@@ -69,19 +71,21 @@
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".Activity.SignInActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.AboutUsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.LandingNewActivity"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustNothing"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustNothing">
+        </activity>
         <activity
             android:name=".Activity.DetailNewActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustNothing"/>
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".Activity.OrderActivity"
             android:screenOrientation="portrait" />
@@ -91,11 +95,10 @@
             android:value="@string/google_maps_key" />
         <meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="rzp_test_CGvi2GA5UdQSww" />
-       <!-- rzp_test_0Q9QUVz0kaWmK3-->
-      <!--  rzp_test_CGvi2GA5UdQSww-->
-
-        <activity android:name=".Activity.SingleOrderActivity"
+            android:value="rzp_test_CGvi2GA5UdQSww" /> <!-- rzp_test_0Q9QUVz0kaWmK3 -->
+        <!-- rzp_test_CGvi2GA5UdQSww -->
+        <activity
+            android:name=".Activity.SingleOrderActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
@@ -130,13 +133,7 @@
         <receiver android:name=".Services.OTPInboxMessageReceiver">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
-
-
-                 
-
-
             </intent-filter>
-
 
               
 
@@ -151,18 +148,16 @@
             android:name=".Activity.NotificationActivity"
             android:label="@string/title_activity_notification"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".Activity.LocationActivity"
-            android:windowSoftInputMode="stateHidden|stateAlwaysHidden"
+        <activity
+            android:name=".Activity.LocationActivity"
             android:screenOrientation="portrait"
-            />
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
         <activity
             android:name=".Activity.TncActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.CouponActivity"
             android:screenOrientation="portrait" />
-
-
         <activity
             android:name=".Activity.RefertofrndActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
@@ -172,16 +167,14 @@
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".Activity.NearByActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_near_by" />
-        <activity android:name=".Activity.ReferCodeActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".Activity.SearchActivity"
-
-            android:screenOrientation="portrait"
-
-            ></activity>
+            android:label="@string/title_activity_near_by"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.ReferCodeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.SearchActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

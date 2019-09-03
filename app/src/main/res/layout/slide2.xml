@@ -1,18 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/banner02"
     tools:context="com.hmi.dealsnxt.Activity.AftersplashActivity">
 
-    <ImageView
-        android:id="@+id/banner"
+
+    <TextView
+        android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="fitCenter"
-        android:src="@drawable/banner02" />
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="For the classy in you"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/White"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/fixtext"
+        app:layout_constraintStart_toStartOf="parent" />
 
+
+    <TextView
+        android:id="@+id/fixtext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:padding="10dp"
+        android:text="We are here to provide you the quality experience you deserve"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:textColor="@color/White"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
   <!--  <com.hmi.dealsnxt.HelperClass.GothamMediumBoldTextView
         android:id="@+id/text"
@@ -85,4 +107,4 @@
             android:src="@drawable/circle_border_white" />
     </LinearLayout>-->
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

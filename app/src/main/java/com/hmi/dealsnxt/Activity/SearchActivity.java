@@ -16,7 +16,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TabWidget;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -30,11 +29,9 @@ import com.hmi.dealsnxt.Adaptor.HotDealsAdaptor;
 import com.hmi.dealsnxt.Adaptor.SearchOutletAdapter;
 import com.hmi.dealsnxt.HelperClass.Constaints;
 import com.hmi.dealsnxt.HelperClass.SessionManager;
-import com.hmi.dealsnxt.Model.HotDealsModel;
 import com.hmi.dealsnxt.Model.SearchModel;
 import com.hmi.dealsnxt.R;
 import com.hmi.dealsnxt.Utils.Common;
-import com.hmi.dealsnxt.Utils.MultiSelectSearchCity;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent;
 
@@ -43,7 +40,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -94,17 +90,17 @@ public class SearchActivity extends AppCompatActivity {
 
 
 
-                CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) LandingNewActivity.htab_appbar.getLayoutParams();
+                CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) Dashboard.htab_appbar.getLayoutParams();
                 AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
                 if (behavior != null) {
                     behavior.setTopAndBottomOffset(0);
-                    //   behavior.onNestedPreScroll(LandingNewActivity.htab_maincontent, LandingNewActivity.htab_appbar, null, 0, 1, new int[2]);
-                    //   behavior.onNestedFling(LandingNewActivity.htab_maincontent, LandingNewActivity.htab_appbar, LandingNewActivity.view_pager, 0, 20, true);
-                    behavior.onNestedPreFling(LandingNewActivity.htab_maincontent, LandingNewActivity.htab_appbar, null, 60, 60);
+                    //   behavior.onNestedPreScroll(Dashboard.htab_maincontent, Dashboard.htab_appbar, null, 0, 1, new int[2]);
+                    //   behavior.onNestedFling(Dashboard.htab_maincontent, Dashboard.htab_appbar, Dashboard.view_pager, 0, 20, true);
+                    behavior.onNestedPreFling(Dashboard.htab_maincontent, Dashboard.htab_appbar, null, 60, 60);
                 }
                 LinearLayoutManager layoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
                 //  layoutManager.scrollToPositionWithOffset(0, 0);
-                //  LandingNewActivity.collapsingToolbarLayout.setFitsSystemWindows(true);
+                //  Dashboard.collapsingToolbarLayout.setFitsSystemWindows(true);
 
             }
         });

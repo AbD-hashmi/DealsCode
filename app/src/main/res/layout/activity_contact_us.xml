@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/gradiant_bottom_to_top"
     tools:context="com.hmi.dealsnxt.Activity.ContactUsActivity">
 
     <include
@@ -43,7 +44,7 @@
                     android:padding="5dp"
                     android:text="91-9876543210"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textColor="@color/blackfontcolor"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -59,7 +60,7 @@
                     android:padding="5dp"
                     android:text="304 &amp; 306, IIIrd Floor,Suncity Arcade, Sec-54, Suncity Township,Golf Road,Gurgaon   "
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textColor="@color/blackfontcolor"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -90,7 +91,7 @@
                     android:padding="5dp"
                     android:text="Name"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textColor="@color/blackfontcolor"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -104,10 +105,11 @@
                     android:backgroundTint="@android:color/transparent"
                     android:drawableLeft="@drawable/edittext_border"
                     android:hint="Name"
+                    android:textColorHint="@color/white"
                     android:inputType="textAutoComplete|text|textCapSentences|textMultiLine"
                     android:padding="5dp"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textColor="@color/blackfontcolor"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
             </RelativeLayout>
 
@@ -137,7 +139,7 @@
                     android:padding="5dp"
                     android:text="Query"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textColor="@color/blackfontcolor"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularEditText
@@ -155,9 +157,10 @@
                     android:hint="Type Here Query"
                     android:inputType="text"
                     android:padding="5dp"
+                    android:textColorHint="@color/white"
                     android:scrollbars="vertical"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textColor="@color/blackfontcolor"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
             </RelativeLayout>
 
@@ -176,7 +179,7 @@
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
             android:layout_margin="10dp"
-            android:background="@drawable/button_gradient_image"
+            android:background="@drawable/button_gradient"
             android:gravity="center|bottom"
             android:padding="10dp"
             android:text="Submit"

@@ -80,6 +80,7 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
     public String Outlet_Id = "";
     public String Merhant_Id = "";
     public String Deal_Title = "";
+
     public String Dealimgname = "";
     public String Dealstarttime = "";
     public String Dealendtime = "";

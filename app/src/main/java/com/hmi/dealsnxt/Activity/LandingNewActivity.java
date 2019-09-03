@@ -94,29 +94,33 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class LandingNewActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class LandingNewActivity extends AppCompatActivity {
     private static final String TAG = LandingNewActivity.class.getSimpleName();
     public TabLayout tabLayout;
     public int[] tabIcons = {
-            R.drawable.hotdeals,
-            R.drawable.fooddrink,
-            R.drawable.hotels,
-            R.drawable.spas
+            R.drawable.dining,
+            R.drawable.wellness,
+            R.drawable.fashion,
+            R.drawable.accessories,
+            R.drawable.event,
+            R.drawable.membership
     };
-    public static BottomNavigationView navigationView;
-    NavigationView filter_view;
+    
+    int tabnum;
+   // NavigationView filter_view;
     LinearLayout LLrate, LLshare, LLNotification, LLRefer, LLPrivacy, LLUse, LLAbout, LLcontact, LLlogout,LLclose;
     LinearLayout LLpopulardeals, LLproximity, LLtrading, LLorder;
-    TextView tvmore;
-    LinearLayout LLfooter, LLfooterHome, LLfooterOrder, LLfooterProfile, LLfootermore, LLfooterFavourite, LLloc;
+   // TextView tvmore;
+  //  LinearLayout LLfooter, LLfooterHome, LLfooterOrder, LLfooterProfile, LLfootermore, LLfooterFavourite,
+  LinearLayout LLloc;
     ImageView imBack, imlocation, ivfilter;
     TextView tvTitle, tvaddress, tvusername;
     ImageView ivsearch;
-   public static ViewPager view_pager;
+    public static ViewPager view_pager;
     public ArrayList<BannerImagesModel> bannerimglist = new ArrayList<BannerImagesModel>();
-    TextView tvHome, tvOrder, tvProfile, tvFavourite;
+   // TextView tvHome, tvOrder, tvProfile, tvFavourite;
     //  LinearLayout LLfooter, LLHome, LLOrder, LLProfile, LLFavourite, LLmore;
-    ImageView ivHome, ivOrder, ivProfile, ivFavourite, ivmore;
+   // ImageView ivHome, ivOrder, ivProfile, ivFavourite, ivmore;
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     int currentPage = 0;
     Timer timer;
@@ -125,7 +129,7 @@ public class LandingNewActivity extends AppCompatActivity implements BottomNavig
     final long PERIOD_MS = 3000;
     com.nostra13.universalimageloader.core.ImageLoader imageLoader;
     DisplayImageOptions defaultOptions;
-    public DrawerLayout drawer;
+    //public DrawerLayout drawer;
     public String banner_outletid = "";
     public static CollapsingToolbarLayout collapsingToolbarLayout;
     public static AppBarLayout htab_appbar;
@@ -175,12 +179,14 @@ public class LandingNewActivity extends AppCompatActivity implements BottomNavig
         ivsearch = (ImageView) toolbar.findViewById(R.id.ivsearch);
         //    imBack = (ImageView) toolbar.findViewById(R.id.imBack);
         tvusername = (TextView) toolbar.findViewById(R.id.tvusername);
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-         drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    //    drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+      //   drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         progress_bar = (ProgressBar) findViewById(R.id.progress_bar);
         view_pager = (ViewPager) findViewById(R.id.view_pager);
         SessionManager.setrefercode(LandingNewActivity.this,true);
 
+        
+        tabnum=getIntent().getExtras().getInt("tab");
         ivsearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -253,24 +259,23 @@ public class LandingNewActivity extends AppCompatActivity implements BottomNavig
         htab_appbar = (AppBarLayout) findViewById(R.id.htab_appbar);
         htab_maincontent = (CoordinatorLayout) findViewById(R.id.htab_maincontent);
 
-        navigationView = (BottomNavigationView) findViewById(R.id.nav_view);
-        filter_view = (NavigationView) findViewById(R.id.filter_view);
+       // navigationView = (BottomNavigationView) findViewById(R.id.nav_view);
+      //  filter_view = (NavigationView) findViewById(R.id.filter_view);
       //  filter_view.setVisibility(View.GONE);
         DrawerLayout.LayoutParams params1 = new DrawerLayout.LayoutParams(DrawerLayout.LayoutParams.WRAP_CONTENT, DrawerLayout.LayoutParams.MATCH_PARENT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             params1.setLayoutDirection(Gravity.LEFT);
             params1.gravity = GravityCompat.START;
         }
-        filter_view.setLayoutParams(params1);
+      //  filter_view.setLayoutParams(params1);
         DrawerLayout.LayoutParams params = new DrawerLayout.LayoutParams(DrawerLayout.LayoutParams.MATCH_PARENT, DrawerLayout.LayoutParams.MATCH_PARENT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             params.setLayoutDirection(Gravity.RIGHT);
             params.gravity = GravityCompat.END;
 
         }
-        navigationView.setLayoutParams(params);
-        findviewbyDrawer();
-        LLfooter = (LinearLayout) findViewById(R.id.LLfooter);
+      //  navigationView.setLayoutParams(params);
+     /*   LLfooter = (LinearLayout) findViewById(R.id.LLfooter);
         // LinearLayout LLmore = (LinearLayout) LLfooter.findViewById(R.id.LLmore);
 
         LLfooter = (LinearLayout) findViewById(R.id.LLfooter);
@@ -285,8 +290,8 @@ public class LandingNewActivity extends AppCompatActivity implements BottomNavig
                 tvmore.performClick();
             }
         });
-        LLfootermore = (LinearLayout) LLfooter.findViewById(R.id.LLfootermore);
-        tvHome = (TextView) LLfooter.findViewById(R.id.tvHome);
+        LLfootermore = (LinearLayout) LLfooter.findViewById(R.id.LLfootermore);*/
+       /* tvHome = (TextView) LLfooter.findViewById(R.id.tvHome);
         tvOrder = (TextView) LLfooter.findViewById(R.id.tvOrder);
         tvProfile = (TextView) LLfooter.findViewById(R.id.tvProfile);
         tvFavourite = (TextView) LLfooter.findViewById(R.id.tvFavourite);
@@ -300,10 +305,11 @@ public class LandingNewActivity extends AppCompatActivity implements BottomNavig
         ivOrder.setImageDrawable(getResources().getDrawable(R.drawable.inactive_order));
         ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
         ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
-        tvHome.setTextColor(getResources().getColor(R.color.redcolor));
+        tvHome.setTextColor(getResources().getColor(R.color.white));
         tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
         tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
+        tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));*/
+/*
 
         LLfooterHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -313,7 +319,7 @@ public class LandingNewActivity extends AppCompatActivity implements BottomNavig
                 ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
                 ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
 
-                tvHome.setTextColor(getResources().getColor(R.color.redcolor));
+                tvHome.setTextColor(getResources().getColor(R.color.white));
                 tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
@@ -329,7 +335,7 @@ public class LandingNewActivity extends AppCompatActivity implements BottomNavig
                 ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
                 ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
                 tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvOrder.setTextColor(getResources().getColor(R.color.redcolor));
+                tvOrder.setTextColor(getResources().getColor(R.color.white));
                 tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
@@ -348,7 +354,7 @@ public class LandingNewActivity extends AppCompatActivity implements BottomNavig
                 ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
                 tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvProfile.setTextColor(getResources().getColor(R.color.redcolor));
+                tvProfile.setTextColor(getResources().getColor(R.color.white));
                 tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
                 tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
@@ -367,7 +373,7 @@ public class LandingNewActivity extends AppCompatActivity implements BottomNavig
                 tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvFavourite.setTextColor(getResources().getColor(R.color.redcolor));
+                tvFavourite.setTextColor(getResources().getColor(R.color.white));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
                 tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
             }
@@ -377,25 +383,19 @@ public class LandingNewActivity extends AppCompatActivity implements BottomNavig
         ivfilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                filter_view.setVisibility(View.VISIBLE);
+             //   filter_view.setVisibility(View.VISIBLE);
                 //     LoadfilterUI();
                 DrawerLayout.LayoutParams params1 = new DrawerLayout.LayoutParams(DrawerLayout.LayoutParams.WRAP_CONTENT, DrawerLayout.LayoutParams.MATCH_PARENT);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     params1.setLayoutDirection(Gravity.RIGHT);
                     params1.gravity = GravityCompat.END;
                 }
-                filter_view.setLayoutParams(params1);
+               // filter_view.setLayoutParams(params1);
                 DrawerLayout.LayoutParams params = new DrawerLayout.LayoutParams(DrawerLayout.LayoutParams.MATCH_PARENT, DrawerLayout.LayoutParams.MATCH_PARENT);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     params.setLayoutDirection(Gravity.LEFT);
                     params.gravity = GravityCompat.START;
 
-                }
-                navigationView.setLayoutParams(params);
-                if (drawer.isDrawerOpen(GravityCompat.END)) {
-                    drawer.closeDrawer(GravityCompat.END);
-                } else {
-                    drawer.openDrawer(GravityCompat.END);
                 }
 
 
@@ -450,7 +450,7 @@ public class LandingNewActivity extends AppCompatActivity implements BottomNavig
                 tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.active_more));
-                tvmore.setTextColor(getResources().getColor(R.color.redcolor));
+                tvmore.setTextColor(getResources().getColor(R.color.white));
                 DrawerLayout.LayoutParams params = new DrawerLayout.LayoutParams(DrawerLayout.LayoutParams.MATCH_PARENT, DrawerLayout.LayoutParams.MATCH_PARENT);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     params.setLayoutDirection(Gravity.RIGHT);
@@ -459,23 +459,26 @@ public class LandingNewActivity extends AppCompatActivity implements BottomNavig
                   // params.setMarginStart(67);
                   //  params.setMargins(-67,0,-67,0);
                 }
-                navigationView.setLayoutParams(params);
+                //navigationView.setLayoutParams(params);
                 DrawerLayout.LayoutParams params1 = new DrawerLayout.LayoutParams(DrawerLayout.LayoutParams.WRAP_CONTENT, DrawerLayout.LayoutParams.MATCH_PARENT);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     params1.setLayoutDirection(Gravity.LEFT);
                     params1.gravity = GravityCompat.START;
                 }
-                filter_view.setLayoutParams(params1);
+              //  filter_view.setLayoutParams(params1);
 
 
 
-                /*if (drawer.isDrawerOpen(GravityCompat.END)) {
+                */
+/*if (drawer.isDrawerOpen(GravityCompat.END)) {
                     drawer.closeDrawer(GravityCompat.END);
-                } else {*/
-                    drawer.openDrawer(GravityCompat.END);
+                } else {*//*
+
+                  //  drawer.openDrawer(GravityCompat.END);
                 //}
             }
         });
+*/
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener()
 
@@ -484,60 +487,92 @@ public class LandingNewActivity extends AppCompatActivity implements BottomNavig
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                int selectedTabPosition = tab.getPosition();
+                tabnum = tab.getPosition();
 
                 //   View firstTab = ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(0);
                 //    View secondTab = ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(1);
-                if (selectedTabPosition == 0) { // that means first tab
+                if (tabnum == 0) { // that means first tab
                     //    Toast.makeText(getApplicationContext(), "This is my 1 message!",
                     //   Toast.LENGTH_LONG).show();
                     LLloc.setVisibility(View.VISIBLE);
                     imBack.setVisibility(View.INVISIBLE);
                     tvTitle.setVisibility(View.INVISIBLE);
                     ivfilter.setVisibility(View.INVISIBLE);
-                    tvTitle.setText("HotDeal");
+                    tvTitle.setText("Dining");
 
-                } else if (selectedTabPosition == 1) { // that means it's a last tab
+                } else if (tabnum == 1) { // that means it's a last tab
                     // Toast.makeText(getApplicationContext(), "This is my 2 message!",
                     //         Toast.LENGTH_LONG).show();
                     LLloc.setVisibility(View.INVISIBLE);
                     imBack.setVisibility(View.VISIBLE);
                     tvTitle.setVisibility(View.VISIBLE);
                     ivfilter.setVisibility(View.VISIBLE);
-                    tvTitle.setText("Food & Drink");
+                    tvTitle.setText("Wellness");
 
                     imBack.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            viewPager.setCurrentItem(0);
+                           onBackPressed();
                         }
                     });
-                } else if (selectedTabPosition == 2) { // that means it's a last tab
+                } else if (tabnum == 2) { // that means it's a last tab
                     // Toast.makeText(getApplicationContext(), "This is my 3 message!",
                     //         Toast.LENGTH_LONG).show();
                     LLloc.setVisibility(View.INVISIBLE);
                     imBack.setVisibility(View.VISIBLE);
                     tvTitle.setVisibility(View.VISIBLE);
                     ivfilter.setVisibility(View.VISIBLE);
-                    tvTitle.setText("Hotel");
+                    tvTitle.setText("Fashion");
                     imBack.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            viewPager.setCurrentItem(0);
+                            onBackPressed();
+
                         }
                     });
-                } else if (selectedTabPosition == 3) { // that means it's a last tab
+                } else if (tabnum == 3) { // that means it's a last tab
                     //  Toast.makeText(getApplicationContext(), "This is my 4 message!",
                     //        Toast.LENGTH_LONG).show();
                     LLloc.setVisibility(View.INVISIBLE);
                     imBack.setVisibility(View.VISIBLE);
                     tvTitle.setVisibility(View.VISIBLE);
                     ivfilter.setVisibility(View.VISIBLE);
-                    tvTitle.setText("Spa");
+                    tvTitle.setText("Accessories");
                     imBack.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            viewPager.setCurrentItem(0);
+                            onBackPressed();
+
+                        }
+                    });
+                }else if (tabnum == 4) { // that means it's a last tab
+                    //  Toast.makeText(getApplicationContext(), "This is my 4 message!",
+                    //        Toast.LENGTH_LONG).show();
+                    LLloc.setVisibility(View.INVISIBLE);
+                    imBack.setVisibility(View.VISIBLE);
+                    tvTitle.setVisibility(View.VISIBLE);
+                    ivfilter.setVisibility(View.VISIBLE);
+                    tvTitle.setText("Events");
+                    imBack.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            onBackPressed();
+
+                        }
+                    });
+                }else if (tabnum == 5) { // that means it's a last tab
+                    //  Toast.makeText(getApplicationContext(), "This is my 4 message!",
+                    //        Toast.LENGTH_LONG).show();
+                    LLloc.setVisibility(View.INVISIBLE);
+                    imBack.setVisibility(View.VISIBLE);
+                    tvTitle.setVisibility(View.VISIBLE);
+                    ivfilter.setVisibility(View.VISIBLE);
+                    tvTitle.setText("Membership");
+                    imBack.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            onBackPressed();
+
                         }
                     });
                 }
@@ -750,291 +785,49 @@ public class LandingNewActivity extends AppCompatActivity implements BottomNavig
         }
     }
 
-    private void findviewbyDrawer() {
-        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        tvmore = (TextView) findViewById(R.id.tvmore);
-        LLorder = (LinearLayout) findViewById(R.id.LLorder);
-        LLtrading = (LinearLayout) findViewById(R.id.LLtrading);
-        LLproximity = (LinearLayout) findViewById(R.id.LLproximity);
-        LLpopulardeals = (LinearLayout) findViewById(R.id.LLpopulardeals);
-        LLshare = (LinearLayout) findViewById(R.id.LLshare);
-        LLrate = (LinearLayout) findViewById(R.id.LLrate);
-        LLNotification = (LinearLayout) findViewById(R.id.LLNotification);
-        LLRefer = (LinearLayout) findViewById(R.id.LLRefer);
-        LLPrivacy = (LinearLayout) findViewById(R.id.LLPrivacy);
-        LLUse = (LinearLayout) findViewById(R.id.LLUse);
-        LLAbout = (LinearLayout) findViewById(R.id.LLAbout);
-        LLcontact = (LinearLayout) findViewById(R.id.LLcontact);
-        LLlogout = (LinearLayout) findViewById(R.id.LLlogout);
 
-        tvmore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    drawer.closeDrawer(GravityCompat.END);
-                }
-                catch (Exception e)
-                {
-
-                }
-            }
-        });
-        LLorder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(LandingNewActivity.this, OrderActivity.class);
-                startActivity(i);
-                try {
-                    drawer.closeDrawer(GravityCompat.END);
-                }
-                catch (Exception e)
-                {
-
-                }
-            }
-        });
-        LLtrading.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    drawer.closeDrawer(GravityCompat.END);
-                }
-                catch (Exception e)
-                {
-
-                }
-            }
-        });
-        LLproximity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(LandingNewActivity.this, NearByActivity.class);
-                startActivity(i);
-                try {
-                    drawer.closeDrawer(GravityCompat.END);
-                }
-                catch (Exception e)
-                {
-
-                }
-            }
-        });
-        LLpopulardeals.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawer.closeDrawer(GravityCompat.END);
-            }
-        });
-        LLshare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent("android.intent.action.SEND");
-                i.setType("text/plain");
-                i.putExtra("android.intent.extra.TEXT", "Enjoy deals around you. Download here+ App:- https://play.google.com/store/apps/details?id=com.mhi.dealnxt");
-                startActivity(Intent.createChooser(i, "Share App"));
-                try {
-                    drawer.closeDrawer(GravityCompat.END);
-                }
-                catch (Exception e)
-                {
-
-                }
-            }
-        });
-        LLrate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.mhi.dealnxt"));
-                    startActivity(i);
-                } catch (ActivityNotFoundException error) {
-                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.mhi.dealnxt"));
-                    startActivity(i);
-                }
-                try {
-                    drawer.closeDrawer(GravityCompat.END);
-                }
-                catch (Exception e)
-                {
-
-                }
-            }
-        });
-        LLNotification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(LandingNewActivity.this, NotificationActivity.class);
-                startActivity(i);
-                try {
-                    drawer.closeDrawer(GravityCompat.END);
-                }
-                catch (Exception e)
-                {
-
-                }
-            }
-        });
-        LLlogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(LandingNewActivity.this, R.style.AppCompatAlertDialogStyle);
-                builder.setTitle("Alert");
-                builder.setMessage("Are you sure you want to Logout?");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), "Successfully Logout", Toast.LENGTH_SHORT).show();
-                        SessionManager.setIsRegistered(getApplicationContext(), false);
-                        SharedPreferences preferences = getSharedPreferences("uid", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = preferences.edit();
-                        SessionManager.setIsRegistered(getApplicationContext(), false);
-                        SessionManager.setIssignup(getApplicationContext(), false);
-                        SessionManager.setLatitude(getApplicationContext(), "");
-                        SessionManager.setLongitude(getApplicationContext(), "");
-                        SessionManager.setUserID(getApplicationContext(), "");
-                        SessionManager.setIsloc(getApplicationContext(), false);
-                        SessionManager.setIstut(getApplicationContext(), true);
-                        SessionManager.setIsotp(getApplicationContext(), false);
-                        editor.clear();
-                        editor.commit();
-                        finish();
-                        Intent i = new Intent(LandingNewActivity.this, OTPActivity.class);
-                        startActivity(i);
-                        finish();
-                    }
-                });
-                builder.setNegativeButton("No", null);
-                builder.show();
-                try {
-                    drawer.closeDrawer(GravityCompat.END);
-                }
-                catch (Exception e)
-                {
-
-                }
-            }
-        });
-        LLRefer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(LandingNewActivity.this, RefertofrndActivity.class);
-                startActivity(i);
-                try {
-                    drawer.closeDrawer(GravityCompat.END);
-                }
-                catch (Exception e)
-                {
-
-                }
-            }
-        });
-        LLPrivacy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(LandingNewActivity.this, PrivacypolicyActivity.class);
-                startActivity(i);
-                try {
-                    drawer.closeDrawer(GravityCompat.END);
-                }
-                catch (Exception e)
-                {
-
-                }
-            }
-        });
-        LLUse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(LandingNewActivity.this, TncActivity.class);
-                startActivity(i);
-                try {
-                    drawer.closeDrawer(GravityCompat.END);
-                }
-                catch (Exception e)
-                {
-
-                }
-            }
-        });
-        LLAbout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(LandingNewActivity.this, AboutUsActivity.class);
-                startActivity(i);
-                try {
-                    drawer.closeDrawer(GravityCompat.END);
-                }
-                catch (Exception e)
-                {
-
-                }
-            }
-        });
-        LLcontact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(LandingNewActivity.this, ContactUsActivity.class);
-                startActivity(i);
-                try {
-                  //  drawer.closeDrawers();
-                    drawer.closeDrawer(GravityCompat.END);
-                }
-                catch (Exception e)
-                {
-
-                }
-
-            }
-        });
-
-
-    ivsearch.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent i=new Intent(LandingNewActivity.this,SearchActivity.class);
-            startActivity(i);
-        }
-    });
-
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.END);
-        return true;
-    }
 
 
     private void setupTabIcons() {
         TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabOne.setText("Hot Deals");
-        tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hotdeals, 0, 0);
+        tabOne.setText("Dining");
+        tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.dining, 0, 0);
         tabLayout.getTabAt(0).setCustomView(tabOne);
 
         TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabTwo.setText("Food & Drink");
-        tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.fooddrink, 0, 0);
+        tabTwo.setText("Wellness");
+        tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.wellness, 0, 0);
         tabLayout.getTabAt(1).setCustomView(tabTwo);
 
         TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabThree.setText("Hotel");
-        tabThree.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hotels, 0, 0);
+        tabThree.setText("Fashion");
+        tabThree.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.fashion, 0, 0);
         tabLayout.getTabAt(2).setCustomView(tabThree);
 
         TextView tabFour = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabFour.setText("Spa");
-        tabFour.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.spas, 0, 0);
+        tabFour.setText("Accessories");
+        tabFour.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.accessories, 0, 0);
         tabLayout.getTabAt(3).setCustomView(tabFour);
+
+        TextView tabFive = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabFive.setText("Events");
+        tabFive.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.event, 0, 0);
+        tabLayout.getTabAt(4).setCustomView(tabFive);
+
+        TextView tabSix = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabSix.setText("Membership");
+        tabSix.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.membership, 0, 0);
+        tabLayout.getTabAt(5).setCustomView(tabSix);
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new HotDealsFragment(), "Hot Deals");
-        adapter.addFrag(new FoodDrinkFragment(), "Food & Drink");
-        adapter.addFrag(new HotelFragment(), "Hotel");
-        adapter.addFrag(new SpaFragment(), "Spa");
+        adapter.addFrag(new HotDealsFragment(), "Dining");
+        adapter.addFrag(new FoodDrinkFragment(), "Wellness");
+        adapter.addFrag(new HotelFragment(), "Fashion");
+        adapter.addFrag(new SpaFragment(), "Accessories");
+        adapter.addFrag(new SpaFragment(), "Events");
+        adapter.addFrag(new SpaFragment(), "Membership");
         viewPager.setAdapter(adapter);
     }
 
@@ -1100,61 +893,7 @@ public class LandingNewActivity extends AppCompatActivity implements BottomNavig
         return true;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        ivHome.setImageDrawable(getResources().getDrawable(R.drawable.active_home));
-        ivOrder.setImageDrawable(getResources().getDrawable(R.drawable.inactive_order));
-        ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
-        ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
-        ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
-        tvHome.setTextColor(getResources().getColor(R.color.redcolor));
-        tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
 
-        Geocoder geocoder;
-        List<Address> addresses = new ArrayList<>();
-        geocoder = new Geocoder(this, Locale.getDefault());
-        try {
-            addresses = geocoder.getFromLocation(Double.parseDouble(SessionManager.getLatitude(getApplicationContext())), Double.parseDouble(SessionManager.getLongitude(getApplicationContext())), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-            GoogleMap mMap = null;
-            String url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + Double.parseDouble(SessionManager.getLatitude(getApplicationContext())) + "," + Double.parseDouble(SessionManager.getLongitude(getApplicationContext())) + "+&sensor=true" + "&key=" + "AIzaSyCzTFJDn77l679PHO3do4aQFooCfq3vmiQ";
-            Object[] DataTransfer = new Object[2];
-            DataTransfer[0] = mMap;
-            DataTransfer[1] = url;
-            Log.d("onClick", url);
-            GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
-            getNearbyPlacesData.execute(DataTransfer);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            String subtoroughfare = addresses.get(0).getSubThoroughfare();
-            String thoroughfare = addresses.get(0).getThoroughfare();
-
-            String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-            String city = addresses.get(0).getLocality();
-            // SessionManager.setlocation_name(getApplicationContext(),city);
-            String state = addresses.get(0).getAdminArea();
-            String country = addresses.get(0).getCountryName();
-            String postalCode = addresses.get(0).getPostalCode();
-            String knownName = addresses.get(0).getFeatureName();
-            if (SessionManager.getCityid(getApplicationContext()).equals("")) {
-                if (LocationActivity.location_nameis.equals("")) {
-                    //       tvaddress.setText(thoroughfare + "," + state);
-                } else {
-                    //     tvaddress.setText(SessionManager.getLocation_name(getApplicationContext()));
-                }
-
-            } else {
-                //   tvaddress.setText(SessionManager.getLocation_name(getApplicationContext()));
-            }
-        } catch (Exception e) {
-            tvaddress.setText(SessionManager.getLocation_name(getApplicationContext()));
-        }
-    }
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -1171,13 +910,6 @@ public class LandingNewActivity extends AppCompatActivity implements BottomNavig
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (drawer.isDrawerOpen(Gravity.END))
-        {
-            drawer.closeDrawer(Gravity.END);
-        }
-        else {
-            finish();
-        }
     }
 
 

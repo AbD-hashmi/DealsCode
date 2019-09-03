@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DealsNxt</string>
+    <string name="app_name">Xclusify</string>
     <string name="ConnectionErrorResponse">Oops! Please check your Internet Connection</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
