@@ -103,6 +103,7 @@ public class OrderActivity extends FragmentActivity {
         ivFavourite = (ImageView) LLfooter.findViewById(R.id.ivFavourite);
         ivmore = (ImageView) LLfooter.findViewById(R.id.ivmore);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         LLloc.setVisibility(View.GONE);
         imBack.setVisibility(View.VISIBLE);
@@ -256,12 +257,12 @@ public class OrderActivity extends FragmentActivity {
                 drawer.closeDrawers();
             }
         });
-        LLpopulardeals.setOnClickListener(new View.OnClickListener() {
+      /*  LLpopulardeals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawer.closeDrawers();
             }
-        });
+        });*/
         LLshare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -295,15 +295,15 @@
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/nav_view"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="end"
             android:fitsSystemWindows="true"
-            app:itemBackground="@android:color/transparent"
+            android:background="@drawable/gradiant_bottom_to_top"
             app:itemTextColor="#000000">
 
             <LinearLayout
-                android:layout_width="220dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
@@ -313,58 +313,48 @@
                     android:scrollbars="none">
 
                     <LinearLayout
+                        android:id="@+id/LLclose"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <!--         <Button
-                                     android:id="@+id/btmore"
-                                     android:layout_width="match_parent"
-                                     android:layout_height="wrap_content"
-                                     android:layout_gravity="center"
-                                     android:background="#ffffff"
-                                     android:drawablePadding="10dp"
-                                     android:drawableRight="@drawable/arrow"
-                                     android:gravity="center"
-                                     android:paddingRight="20dp"
-                                     android:text="More"
-                                     android:textAppearance="?android:textAppearanceMedium"
-                                     android:textColor="@color/blackfontcolor" />-->
 
                         <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                             android:id="@+id/tvmore"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#95FFFFFF"
-                            android:drawablePadding="15dp"
-                            android:drawableRight="@drawable/cross"
+                            android:drawablePadding="10dp"
+                            android:drawableLeft="@drawable/back"
                             android:gravity="center"
-                            android:padding="15dp"
+                            android:paddingBottom="5dp"
+                            android:paddingRight="30dp"
                             android:paddingTop="10dp"
-                            android:text="More"
-                            android:textColor="@color/blackfontcolor"
-                            android:visibility="gone" />
+                            android:text="More on Xclusify"
+                            android:textColor="@color/White" />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:textColor="@color/greyfontcol" />
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
 
                         <LinearLayout
                             android:id="@+id/LLorder"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="#95FFFFFF"
+                            android:layout_height="@dimen/menu_item_size"
                             android:orientation="horizontal"
-                            android:padding="5dp"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:paddingTop="5dp"
                             android:weightSum="1">
 
                             <ImageView
                                 android:id="@+id/ivorder"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="@dimen/menu_item_imagesize"
+                                android:layout_height="@dimen/menu_item_imagesize"
                                 android:layout_gravity="center_vertical"
-                                android:padding="10dp"
                                 android:src="@drawable/myorder" />
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -374,26 +364,30 @@
                                 android:layout_gravity="center"
                                 android:layout_marginRight="5dp"
                                 android:drawablePadding="10dp"
-                                android:drawableRight="@drawable/left_arrow"
+                                android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
                                 android:gravity="center|left"
                                 android:text="My Orders"
-                                android:textColor="@color/blackfontcolor" />
+                                android:textColor="@color/white" />
 
                         </LinearLayout>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:textColor="@color/greyfontcol" />
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
 
                         <LinearLayout
-                            android:visibility="gone"
                             android:id="@+id/LLtrading"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/menu_item_size"
                             android:background="#95FFFFFF"
                             android:orientation="horizontal"
-                            android:padding="5dp">
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:paddingTop="5dp"
+                            android:visibility="gone">
 
                             <ImageView
                                 android:id="@+id/trading"
@@ -410,32 +404,34 @@
                                 android:layout_gravity="center"
                                 android:layout_marginRight="5dp"
                                 android:drawablePadding="10dp"
-                                android:drawableRight="@drawable/left_arrow"
+                                android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
                                 android:gravity="center|left"
                                 android:text="Tranding Deals"
-                                android:textColor="@color/blackfontcolor" />
+                                android:textColor="@color/white" />
 
                         </LinearLayout>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:textColor="@color/greyfontcol" />
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
 
                         <LinearLayout
                             android:id="@+id/LLproximity"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#95FFFFFF"
+                            android:layout_height="@dimen/menu_item_size"
                             android:orientation="horizontal"
-                            android:padding="5dp">
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:paddingTop="5dp">
 
                             <ImageView
                                 android:id="@+id/ivproximity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="@dimen/menu_item_imagesize"
+                                android:layout_height="@dimen/menu_item_imagesize"
                                 android:layout_gravity="center_vertical"
-                                android:padding="10dp"
                                 android:src="@drawable/dealsinprosperity" />
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -445,26 +441,29 @@
                                 android:layout_gravity="center"
                                 android:layout_marginRight="5dp"
                                 android:drawablePadding="10dp"
-                                android:drawableRight="@drawable/left_arrow"
+                                android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
                                 android:gravity="center|left"
                                 android:text="Deals in Proximity"
                                 android:textAppearance="?android:textAppearanceSmall"
-                                android:textColor="@color/blackfontcolor" />
+                                android:textColor="@color/white" />
 
                         </LinearLayout>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:textColor="@color/greyfontcol" />
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
 
                         <LinearLayout
-                            android:id="@+id/LLpopulardeals"
+
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#95FFFFFF"
+                            android:layout_height="@dimen/menu_item_size"
                             android:orientation="horizontal"
-                            android:padding="5dp"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:paddingTop="5dp"
                             android:visibility="gone">
 
                             <ImageView
@@ -486,30 +485,32 @@
                                 android:gravity="center|left"
                                 android:text="Popular Deals"
                                 android:textAppearance="?android:textAppearanceSmall"
-                                android:textColor="@color/blackfontcolor" />
+                                android:textColor="@color/white" />
 
                         </LinearLayout>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:textColor="@color/greyfontcol" />
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
 
                         <LinearLayout
                             android:id="@+id/LLshare"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#95FFFFFF"
+                            android:layout_height="@dimen/menu_item_size"
                             android:orientation="horizontal"
-                            android:padding="5dp">
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:paddingTop="5dp">
 
                             <ImageView
                                 android:id="@+id/ivshare"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="@dimen/menu_item_imagesize"
+                                android:layout_height="@dimen/menu_item_imagesize"
                                 android:layout_gravity="center_vertical"
-                                android:padding="10dp"
-                                android:src="@drawable/share" />
+                                android:src="@drawable/whiteshare" />
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                                 android:id="@+id/btnshare"
@@ -518,34 +519,36 @@
                                 android:layout_gravity="center"
                                 android:layout_marginRight="5dp"
                                 android:drawablePadding="10dp"
-                                android:drawableRight="@drawable/left_arrow"
+                                android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
                                 android:gravity="center|left"
                                 android:text="Share"
                                 android:textAppearance="?android:textAppearanceSmall"
-                                android:textColor="@color/blackfontcolor" />
+                                android:textColor="@color/white" />
 
                         </LinearLayout>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:textColor="@color/greyfontcol" />
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
 
                         <LinearLayout
                             android:id="@+id/LLrate"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#95FFFFFF"
+                            android:layout_height="@dimen/menu_item_size"
                             android:orientation="horizontal"
-                            android:padding="5dp">
+                            android:paddingLeft="30dp"
+                            android:paddingTop="5dp"
+                            android:paddingRight="30dp"
+                            android:paddingBottom="5dp">
 
                             <ImageView
                                 android:id="@+id/ivrate"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="@dimen/menu_item_imagesize"
+                                android:layout_height="@dimen/menu_item_imagesize"
                                 android:layout_gravity="center_vertical"
-                                android:padding="10dp"
-                                android:src="@drawable/share" />
+                                android:src="@drawable/deal_rate" />
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                                 android:id="@+id/btnrate"
@@ -553,34 +556,36 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginRight="5dp"
+                                android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
                                 android:drawablePadding="10dp"
-                                android:drawableRight="@drawable/left_arrow"
                                 android:gravity="center|left"
                                 android:text="Rate Us"
                                 android:textAppearance="?android:textAppearanceSmall"
-                                android:textColor="@color/blackfontcolor" />
+                                android:textColor="@color/white" />
 
                         </LinearLayout>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:textColor="@color/greyfontcol" />
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
 
                         <LinearLayout
                             android:id="@+id/LLNotification"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#95FFFFFF"
+                            android:layout_height="@dimen/menu_item_size"
                             android:orientation="horizontal"
-                            android:padding="5dp">
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:paddingTop="5dp">
 
                             <ImageView
                                 android:id="@+id/ivnotification"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="@dimen/menu_item_imagesize"
+                                android:layout_height="@dimen/menu_item_imagesize"
                                 android:layout_gravity="center_vertical"
-                                android:padding="10dp"
                                 android:src="@drawable/notification" />
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -590,33 +595,35 @@
                                 android:layout_gravity="center"
                                 android:layout_marginRight="5dp"
                                 android:drawablePadding="10dp"
-                                android:drawableRight="@drawable/left_arrow"
+                                android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
                                 android:gravity="center|left"
                                 android:text="Notifications"
                                 android:textAppearance="?android:textAppearanceSmall"
-                                android:textColor="@color/blackfontcolor" />
+                                android:textColor="@color/white" />
 
                         </LinearLayout>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:textColor="@color/greyfontcol" />
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
 
                         <LinearLayout
                             android:id="@+id/LLRefer"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#95FFFFFF"
+                            android:layout_height="@dimen/menu_item_size"
                             android:orientation="horizontal"
-                            android:padding="5dp">
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:paddingTop="5dp">
 
                             <ImageView
                                 android:id="@+id/ivrefer"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="@dimen/menu_item_imagesize"
+                                android:layout_height="@dimen/menu_item_imagesize"
                                 android:layout_gravity="center_vertical"
-                                android:padding="10dp"
                                 android:src="@drawable/refertofriend" />
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -626,33 +633,35 @@
                                 android:layout_gravity="center"
                                 android:layout_marginRight="5dp"
                                 android:drawablePadding="10dp"
-                                android:drawableRight="@drawable/left_arrow"
+                                android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
                                 android:gravity="center|left"
                                 android:text="Refer To Friends"
                                 android:textAppearance="?android:textAppearanceSmall"
-                                android:textColor="@color/blackfontcolor" />
+                                android:textColor="@color/white" />
 
                         </LinearLayout>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:textColor="@color/greyfontcol" />
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
 
                         <LinearLayout
                             android:id="@+id/LLPrivacy"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#95FFFFFF"
+                            android:layout_height="@dimen/menu_item_size"
                             android:orientation="horizontal"
-                            android:padding="5dp">
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:paddingTop="5dp">
 
                             <ImageView
                                 android:id="@+id/ivprivacy"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="@dimen/menu_item_imagesize"
+                                android:layout_height="@dimen/menu_item_imagesize"
                                 android:layout_gravity="center_vertical"
-                                android:padding="10dp"
                                 android:src="@drawable/privacy" />
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -662,33 +671,35 @@
                                 android:layout_gravity="center"
                                 android:layout_marginRight="5dp"
                                 android:drawablePadding="10dp"
-                                android:drawableRight="@drawable/left_arrow"
+                                android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
                                 android:gravity="center|left"
                                 android:text="Privacy Policy"
                                 android:textAppearance="?android:textAppearanceSmall"
-                                android:textColor="@color/blackfontcolor" />
+                                android:textColor="@color/white" />
 
                         </LinearLayout>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:textColor="@color/greyfontcol" />
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
 
                         <LinearLayout
                             android:id="@+id/LLUse"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#95FFFFFF"
+                            android:layout_height="@dimen/menu_item_size"
                             android:orientation="horizontal"
-                            android:padding="5dp">
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:paddingTop="5dp">
 
                             <ImageView
                                 android:id="@+id/ivuse"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="@dimen/menu_item_imagesize"
+                                android:layout_height="@dimen/menu_item_imagesize"
                                 android:layout_gravity="center_vertical"
-                                android:padding="10dp"
                                 android:src="@drawable/terms" />
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -698,33 +709,35 @@
                                 android:layout_gravity="center"
                                 android:layout_marginRight="5dp"
                                 android:drawablePadding="10dp"
-                                android:drawableRight="@drawable/left_arrow"
+                                android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
                                 android:gravity="center|left"
                                 android:text="Terms of Use"
                                 android:textAppearance="?android:textAppearanceSmall"
-                                android:textColor="@color/blackfontcolor" />
+                                android:textColor="@color/white" />
 
                         </LinearLayout>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:textColor="@color/greyfontcol" />
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
 
                         <LinearLayout
                             android:id="@+id/LLAbout"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#95FFFFFF"
+                            android:layout_height="@dimen/menu_item_size"
                             android:orientation="horizontal"
-                            android:padding="5dp">
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:paddingTop="5dp">
 
                             <ImageView
                                 android:id="@+id/ivabout"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="@dimen/menu_item_imagesize"
+                                android:layout_height="@dimen/menu_item_imagesize"
                                 android:layout_gravity="center_vertical"
-                                android:padding="10dp"
                                 android:src="@drawable/aboutus" />
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -734,33 +747,35 @@
                                 android:layout_gravity="center"
                                 android:layout_marginRight="5dp"
                                 android:drawablePadding="10dp"
-                                android:drawableRight="@drawable/left_arrow"
+                                android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
                                 android:gravity="center|left"
                                 android:text="About Us"
                                 android:textAppearance="?android:textAppearanceSmall"
-                                android:textColor="@color/blackfontcolor" />
+                                android:textColor="@color/white" />
 
                         </LinearLayout>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:textColor="@color/greyfontcol" />
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
 
                         <LinearLayout
                             android:id="@+id/LLcontact"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#95FFFFFF"
+                            android:layout_height="@dimen/menu_item_size"
                             android:orientation="horizontal"
-                            android:padding="5dp">
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:paddingTop="5dp">
 
                             <ImageView
                                 android:id="@+id/ivcontact"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="@dimen/menu_item_imagesize"
+                                android:layout_height="@dimen/menu_item_imagesize"
                                 android:layout_gravity="center_vertical"
-                                android:padding="10dp"
                                 android:src="@drawable/contactus" />
 
                             <TextView
@@ -771,33 +786,35 @@
                                 android:layout_marginRight="5dp"
 
                                 android:drawablePadding="10dp"
-                                android:drawableRight="@drawable/left_arrow"
+                                android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
                                 android:gravity="center|left"
                                 android:text="Contact Us"
                                 android:textAppearance="?android:textAppearanceSmall"
-                                android:textColor="@color/blackfontcolor" />
+                                android:textColor="@color/white" />
 
                         </LinearLayout>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:textColor="@color/greyfontcol" />
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
 
                         <LinearLayout
                             android:id="@+id/LLlogout"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#95FFFFFF"
+                            android:layout_height="@dimen/menu_item_size"
                             android:orientation="horizontal"
-                            android:padding="5dp">
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:paddingTop="5dp">
 
                             <ImageView
                                 android:id="@+id/ivlogout"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="@dimen/menu_item_imagesize"
+                                android:layout_height="@dimen/menu_item_imagesize"
                                 android:layout_gravity="center_vertical"
-                                android:padding="10dp"
                                 android:src="@drawable/logout" />
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -807,11 +824,11 @@
                                 android:layout_gravity="center"
                                 android:layout_marginRight="5dp"
                                 android:drawablePadding="10dp"
-                                android:drawableRight="@drawable/left_arrow"
+                                android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
                                 android:gravity="center|left"
                                 android:text="Logout"
                                 android:textAppearance="?android:textAppearanceSmall"
-                                android:textColor="@color/blackfontcolor" />
+                                android:textColor="@color/white" />
 
                         </LinearLayout>
 

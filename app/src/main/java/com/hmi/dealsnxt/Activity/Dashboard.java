@@ -195,7 +195,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         drawer.setNestedScrollingEnabled(false);
 
         TextView etname=(TextView)findViewById(R.id.name);
-        etname.setText("Goodevening, "+SessionManager.getUserName(getApplicationContext()));
+        etname.setText("Good evening, "+SessionManager.getUserName(getApplicationContext()));
 
         ivsearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -272,13 +272,15 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         navigationView = (BottomNavigationView) findViewById(R.id.nav_view);
         filter_view = (NavigationView) findViewById(R.id.filter_view);
         //  filter_view.setVisibility(View.GONE);
-        DrawerLayout.LayoutParams params1 = new DrawerLayout.LayoutParams(DrawerLayout.LayoutParams.WRAP_CONTENT, DrawerLayout.LayoutParams.MATCH_PARENT);
+        DrawerLayout.LayoutParams params1 = new DrawerLayout.LayoutParams(DrawerLayout.LayoutParams.MATCH_PARENT,
+                DrawerLayout.LayoutParams.MATCH_PARENT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             params1.setLayoutDirection(Gravity.LEFT);
             params1.gravity = GravityCompat.START;
         }
         filter_view.setLayoutParams(params1);
-        DrawerLayout.LayoutParams params = new DrawerLayout.LayoutParams(DrawerLayout.LayoutParams.MATCH_PARENT, DrawerLayout.LayoutParams.MATCH_PARENT);
+        DrawerLayout.LayoutParams params = new DrawerLayout.LayoutParams(DrawerLayout.LayoutParams.MATCH_PARENT,
+                DrawerLayout.LayoutParams.MATCH_PARENT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             params.setLayoutDirection(Gravity.RIGHT);
             params.gravity = GravityCompat.END;
@@ -388,8 +390,6 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
             }
         });
-
-
         ivfilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -452,8 +452,6 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 loadtimeschedule(response);
             }
         });
-
-
         LLfootermore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

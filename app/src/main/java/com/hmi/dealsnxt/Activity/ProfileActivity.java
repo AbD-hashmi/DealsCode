@@ -290,6 +290,7 @@ public class ProfileActivity extends AppCompatActivity {
         ivFavourite = (ImageView) LLfooter.findViewById(R.id.ivFavourite);
         ivmore = (ImageView) LLfooter.findViewById(R.id.ivmore);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
 
         ivHome.setImageDrawable(getResources().getDrawable(R.drawable.inactive_home));
@@ -483,12 +484,12 @@ public class ProfileActivity extends AppCompatActivity {
                 drawer.closeDrawers();
             }
         });
-        LLpopulardeals.setOnClickListener(new View.OnClickListener() {
+      /*  LLpopulardeals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawer.closeDrawers();
             }
-        });
+        });*/
         LLshare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

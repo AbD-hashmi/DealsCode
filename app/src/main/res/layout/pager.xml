@@ -2,19 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="165dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/transparent"
     android:orientation="vertical">
 
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cardCornerRadius="20dp"
-        app:cardMaxElevation="20dp">
     <ImageView
         android:id="@+id/bannerimg"
+        android:scaleType="centerCrop"
         android:src="@drawable/banner"
+        android:background="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-    </android.support.v7.widget.CardView>
 </LinearLayout>
