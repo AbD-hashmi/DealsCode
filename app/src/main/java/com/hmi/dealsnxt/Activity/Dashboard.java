@@ -43,6 +43,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -94,7 +95,7 @@ import java.util.TimerTask;
 public class Dashboard extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener , View.OnClickListener {
     private static final String TAG = Dashboard.class.getSimpleName();
    // public TabLayout tabLayout;
-    FloatingActionButton q,w,e,r,t,y;
+    TextView q,w,e,r,t,y;
     public int[] tabIcons = {
             R.drawable.hotdeals,
             R.drawable.fooddrink,
@@ -157,7 +158,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_playground);
+        setContentView(R.layout.activity_dashboard);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         final LinearLayout toolbar = (LinearLayout) findViewById(R.id.toolbarnew);
@@ -178,12 +179,12 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         progress_bar = (ProgressBar) findViewById(R.id.progress_bar);
         view_pager = (ViewPager) findViewById(R.id.view_pager);
 
-        q=(FloatingActionButton)findViewById(R.id.floatingActionButton);
-        w=(FloatingActionButton)findViewById(R.id.floatingActionButton1);
-        e=(FloatingActionButton)findViewById(R.id.floatingActionButton2);
-        r=(FloatingActionButton)findViewById(R.id.floatingActionButton3);
-        t=(FloatingActionButton)findViewById(R.id.floatingActionButton4);
-        y=(FloatingActionButton)findViewById(R.id.floatingActionButton5);
+        q=(TextView)findViewById(R.id.btn1);
+        w=(TextView)findViewById(R.id.btn2);
+        e=(TextView)findViewById(R.id.btn3);
+        r=(TextView)findViewById(R.id.btn4);
+        t=(TextView)findViewById(R.id.btn5);
+        y=(TextView)findViewById(R.id.btn6);
         q.setOnClickListener(this);
         w.setOnClickListener(this);
         e.setOnClickListener(this);
@@ -705,34 +706,34 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.floatingActionButton:
+            case R.id.btn6:
 
+                startActivity(new Intent(Dashboard.this,LandingNewActivity.class).putExtra("tab",5));
+
+                break;
+
+            case R.id.btn1:
                 startActivity(new Intent(Dashboard.this,LandingNewActivity.class).putExtra("tab",0));
 
                 break;
 
-            case R.id.floatingActionButton1:
+            case R.id.btn2:
                 startActivity(new Intent(Dashboard.this,LandingNewActivity.class).putExtra("tab",1));
 
                 break;
 
-            case R.id.floatingActionButton2:
+            case R.id.btn3:
                 startActivity(new Intent(Dashboard.this,LandingNewActivity.class).putExtra("tab",2));
 
                 break;
 
-            case R.id.floatingActionButton3:
+            case R.id.btn4:
                 startActivity(new Intent(Dashboard.this,LandingNewActivity.class).putExtra("tab",3));
 
                 break;
 
-            case R.id.floatingActionButton4:
+            case R.id.btn5:
                 startActivity(new Intent(Dashboard.this,LandingNewActivity.class).putExtra("tab",4));
-
-                break;
-
-            case R.id.floatingActionButton5:
-                startActivity(new Intent(Dashboard.this,LandingNewActivity.class).putExtra("tab",5));
 
                 break;
         }

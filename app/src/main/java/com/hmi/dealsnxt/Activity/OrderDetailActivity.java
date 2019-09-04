@@ -146,7 +146,7 @@ public class OrderDetailActivity extends AppCompatActivity {
                                 }
 
                                 if (orderJson.optString("transactions_no").equals("")) {
-                                    RLAmount.setVisibility(View.GONE);
+                                   // RLAmount.setVisibility(View.GONE);
                                 }
                             }
 
@@ -178,7 +178,7 @@ public class OrderDetailActivity extends AppCompatActivity {
                                 ivQR.setImageBitmap(Bitmap1);
 
                                 if ((orderJson.optString("voucherCode").isEmpty()) || ((orderJson.optString("voucherCode").equals("")))) {
-                                    RLAmount.setVisibility(View.GONE);
+                             //       RLAmount.setVisibility(View.GONE);
                                 }
                             }
 

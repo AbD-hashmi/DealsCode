@@ -11,7 +11,7 @@
     <color name="redcolor">#a60000</color>
     <color name="yellowcol">#eeba30</color>
     <color name="white">#eeeeee</color>
-    <color name="blackfontcolor">#212121</color>
+    <color name="blackfontcolor">#000</color>
     <color name="greyfontcol">#616161</color>
     <color name="whitetrans">#60FFFFFF</color>
     <color name="textColorPrimary">#FFFFFF</color>

@@ -1,11 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/gradiant_bottom_to_top">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/darkGray"
         android:orientation="vertical">
 
         <ScrollView
@@ -13,14 +13,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="55dp"
-            android:background="@color/darkGray"
             android:scrollbars="none">
 
             <RelativeLayout
                 android:id="@+id/RRl"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/darkGray">
+                android:layout_height="match_parent">
 
                 <RelativeLayout
                     android:id="@+id/RLdealdata"
@@ -29,8 +27,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginBottom="3dp"
-                    android:background="@color/White">
+                    android:layout_marginBottom="3dp">
 
                     <ImageView
                         android:id="@+id/ivdeal"
@@ -39,8 +36,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/banner_new"
-                        android:visibility="gone" />
+                        android:src="@drawable/banner_new"/>
 
                     <android.support.v4.view.ViewPager
                         android:id="@+id/view_pager"
@@ -59,6 +55,17 @@
                         android:layout_marginTop="120dp"
                         android:orientation="horizontal">
 
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                            android:id="@+id/tvTitle2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="Title"
+                            android:textAppearance="?android:textAppearanceMedium"
+                            android:textColor="#ffffff"
+                            android:textStyle="bold" />
+
+
                         <ImageView
                             android:id="@+id/ivshare"
                             android:layout_width="wrap_content"
@@ -66,12 +73,12 @@
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginEnd="70dp"
                             android:layout_marginTop="10dp"
                             android:layout_toLeftOf="@+id/ivlikecount"
                             android:padding="5dp"
                             android:scaleType="fitXY"
-                            android:src="@drawable/whiteshare" />
+                            android:src="@drawable/whiteshare"
+                            android:layout_marginRight="70dp" />
 
                         <ImageView
                             android:id="@+id/ivlikecount"
@@ -95,6 +102,7 @@
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="15dp"
+                            android:layout_centerVertical="true"
                             android:background="@drawable/abstract_back"
                             android:gravity="center"
                             android:text="  "
@@ -196,7 +204,7 @@
                                 android:gravity="center_vertical"
                                 android:text="4pm"
                                 android:textAppearance="?android:textAppearanceSmall"
-                                android:textColor="@color/blackfontcolor" />
+                                android:textColor="@color/white" />
 
                             <TextView
                                 android:id="@+id/tvview"
@@ -207,7 +215,7 @@
                                 android:layout_marginRight="5dp"
                                 android:layout_toRightOf="@+id/tvstartime"
                                 android:text="-"
-                                android:textColor="@color/blackfontcolor"
+                                android:textColor="@color/white"
                                 android:textStyle="bold" />
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -219,7 +227,7 @@
                                 android:gravity="bottom"
                                 android:text="10pm"
                                 android:textAppearance="?android:textAppearanceSmall"
-                                android:textColor="@color/blackfontcolor" />
+                                android:textColor="@color/white" />
 
                         </RelativeLayout>
                     </LinearLayout>
@@ -262,7 +270,6 @@
                     android:layout_height="match_parent"
                     android:layout_below="@+id/RLdealdata"
                     android:layout_marginBottom="10dp"
-                    android:background="@color/White"
                     android:orientation="vertical"
                     android:padding="5dp">
 
@@ -274,7 +281,7 @@
                         android:padding="5dp"
                         android:text="About:"
                         android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@color/blackfontcolor"
+                        android:textColor="@color/white"
                         android:textStyle="bold" />
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -311,7 +318,6 @@
                     android:layout_height="match_parent"
                     android:layout_below="@+id/LLlist"
                     android:layout_marginBottom="10dp"
-                    android:background="@color/White"
                     android:orientation="vertical"
                     android:padding="5dp">
 
@@ -323,7 +329,7 @@
                         android:padding="5dp"
                         android:text="Terms &amp; Conditions: Outlet "
                         android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@color/blackfontcolor"
+                        android:textColor="@color/white"
                         android:textStyle="bold" />
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -346,7 +352,6 @@
                     android:layout_height="match_parent"
                     android:layout_below="@+id/LLtnc"
                     android:layout_marginBottom="10dp"
-                    android:background="@color/White"
                     android:orientation="vertical"
                     android:visibility="gone">
 
@@ -358,7 +363,7 @@
                         android:padding="5dp"
                         android:text="drgdgdfgdfgfdgfdgfgdgfdgdgfdgdgfdgdgfdfggfgfdgdfgdgdgfgffgdgdfgdfgdgdfgfgfgdfgdgfdgfdgfdgdgfdgdfgdfgfdgfdgfdgfdgfdgfdgfdg"
                         android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@color/blackfontcolor" />
+                        android:textColor="@color/white" />
                 </LinearLayout>
 
                 <RelativeLayout
@@ -367,7 +372,6 @@
                     android:layout_height="match_parent"
                     android:layout_below="@+id/LLtnc"
                     android:layout_marginBottom="10dp"
-                    android:background="@color/White"
                     android:gravity="center_vertical"
                     android:orientation="vertical"
                     android:padding="10dp"
@@ -382,7 +386,7 @@
                         android:gravity="bottom"
                         android:text="Things of Remember"
                         android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@color/blackfontcolor"
+                        android:textColor="@color/white"
                         android:textStyle="bold" />
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -391,11 +395,11 @@
                         android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
                         android:layout_centerInParent="true"
-                        android:background="@color/buttoncol"
+                        android:background="@drawable/button_gradient_image"
                         android:padding="5dp"
                         android:text="Show Me"
                         android:textAppearance="?android:textAppearanceMedium"
-                        android:textColor="@color/White" />
+                        android:textColor="@color/blackfontcolor" />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -418,11 +422,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
-                        android:background="@color/White"
                         android:gravity="bottom"
                         android:padding="10dp"
                         android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@color/blackfontcolor" />
+                        android:textColor="@color/white" />
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                         android:layout_width="wrap_content"
@@ -431,7 +434,7 @@
                         android:padding="10dp"
                         android:text="Similar Deals"
                         android:textAppearance="?android:textAppearanceMedium"
-                        android:textColor="@color/blackfontcolor" />
+                        android:textColor="@color/white" />
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/similar_scorll"
@@ -454,7 +457,7 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_alignParentBottom="true"
-            android:background="@color/buttoncol"
+            android:background="@drawable/button_gradient_image"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -473,7 +476,7 @@
                     android:layout_alignParentLeft="true"
                     android:text="Total Amount"
                     android:textAppearance="?android:textAppearanceSmall"
-                    android:textColor="@color/White"
+                    android:textColor="@color/Black"
                     android:textStyle="bold" />
 
                 <!--   <LinearLayout
@@ -531,7 +534,7 @@
                         android:hint="0"
                         android:maxLines="1"
                         android:textAppearance="?android:textAppearanceMedium"
-                        android:textColor="@color/White" />
+                        android:textColor="@color/Black" />
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
                         android:id="@+id/tvfinalamount"
@@ -542,7 +545,7 @@
                         android:layout_toRightOf="@+id/tvactualprice"
                         android:hint="0"
                         android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@color/White"
+                        android:textColor="@color/blackfontcolor"
                         android:textStyle="bold" />
 
                 </RelativeLayout>
@@ -558,7 +561,7 @@
                 android:padding="5dp"
                 android:text="Buy Now"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/White" />
+                android:textColor="@color/Black" />
         </RelativeLayout>
 
         <ImageView

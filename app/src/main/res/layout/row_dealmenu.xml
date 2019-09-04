@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
-    android:background="@color/blue"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -11,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
-        android:background="@color/White"
         android:orientation="vertical"
         android:padding="10dp">
         <ImageView
@@ -29,29 +27,30 @@
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
             android:orientation="horizontal">
-
-            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
-                android:id="@+id/tvdiscount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:gravity="center"
-                android:text="30%off"
-                android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/redcolor" />
-
             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                 android:id="@+id/tvdealname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/tvdiscount"
-                android:ellipsize="end"
-                android:gravity="left"
+                android:gravity="right"
+                android:layout_alignParentLeft="true"
                 android:maxLines="1"
                 android:text="Cappuccino / Masala Chhai"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/blackfontcolor" />
+                android:textColor="@color/white" />
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:id="@+id/tvdiscount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="left"
+                android:text="30%off"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/redcolor" />
+
+
 
 
         </RelativeLayout>
@@ -70,7 +69,7 @@
                     android:maxLines="1"
                     android:text="Thuesday / Friday"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textColor="@color/blackfontcolor" />
+                    android:textColor="@color/white" />
         -->
     <RelativeLayout
         android:id="@+id/RLimage"
@@ -91,11 +90,12 @@
             android:drawableLeft="@drawable/time_black"
             android:drawablePadding="10dp"
             android:gravity="center_vertical"
+            android:visibility="gone"
             android:maxLines="1"
             android:layout_centerInParent="true"
             android:text="9.30am"
             android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/blackfontcolor" />
+            android:textColor="@color/white" />
 
 
 
@@ -139,7 +139,7 @@
                 android:maxLines="1"
                 android:text="33333"
                 android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="@color/blur_color" />
+                android:textColor="@color/white" />
 
             <!--    </RelativeLayout>-->
 
@@ -153,7 +153,7 @@
                 android:maxLines="1"
                 android:text="33333"
                 android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="@color/blackfontcolor" />
+                android:textColor="@color/white" />
 
             <LinearLayout
                 android:id="@+id/LLcount"
@@ -165,6 +165,7 @@
                 <ImageView
                     android:id="@+id/ivminus"
                     android:layout_width="wrap_content"
+                    android:background="@color/white"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:scaleType="fitXY"
@@ -180,8 +181,8 @@
                     android:text="0"
                     android:maxLength="2"
                     android:textAppearance="?android:textAppearanceSmall"
-                    android:textColor="@color/Black"
-                    android:textColorHint="@color/Black" />
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
 
                 <ImageView
                     android:id="@+id/ivadd"
@@ -223,7 +224,7 @@
             android:layout_below="@+id/deal_image"
             android:layout_toRightOf="@+id/deal_image"
             android:paddingRight="5dp"
-
+            android:visibility="gone"
             android:layout_marginBottom="5dp"
             android:scaleType="fitXY"
             android:src="@drawable/gift_deal" />

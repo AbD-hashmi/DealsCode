@@ -145,7 +145,8 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
         RLdealdata = (RelativeLayout) findViewById(R.id.RLdealdata);
         RRl = (RelativeLayout) findViewById(R.id.RRl);
         scroll_view = (ScrollView) findViewById(R.id.scroll_view);
-        layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT);
         layoutParams.setMargins(0, 0, 0, 0);
         // scroll_view.setLayoutParams(layoutParams);
         if (CheckingPermissionIsEnabledOrNot()) {

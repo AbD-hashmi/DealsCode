@@ -219,6 +219,7 @@ public class LocationActivity extends AppCompatActivity implements GoogleApiClie
         my_loc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!isFinishing())
                 progressDialog.show();
                 myloc = "yes";
                 getMylocation();

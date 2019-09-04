@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradiant_bottom_to_top"
     tools:context="com.hmi.dealsnxt.Activity.LocationActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -19,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/gradient"
             android:clickable="false"
             android:gravity="center_vertical"
             android:orientation="horizontal"

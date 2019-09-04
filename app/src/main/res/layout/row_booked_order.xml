@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
-        android:background="@color/White"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -41,7 +40,7 @@
                 android:gravity="center_vertical"
 
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/blackfontcolor" />
+                android:textColor="@color/white" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -70,7 +69,7 @@
                     android:gravity="bottom"
                     android:maxLines="1"
                     android:textAppearance="?android:textAppearanceSmall"
-                    android:textColor="@color/darkGray" />
+                    android:textColor="@color/white" />
 
             </RelativeLayout>
 
@@ -84,7 +83,7 @@
                 android:padding="5dp"
 
           android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="@color/blackfontcolor" />
+                android:textColor="@color/white" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -103,8 +102,8 @@
                     android:layout_toRightOf="@+id/tvstartime"
 
                     android:textAppearance="?android:textAppearanceSmall"
-                    android:textColor="@color/Black"
-                    android:textColorHint="@color/Black" />
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
                 
             </LinearLayout>
 
