@@ -69,11 +69,12 @@ public class OrderActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_order);
         recycleVIew = (RecyclerView) findViewById(R.id.recycleVIew);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
@@ -111,6 +112,7 @@ public class OrderActivity extends FragmentActivity {
         ivsearch.setVisibility(View.GONE);
         tvusername.setVisibility(View.GONE);
         tvTitle.setText("My Orders");
+
         imBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,7 +146,7 @@ public class OrderActivity extends FragmentActivity {
                 ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
                 ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
 
-                tvHome.setTextColor(getResources().getColor(R.color.redcolor));
+                tvHome.setTextColor(getResources().getColor(R.color.yellowcol));
                 tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
@@ -164,7 +166,7 @@ public class OrderActivity extends FragmentActivity {
                 ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
                 tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvProfile.setTextColor(getResources().getColor(R.color.redcolor));
+                tvProfile.setTextColor(getResources().getColor(R.color.yellowcol));
                 tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
                 tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
@@ -182,7 +184,7 @@ public class OrderActivity extends FragmentActivity {
                 tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvFavourite.setTextColor(getResources().getColor(R.color.redcolor));
+                tvFavourite.setTextColor(getResources().getColor(R.color.yellowcol));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
                 tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
                 //    Intent i = new Intent(OrderActivity.this, Dashboard.class);
@@ -201,7 +203,7 @@ public class OrderActivity extends FragmentActivity {
                 tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.active_more));
-                tvmore.setTextColor(getResources().getColor(R.color.redcolor));
+                tvmore.setTextColor(getResources().getColor(R.color.yellowcol));
                 if (drawer.isDrawerOpen(GravityCompat.END)) {
                     drawer.closeDrawer(GravityCompat.END);
                 } else {
@@ -470,9 +472,14 @@ public class OrderActivity extends FragmentActivity {
         ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
         ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
         tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvOrder.setTextColor(getResources().getColor(R.color.redcolor));
+        tvOrder.setTextColor(getResources().getColor(R.color.yellowcol));
         tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
         tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
         tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

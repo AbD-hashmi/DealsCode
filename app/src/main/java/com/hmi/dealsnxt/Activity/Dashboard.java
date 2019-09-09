@@ -217,14 +217,14 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         //   String test = "Priyanshu";
         // char first = test.charAt(0);
         tvusername.setText(test);
-        tvusername.setOnClickListener(new View.OnClickListener() {
+        tvusername.setVisibility(View.GONE);
+        etname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(Dashboard.this,ProfileActivity.class);
                 startActivity(i);
             }
         });
-
         Geocoder geocoder;
         List<Address> addresses = new ArrayList<>();
         geocoder = new Geocoder(this, Locale.getDefault());
@@ -318,7 +318,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         ivOrder.setImageDrawable(getResources().getDrawable(R.drawable.inactive_order));
         ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
         ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
-        tvHome.setTextColor(getResources().getColor(R.color.white));
+        tvHome.setTextColor(getResources().getColor(R.color.yellowcol));
         tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
         tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
         tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
@@ -331,7 +331,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
                 ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
 
-                tvHome.setTextColor(getResources().getColor(R.color.white));
+                tvHome.setTextColor(getResources().getColor(R.color.yellowcol));
                 tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
@@ -347,7 +347,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
                 ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
                 tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvOrder.setTextColor(getResources().getColor(R.color.white));
+                tvOrder.setTextColor(getResources().getColor(R.color.yellowcol));
                 tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
@@ -366,7 +366,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
                 tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvProfile.setTextColor(getResources().getColor(R.color.white));
+                tvProfile.setTextColor(getResources().getColor(R.color.yellowcol));
                 tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
                 tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
@@ -385,7 +385,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvFavourite.setTextColor(getResources().getColor(R.color.white));
+                tvFavourite.setTextColor(getResources().getColor(R.color.yellowcol));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
                 tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
             }
@@ -464,7 +464,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.active_more));
-                tvmore.setTextColor(getResources().getColor(R.color.white));
+                tvmore.setTextColor(getResources().getColor(R.color.yellowcol));
                 DrawerLayout.LayoutParams params = new DrawerLayout.LayoutParams(DrawerLayout.LayoutParams.MATCH_PARENT, DrawerLayout.LayoutParams.MATCH_PARENT);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     params.setLayoutDirection(Gravity.RIGHT);
@@ -1158,7 +1158,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
         ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
         ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
-        tvHome.setTextColor(getResources().getColor(R.color.white));
+        tvHome.setTextColor(getResources().getColor(R.color.yellowcol));
         tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
         tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
         tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));

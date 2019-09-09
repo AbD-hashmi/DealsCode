@@ -90,10 +90,10 @@ public class ProfileActivity extends AppCompatActivity {
     public TextView tvHome, tvOrder, tvProfile, tvFavourite, tvmore;
     public ImageView ivHome, ivOrder, ivProfile, ivFavourite, ivmore;
     public DrawerLayout drawer;
-    public ImageView imback, ivsignout, ivEditIcon;
-    public TextView save, etDOB;
+    public ImageView imback,  ivEditIcon;
+    public TextView save, etDOB,ivsignout;
     public ProgressBar progressBar;
-    public EditText etname, etemail, etmobile;
+    public EditText etname, etemail, etmobile,etemail2;
     public de.hdodenhof.circleimageview.CircleImageView userimage;
     static String ReminderDateStart = "";
     static int myear;
@@ -127,12 +127,13 @@ public class ProfileActivity extends AppCompatActivity {
       /*  this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);*/
         imback = (ImageView) findViewById(R.id.imback);
-        ivsignout = (ImageView) findViewById(R.id.ivsignout);
+        ivsignout = (TextView) findViewById(R.id.ivsignout);
         ivEditIcon = (ImageView) findViewById(R.id.ivEditIcon);
         userimage = (de.hdodenhof.circleimageview.CircleImageView) findViewById(R.id.userimage);
         etname = (EditText) findViewById(R.id.etname);
         gender_text = (TextView) findViewById(R.id.gender_text);
         etemail = (EditText) findViewById(R.id.etemail);
+        etemail2 = (EditText) findViewById(R.id.etemail2);
         etmobile = (EditText) findViewById(R.id.etmobile);
         etDOB = (TextView) findViewById(R.id.etDOB);
         save = (TextView) findViewById(R.id.save);
@@ -150,6 +151,7 @@ public class ProfileActivity extends AppCompatActivity {
                 .build();
         etname.setText(SessionManager.getUserName(getApplicationContext()));
         etemail.setText(SessionManager.getUserEmail(getApplicationContext()));
+        etemail2.setText(SessionManager.getUserEmail(getApplicationContext()));
         etmobile.setText(SessionManager.getMobileno(getApplicationContext()));
         getGender = SessionManager.getUserGender(getApplicationContext());
 
@@ -300,7 +302,7 @@ public class ProfileActivity extends AppCompatActivity {
         ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
         tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
         tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvProfile.setTextColor(getResources().getColor(R.color.redcolor));
+        tvProfile.setTextColor(getResources().getColor(R.color.yellowcol));
         tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
         tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
 
@@ -312,7 +314,7 @@ public class ProfileActivity extends AppCompatActivity {
                 ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
                 ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
 
-                tvHome.setTextColor(getResources().getColor(R.color.redcolor));
+                tvHome.setTextColor(getResources().getColor(R.color.yellowcol));
                 tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
@@ -330,7 +332,7 @@ public class ProfileActivity extends AppCompatActivity {
                 ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
                 ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
                 tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvOrder.setTextColor(getResources().getColor(R.color.redcolor));
+                tvOrder.setTextColor(getResources().getColor(R.color.yellowcol));
                 tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
@@ -351,7 +353,7 @@ public class ProfileActivity extends AppCompatActivity {
                 tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvFavourite.setTextColor(getResources().getColor(R.color.redcolor));
+                tvFavourite.setTextColor(getResources().getColor(R.color.yellowcol));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
                 tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
                 // Intent i = new Intent(ProfileActivity.this, Dashboard.class);
@@ -370,7 +372,7 @@ public class ProfileActivity extends AppCompatActivity {
                 tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.active_more));
-                tvmore.setTextColor(getResources().getColor(R.color.redcolor));
+                tvmore.setTextColor(getResources().getColor(R.color.yellowcol));
                 if (drawer.isDrawerOpen(GravityCompat.END)) {
                     drawer.closeDrawer(GravityCompat.END);
                 } else {
@@ -963,7 +965,7 @@ public class ProfileActivity extends AppCompatActivity {
         ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
         tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
         tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvProfile.setTextColor(getResources().getColor(R.color.redcolor));
+        tvProfile.setTextColor(getResources().getColor(R.color.yellowcol));
         tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
         tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));*/
 
@@ -974,7 +976,7 @@ public class ProfileActivity extends AppCompatActivity {
         ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
         tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
         tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvProfile.setTextColor(getResources().getColor(R.color.redcolor));
+        tvProfile.setTextColor(getResources().getColor(R.color.yellowcol));
         tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
         tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
     }

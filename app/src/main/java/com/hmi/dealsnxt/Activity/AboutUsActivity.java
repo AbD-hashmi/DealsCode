@@ -1,8 +1,11 @@
 package com.hmi.dealsnxt.Activity;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
@@ -92,8 +95,11 @@ public class AboutUsActivity extends AppCompatActivity {
                                 String Status = jSONObject.optString("status");
                                 if (Integer.parseInt(Status) == 1) {
 
-                                    JSONObject jSONinfo = jSONObject.optJSONObject("info");;
-                                    webView.loadData(jSONinfo.getString("body").toString(), "text/html", "UTF-8");
+                                    JSONObject jSONinfo = jSONObject.optJSONObject("info");
+                                    webView.setBackgroundColor(R.drawable.gradiant_bottom_to_top);
+                                    String htmlData="<font color='white'>" + jSONinfo.getString("body") + "</font>";
+                                    webView.loadDataWithBaseURL(null, htmlData, "text/html", "UTF-8", null);
+                                    //webView.loadData(jSONinfo.getString("body").toString(), "text/html", "UTF-8");
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Unable to load data from Server", Toast.LENGTH_SHORT).show();
                                 }

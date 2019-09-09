@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradiant_bottom_to_top"
     android:orientation="vertical"
     tools:context="com.hmi.dealsnxt.Activity.AboutUsActivity">
 
@@ -21,9 +22,7 @@
         <WebView
             android:id="@+id/webView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_margin="5dp"
+            android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             android:scrollbars="vertical" />
 

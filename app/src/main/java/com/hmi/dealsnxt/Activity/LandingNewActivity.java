@@ -97,14 +97,14 @@ import java.util.TimerTask;
 public class LandingNewActivity extends AppCompatActivity {
     private static final String TAG = LandingNewActivity.class.getSimpleName();
     public TabLayout tabLayout;
-    public int[] tabIcons = {
+ /*   public int[] tabIcons = {
             R.drawable.dining,
             R.drawable.wellness,
             R.drawable.fashion,
             R.drawable.accessories,
             R.drawable.event,
             R.drawable.membership
-    };
+    };*/
     
     int tabnum;
    // NavigationView filter_view;
@@ -790,44 +790,44 @@ public class LandingNewActivity extends AppCompatActivity {
 
     private void setupTabIcons() {
         TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabOne.setText("Dining");
-        tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.dining, 0, 0);
+        tabOne.setText("DINING");
+      //  tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.dining, 0, 0);
         tabLayout.getTabAt(0).setCustomView(tabOne);
 
         TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabTwo.setText("Wellness");
-        tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.wellness, 0, 0);
+        tabTwo.setText("WELLNESS");
+      //  tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.wellness, 0, 0);
         tabLayout.getTabAt(1).setCustomView(tabTwo);
 
         TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabThree.setText("Fashion");
-        tabThree.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.fashion, 0, 0);
+        tabThree.setText("FASHION");
+        //tabThree.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.fashion, 0, 0);
         tabLayout.getTabAt(2).setCustomView(tabThree);
 
         TextView tabFour = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabFour.setText("Accessories");
-        tabFour.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.accessories, 0, 0);
+        tabFour.setText("ACCESSORIES");
+       // tabFour.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.accessories, 0, 0);
         tabLayout.getTabAt(3).setCustomView(tabFour);
 
         TextView tabFive = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabFive.setText("Events");
-        tabFive.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.event, 0, 0);
+        tabFive.setText("EVENTS");
+      //  tabFive.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.event, 0, 0);
         tabLayout.getTabAt(4).setCustomView(tabFive);
 
         TextView tabSix = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabSix.setText("Membership");
-        tabSix.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.membership, 0, 0);
+        tabSix.setText("MEMBERSHIP");
+      //  tabSix.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.membership, 0, 0);
         tabLayout.getTabAt(5).setCustomView(tabSix);
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new HotDealsFragment(), "Dining");
-        adapter.addFrag(new FoodDrinkFragment(), "Wellness");
-        adapter.addFrag(new HotelFragment(), "Fashion");
-        adapter.addFrag(new SpaFragment(), "Accessories");
-        adapter.addFrag(new SpaFragment(), "Events");
-        adapter.addFrag(new SpaFragment(), "Membership");
+        adapter.addFrag(new HotDealsFragment(), "DINING");
+        adapter.addFrag(new FoodDrinkFragment(), "WELLNESS");
+        adapter.addFrag(new HotelFragment(), "FASHION");
+        adapter.addFrag(new SpaFragment(), "ACCESSORIES");
+        adapter.addFrag(new SpaFragment(), "EVENTS");
+        adapter.addFrag(new SpaFragment(), "MEMBERSHIP");
         viewPager.setAdapter(adapter);
     }
 

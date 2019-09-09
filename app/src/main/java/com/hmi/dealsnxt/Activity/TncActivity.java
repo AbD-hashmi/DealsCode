@@ -8,6 +8,8 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -43,6 +45,8 @@ public class TncActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_tnc);
         final LinearLayout toolbar = (LinearLayout) findViewById(R.id.toolbarnew);
         LLloc = (LinearLayout) toolbar.findViewById(R.id.LLloc);
@@ -96,8 +100,14 @@ public class TncActivity extends AppCompatActivity {
                                 String Status = jSONObject.optString("status");
                                 if (Integer.parseInt(Status) == 1) {
 
-                                    JSONObject jSONinfo = jSONObject.optJSONObject("info");;
-                                    webView.loadData(jSONinfo.getString("body").toString(), "text/html", "UTF-8");
+                                    JSONObject jSONinfo = jSONObject.optJSONObject("info");
+                                    webView.setBackgroundColor(R.drawable.gradiant_bottom_to_top);
+
+                                    String htmlData="<font color='white'>" + jSONinfo.getString("body") + "</font>";
+                                    webView.loadDataWithBaseURL(null, htmlData, "text/html", "UTF-8", null);
+                                    //webView.loadData(jSONinfo.getString("body").toString(), "text/html", "UTF-8");
+
+                                    //webView.loadData(jSONinfo.getString("body").toString(), "text/html", "UTF-8");
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Unable to load data from Server", Toast.LENGTH_SHORT).show();
                                 }

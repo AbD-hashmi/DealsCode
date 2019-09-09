@@ -160,7 +160,7 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
         if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 0) {
             // QR not SHown
             viewHolder.tvdealstatus.setText("Failed");
-            viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
+          //  viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
             viewHolder.tvcancel.setVisibility(View.INVISIBLE);
         } else if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 1) {
            /* if (Integer.valueOf(items.get(position).getDealstatus()) == 0) {
@@ -174,25 +174,32 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
                 viewHolder.tvcancel.setVisibility(View.VISIBLE);
                 viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
                 viewHolder.tvdealstatus.setText("Paid");
-                viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.delivered, 0, 0, 0);
+                viewHolder.tvdealstatus.setTextColor(context.getResources().getColor(R.color.green));
+              //  viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.delivered, 0, 0, 0);
             } else if (Integer.valueOf(items.get(position).getDealstatus()) == 2) {
                 //  viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
                 viewHolder.tvcancel.setVisibility(View.INVISIBLE);
                 viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
                 viewHolder.tvdealstatus.setText("Cancelled");
-                viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
+                viewHolder.tvdealstatus.setTextColor(context.getResources().getColor(R.color.red));
+
+                //   viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
             } else if (Integer.valueOf(items.get(position).getDealstatus()) == 3) {
                 //  viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
                 viewHolder.tvcancel.setVisibility(View.INVISIBLE);
                 viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
                 viewHolder.tvdealstatus.setText("Redeemed");
-                viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.delivered, 0, 0, 0);
+                viewHolder.tvdealstatus.setTextColor(context.getResources().getColor(R.color.green));
+
+                //viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.delivered, 0, 0, 0);
             } else if (Integer.valueOf(items.get(position).getDealstatus()) == 4) {
                 //  viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
                 viewHolder.tvcancel.setVisibility(View.INVISIBLE);
                 viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
                 viewHolder.tvdealstatus.setText("Expired");
-                viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
+                viewHolder.tvdealstatus.setTextColor(context.getResources().getColor(R.color.red));
+
+                //viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
             }
         }
         /* else if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 2) {

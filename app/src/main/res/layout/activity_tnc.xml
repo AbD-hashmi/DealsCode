@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/gradiant_bottom_to_top"
     tools:context="com.hmi.dealsnxt.Activity.AboutUsActivity">
 
     <include
@@ -12,18 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp">
+
 
         <WebView
             android:id="@+id/webView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
-    </ScrollView>
 
     <ProgressBar
         android:id="@+id/progress_bar"

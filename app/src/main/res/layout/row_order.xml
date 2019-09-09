@@ -3,13 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
+    android:background="@color/blackfontcolor"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/LLView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/White"
+        android:background="@android:color/transparent"
         android:orientation="horizontal"
         android:padding="5dp"
         android:weightSum="1">
@@ -46,6 +47,7 @@
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="burger king"
+                    android:textColor="@color/white"
                     android:textAppearance="?android:textAppearanceMedium" />
 
                 <LinearLayout
@@ -62,11 +64,12 @@
                         android:drawableLeft="@drawable/map_black"
                         android:drawablePadding="5dp"
                         android:ellipsize="end"
+                        android:visibility="gone"
                         android:gravity="center_vertical"
                         android:maxLength="8"
                         android:text="Gurgaon"
                         android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@color/blackfontcolor" />
+                        android:textColor="@color/white" />
 
                     <View
                         android:layout_width="1dp"
@@ -87,7 +90,7 @@
                         android:gravity="center_vertical"
                         android:text="24 nov 2016"
                         android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@color/blackfontcolor" />
+                        android:textColor="@color/white" />
 
                     <View
                         android:layout_width="1dp"
@@ -105,10 +108,11 @@
                         android:layout_marginLeft="3dp"
                         android:gravity="center_vertical"
                         android:text="Rs 10000"
+                        android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@color/redFont" />
+                        android:textColor="@color/white" />
                 </LinearLayout>
 
 
@@ -120,16 +124,14 @@
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                         android:id="@+id/tvdealstatus"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical|top"
-                        android:drawableLeft="@drawable/cancelled"
                         android:drawablePadding="5dp"
-                        android:gravity="center_vertical"
                         android:padding="5dp"
                         android:text="Cancelled"
+                        android:gravity="right"
                         android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@color/greyfontcol" />
+                        android:textColor="@color/red" />
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                         android:id="@+id/tvcancel"
@@ -137,15 +139,16 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerInParent="true"
-                        android:background="@color/redFont"
+                        android:background="@drawable/button_gradient_image"
                         android:gravity="center"
                         android:paddingBottom="3dp"
+                        android:visibility="gone"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:paddingTop="3dp"
                         android:text="Cancel"
                         android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@color/White" />
+                        android:textColor="@color/Black" />
 
                 </RelativeLayout>
 
