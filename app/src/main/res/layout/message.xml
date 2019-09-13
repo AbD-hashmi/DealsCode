@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/incomming_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:background="@drawable/incomming_bubble"
+        android:text="jygjyaldjas\nasdasasdasdasd\nadsadasjdnkajsndaUJNFkjafbkajdfnKAJDFNJanfkjnasfkjnaKJFS"
+        android:paddingLeft="35dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
+        android:maxWidth="350dp"
+        android:layout_marginTop="10dp"
+        android:paddingRight="10dp"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/outgoing_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:paddingBottom="10dp"
+        android:layout_gravity="right"
+        android:gravity="right"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/outgoing_bubble"
+        android:text="jygjyaldjas\nasdasasdasdasd\nadsadasjdnkajsndaUJNFkjafbkajdfnKAJDFNJanfkjnasfkjnaKJFS"
+        android:paddingRight="35dp"
+        android:paddingTop="20dp"
+        android:maxWidth="350dp"
+        android:paddingLeft="10dp"
+        android:textSize="20dp"/>
+
+</LinearLayout>
