@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.NavigationView android:id="@+id/filter_view"
-    android:layout_width="270dp"
-    android:layout_height="match_parent"
-    android:layout_gravity="end"
-    android:fitsSystemWindows="true"
+<android.support.design.widget.NavigationView
+    android:id="@+id/filter_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     app:itemBackground="@android:color/transparent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
-        android:layout_width="270dp"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="#95FFFFFF"
         android:orientation="vertical"
         tools:context="com.hmi.dealsnxt.Activity.ProfileActivity">
@@ -19,12 +18,12 @@
         <RelativeLayout
             android:id="@+id/filer_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <RelativeLayout
                 android:id="@+id/filter_lay"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:fitsSystemWindows="true">
 
@@ -58,8 +57,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentLeft="true"
                                     android:background="#95FFFFFF"
-                                    android:padding="10dp"
-                                    android:text="Filter"
+                                    android:textSize="30dp"
+                                    android:text="X"
                                     android:textColor="@color/blackfontcolor" />
 
                                 <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
@@ -68,7 +67,7 @@
                                     android:layout_alignParentRight="true"
                                     android:background="#95FFFFFF"
                                     android:padding="10dp"
-                                    android:text="Done"
+                                    android:text="Reset"
                                     android:textColor="@color/buttoncolnew" />
 
                             </RelativeLayout>
@@ -131,6 +130,7 @@
                                 android:layout_marginTop="30dp"
                                 android:background="#95FFFFFF"
                                 android:orientation="horizontal"
+                                android:visibility="gone"
                                 android:padding="10dp"
                                 android:weightSum="1">
 
@@ -146,6 +146,7 @@
                                         android:layout_width="120dp"
                                         android:layout_height="70dp"
                                         android:layout_weight=".5"
+                                        android:visibility="gone"
                                         android:background="@drawable/edittext_border_new"
                                         android:orientation="vertical">
 
@@ -226,6 +227,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="#95FFFFFF"
                                 android:orientation="horizontal"
+                                android:visibility="gone"
                                 android:padding="10dp"
                                 android:weightSum="1">
 
@@ -241,6 +243,7 @@
                                         android:layout_width="120dp"
                                         android:layout_height="70dp"
                                         android:layout_weight=".5"
+                                        android:visibility="gone"
                                         android:background="@drawable/edittext_border_new"
                                         android:orientation="vertical">
 
@@ -274,6 +277,7 @@
                                         android:layout_width="120dp"
                                         android:layout_height="70dp"
                                         android:layout_weight=".5"
+                                        android:visibility="gone"
                                         android:background="@drawable/edittext_border_new"
                                         android:orientation="vertical">
 
@@ -372,17 +376,166 @@
 
 
                                 <SeekBar
-                                    android:id="@+id/seekbar"
+                                    android:id="@+id/seekbarPrice"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="right"
                                     android:max="2000"
                                     android:progress="50"
-                                    android:progressTint="@color/Black"
+                                    android:theme="@style/AppTheme.button"
                                     android:scrollIndicators="left" />
 
 
                             </LinearLayout>
+
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:background="#95FFFFFF"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:background="#95FFFFFF"
+                                    android:gravity="center"
+                                    android:orientation="horizontal"
+                                    android:padding="10dp">
+
+                                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                        android:id="@+id/discountPercent"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_centerInParent="true"
+                                        android:layout_gravity="left"
+                                        android:layout_marginRight="5dp"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="center|left"
+                                        android:text="Discount Percentage"
+                                        android:textAppearance="?android:textAppearanceSmall"
+                                        android:textColor="@color/blackfontcolor" />
+
+                                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                        android:id="@+id/tvdiscountrangestart"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerInParent="true"
+                                        android:layout_gravity="left"
+                                        android:layout_marginRight="5dp"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="center|left"
+                                        android:textAppearance="?android:textAppearanceSmall"
+                                        android:textColor="@color/blackfontcolor" />
+
+                                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                        android:id="@+id/tvdiscountpercentrangend"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerInParent="true"
+                                        android:layout_gravity="left"
+                                        android:layout_marginRight="5dp"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="center|left"
+                                        android:text="99%"
+                                        android:textAppearance="?android:textAppearanceSmall"
+                                        android:textColor="@color/blackfontcolor" />
+                                </RelativeLayout>
+
+
+
+                                <SeekBar
+                                    android:id="@+id/seekbarDiscountPercent"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="right"
+                                    android:max="2000"
+                                    android:progress="50"
+                                    android:theme="@style/AppTheme.button"
+                                    android:scrollIndicators="left" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:background="#95FFFFFF"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:background="#95FFFFFF"
+                                    android:gravity="center"
+                                    android:orientation="horizontal"
+                                    android:padding="10dp">
+
+                                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                        android:id="@+id/distance"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_centerInParent="true"
+                                        android:layout_gravity="left"
+                                        android:layout_marginRight="5dp"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="center|left"
+                                        android:text="Distance"
+                                        android:textAppearance="?android:textAppearanceSmall"
+                                        android:textColor="@color/blackfontcolor" />
+
+                                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                        android:id="@+id/tvdistancestart"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerInParent="true"
+                                        android:layout_gravity="left"
+                                        android:layout_marginRight="5dp"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="center|left"
+                                        android:textAppearance="?android:textAppearanceSmall"
+                                        android:textColor="@color/blackfontcolor" />
+
+                                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                        android:id="@+id/tvdistancerangend"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerInParent="true"
+                                        android:layout_gravity="left"
+                                        android:layout_marginRight="5dp"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="center|left"
+                                        android:text="20KM"
+                                        android:textAppearance="?android:textAppearanceSmall"
+                                        android:textColor="@color/blackfontcolor" />
+                                </RelativeLayout>
+
+
+
+                                <SeekBar
+                                    android:id="@+id/seekbarDistance"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="right"
+                                    android:max="2000"
+                                    android:progress="50"
+                                    android:theme="@style/AppTheme.button"
+                                    android:scrollIndicators="left" />
+
+
+                            </LinearLayout>
+
 
                             <View
                                 android:layout_width="match_parent"
@@ -817,13 +970,12 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_marginTop="20dp"
-                                android:background="@drawable/button_gradient"
                                 android:gravity="center"
                                 android:paddingBottom="10dp"
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
                                 android:paddingTop="10dp"
-                                android:text="Recommended Deals"
+                                android:text="DONE"
                                 android:textAppearance="?android:textAppearanceSmall"
                                 android:textColor="@color/blackfontcolor" />
 

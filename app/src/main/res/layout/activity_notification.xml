@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/gradiant_bottom_to_top">
 
     <include
@@ -14,49 +15,27 @@
         android:layout_below="@+id/toolbarnew"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/Rldata"
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/htab_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:tabIndicatorColor="@color/white"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:minHeight="20dp"
+            app:tabBackground="@drawable/tab_background"
+            app:tabIndicatorHeight="0dp"
+            app:tabPadding="0dp"
+            android:background="@color/Black"
+            app:tabMinWidth="20dp"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/htab_viewpager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/darkGray"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            android:padding="10dp">
-
-            <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
-                android:id="@+id/tvnotificationno"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:text="3 Notification Unread" />
-
-            <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
-                android:id="@+id/tvselectodel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerInParent="true"
-                android:layout_gravity="right"
-                android:drawableRight="@drawable/delete_red"
-                android:gravity="right"
-                android:text="2 Selected" />
-
-        </RelativeLayout>
-
-        <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/swipeContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <view
-                android:id="@+id/recycler_view"
-                class="android.support.v7.widget.RecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:background="@android:color/transparent"/>
-
-        </android.support.v4.widget.SwipeRefreshLayout>
+            android:layout_below="@+id/htab_tabs"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </LinearLayout>
 

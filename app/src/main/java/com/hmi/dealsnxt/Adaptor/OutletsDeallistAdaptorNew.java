@@ -81,12 +81,12 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
     // Provide a reference to the views for each data item
 // Provide access to all the views for a data item in a view holder
     public final static class SimpleItemViewHolder extends RecyclerView.ViewHolder {
-        TextView tvdiscount, tvdealname, tvavaildate, tvactualprice, tvafterdisprice, tvcount, tvmore, tvavailtime;
+        TextView tvdiscount, tvdealname, tvavaildate, tvactualprice, tvafterdisprice, tvcount, tvmore, tvavailtime, ivgift;
         ImageView ivadd, ivminus;
         // Spinner spinnermore;
         View viewline;
         RelativeLayout RLdeal, RLdata;
-        ImageView spinnermore,ivgift,deal_image;
+        ImageView spinnermore,deal_image;
         LinearLayout LLcount;
 
         public SimpleItemViewHolder(View itemView) {
@@ -105,7 +105,7 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
             tvmore = (TextView) itemView.findViewById(R.id.tvmore);
             LLcount = (LinearLayout) itemView.findViewById(R.id.LLcount);
             tvavailtime = (TextView) itemView.findViewById(R.id.tvavailtime);
-            ivgift=(ImageView) itemView.findViewById(R.id.ivgift);
+            ivgift=(TextView) itemView.findViewById(R.id.ivgift);
             deal_image=(ImageView) itemView.findViewById(R.id.deal_image);
             //   spinnermore = (Spinner) itemView.findViewById(R.id.spinnermore);
             //spinnermore = (ImageView) itemView.findViewById(R.id.spinnermore);
@@ -155,7 +155,7 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
     @Override
     public void onBindViewHolder(final SimpleItemViewHolder viewHolder, final int position) {
         viewHolder.tvdiscount.setText(items.get(position).getDiscountpercent() + " " + "off");
-        viewHolder.tvdealname.setText("on" + " " + items.get(position).getDealname());
+        viewHolder.tvdealname.setText("" + items.get(position).getDealname());
         //    viewHolder.tvavaildate.setText(items.get(position).getDealday());
         viewHolder.tvactualprice.setText("\u20B9" + items.get(position).getActualprice());
         viewHolder.tvafterdisprice.setText("\u20B9" + items.get(position).getAfterdiscountprice());
@@ -163,7 +163,8 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
         final int discountedprice = Integer.valueOf(items.get(position).getAfterdiscountprice());
         viewHolder.tvactualprice.setPaintFlags(viewHolder.tvactualprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         Dealimg = (items.get(position).getDealimg());
-        viewHolder.tvavailtime.setText(Customutils.dateFormat(items.get(position).getOutletintime()) + "-" + Customutils.dateFormat(items.get(position).getOutletouttime()));
+        viewHolder.tvavailtime.setText("Avail from: "+Customutils.dateFormat(items.get(position).getOutletintime()) + "-" + Customutils.dateFormat(items.get(position).getOutletouttime())
+                +"  ("+items.get(position).getDealday()+")");
         viewHolder.ivadd.setTag(position);
         viewHolder.ivminus.setTag(position);
         imageLoader.displayImage(items.get(position).getDealimg(),viewHolder.deal_image,options);
@@ -222,9 +223,9 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
                 int dealCount = 0;
                 //  String calculate = "";
                 if (dealCount <= 0) {
-                    viewHolder.ivminus.setImageResource(R.drawable.minus_dark);
+                    //viewHolder.ivminus.setImageResource(R.drawable.minus_dark);
                 } else {
-                    viewHolder.ivminus.setImageResource(R.drawable.minus);
+                    //viewHolder.ivminus.setImageResource(R.drawable.minus);
                 }
 
                 if (dealMap.containsKey(Integer.valueOf(items.get(position).getDealid())))
@@ -339,9 +340,9 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
                         bm.setDealQTY(dealCount + "");
 
                         if (dealCount > 0) {
-                            viewHolder.ivminus.setImageResource(R.drawable.minus_dark);
+                          //  viewHolder.ivminus.setImageResource(R.drawable.minus_dark);
                         } else {
-                            viewHolder.ivminus.setImageResource(R.drawable.minus);
+                            //viewHolder.ivminus.setImageResource(R.drawable.minus);
                         }
                         if (dealCount > 0) {
                             orderarrayList.remove(bm);

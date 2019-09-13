@@ -135,6 +135,7 @@ public class OrderDetailActivity extends AppCompatActivity {
                             JSONArray orderArray = jSONObject.getJSONArray("order");
                             for (int i = 0; i < orderArray.length(); i++) {
                                 JSONObject orderJson = orderArray.getJSONObject(i);
+                                System.out.println("data = "+orderArray.getJSONObject(i));
 
                                 tvtotal.setText("\u20B9" + " " + orderJson.optString("totalAmount"));
                                 tvtransactionId.setText(orderJson.optString("transactions_no"));

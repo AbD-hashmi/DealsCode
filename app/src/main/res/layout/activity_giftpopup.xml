@@ -27,7 +27,7 @@
                 android:id="@+id/ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/redcolor"
+                android:background="@color/blackfontcolor"
                 android:orientation="vertical"
                 android:paddingBottom="5dp"
                 android:paddingLeft="15dp"
@@ -72,7 +72,7 @@
                         android:layout_centerInParent="true"
                         android:layout_marginTop="5dp"
                         android:scrollbars="vertical"
-                        android:text="Deal Quantity:"
+                        android:text="Quantity:"
                         android:textAppearance="?android:textAppearanceSmall"
                         android:textColor="@color/Black" />
 
@@ -86,11 +86,10 @@
 
                         <ImageView
                             android:id="@+id/ivsubstract"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="5dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/minus" />
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/minus_drawable"
+                            android:src="@drawable/minus"  />
 
                         <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                             android:id="@+id/tvcountnumber"
@@ -108,12 +107,11 @@
 
                         <ImageView
                             android:id="@+id/ivplus"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
                             android:layout_marginLeft="10dp"
-                            android:padding="5dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/plus" />
+                            android:background="@drawable/minus_drawable"
+                            android:src="@drawable/add"/>
                     </LinearLayout>
                 </RelativeLayout>
                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularEditText
@@ -240,13 +238,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/LL"
                 android:layout_marginTop="20dp"
-                android:background="@color/redcolor"
+                android:background="@drawable/button_gradient"
                 android:gravity="center"
                 android:maxLength="10"
                 android:padding="15dp"
                 android:text="Gift Now"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/White" />
+                android:textColor="@color/blackfontcolor" />
         </RelativeLayout>
 
         <ImageView

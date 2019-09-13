@@ -75,21 +75,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity {
-    ImageView ivProfileRankingBackground;
-    ImageView ivProfileCountryFlag;
-    TextView tvProfileRank, tvProfileName, tvProfileDesignation;
-    EditText etUserOldPassword, etUserName, etUserContactNo, etUserEmail, etUserDesignation, etUserWorkPlace, etUserAcademic, etUserPassword, etconfirmPassword;
-    ImageLoader imageLoader;
+ ImageLoader imageLoader;
     boolean isProfileEdited = false;
     int REQUEST_CAMERA = 0, SELECT_FILE = 1;
     public Bitmap thumbnail_final;
     Boolean IsImageSelected = false;
-    Tracker t;
     DisplayImageOptions options;
-    public LinearLayout LLfooter, LLfooterHome, LLfooterOrder, LLfooterProfile, LLfootermore, LLfooterFavourite, LLloc;
-    public TextView tvHome, tvOrder, tvProfile, tvFavourite, tvmore;
-    public ImageView ivHome, ivOrder, ivProfile, ivFavourite, ivmore;
-    public DrawerLayout drawer;
     public ImageView imback,  ivEditIcon;
     public TextView save, etDOB,ivsignout;
     public ProgressBar progressBar;
@@ -103,11 +94,9 @@ public class ProfileActivity extends AppCompatActivity {
     public int getGenderId;
     public String getGender = "";
     public String SelectedGender = "";
-    LinearLayout LLshare, LLNotification,LLrate, LLRefer, LLPrivacy, LLUse, LLAbout, LLcontact, LLlogout;
-    LinearLayout LLpopulardeals, LLproximity, LLtrading, LLorder;
+    //LinearLayout LLshare, LLNotification,LLrate, LLRefer, LLPrivacy, LLUse, LLAbout, LLcontact, LLlogout;
+   // LinearLayout LLpopulardeals, LLproximity, LLtrading, LLorder;
     ArrayList<String> list = new ArrayList<String>();
-
-
     String mo[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
     String stringdob = "";
     TextView gender_text;
@@ -275,111 +264,10 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         //  GenderSpiner(getGender);
-        LLfooter = (LinearLayout) findViewById(R.id.LLfooter);
-        LLfooterHome = (LinearLayout) LLfooter.findViewById(R.id.LLfooterHome);
-        LLfooterOrder = (LinearLayout) LLfooter.findViewById(R.id.LLfooterOrder);
-        LLfooterProfile = (LinearLayout) LLfooter.findViewById(R.id.LLfooterProfile);
-        LLfooterFavourite = (LinearLayout) LLfooter.findViewById(R.id.LLfooterFavourite);
-        LLfootermore = (LinearLayout) LLfooter.findViewById(R.id.LLfootermore);
-        tvHome = (TextView) LLfooter.findViewById(R.id.tvHome);
-        tvOrder = (TextView) LLfooter.findViewById(R.id.tvOrder);
-        tvProfile = (TextView) LLfooter.findViewById(R.id.tvProfile);
-        tvFavourite = (TextView) LLfooter.findViewById(R.id.tvFavourite);
-        tvmore = (TextView) LLfooter.findViewById(R.id.tvmore);
-        ivHome = (ImageView) LLfooter.findViewById(R.id.ivHome);
-        ivOrder = (ImageView) LLfooter.findViewById(R.id.ivOrder);
-        ivProfile = (ImageView) LLfooter.findViewById(R.id.ivProfile);
-        ivFavourite = (ImageView) LLfooter.findViewById(R.id.ivFavourite);
-        ivmore = (ImageView) LLfooter.findViewById(R.id.ivmore);
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
 
-        ivHome.setImageDrawable(getResources().getDrawable(R.drawable.inactive_home));
-        ivOrder.setImageDrawable(getResources().getDrawable(R.drawable.inactive_order));
-        ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.active_profile));
-        ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
-        ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
-        tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvProfile.setTextColor(getResources().getColor(R.color.yellowcol));
-        tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
 
-        LLfooterHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ivHome.setImageDrawable(getResources().getDrawable(R.drawable.active_home));
-                ivOrder.setImageDrawable(getResources().getDrawable(R.drawable.inactive_order));
-                ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
-                ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
 
-                tvHome.setTextColor(getResources().getColor(R.color.yellowcol));
-                tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
-                ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
-                tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
-                Intent i = new Intent(ProfileActivity.this, Dashboard.class);
-                startActivity(i);
-            }
-        });
-        LLfooterOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ivHome.setImageDrawable(getResources().getDrawable(R.drawable.inactive_home));
-                ivOrder.setImageDrawable(getResources().getDrawable(R.drawable.active_order));
-                ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
-                ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
-                tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvOrder.setTextColor(getResources().getColor(R.color.yellowcol));
-                tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
-                ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
-                tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
-
-                Intent i = new Intent(ProfileActivity.this, OrderActivity.class);
-                startActivity(i);
-            }
-        });
-
-        LLfooterFavourite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ivHome.setImageDrawable(getResources().getDrawable(R.drawable.inactive_home));
-                ivOrder.setImageDrawable(getResources().getDrawable(R.drawable.inactive_order));
-                ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
-                ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.active_favorite));
-                tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvFavourite.setTextColor(getResources().getColor(R.color.yellowcol));
-                ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
-                tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
-                // Intent i = new Intent(ProfileActivity.this, Dashboard.class);
-                // startActivity(i);
-            }
-        });
-        LLfootermore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ivHome.setImageDrawable(getResources().getDrawable(R.drawable.inactive_home));
-                ivOrder.setImageDrawable(getResources().getDrawable(R.drawable.inactive_order));
-                ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
-                ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
-                tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
-                ivmore.setImageDrawable(getResources().getDrawable(R.drawable.active_more));
-                tvmore.setTextColor(getResources().getColor(R.color.yellowcol));
-                if (drawer.isDrawerOpen(GravityCompat.END)) {
-                    drawer.closeDrawer(GravityCompat.END);
-                } else {
-                    drawer.openDrawer(GravityCompat.END);
-                }
-            }
-        });
 
    /*     ArrayList<String> list = new ArrayList<String>();
         list.add("Female");
@@ -404,7 +292,6 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         setgender(getGender);
-        findviewbyDrawer();
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -439,192 +326,6 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     }
-
-    private void findviewbyDrawer() {
-        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        tvmore = (TextView) findViewById(R.id.tvmore);
-        LLorder = (LinearLayout) findViewById(R.id.LLorder);
-        LLtrading = (LinearLayout) findViewById(R.id.LLtrading);
-        LLproximity = (LinearLayout) findViewById(R.id.LLproximity);
-        LLpopulardeals = (LinearLayout) findViewById(R.id.LLpopulardeals);
-        LLshare = (LinearLayout) findViewById(R.id.LLshare);
-        LLNotification = (LinearLayout) findViewById(R.id.LLNotification);
-        LLRefer = (LinearLayout) findViewById(R.id.LLRefer);
-        LLPrivacy = (LinearLayout) findViewById(R.id.LLPrivacy);
-        LLUse = (LinearLayout) findViewById(R.id.LLUse);
-        LLrate= (LinearLayout) findViewById(R.id.LLrate);
-        LLAbout = (LinearLayout) findViewById(R.id.LLAbout);
-        LLcontact = (LinearLayout) findViewById(R.id.LLcontact);
-        LLlogout = (LinearLayout) findViewById(R.id.LLlogout);
-
-        tvmore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawer.closeDrawers();
-            }
-        });
-        LLorder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ProfileActivity.this, OrderActivity.class);
-                startActivity(i);
-
-                drawer.closeDrawers();
-            }
-        });
-        LLtrading.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawer.closeDrawers();
-            }
-        });
-        LLproximity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ProfileActivity.this, NearByActivity.class);
-                startActivity(i);
-                drawer.closeDrawers();
-            }
-        });
-      /*  LLpopulardeals.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawer.closeDrawers();
-            }
-        });*/
-        LLshare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent("android.intent.action.SEND");
-                i.setType("text/plain");
-                i.putExtra("android.intent.extra.TEXT", "Enjoy deals around you. Download here+ App:- https://play.google.com/store/apps/details?id=com.mhi.dealnxt");
-                startActivity(Intent.createChooser(i, "Share App"));
-                drawer.closeDrawers();
-            }
-        });
-        LLNotification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i = new Intent(ProfileActivity.this, NotificationActivity.class);
-                startActivity(i);
-                drawer.closeDrawers();
-            }
-        });
-        LLrate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.mhi.dealnxt"));
-                    startActivity(i);
-                } catch (ActivityNotFoundException error) {
-                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.mhi.dealnxt"));
-                    startActivity(i);
-                }
-                drawer.closeDrawers();
-            }
-        });
-        LLlogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(ProfileActivity.this, R.style.AppCompatAlertDialogStyle);
-                builder.setTitle("Alert");
-                builder.setMessage("Are you sure you want to Logout?");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), "Successfully Logout", Toast.LENGTH_SHORT).show();
-                        SessionManager.setIsRegistered(getApplicationContext(), false);
-                        SessionManager.setIssignup(getApplicationContext(), false);
-                        SessionManager.setIsRegistered(getApplicationContext(), false);
-                        SessionManager.setIssignup(getApplicationContext(), false);
-                        SessionManager.setLatitude(getApplicationContext(), "");
-                        SessionManager.setLongitude(getApplicationContext(), "");
-                        SessionManager.setUserID(getApplicationContext(), "");
-                        SessionManager.setIsloc(getApplicationContext(), false);
-                        SessionManager.setIstut(getApplicationContext(), false);
-                        SharedPreferences preferences = getSharedPreferences("uid", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.clear();
-                        editor.commit();
-                        finish();
-                        Intent i = new Intent(ProfileActivity.this, OTPActivity.class);
-                        startActivity(i);
-                        finish();
-                    }
-                });
-                builder.setNegativeButton("No", null);
-                builder.show();
-                drawer.closeDrawers();
-                drawer.openDrawer(GravityCompat.END);
-            }
-        });
-        LLRefer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ProfileActivity.this, RefertofrndActivity.class);
-                startActivity(i);
-                drawer.closeDrawers();
-            }
-        });
-        LLPrivacy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ProfileActivity.this, PrivacypolicyActivity.class);
-                startActivity(i);
-                drawer.closeDrawers();
-            }
-        });
-        LLUse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ProfileActivity.this, TncActivity.class);
-                startActivity(i);
-                drawer.closeDrawers();
-            }
-        });
-        LLAbout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ProfileActivity.this, AboutUsActivity.class);
-                startActivity(i);
-                drawer.closeDrawers();
-            }
-        });
-        LLcontact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ProfileActivity.this, ContactUsActivity.class);
-                startActivity(i);
-                drawer.closeDrawers();
-            }
-        });
-
-
-    }
-
-
-  /*  public void GenderSpiner(final String getGender) {
-        try {
-            ArrayList<String> arraylist = new ArrayList<>();
-           *//* ProductList = Spinner_Product_model.getAllProduct();
-            for (int i = 0; i < ProductList.size(); i++) {
-                arraylist.add(ProductList.get(i).getProductName());
-                    }*//*
-            ArrayList<String> list = new ArrayList<String>();
-            list.add("Female");
-            list.add("Male");
-            genderSpinner.setAdapter(new CustomSpinnerAdapter(getApplicationContext(), arraylist));
-            for (int i = 0; i < arraylist.size(); i++) {
-                if (arraylist.get(i).equals(getGender)) {
-                    genderSpinner.setSelection(i);
-                    break;
-                }
-            }
-        } catch (Exception e) {
-            Log.e("", "" + e.getMessage());
-        }
-    }*/
-
 
     public class CustomSpinnerAdapter extends BaseAdapter implements SpinnerAdapter {
 
@@ -926,16 +627,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private boolean checkValidation() {
         boolean ret = true;
-        /* etname.setError(null);
-        etemail.setError(null);
-        etmobile.setError(null);
-        etDOB.setError(null);
-        if (!RegisValidation.hasText(etUserName)) {
-            ret = false;
-        } else if (!(Pattern.matches("^[\\p{L} .'-]+$", etUserName.getText().toString()))) {
-            etUserName.setError("Please enter valid name");
-            ret = false;
-        }*/
+
 
         if (!RegisValidation.hasText(etname)) {
             //  etCompanyName.setError("Please enter valid Name");
@@ -958,27 +650,8 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-     /*   ivHome.setImageDrawable(getResources().getDrawable(R.drawable.inactive_home));
-        ivOrder.setImageDrawable(getResources().getDrawable(R.drawable.inactive_order));
-        ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.active_profile));
-        ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
-        ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
-        tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvProfile.setTextColor(getResources().getColor(R.color.yellowcol));
-        tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));*/
 
-        ivHome.setImageDrawable(getResources().getDrawable(R.drawable.inactive_home));
-        ivOrder.setImageDrawable(getResources().getDrawable(R.drawable.inactive_order));
-        ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.active_profile));
-        ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
-        ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
-        tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvProfile.setTextColor(getResources().getColor(R.color.yellowcol));
-        tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
+
     }
 
 }

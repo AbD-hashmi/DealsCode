@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradiant_bottom_to_top"
     android:orientation="vertical"
     tools:context="com.hmi.dealsnxt.Activity.ContactUsActivity">
 
@@ -14,8 +15,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/save"
+        android:layout_height="wrap_content"
+        android:id="@+id/rl"
         android:layout_below="@+id/toolbarnew"
         android:fillViewport="true">
 
@@ -43,8 +44,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
-
-
                 android:orientation="vertical">
 
                 <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
@@ -92,41 +91,11 @@
                     android:visibility="gone" />
 
 
-                <android.support.v7.widget.CardView
-                    android:id="@+id/code_card"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:padding="5dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Your referral code"
-                            android:textAppearance="?android:textAppearanceMedium" />
-
-                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
-                            android:id="@+id/code"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="NNALNF"
-                            android:textAppearance="?android:textAppearanceLarge" />
-
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/code_card"
+                    app:cardBackgroundColor="@android:color/transparent"
                     android:layout_margin="20dp"
                     android:padding="10dp">
 
@@ -142,7 +111,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:padding="5dp"
-
+                            android:textColor="@color/white"
                             android:text="Refer a friend to Deal next and they'll get 40% When they make thier purchase, you get 40% off too within 24 hours. Look payment step \n\n Refer a friend to Deal next and they'll get 40% When they make thier purchase, you get 40% off too within 24 hours. Look payment step \n\n Refer a friend to Deal next and they'll get 40% When they make thier purchase, you get 40% off too within 24 hours. Look payment step \n\n Refer a friend to Deal next and they'll get 40% When they make thier purchase, you get 40% off too within 24 hours. Look payment step "
                             android:textAppearance="?android:textAppearanceMedium"
 
@@ -155,9 +124,46 @@
                 </android.support.v7.widget.CardView>
 
 
+
+
             </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/code_card"
+        android:layout_width="match_parent"
+        android:layout_below="@id/rl"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your referral code"
+                android:textColor="@color/white"
+                android:textAppearance="?android:textAppearanceMedium" />
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:id="@+id/code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:text="NNALNF"
+                android:textAppearance="?android:textAppearanceLarge" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
 
     <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
         android:id="@+id/save"
@@ -165,12 +171,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
 
-        android:background="@color/buttoncol"
+        android:background="@drawable/button_gradient"
         android:gravity="center"
         android:padding="10dp"
         android:text="SHARE CODE WITH FRIENDS"
         android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="@color/White" />
+        android:textColor="@color/blackfontcolor" />
 
 
 </RelativeLayout>

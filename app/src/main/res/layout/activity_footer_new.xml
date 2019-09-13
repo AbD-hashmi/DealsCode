@@ -32,7 +32,28 @@
             android:text="Home"
             android:textAppearance="?android:textAppearanceSmall" />
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/LLfooterOrder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.20"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/ivOrder"
+            android:layout_width="@dimen/fab_margin"
+            android:layout_height="@dimen/fab_margin"
+            android:scaleType="fitXY"
+            android:src="@drawable/inactive_order" />
+
+        <TextView
+            android:id="@+id/tvOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Orders"
+            android:textAppearance="?android:textAppearanceSmall" />
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/LLfooterProfile"
         android:layout_width="0dp"
@@ -47,13 +68,36 @@
             android:layout_width="@dimen/fab_margin"
             android:layout_height="@dimen/fab_margin"
             android:scaleType="fitXY"
-            android:src="@drawable/inactive_profile" />
+            android:src="@drawable/notification" />
 
         <TextView
             android:id="@+id/tvProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Profile"
+            android:text="Notification"
+            android:textAppearance="?android:textAppearanceSmall" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LLfooterFavourite"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.20"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivFavourite"
+            android:layout_width="@dimen/fab_margin"
+            android:layout_height="@dimen/fab_margin"
+            android:scaleType="fitXY"
+            android:src="@drawable/inactive_favorite" />
+
+        <TextView
+            android:id="@+id/tvFavourite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chat"
             android:textAppearance="?android:textAppearanceSmall" />
     </LinearLayout>
 
@@ -80,54 +124,11 @@
             android:textAppearance="?android:textAppearanceSmall" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/LLfooterOrder"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.20"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/ivOrder"
-            android:layout_width="@dimen/fab_margin"
-            android:layout_height="@dimen/fab_margin"
-            android:scaleType="fitXY"
-            android:src="@drawable/inactive_order" />
-
-        <TextView
-            android:id="@+id/tvOrder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My Orders"
-            android:textAppearance="?android:textAppearanceSmall" />
-    </LinearLayout>
 
 
 
 
-    <LinearLayout
-        android:id="@+id/LLfooterFavourite"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.20"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/ivFavourite"
-            android:layout_width="@dimen/fab_margin"
-            android:layout_height="@dimen/fab_margin"
-            android:scaleType="fitXY"
-            android:src="@drawable/inactive_favorite" />
-
-        <TextView
-            android:id="@+id/tvFavourite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Chat"
-            android:textAppearance="?android:textAppearanceSmall" />
-    </LinearLayout>
 
 
 

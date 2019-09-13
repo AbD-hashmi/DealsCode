@@ -79,11 +79,13 @@
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/ivsearch"
             android:clickable="false"
-            android:layout_marginRight="5dp"
+            android:layout_alignParentRight="true"
+            android:foregroundGravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="55dp"
             android:padding="5dp"
-
-            android:src="@drawable/inactive_filter"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:src="@drawable/inactive_filter"/>
 
         <ImageView
             android:id="@+id/ivsearch"
@@ -122,9 +124,8 @@
             android:background="@drawable/oval1"
             android:gravity="center"
             android:maxLength="1"
-
-
             android:text="Ps"
+            android:visibility="gone"
             android:textAppearance="?android:textAppearanceSmall"
             android:textColor="@color/White" />
     </RelativeLayout>

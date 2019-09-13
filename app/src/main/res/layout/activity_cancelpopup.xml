@@ -31,7 +31,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:background="@color/redcolor"
+                    android:background="@color/blackfontcolor"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="10dp">
@@ -153,7 +153,7 @@
                     android:layout_centerInParent="true"
                     android:layout_marginRight="5dp"
                     android:layout_weight=".5"
-                    android:background="#BDBDBD"
+                    android:background="@drawable/button_gradient"
                     android:gravity="center"
                     android:paddingBottom="5dp"
                     android:paddingLeft="15dp"
@@ -161,7 +161,7 @@
                     android:paddingTop="5dp"
                     android:text="Cancel"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textColor="@color/White" />
+                    android:textColor="@color/blackfontcolor" />
 
 
                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -173,7 +173,7 @@
                     android:layout_gravity="right"
                     android:layout_marginLeft="5dp"
                     android:layout_weight=".5"
-                    android:background="@color/redcolor"
+                    android:background="@drawable/button_gradient"
                     android:gravity="center"
                     android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
@@ -181,7 +181,7 @@
                     android:paddingTop="5dp"
                     android:text="Ok"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/blackfontcolor" />
 
 
             </LinearLayout>

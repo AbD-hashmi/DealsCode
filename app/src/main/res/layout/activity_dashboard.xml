@@ -28,26 +28,25 @@
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="@dimen/fab_margin"
+            android:padding="5dp"
             android:background="@drawable/round_button">
             <TableRow>
-                <ImageView
-                    android:layout_marginTop="3dp"
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_height="40dp"
                     android:layout_width="40dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_gravity="center|center_vertical"
+                    android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
-                    android:src="@drawable/round"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/profile_pic"
                     android:background="@drawable/round_button"/>
 
                 <TextView
                     android:id="@+id/name"
-                    android:layout_marginTop="3dp"
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="20dp"
-                    android:paddingStart="3dp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
                     android:textColor="@color/White"
                     android:text="Good Evening,User"
@@ -153,26 +152,22 @@
                     android:text="Crurated Collection"
                     android:layout_marginBottom="@dimen/fab_margin"/>
 
-                <android.support.constraint.ConstraintLayout
+                <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="6dp">
-
+<TableRow>
 
                     <TextView
                         android:id="@+id/btn1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
                         android:layout_weight="1"
                         android:drawableTop="@drawable/drawable_dining"
                         android:gravity="center"
-                        android:text="Dining"
+                        android:text="DINING"
                         android:textColor="@color/white"
-                        android:textSize="15dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:textSize="15dp" />
 
 
                     <TextView
@@ -182,42 +177,34 @@
                         android:layout_weight="1"
                         android:drawableTop="@drawable/drawable_wellness"
                         android:gravity="center"
-                        android:text="Wellness"
+                        android:text="WELLNESS"
                         android:textColor="@color/white"
-                        android:textSize="15dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:textSize="15dp" />
 
                     <TextView
                         android:id="@+id/btn3"
                         android:layout_width="@dimen/floating_button_size"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
                         android:layout_weight="1"
                         android:drawableTop="@drawable/drawable_fashion"
+                        android:text="FASHION"
                         android:gravity="center"
-                        android:text="Fashion"
                         android:textColor="@color/white"
-                        android:textSize="15dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:textSize="15dp" />
 
-
+</TableRow>
+                    <TableRow
+                        android:layout_marginTop="@dimen/fab_margin">
                     <TextView
                         android:id="@+id/btn4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_marginTop="@dimen/fab_margin"
                         android:drawableTop="@drawable/drawable_accessories"
                         android:gravity="center"
-                        android:text="Accessories"
+                        android:text="ACCESSORIES"
                         android:textColor="@color/white"
-                        android:textSize="15dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/btn1" />
+                        android:textSize="15dp" />
 
                     <TextView
                         android:id="@+id/btn5"
@@ -226,14 +213,10 @@
                         android:layout_weight="1"
                         android:drawableTop="@drawable/drawable_events"
                         android:gravity="center"
-                        android:text="Events"
-                        android:layout_marginTop="@dimen/fab_margin"
+                        android:text="EVENTS"
 
                         android:textColor="@color/white"
-                        android:textSize="15dp"
-                        app:layout_constraintTop_toBottomOf="@+id/btn2"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                        android:textSize="15dp"/>
 
                     <TextView
                         android:id="@+id/btn6"
@@ -242,15 +225,11 @@
                         android:layout_weight="1"
                         android:drawableTop="@drawable/drawable_membership"
                         android:gravity="center"
-                        android:text="Membership"
-                        android:layout_marginTop="@dimen/fab_margin"
+                        android:text="MEMBERSHIP"
                         android:textColor="@color/white"
-                        android:textSize="15dp"
-                        app:layout_constraintTop_toBottomOf="@+id/btn3"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
-
-                </android.support.constraint.ConstraintLayout>
+                        android:textSize="15dp"/>
+                    </TableRow>
+                </TableLayout>
 
 
             </LinearLayout>
@@ -273,11 +252,9 @@
             android:layout_height="60dp"
             android:paddingBottom="20dp"/>
     </LinearLayout>
-    <include layout="@layout/navigation_menu"
-        android:visibility="gone"/>
+    <include layout="@layout/navigation_menu"/>
     <include layout="@layout/bottom_nav"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"/>
+        android:layout_height="match_parent"/>
 
 </android.support.v4.widget.DrawerLayout>

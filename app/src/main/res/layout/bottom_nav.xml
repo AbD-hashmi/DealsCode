@@ -34,6 +34,7 @@
                         android:drawableLeft="@drawable/back"
                         android:paddingBottom="5dp"
                         android:paddingLeft="10dp"
+                        android:visibility="gone"
                         android:paddingTop="10dp"
                         android:text="More on Xclusify"
                         android:textColor="@color/White" />
@@ -84,16 +85,14 @@
                         android:visibility="gone" />
 
                     <LinearLayout
-                        android:id="@+id/LLtrading"
+                        android:id="@+id/LLwishlistXnearby"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/menu_item_size"
-                        android:background="#95FFFFFF"
                         android:orientation="horizontal"
                         android:paddingBottom="5dp"
                         android:paddingLeft="30dp"
                         android:paddingRight="30dp"
-                        android:paddingTop="5dp"
-                        android:visibility="gone">
+                        android:paddingTop="5dp">
 
                         <ImageView
                             android:id="@+id/trading"
@@ -101,7 +100,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:padding="10dp"
-                            android:src="@drawable/trendingdeals" />
+                            android:src="@drawable/heart" />
 
                         <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                             android:id="@+id/btntrading"
@@ -112,16 +111,11 @@
                             android:drawablePadding="10dp"
                             android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
                             android:gravity="center|left"
-                            android:text="Tranding Deals"
+                            android:text="Wishlist"
                             android:textColor="@color/white" />
 
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:textColor="@color/white"
-                        android:visibility="gone" />
 
                     <LinearLayout
                         android:id="@+id/LLproximity"
@@ -156,11 +150,7 @@
 
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:textColor="@color/white"
-                        android:visibility="gone" />
+
 
                     <LinearLayout
 
@@ -198,9 +188,8 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:textColor="@color/white"
-                        android:visibility="gone" />
+                        android:layout_height="@dimen/divider"
+                        android:background="#AEB0B2" />
 
                     <LinearLayout
                         android:id="@+id/LLshare"
@@ -237,9 +226,8 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:textColor="@color/white"
-                        android:visibility="gone" />
+                        android:layout_height="@dimen/divider"
+                        android:background="#AEB0B2" />
 
                     <LinearLayout
                         android:id="@+id/LLrate"
@@ -274,12 +262,10 @@
                             android:textColor="@color/white" />
 
                     </LinearLayout>
-
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:textColor="@color/white"
-                        android:visibility="gone" />
+                        android:layout_height="@dimen/divider"
+                        android:background="#AEB0B2" />
 
                     <LinearLayout
                         android:id="@+id/LLNotification"
@@ -314,15 +300,10 @@
                             android:textColor="@color/white" />
 
                     </LinearLayout>
-
-
-
-
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:textColor="@color/white"
-                        android:visibility="gone" />
+                        android:layout_height="@dimen/divider"
+                        android:background="#AEB0B2" />
 
                     <LinearLayout
                         android:id="@+id/LLRefer"
@@ -360,9 +341,8 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:textColor="@color/white"
-                        android:visibility="gone" />
+                        android:layout_height="@dimen/divider"
+                        android:background="#AEB0B2" />
 
                     <LinearLayout
                         android:id="@+id/LLPrivacy"
@@ -370,7 +350,6 @@
                         android:layout_height="@dimen/menu_item_size"
                         android:orientation="horizontal"
                         android:paddingBottom="5dp"
-                        android:visibility="gone"
                         android:paddingLeft="30dp"
                         android:paddingRight="30dp"
                         android:paddingTop="5dp">
@@ -380,7 +359,7 @@
                             android:layout_width="@dimen/menu_item_imagesize"
                             android:layout_height="@dimen/menu_item_imagesize"
                             android:layout_gravity="center_vertical"
-                            android:src="@drawable/privacy" />
+                            android:src="@drawable/accessories" />
 
                         <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                             android:id="@+id/btnprivacy"
@@ -396,48 +375,10 @@
                             android:textColor="@color/white" />
 
                     </LinearLayout>
-
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:textColor="@color/white"
-                        android:visibility="gone" />
-
-                    <LinearLayout
-                        android:id="@+id/LLAbout"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/menu_item_size"
-                        android:orientation="horizontal"
-                        android:paddingBottom="5dp"
-                        android:paddingLeft="30dp"
-                        android:paddingRight="30dp"
-                        android:paddingTop="5dp">
-
-                        <ImageView
-                            android:id="@+id/ivabout"
-                            android:layout_width="@dimen/menu_item_imagesize"
-                            android:layout_height="@dimen/menu_item_imagesize"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/aboutus" />
-
-                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
-                            android:id="@+id/btnabout"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="5dp"
-                            android:drawablePadding="10dp"
-                            android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
-                            android:gravity="center|left"
-                            android:text="About Us"
-
-                            android:paddingLeft="10dp"
-                            android:textAppearance="?android:textAppearanceSmall"
-                            android:textColor="@color/white" />
-
-                    </LinearLayout>
-
-
+                        android:layout_height="@dimen/divider"
+                        android:background="#AEB0B2" />
                     <LinearLayout
                         android:id="@+id/LLUse"
                         android:layout_width="match_parent"
@@ -474,16 +415,46 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:textColor="@color/white"
-                        android:visibility="gone" />
+                        android:layout_height="@dimen/divider"
+                        android:background="#AEB0B2" />
 
+                    <LinearLayout
+                        android:id="@+id/LLAbout"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/menu_item_size"
+                        android:orientation="horizontal"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="30dp"
+                        android:paddingRight="30dp"
+                        android:paddingTop="5dp">
 
+                        <ImageView
+                            android:id="@+id/ivabout"
+                            android:layout_width="@dimen/menu_item_imagesize"
+                            android:layout_height="@dimen/menu_item_imagesize"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/aboutus" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/btnabout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:drawablePadding="10dp"
+                            android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
+                            android:gravity="center|left"
+                            android:text="About Us"
+
+                            android:paddingLeft="10dp"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:textColor="@color/white"
-                        android:visibility="gone" />
+                        android:layout_height="@dimen/divider"
+                        android:background="#AEB0B2" />
 
                     <LinearLayout
                         android:id="@+id/LLcontact"
@@ -519,11 +490,6 @@
 
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:textColor="@color/white"
-                        android:visibility="gone" />
 
                     <LinearLayout
                         android:id="@+id/LLlogout"
@@ -532,19 +498,20 @@
                         android:orientation="horizontal"
                         android:paddingBottom="5dp"
                         android:paddingLeft="30dp"
-                        android:visibility="gone"
                         android:paddingRight="30dp"
                         android:paddingTop="5dp">
 
                         <ImageView
                             android:id="@+id/ivlogout"
+
                             android:layout_width="@dimen/menu_item_imagesize"
-                            android:layout_height="@dimen/menu_item_imagesize"
+                            android:layout_height="29dp"
                             android:layout_gravity="center_vertical"
                             android:src="@drawable/logout" />
 
                         <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                             android:id="@+id/btnlogout"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -553,10 +520,16 @@
                             android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
                             android:gravity="center|left"
                             android:text="Logout"
+                            android:paddingLeft="10dp"
                             android:textAppearance="?android:textAppearanceSmall"
                             android:textColor="@color/white" />
 
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/divider"
+                        android:background="#AEB0B2" />
 
                 </LinearLayout>
             </ScrollView>

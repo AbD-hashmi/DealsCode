@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/gradiant_bottom_to_top">
 
     <RelativeLayout
@@ -8,10 +9,43 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:id="@+id/pop"
+            android:orientation="horizontal">
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="Title"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:padding="10dp"
+                android:src="@drawable/back" />
+
+        </RelativeLayout>
+
+
         <ScrollView
             android:id="@+id/scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@+id/pop"
             android:layout_marginBottom="55dp"
             android:scrollbars="none">
 
@@ -20,22 +54,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <RelativeLayout
+
+
+                <LinearLayout
+                    android:orientation="vertical"
                     android:id="@+id/RLdealdata"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginBottom="3dp">
+                    android:layout_alignParentTop="true">
+
+
+
 
                     <ImageView
                         android:id="@+id/ivdeal"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
                         android:scaleType="fitXY"
+                        android:visibility="gone"
                         android:src="@drawable/banner_new"/>
 
                     <android.support.v4.view.ViewPager
@@ -47,69 +85,6 @@
                         android:scaleType="fitXY"
                         android:src="@drawable/banner_new" />
 
-                    <RelativeLayout
-                        android:id="@+id/Rllikecount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="120dp"
-                        android:orientation="horizontal">
-
-                        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
-                            android:id="@+id/tvTitle2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:text="Title"
-                            android:textAppearance="?android:textAppearanceMedium"
-                            android:textColor="#ffffff"
-                            android:textStyle="bold" />
-
-
-                        <ImageView
-                            android:id="@+id/ivshare"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginTop="10dp"
-                            android:layout_toLeftOf="@+id/ivlikecount"
-                            android:padding="5dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/whiteshare"
-                            android:layout_marginRight="70dp" />
-
-                        <ImageView
-                            android:id="@+id/ivlikecount"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="30dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="30dp"
-                            android:layout_marginTop="10dp"
-                            android:padding="5dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/like_selector" />
-
-                        <TextView
-                            android:id="@+id/tvlike"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="15dp"
-                            android:layout_centerVertical="true"
-                            android:background="@drawable/abstract_back"
-                            android:gravity="center"
-                            android:text="  "
-                            android:textAppearance="?android:textAppearanceSmall"
-                            android:textColor="@color/White" />
-
-                    </RelativeLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -119,24 +94,80 @@
                         android:padding ="5dp">
 
                         <RelativeLayout
+                            android:id="@+id/Rllikecount"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginTop="10dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:padding="5dp">
+                            android:layout_alignParentRight="true"
+                            android:orientation="horizontal">
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
                                 android:id="@+id/tvoutletname"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentLeft="true"
-                                android:layout_centerInParent="true"
+                                android:layout_centerVertical="true"
                                 android:gravity="left"
                                 android:textAppearance="?android:textAppearanceMedium"
-                                android:textColor="@color/blackfontcolor"
+                                android:textColor="@color/white"
                                 android:textStyle="bold" />
+
+
+
+                            <ImageView
+                                android:id="@+id/ivshare"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="10dp"
+                                android:layout_toLeftOf="@+id/ivlikecount"
+                                android:padding="5dp"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/whiteshare"
+                                android:layout_marginRight="70dp" />
+
+                            <ImageView
+                                android:id="@+id/ivlikecount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="30dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="30dp"
+                                android:layout_marginTop="10dp"
+                                android:padding="5dp"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/heart" />
+
+                            <TextView
+                                android:id="@+id/tvlike"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="15dp"
+                                android:gravity="center"
+                                android:text="  "
+                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textColor="@color/White" />
+
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="10dp"
+                            android:visibility="gone"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
                                 android:id="@+id/tvoutletdistncekm"
@@ -144,12 +175,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
                                 android:layout_marginLeft="10dp"
-                                android:layout_toRightOf="@+id/tvoutletname"
-                                android:background="@color/white"
                                 android:gravity="left|bottom"
                                 android:padding="3dp"
                                 android:textAppearance="?android:textAppearanceSmall"
-                                android:textColor="@color/blackfontcolor"
+                                android:textColor="@color/white"
                                 android:textStyle="bold" />
 
 
@@ -166,7 +195,7 @@
                             android:paddingLeft="5dp"
                             android:paddingRight="5dp"
                             android:textAppearance="?android:textAppearanceSmall"
-                            android:textColor="@color/blackfontcolor"
+                            android:textColor="@color/white"
                             android:textStyle="bold" />
 
                         <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -178,10 +207,10 @@
                             android:paddingBottom="5dp"
                             android:paddingLeft="5dp"
                             android:paddingRight="5dp"
-                            android:drawableRight="@drawable/call"
+                            android:drawableLeft="@drawable/phone"
                             android:drawablePadding="5dp"
                             android:textAppearance="?android:textAppearanceSmall"
-                            android:textColor="@color/blackfontcolor"
+                            android:textColor="@color/white"
                             android:textStyle="bold" />
 
                         <RelativeLayout
@@ -232,37 +261,8 @@
                         </RelativeLayout>
                     </LinearLayout>
 
-                </RelativeLayout>
+                </LinearLayout>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:background="@android:color/transparent"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
-                        android:id="@+id/tvTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:gravity="center"
-                        android:text="Title"
-                        android:textAppearance="?android:textAppearanceMedium"
-                        android:textColor="#ffffff"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/imBack"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:padding="10dp"
-                        android:src="@drawable/back" />
-
-                </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/Lldetail"
@@ -279,6 +279,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:padding="5dp"
+                        android:visibility="gone"
                         android:text="About:"
                         android:textAppearance="?android:textAppearanceSmall"
                         android:textColor="@color/white"
@@ -288,6 +289,7 @@
                         android:id="@+id/tvoutletdetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:layout_marginBottom="3dp"
                         android:layout_marginTop="3dp"
                         android:gravity="center_vertical"
@@ -303,7 +305,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/Lldetail"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/viewlist"
@@ -327,22 +329,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:padding="5dp"
+                        android:visibility="gone"
                         android:text="Terms &amp; Conditions: Outlet "
                         android:textAppearance="?android:textAppearanceSmall"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 
-                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
-                        android:id="@+id/tvdetail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="3dp"
-                        android:layout_marginTop="3dp"
-                        android:gravity="center_vertical"
-                        android:padding="5dp"
-                        android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@color/blackfontcolor"
-                        android:textStyle="bold" />
+
 
                 </LinearLayout>
 
@@ -409,6 +402,44 @@
                     android:layout_below="@+id/LLdeal"
                     android:orientation="vertical">
 
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/htab_tabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        app:tabIndicatorColor="@color/white"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:minHeight="20dp"
+                        app:tabBackground="@drawable/tab_background"
+                        app:tabIndicatorHeight="0dp"
+                        app:tabPadding="0dp"
+                        android:background="@color/Black"
+                        app:tabMinWidth="20dp"/>
+
+                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                        android:id="@+id/tvdetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:gravity="center_vertical"
+                        android:background="@color/white"
+                        android:padding="5dp"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textColor="@color/blackfontcolor"
+                        android:textStyle="bold" />
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/htab_viewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:visibility="gone"
+                        android:layout_below="@+id/htab_tabs"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+
+
                     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
                         xmlns:tools="http://schemas.android.com/tools"
                         android:id="@+id/map"
@@ -432,6 +463,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:padding="10dp"
+                        android:visibility="gone"
                         android:text="Similar Deals"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="@color/white" />
@@ -439,6 +471,7 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/similar_scorll"
                         android:layout_width="match_parent"
+                        android:visibility="gone"
                         android:layout_height="match_parent"
                         android:scrollbars="vertical">
 
@@ -457,7 +490,6 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/button_gradient_image"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -476,7 +508,7 @@
                     android:layout_alignParentLeft="true"
                     android:text="Total Amount"
                     android:textAppearance="?android:textAppearanceSmall"
-                    android:textColor="@color/Black"
+                    android:textColor="@color/White"
                     android:textStyle="bold" />
 
                 <!--   <LinearLayout
@@ -531,10 +563,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
                         android:gravity="center|top"
-                        android:hint="0"
+                        android:text="0"
                         android:maxLines="1"
                         android:textAppearance="?android:textAppearanceMedium"
-                        android:textColor="@color/Black" />
+                        android:textColor="@color/white" />
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
                         android:id="@+id/tvfinalamount"
@@ -545,7 +577,7 @@
                         android:layout_toRightOf="@+id/tvactualprice"
                         android:hint="0"
                         android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@color/blackfontcolor"
+                        android:textColor="@color/white"
                         android:textStyle="bold" />
 
                 </RelativeLayout>
@@ -561,7 +593,7 @@
                 android:padding="5dp"
                 android:text="Buy Now"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/Black" />
+                android:textColor="@color/White" />
         </RelativeLayout>
 
         <ImageView

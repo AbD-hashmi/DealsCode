@@ -29,7 +29,7 @@
             android:layout_centerInParent="true"
             android:layout_weight="2"
             android:layout_marginTop="70dp"
-            android:padding="20dp"
+            android:padding="50dp"
             android:src="@drawable/logo" />
 
         <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -87,14 +87,17 @@
                     android:id="@+id/spinner"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:theme="@style/AppTheme.buttonnew"
+
                     ></Spinner>
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:inputType="number"
                     android:padding="5dp"
                     android:maxLength="10"
+                    android:gravity="center"
                     android:textSize="20dp"
                     android:maxLines="1"
                     android:text="+91"
@@ -122,11 +125,12 @@
                 <EditText
                     android:id="@+id/etmobno"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:inputType="number"
                     android:layout_marginRight="15dp"
                     android:padding="5dp"
                     android:maxLength="10"
+                    android:gravity="center_vertical"
                     android:textSize="20dp"
                     android:maxLines="1"
                     android:hint="Enter Mobile Number"
@@ -270,8 +274,8 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:background="@drawable/gradiant_bottom_to_top"
             android:padding="12dp"
-            android:visibility="gone"
             android:id="@+id/relative_layout"
+            android:visibility="gone"
             xmlns:android="http://schemas.android.com/apk/res/android">
 
             <android.support.v7.widget.Toolbar
@@ -308,15 +312,17 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:layout_below="@+id/view"
+                android:textSize="23dp"
                 android:text="Please enter the code sent to"
                 android:textAppearance="?android:textAppearanceSmall"
                 android:textColor="@color/white" />
 
             <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
                 android:id="@+id/tvnmobile"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvresend"
+                android:textSize="23dp"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/white"
                 android:padding="5dp"
@@ -352,15 +358,16 @@
 
                 <EditText
                     android:id="@+id/etotp"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:maxLength="6"
                     android:layout_marginTop="5dp"
                     android:maxLines="1"
+                    android:textSize="40dp"
                     android:backgroundTint="@android:color/white"
                     android:nextFocusDown="@+id/etcode"
-                    android:hint="Enter OTP here"
+                    android:hint="- - - - - -"
                     android:selectAllOnFocus="true"
                     android:singleLine="true"
                     android:background="@null"
@@ -371,9 +378,9 @@
                 <View
                     android:id="@+id/viezczw"
                     android:layout_width="wrap_content"
-                    android:layout_height="1dp"
+                    android:layout_height="0dp"
                     android:layout_below="@+id/etotp"
-                    android:background="@color/Black" />
+                    android:background="@color/white" />
 
                 <ImageView
                     android:id="@+id/image"

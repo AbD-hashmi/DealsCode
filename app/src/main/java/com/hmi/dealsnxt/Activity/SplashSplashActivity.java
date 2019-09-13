@@ -253,7 +253,7 @@ public class SplashSplashActivity extends AppCompatActivity {
                                           } else {
 
 
-                                              // DeviceInfoToServer();
+                                              //DeviceInfoToServer();
                                               Intent i = new Intent(SplashSplashActivity.this, AftersplashActivity.class);
                                               startActivity(i);
                                               finish();

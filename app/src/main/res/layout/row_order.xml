@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:background="@color/blackfontcolor"
+    android:background="@android:color/background_dark"
     android:orientation="vertical">
 
     <LinearLayout
@@ -77,7 +77,8 @@
                         android:layout_centerInParent="true"
                         android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
-                        android:background="@color/Black" />
+                        android:visibility="gone"
+                        android:background="@color/white" />
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                         android:id="@+id/tvdealdate"
@@ -99,20 +100,20 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="2dp"
                         android:layout_toRightOf="@+id/tvoptionone"
-                        android:background="@color/Black" />
+                        android:background="@color/white" />
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                         android:id="@+id/tvwaiveoffrs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
-                        android:gravity="center_vertical"
+                        android:gravity="center"
                         android:text="Rs 10000"
                         android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/red" />
                 </LinearLayout>
 
 
@@ -129,7 +130,8 @@
                         android:drawablePadding="5dp"
                         android:padding="5dp"
                         android:text="Cancelled"
-                        android:gravity="right"
+                        android:drawableLeft="@drawable/cross"
+                        android:gravity="left"
                         android:textAppearance="?android:textAppearanceSmall"
                         android:textColor="@color/red" />
 
@@ -137,18 +139,20 @@
                         android:id="@+id/tvcancel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
                         android:layout_alignParentRight="true"
-                        android:layout_centerInParent="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="0dp"
                         android:background="@drawable/button_gradient_image"
                         android:gravity="center"
-                        android:paddingBottom="3dp"
-                        android:visibility="gone"
                         android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
                         android:paddingTop="3dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="3dp"
                         android:text="Cancel"
                         android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@color/Black" />
+                        android:textColor="@color/Black"
+                        android:visibility="gone" />
 
                 </RelativeLayout>
 
@@ -158,6 +162,9 @@
 
         </LinearLayout>
     </LinearLayout>
-
+<View
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/divider"
+    android:background="@color/white"/>
 
 </LinearLayout>

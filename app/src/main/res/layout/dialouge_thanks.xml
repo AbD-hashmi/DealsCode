@@ -51,7 +51,7 @@
                 android:padding="5dp"
                 android:text="Thank You for Payment"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/redcolor"
+                android:textColor="@color/yellowcol"
                 android:textStyle="italic" />
 
             <LinearLayout
@@ -129,12 +129,12 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:background="@color/red"
+                android:background="@drawable/button_gradient"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="Continue Shopping"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/White" />
+                android:textColor="@color/blackfontcolor" />
 
         </LinearLayout>
 

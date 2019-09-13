@@ -97,7 +97,12 @@ public class PrivacypolicyActivity extends AppCompatActivity {
                                 if (Integer.parseInt(Status) == 1) {
 
                                     JSONObject jSONinfo = jSONObject.optJSONObject("info");;
-                                    webView.loadData(jSONinfo.getString("body").toString(), "text/html", "UTF-8");
+                                    webView.setBackgroundColor(R.drawable.gradiant_bottom_to_top);
+
+                                    String htmlData="<font color='white'>" + jSONinfo.getString("body") + "</font>";
+                                    webView.loadDataWithBaseURL(null, htmlData, "text/html", "UTF-8", null);
+
+                                    //  webView.loadData(jSONinfo.getString("body").toString(), "text/html", "UTF-8");
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Unable to load data from Server", Toast.LENGTH_SHORT).show();
                                 }

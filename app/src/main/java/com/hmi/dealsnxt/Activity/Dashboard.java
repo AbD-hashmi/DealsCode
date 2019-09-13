@@ -1,5 +1,6 @@
 package com.hmi.dealsnxt.Activity;
 
+import android.app.Notification;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -105,7 +106,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
     public static BottomNavigationView navigationView;
     NavigationView filter_view;
     LinearLayout LLrate, LLshare, LLNotification, LLRefer, LLPrivacy, LLUse, LLAbout, LLcontact, LLlogout,LLclose;
-    LinearLayout LLpopulardeals, LLproximity, LLtrading, LLorder;
+    LinearLayout LLpopulardeals, LLproximity, LLwishlistXnearby, LLorder;
     TextView tvmore;
     LinearLayout LLfooter, LLfooterHome, LLfooterOrder, LLfooterProfile, LLfootermore, LLfooterFavourite, LLloc;
     ImageView imBack, imlocation, ivfilter;
@@ -195,7 +196,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         drawer.setNestedScrollingEnabled(false);
 
         TextView etname=(TextView)findViewById(R.id.name);
-        etname.setText("Good evening, "+SessionManager.getUserName(getApplicationContext()));
+        etname.setText(SessionManager.getUserName(getApplicationContext()));
 
         ivsearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -371,7 +372,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
                 tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
 
-                Intent i = new Intent(Dashboard.this, ProfileActivity.class);
+                Intent i = new Intent(Dashboard.this, NotificationActivity.class);
                 startActivity(i);
             }
         });
@@ -413,10 +414,6 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 } else {
                     drawer.openDrawer(GravityCompat.END);
                 }
-
-
-
-
                 seekbar = (SeekBar) findViewById(R.id.seekbar);
                 ivsearch = (ImageView) findViewById(R.id.ivsearch);
                 tvdetectlocation = (TextView) findViewById(R.id.tvdetectlocation);
@@ -804,7 +801,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         tvmore = (TextView) findViewById(R.id.tvmore);
         LLorder = (LinearLayout) findViewById(R.id.LLorder);
-        LLtrading = (LinearLayout) findViewById(R.id.LLtrading);
+        LLwishlistXnearby = (LinearLayout) findViewById(R.id.LLwishlistXnearby);
         LLproximity = (LinearLayout) findViewById(R.id.LLproximity);
         LLpopulardeals = (LinearLayout) findViewById(R.id.LLpopulardeals);
         LLshare = (LinearLayout) findViewById(R.id.LLshare);
@@ -843,11 +840,12 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 }
             }
         });
-        LLtrading.setOnClickListener(new View.OnClickListener() {
+        LLwishlistXnearby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
                     drawer.closeDrawer(GravityCompat.END);
+                    startActivity(new Intent(Dashboard.this,NearByActivity.class));
                 }
                 catch (Exception e)
                 {

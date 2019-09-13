@@ -153,14 +153,20 @@ public class AllinoneAdaptor extends RecyclerView.Adapter<AllinoneAdaptor.Simple
         viewHolder.tvendtime.setText(Customutils.dateFormat(items.get(position).getReminderTime()));
         viewHolder.tvactualprice.setText("\u20B9" + items.get(position).getActualPrice());
         viewHolder.tvwaiveoffrs.setText(items.get(position).getAfterDiscountPrice());
+
+        //to make the text strike through
+        //textview.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
+
+
         //     viewHolder.tvcount.setText("" + items.get(position).getNumofOffers());
-        viewHolder.tvcount.setText("" + (items.get(position).getNumofOffers() - 1));
-        if (items.get(position).getNumofOffers() == 1) {
+        viewHolder.tvcount.setText( items.get(position).getNumofOffers()+" Left");
+        /*if (items.get(position).getNumofOffers() == 1) {
             viewHolder.LLoffer.setVisibility(View.GONE);
         } else {
             viewHolder.tvcount.setText("" + (items.get(position).getNumofOffers() - 1));
-        }
+        }*/
         viewHolder.tvoptionone.setText(items.get(position).getDealTitle());
+        System.out.println("data "+items.get(position).getDealTitle());
         viewHolder.tvlocation.setText(items.get(position).getOutletAddress());
         viewHolder.tvdiscount.setText(items.get(position).getPercentage());
 
@@ -194,14 +200,14 @@ public class AllinoneAdaptor extends RecyclerView.Adapter<AllinoneAdaptor.Simple
        /* viewHolder.LLView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               *//* if (Integer.valueOf(items.get(position).getLikes()) == 0) {
+                if (Integer.valueOf(items.get(position).getLikes()) == 0) {
                     //  imageLoader.displayImage("drawable://" + R.drawable.like, viewHolder.ivlike, options);
                     viewHolder.ivlike.setImageResource(R.drawable.like);
                     items.get(position).setLikes(String.valueOf(1));
                 } else {
                     viewHolder.ivlike.setImageResource(R.drawable.dislike);
                     // imageLoader.displayImage("drawable://" + R.drawable.dislike, viewHolder.ivlike, options);
-                }*//*
+                }
 
                 Dealid = String.valueOf(items.get(position).getDealid());
                 increasecount(viewHolder.tvlikecount);

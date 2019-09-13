@@ -162,6 +162,7 @@ public class FoodDrinkFragment extends Fragment {
                             if (infoArray.length() > 0) {
                                 for (int j = 0; j < dealArray.length(); j++) {
                                     JSONObject data = dealArray.getJSONObject(j);
+                                   // System.out.println(dealArray.getJSONObject(j));
                                     HotDealsModel dealsModel = new HotDealsModel();
                                     dealsModel.setOutletid(outlet.optString("id"));
                                     dealsModel.setOutletName(outlet.optString("outletName"));
@@ -170,13 +171,12 @@ public class FoodDrinkFragment extends Fragment {
                                     dealsModel.setOutletCity(outlet.optString("city"));
                                     dealsModel.setOutletzipcode(outlet.optString("zipcode"));
                                     dealsModel.setTndc(outlet.optString("termAndCondition"));
-                                    dealsModel.setNumofOffers(outlet.optInt("dealCount"));
+                                    dealsModel.setNumofOffers(outlet.optInt("stock_qty"));
                                     dealsModel.setOutletcontactperson(outlet.optString("contactPersonName"));
                                     dealsModel.setOutletcontactnumber(outlet.optString("contactNumber"));
                                     dealsModel.setOutletLatitude(outlet.optString("lat"));
                                     dealsModel.setOutletLongtitude(outlet.optString("lng"));
                                     dealsModel.setOutletdescription(outlet.optString("description"));
-
                                     dealsModel.setDealid(data.optInt("id"));
                                     dealsModel.setMerchantid(data.optString("user_id"));
                                     dealsModel.setDealTitle(data.optString("deal_title"));
