@@ -66,8 +66,6 @@
                     android:layout_alignParentTop="true">
 
 
-
-
                     <ImageView
                         android:id="@+id/ivdeal"
                         android:layout_width="match_parent"
@@ -309,6 +307,7 @@
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/viewlist"
+                        android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 

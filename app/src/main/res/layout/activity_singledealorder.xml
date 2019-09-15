@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@drawable/gradiant_bottom_to_top"
     android:layout_height="match_parent">
 
 
@@ -13,7 +14,6 @@
             android:id="@+id/scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/darkGray"
             android:fillViewport="true">
 
             <RelativeLayout
@@ -27,8 +27,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginBottom="5dp"
-                    android:background="@color/White">
+                    android:layout_marginBottom="5dp">
 
                     <ImageView
                         android:id="@+id/ivdeal"
@@ -55,12 +54,12 @@
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginEnd="70dp"
                             android:layout_marginTop="10dp"
                             android:layout_toLeftOf="@+id/ivlikecount"
                             android:padding="5dp"
                             android:scaleType="fitXY"
-                            android:src="@drawable/whiteshare" />
+                            android:src="@drawable/share"
+                            android:layout_marginRight="70dp" />
 
                         <ImageView
                             android:id="@+id/ivlikecount"
@@ -115,7 +114,7 @@
                                 android:gravity="left"
                                 android:text="Cafe Coffe Day"
                                 android:textAppearance="?android:textAppearanceMedium"
-                                android:textColor="@color/blackfontcolor"
+                                android:textColor="@color/white"
                                 android:textStyle="bold" />
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
@@ -148,7 +147,7 @@
                                 android:padding="5dp"
                                 android:text="Ground Floor, Paras Twin Tower, Sector 54, Haryana,Gurgaon 1220002"
                                 android:textAppearance="?android:textAppearanceSmall"
-                                android:textColor="@color/blackfontcolor"
+                                android:textColor="@color/white"
                                 android:textStyle="bold" />
 
                             <RelativeLayout
@@ -171,7 +170,7 @@
                                     android:gravity="center_vertical"
                                     android:text="4pm"
                                     android:textAppearance="?android:textAppearanceSmall"
-                                    android:textColor="@color/blackfontcolor" />
+                                    android:textColor="@color/white" />
 
                                 <TextView
                                     android:id="@+id/tvview"
@@ -182,7 +181,7 @@
                                     android:layout_marginRight="5dp"
                                     android:layout_toRightOf="@+id/tvstartime"
                                     android:text="-"
-                                    android:textColor="@color/blackfontcolor"
+                                    android:textColor="@color/white"
                                     android:textStyle="bold" />
 
                                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -194,7 +193,7 @@
                                     android:gravity="center_horizontal"
                                     android:text="10pm"
                                     android:textAppearance="?android:textAppearanceSmall"
-                                    android:textColor="@color/blackfontcolor" />
+                                    android:textColor="@color/white" />
 
                             </RelativeLayout>
 
@@ -240,21 +239,18 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/RLdealdata"
                     android:layout_marginBottom="5dp"
-                    android:background="@color/darkGray"
                     android:orientation="vertical">
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/viewlist"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/White" />
+                        android:layout_height="wrap_content"/>
 
                     <RelativeLayout
                         android:id="@+id/RLAmount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:background="@color/White"
                         android:orientation="vertical"
                         android:padding="10dp">
 
@@ -266,7 +262,7 @@
                             android:gravity="center_horizontal"
                             android:text="Total Payable"
                             android:textAppearance="?android:textAppearanceMedium"
-                            android:textColor="@color/blackfontcolor" />
+                            android:textColor="@color/white" />
 
                         <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
                             android:id="@+id/tvtotalamount"
@@ -279,19 +275,20 @@
                             android:padding="5dp"
                             android:text="532"
                             android:textAppearance="?android:textAppearanceMedium"
-                            android:textColor="@color/blackfontcolor" />
+                            android:textColor="@color/white" />
                     </RelativeLayout>
 
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:background="#ffffff"
                         android:layout_marginTop="5dp"
                         android:padding="10dp"
                         android:layout_height="wrap_content">
                         <com.hmi.dealsnxt.HelperClass.JosefinSansRegularEditText
                             android:id="@+id/coupen_edit"
                             android:layout_width="0dp"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
                             android:layout_weight="2"
                             android:hint="Enter Coupen Code"
                             android:layout_height="wrap_content" />
@@ -299,12 +296,12 @@
                             android:id="@+id/apply_now"
                             android:layout_width="0dp"
                             android:layout_marginLeft="10dp"
-                            android:background="@color/colorPrimary"
+                            android:background="@drawable/button_gradient"
                             android:text="Apply Now"
                             android:padding="5dp"
                             android:gravity="center"
                             android:layout_weight="1"
-                            android:textColor="#ffffff"
+                            android:textColor="@color/blackfontcolor"
                             android:textStyle="bold"
                             android:layout_height="wrap_content" />
 
@@ -327,7 +324,7 @@
                     android:padding="10dp"
                     android:scrollbars="vertical"
                     android:textAppearance="?android:textAppearanceSmall"
-                    android:textColor="@color/blackfontcolor"
+                    android:textColor="@color/white"
                     android:visibility="gone" />
 
                 <RelativeLayout
@@ -335,7 +332,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:background="@color/buttoncol"
+                    android:background="@drawable/button_gradient"
                     android:orientation="vertical">
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
@@ -343,7 +340,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:background="@color/buttoncol"
                         android:gravity="center"
                         android:paddingBottom="10dp"
                         android:paddingLeft="15dp"
@@ -351,7 +347,7 @@
                         android:paddingTop="10dp"
                         android:text="Proceed to Pay"
                         android:textAppearance="?android:textAppearanceMedium"
-                        android:textColor="@color/White" />
+                        android:textColor="@color/blackfontcolor" />
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
                         android:id="@+id/tvaddcart"
@@ -375,7 +371,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerInParent="true"
-                        android:background="@color/buttoncol"
+                        android:background="@drawable/button_gradient"
                         android:gravity="center_horizontal"
                         android:paddingBottom="10dp"
                         android:paddingLeft="15dp"
