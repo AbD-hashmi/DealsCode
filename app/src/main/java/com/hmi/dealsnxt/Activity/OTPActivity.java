@@ -154,13 +154,24 @@ public class OTPActivity extends AppCompatActivity {
 
 
         tvprivacy.setMovementMethod(LinkMovementMethod.getInstance());
-        String text = "<a href='http://logiquebrainexaminer.com/deals_nxt/'>Privacy Policy</a>";
+        String text = "Privacy Policy";
         tvprivacy.setText(Html.fromHtml(text));
-
+        tvprivacy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(OTPActivity.this,PrivacypolicyActivity.class));
+            }
+        });
         tvtnc.setMovementMethod(LinkMovementMethod.getInstance());
-        String text2 = "<a href='http://logiquebrainexaminer.com/deals_nxt/'>Terms of Use</a>";
+        String text2 = "Terms of Use";
         tvtnc.setText(Html.fromHtml(text2));
 
+        tvtnc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(OTPActivity.this,TncActivity.class));
+            }
+        });
 
         tvagree.setOnClickListener(new View.OnClickListener() {
             @Override

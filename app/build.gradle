@@ -66,4 +66,6 @@ dependencies {
     compile 'com.github.kaushikgopal:CoreTextUtils:c703fa12b6'
 
 
+
+    compile 'com.github.GoodieBag:Pinview:v1.4'
 }

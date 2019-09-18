@@ -119,14 +119,14 @@ public class NotificationActivity extends FragmentActivity {
             }
         });
 
-        ivmoveup = (ImageView) findViewById(R.id.ivmoveup);
+      /*  ivmoveup = (ImageView) newtoolbar.findViewById(R.id.ivmoveup);
         ivmoveup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recycleVIew.getLayoutManager();
                 layoutManager.scrollToPositionWithOffset(0, 0);
             }
-        });
+        });*/
 
 
 
