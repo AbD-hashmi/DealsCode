@@ -28,8 +28,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="@dimen/fab_margin"
-            android:padding="5dp"
-            android:background="@drawable/round_button">
+            android:padding="5dp">
 
             <TableRow>
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -254,8 +253,7 @@
             android:paddingBottom="20dp"/>
     </LinearLayout>
     <include layout="@layout/navigation_menu"
-
-        android:visibility="gone"/>
+/>
     <include layout="@layout/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

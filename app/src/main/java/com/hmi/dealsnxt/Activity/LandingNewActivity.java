@@ -64,10 +64,16 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.maps.GoogleMap;
 import com.hmi.dealsnxt.CustomControl.DownloadUrl;
+import com.hmi.dealsnxt.Fragement.Accessories;
+import com.hmi.dealsnxt.Fragement.Dining;
+import com.hmi.dealsnxt.Fragement.Events;
+import com.hmi.dealsnxt.Fragement.Fashion;
 import com.hmi.dealsnxt.Fragement.FoodDrinkFragment;
 import com.hmi.dealsnxt.Fragement.HotDealsFragment;
 import com.hmi.dealsnxt.Fragement.HotelFragment;
+import com.hmi.dealsnxt.Fragement.Membership;
 import com.hmi.dealsnxt.Fragement.SpaFragment;
+import com.hmi.dealsnxt.Fragement.Wellness;
 import com.hmi.dealsnxt.HelperClass.Constaints;
 import com.hmi.dealsnxt.HelperClass.SessionManager;
 import com.hmi.dealsnxt.Model.BannerImagesModel;
@@ -97,22 +103,20 @@ import java.util.TimerTask;
 public class LandingNewActivity extends AppCompatActivity {
     private static final String TAG = LandingNewActivity.class.getSimpleName();
     public TabLayout tabLayout;
-
     int tabnum;
     NavigationView filter_view;
     LinearLayout LLrate, LLshare, LLNotification, LLRefer, LLPrivacy, LLUse, LLAbout, LLcontact, LLlogout,LLclose;
     LinearLayout LLpopulardeals, LLproximity, LLtrading, LLorder;
-   // TextView tvmore;
-    LinearLayout LLfooter, LLfooterHome, LLfooterOrder, LLfooterProfile, LLfootermore, LLfooterFavourite;
+    // TextView tvmore;
     LinearLayout LLloc;
     ImageView imBack, imlocation, ivfilter;
-    TextView tvTitle, tvaddress, tvusername;
+    TextView tvTitle, tvaddress, tvusername,filter_done,filter_close,filter_reset;
     ImageView ivsearch;
     public static ViewPager view_pager;
     public ArrayList<BannerImagesModel> bannerimglist = new ArrayList<BannerImagesModel>();
-   // TextView tvHome, tvOrder, tvProfile, tvFavourite;
-     LinearLayout  LLHome, LLOrder, LLProfile, LLFavourite, LLmore;
-   // ImageView ivHome, ivOrder, ivProfile, ivFavourite, ivmore;
+    // TextView tvHome, tvOrder, tvProfile, tvFavourite;
+    LinearLayout  LLHome, LLOrder, LLProfile, LLFavourite, LLmore;
+    // ImageView ivHome, ivOrder, ivProfile, ivFavourite, ivmore;
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     int currentPage = 0;
     Timer timer;
@@ -142,12 +146,12 @@ public class LandingNewActivity extends AppCompatActivity {
             "\"end_time\": \"06:00\"},{\"id\": 4,\"start_time\": \"06:00\",\"end_time\": \"08:00\"},{\"id\": 5,\"start_time\": \"08:00\",\"end_time\": \"10:00\"},{\"id\": 6,\"start_time\": \"10:00\",\"end_time\": \"12:00\"}]}";
     public String offval = "";
     TextView tvdetectlocation, tvpricerange;
-    SeekBar seekbar;
+    SeekBar seekbar,seekbar2,seekbar3;
     Switch switch2, switch3, switch4, switch5;
     TextView ivfiltertype1value, ivfiltertype2value, ivfiltertype3value, ivfiltertype4value;
     RecyclerView time_recycler_view;
     LinearLayout LLfilter1, LLfilter2, LLfilter3, LLfilter4;
-    TextView tvpricerangend, tvpricerangstart;
+    TextView tvpricerangend, tv_discount_filter,tv_distance_filter;
 
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -167,6 +171,7 @@ public class LandingNewActivity extends AppCompatActivity {
         tvTitle = (TextView) toolbar.findViewById(R.id.tvTitle);
         LLloc = (LinearLayout) toolbar.findViewById(R.id.LLloc);
         LLloc.setVisibility(View.GONE);
+        filter_view=(NavigationView)findViewById(R.id.filter_view);
         imlocation = (ImageView) toolbar.findViewById(R.id.imlocation);
         tvaddress = (TextView) toolbar.findViewById(R.id.tvaddress);
         ivfilter = (ImageView) toolbar.findViewById(R.id.ivfilter);
@@ -180,14 +185,13 @@ public class LandingNewActivity extends AppCompatActivity {
         SessionManager.setrefercode(LandingNewActivity.this,true);
 
         tvTitle.setVisibility(View.VISIBLE);
-        tvTitle.setText("Dining");
-        tvTitle.setGravity(View.FOCUS_LEFT);
 
-
-        tabnum=getIntent().getExtras().getInt("tab");
+        filter_view=(NavigationView)findViewById(R.id.filter_view);
+//        tabnum=getIntent().getExtras().getInt("tab");
 
         imBack.setVisibility(View.VISIBLE);
         ivfilter.setVisibility(View.VISIBLE);
+
         imBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -208,61 +212,98 @@ public class LandingNewActivity extends AppCompatActivity {
         ivfilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                filter_view.setVisibility(View.VISIBLE);
-                //     LoadfilterUI();
-                DrawerLayout.LayoutParams params1 = new DrawerLayout.LayoutParams(DrawerLayout.LayoutParams.MATCH_PARENT, DrawerLayout.LayoutParams.WRAP_CONTENT);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                    params1.setLayoutDirection(Gravity.RIGHT);
-                    params1.gravity = GravityCompat.END;
-                }
-                filter_view.setLayoutParams(params1);
-                DrawerLayout.LayoutParams params = new DrawerLayout.LayoutParams(DrawerLayout.LayoutParams.MATCH_PARENT, DrawerLayout.LayoutParams.MATCH_PARENT);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                    params.setLayoutDirection(Gravity.LEFT);
-                    params.gravity = GravityCompat.START;
 
-                }
-                navigationView.setLayoutParams(params);
-                if (drawer.isDrawerOpen(GravityCompat.END)) {
-                    drawer.closeDrawer(GravityCompat.END);
-                } else {
-                    drawer.openDrawer(GravityCompat.END);
-                }
-                seekbar = (SeekBar) findViewById(R.id.seekbar);
-                ivsearch = (ImageView) findViewById(R.id.ivsearch);
+                filter_view.setVisibility(View.VISIBLE);
+                seekbar = (SeekBar) findViewById(R.id.seekbarPrice);
+                seekbar2 = (SeekBar) findViewById(R.id.seekbarDiscountPercent);
+                seekbar3 = (SeekBar) findViewById(R.id.seekbarDistance);
                 tvdetectlocation = (TextView) findViewById(R.id.tvdetectlocation);
                 time_recycler_view = (RecyclerView) findViewById(R.id.time_recycler_view);
-                tvpricerangstart = (TextView) findViewById(R.id.tvpricerangstart);
-                tvpricerangend = (TextView) findViewById(R.id.tvpricerangend);
-                switch2 = (Switch) findViewById(R.id.switch2);
-                switch3 = (Switch) findViewById(R.id.switch3);
-                switch4 = (Switch) findViewById(R.id.switch4);
-                switch5 = (Switch) findViewById(R.id.switch5);
-                ivfiltertype1value = (TextView) findViewById(R.id.tvfiltertype1value);
-                ivfiltertype2value = (TextView) findViewById(R.id.tvfiltertype2value);
-                ivfiltertype3value = (TextView) findViewById(R.id.tvfiltertype3value);
-                ivfiltertype4value = (TextView) findViewById(R.id.tvfiltertype4value);
-                LLfilter1 = (LinearLayout) findViewById(R.id.LLfilter1);
-                LLfilter2 = (LinearLayout) findViewById(R.id.LLfilter2);
-                LLfilter3 = (LinearLayout) findViewById(R.id.LLfilter3);
-                LLfilter4 = (LinearLayout) findViewById(R.id.LLfilter4);
+                tvpricerangend = (TextView) filter_view.findViewById(R.id.tvpricerangend);
+                tv_discount_filter = (TextView) filter_view.findViewById(R.id.tvdiscountpercentrangend);
+                tv_distance_filter = (TextView) filter_view.findViewById(R.id.tvdistancerangend);
+                filter_close=(TextView)findViewById(R.id.close_filter);
+                filter_done=(TextView)findViewById(R.id.btn_filter_done);
+                filter_reset=(TextView)findViewById(R.id.filter_reset);
 
-                if (switch2.isChecked()) {
-                    offval = "20%";
-                }
-                if (switch3.isChecked()) {
-                    offval = "30%";
-                }
-                if (switch4.isChecked()) {
-                    offval = "40%";
-                }
-                if (switch5.isChecked()) {
-                    offval = "50%";
-                }
+                filter_close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        filter_view.setVisibility(View.GONE);
+                    }
+                });
 
-                loadtimeschedule(response);
+                filter_done.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        filter_view.setVisibility(View.GONE);
+                    }
+                });
+
+                filter_reset.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        tvpricerangend.setText("1");
+                        tv_discount_filter.setText("1%");
+                        tv_distance_filter.setText("1 KM");
+                        seekbar.setProgress(1);
+                        seekbar2.setProgress(1);
+                        seekbar3.setProgress(1);
+                    }
+                });
+                tvpricerangend.setText(""+seekbar.getProgress());
+                tv_discount_filter.setText(""+seekbar2.getProgress()+ "%");
+                tv_distance_filter.setText(""+seekbar3.getProgress()+ " KM");
+
+                seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                        tvpricerangend.setText(""+i);
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+                seekbar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress,
+                                                  boolean fromUser) {
+                        tv_discount_filter.setText(progress + "%");
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                    }
+                });
+                seekbar3.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress,
+                                                  boolean fromUser) {
+                        tv_distance_filter.setText(progress+ " KM");
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                    }
+                });
             }
         });
+
 
         String test = SessionManager.getUserName(getApplicationContext()).toString();
         //   String test = "Priyanshu";
@@ -302,7 +343,7 @@ public class LandingNewActivity extends AppCompatActivity {
 
         }
 
-        loadbannerImages();
+        loadbannerImages(0,getApplicationContext());
 
 
 
@@ -313,8 +354,6 @@ public class LandingNewActivity extends AppCompatActivity {
         ///   PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         setupViewPager(viewPager);
         ///////     tabs.setViewPager(viewPager);
-        setupTabIcons();
-
 
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.htab_collapse_toolbar);
         htab_appbar = (AppBarLayout) findViewById(R.id.htab_appbar);
@@ -323,38 +362,9 @@ public class LandingNewActivity extends AppCompatActivity {
         navigationView = (BottomNavigationView) findViewById(R.id.nav_view);
         filter_view = (NavigationView) findViewById(R.id.filter_view);
        // filter_view.setVisibility(View.GONE);
-        DrawerLayout.LayoutParams params1 = new DrawerLayout.LayoutParams(DrawerLayout.LayoutParams.MATCH_PARENT,
-                DrawerLayout.LayoutParams.WRAP_CONTENT);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            params1.setLayoutDirection(Gravity.LEFT);
-            params1.gravity = GravityCompat.START;
-        }
-        filter_view.setLayoutParams(params1);
-        DrawerLayout.LayoutParams params = new DrawerLayout.LayoutParams(DrawerLayout.LayoutParams.MATCH_PARENT, DrawerLayout.LayoutParams.MATCH_PARENT);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            params.setLayoutDirection(Gravity.RIGHT);
-            params.gravity = GravityCompat.END;
-
-        }
-        navigationView.setLayoutParams(params);
-        LLfooter = (LinearLayout) findViewById(R.id.LLfooter);
-        // LinearLayout LLmore = (LinearLayout) LLfooter.findViewById(R.id.LLmore);
-
-        LLfooter = (LinearLayout) findViewById(R.id.LLfooter);
-        LLfooterHome = (LinearLayout) LLfooter.findViewById(R.id.LLfooterHome);
-        LLfooterOrder = (LinearLayout) LLfooter.findViewById(R.id.LLfooterOrder);
-        LLfooterProfile = (LinearLayout) LLfooter.findViewById(R.id.LLfooterProfile);
-        LLfooterFavourite = (LinearLayout) LLfooter.findViewById(R.id.LLfooterFavourite);
-        LLclose= (LinearLayout) findViewById(R.id.LLclose);
-        LLclose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-              //  tvmore.performClick();
-            }
-        });
-        LLfootermore = (LinearLayout) LLfooter.findViewById(R.id.LLfootermore);
 
 
+        viewPager.setCurrentItem(getIntent().getIntExtra("tab", 0));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener()
 
         {
@@ -477,16 +487,17 @@ public class LandingNewActivity extends AppCompatActivity {
         }
     }
 
-    public void loadbannerImages() {
+    public void loadbannerImages(int id,Context context) {
         String url = Constaints.BannerUrl;
-        progress_bar.setVisibility(View.VISIBLE);
+//        progress_bar.setVisibility(View.VISIBLE);
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-                    JSONObject jSONObject = new JSONObject(new String(response));
+                    JSONObject jSONObject = new JSONObject(response);
                     int Status = jSONObject.optInt("status");
                     String Path = Constaints.BaseUrl + jSONObject.optString("bannerCdnpath");
+                    
                     if (Status == 1) {
                         JSONArray infoArray = jSONObject.getJSONArray("info");
                         for (int i = 0; i < infoArray.length(); i++) {
@@ -534,12 +545,12 @@ public class LandingNewActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     Log.e("", e.getMessage());
                 }
-                progress_bar.setVisibility(View.GONE);
+                //progress_bar.setVisibility(View.GONE);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                progress_bar.setVisibility(View.GONE);
+                //progress_bar.setVisibility(View.GONE);
                 Log.e("error", "" + error);
             }
         }) {
@@ -547,6 +558,8 @@ public class LandingNewActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("XAPIKEY", "XXXXX");
+                params.put("category_id", String.valueOf(id));
+                System.out.println("data "+params);
                 return params;
             }
 
@@ -559,7 +572,7 @@ public class LandingNewActivity extends AppCompatActivity {
         };
 
         int socketTimeout = 30000;
-        Volley.newRequestQueue(getApplicationContext()).add(request);
+        Volley.newRequestQueue(context).add(request);
         request.setRetryPolicy(new DefaultRetryPolicy(
                 socketTimeout,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
@@ -665,61 +678,14 @@ public class LandingNewActivity extends AppCompatActivity {
             container.removeView((LinearLayout) object);
         }
     }
-
-
-
-
-    private void setupTabIcons() {
-        TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        setTitle("DINING");
-        tabOne.setText("DINING");
-      //  tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.dining, 0, 0);
-        tabLayout.getTabAt(0).setCustomView(tabOne);
-
-        TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabTwo.setText("WELLNESS");
-        setTitle("WELLNESS");
-
-        //  tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.wellness, 0, 0);
-        tabLayout.getTabAt(1).setCustomView(tabTwo);
-
-        TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabThree.setText("FASHION");
-        setTitle("FASHION");
-
-        //tabThree.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.fashion, 0, 0);
-        tabLayout.getTabAt(2).setCustomView(tabThree);
-
-        TextView tabFour = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabFour.setText("ACCESSORIES");
-        setTitle("ACCESSORIES");
-
-        // tabFour.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.accessories, 0, 0);
-        tabLayout.getTabAt(3).setCustomView(tabFour);
-
-        TextView tabFive = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabFive.setText("EVENTS");
-        setTitle("EVENTS");
-
-        //  tabFive.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.event, 0, 0);
-        tabLayout.getTabAt(4).setCustomView(tabFive);
-
-        TextView tabSix = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabSix.setText("MEMBERSHIP");
-        setTitle("MEMBERSHIP");
-
-        //  tabSix.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.membership, 0, 0);
-        tabLayout.getTabAt(5).setCustomView(tabSix);
-    }
-
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new HotDealsFragment(), "DINING");
-        adapter.addFrag(new FoodDrinkFragment(), "WELLNESS");
-        adapter.addFrag(new HotelFragment(), "FASHION");
-        adapter.addFrag(new SpaFragment(), "ACCESSORIES");
-        adapter.addFrag(new SpaFragment(), "EVENTS");
-        adapter.addFrag(new SpaFragment(), "MEMBERSHIP");
+        adapter.addFrag(new Dining(), "DINING");
+        adapter.addFrag(new Wellness(), "WELLNESS");
+        adapter.addFrag(new Fashion(), "FASHION");
+        adapter.addFrag(new Accessories(), "ACCESSORIES");
+        adapter.addFrag(new Events(), "EVENTS");
+        adapter.addFrag(new Membership(), "MEMBERSHIP");
         viewPager.setAdapter(adapter);
     }
 

@@ -36,6 +36,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:scaleType="centerCrop"
+                        android:visibility="gone"
                         android:src="@drawable/banner_new" />
 
                     <RelativeLayout
@@ -103,6 +104,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginTop="10dp"
+                            android:visibility="gone"
                             android:gravity="center_vertical"
                             android:orientation="horizontal"
                             android:padding="5dp">
@@ -123,7 +125,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:layout_toRightOf="@+id/tvoutletname"
-                                android:background="@color/white"
                                 android:gravity="left|bottom"
                                 android:padding="3dp"
                                 android:text="0.08km"
@@ -135,6 +136,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
+                            android:visibility="gone"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
@@ -239,13 +241,78 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/RLdealdata"
                     android:layout_marginBottom="5dp"
+                    android:layout_marginTop="60dp"
                     android:orientation="vertical">
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/viewlist"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
+                    <RelativeLayout
+                        android:id="@+id/totalAmount"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
 
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerInParent="true"
+                            android:gravity="center_horizontal"
+                            android:text="Amount"
+                            android:textAppearance="?android:textAppearanceMedium"
+                            android:textColor="@color/white" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                            android:id="@+id/dealAmount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="10dp"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="532"
+                            android:textAppearance="?android:textAppearanceMedium"
+                            android:textColor="@color/white" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/couponAmount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:layout_marginTop="2dp"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerInParent="true"
+                            android:gravity="center_horizontal"
+                            android:text="Discount: Coupon Applied"
+                            android:textAppearance="?android:textAppearanceMedium"
+                            android:textColor="@color/white" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                            android:id="@+id/amountAfterCouponApplied"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="10dp"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="532"
+                            android:textAppearance="?android:textAppearanceMedium"
+                            android:textColor="@color/white" />
+                    </RelativeLayout>
                     <RelativeLayout
                         android:id="@+id/RLAmount"
                         android:layout_width="match_parent"
@@ -278,6 +345,8 @@
                             android:textColor="@color/white" />
                     </RelativeLayout>
 
+
+
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
@@ -306,8 +375,34 @@
                             android:layout_height="wrap_content" />
 
                     </LinearLayout>
-
-
+                  <TableLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+                      <TableRow>
+                    <CheckBox
+                        android:id="@+id/checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:background="@color/white"
+                        android:textColor="@color/white"
+                        android:shadowColor="@color/white"
+                        android:checked="true"/>
+                          <TextView
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text=" I accept the "
+                              android:textColor="@color/white"
+                              android:layout_gravity="center_vertical"/>
+                          <TextView
+                              android:id="@+id/tnc"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:textColor="@color/yellowcol"
+                              android:gravity="center_vertical"
+                              android:text="Terms and Conditions"/>
+                      </TableRow>
+                  </TableLayout>
                 </LinearLayout>
 
                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView

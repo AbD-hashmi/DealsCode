@@ -1,13 +1,13 @@
 package com.hmi.dealsnxt.Adaptor;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
-import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +28,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.hmi.dealsnxt.Activity.OrderActivity;
 import com.hmi.dealsnxt.Activity.OrderDetailActivity;
+import com.hmi.dealsnxt.Fragement.NotificationFragment;
 import com.hmi.dealsnxt.Fragement.UpcommingOrderfragment;
 import com.hmi.dealsnxt.HelperClass.Constaints;
 import com.hmi.dealsnxt.HelperClass.Global;
@@ -49,8 +50,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-
-public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.SimpleItemViewHolder> {
+public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.SimpleItemViewHolder> {
     private List<OrderModel> items;
     public Activity activity;
     public int count = 0;
@@ -61,12 +61,12 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
     public static String OutlletName, OutlletAddress, OutletInTime, OutletOutTime, Dealdescription;
     DisplayImageOptions options;
     TextView tvoutletname;
-    public OrderBookedAdaptor orderBookedAdaptor;
+    public NotificationAdapter NotificationAdapter;
     List<CharSequence> list = new ArrayList<CharSequence>();
     View promptView;
     android.app.AlertDialog alert;
     public String val;
-    UpcommingOrderfragment upcommingOrderfragment;
+    NotificationFragment upcommingOrderfragment;
     // Provide a reference to the views for each data item
 // Provide access to all the views for a data item in a view holder
     public final static class SimpleItemViewHolder extends RecyclerView.ViewHolder {
@@ -97,7 +97,7 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public OrderBookedAdaptor(List<OrderModel> items, Activity _activity, Context context, UpcommingOrderfragment upcommingOrderfragment) {
+    public NotificationAdapter(List<OrderModel> items, Activity _activity, Context context, NotificationFragment upcommingOrderfragment) {
         this.items = items;
         this.activity = _activity;
         this.context = context;
@@ -121,24 +121,24 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
     // Create new items (invoked by the layout manager)
     // Usually involves inflating a layout from XML and returning the holder
     @Override
-    public SimpleItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public NotificationAdapter.SimpleItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
         View itemView;
         // if (viewType ==  1) {
         itemView = LayoutInflater.from(viewGroup.getContext()).
-                inflate(R.layout.row_order, viewGroup, false);
+                inflate(R.layout.row_notification, viewGroup, false);
         //  } else {
         //      itemView = LayoutInflater.from(viewGroup.getContext()).
         //               inflate(R.layout.row_schedule_lunch, viewGroup, false);
         //    }
-        return new SimpleItemViewHolder(itemView);
+        return new NotificationAdapter.SimpleItemViewHolder(itemView);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     // Involves populating data into the item through holder
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
-    public void onBindViewHolder(final SimpleItemViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(final NotificationAdapter.SimpleItemViewHolder viewHolder, final int position) {
 
         imageLoader.displayImage(items.get(position).getDealimgurl(), viewHolder.dealimg, options);
 
@@ -170,7 +170,7 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
                         String getCurrentDateTime = sdf.format(c.getTime());
                         String getMyTime=items.get(position).getDealavailtime_to();
                         Log.d("getCurrentDateTime",getCurrentDateTime);
-                                // getCurrentDateTime: 05/23/2016 18:49 PM
+                        // getCurrentDateTime: 05/23/2016 18:49 PM
 
                         if (getCurrentDateTime.compareTo(getMyTime) > 0)
                         {
@@ -210,8 +210,8 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
             } else {
                 if (Integer.valueOf(items.get(position).getDealstatus()) == 1) {
                     viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
-                   // viewHolder.tvcancel.setVisibility(View.VISIBLE);
-                 //   cancelVisible=1;
+                    // viewHolder.tvcancel.setVisibility(View.VISIBLE);
+                    //   cancelVisible=1;
                     viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
                     viewHolder.tvdealstatus.setText("Paid");
                     viewHolder.tvdealstatus.setTextColor(context.getResources().getColor(R.color.green));
@@ -249,8 +249,8 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
             viewHolder.tvcancel.setVisibility(View.INVISIBLE);
         } else if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 3) {
             // QR not SHown
-           // viewHolder.tvcancel.setVisibility(View.VISIBLE);
-          //  cancelVisible=1;
+            // viewHolder.tvcancel.setVisibility(View.VISIBLE);
+            //  cancelVisible=1;
             viewHolder.tvdealstatus.setText("Expired");
             viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
             viewHolder.tvcancel.setVisibility(View.INVISIBLE);
@@ -262,7 +262,6 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
             public void onClick(View v) {
                 OrderModel.setOrderModel(items.get(position));
                 Intent i = new Intent(activity, OrderDetailActivity.class);
-                i.putExtra("commingFrom", 1);
                 i.putExtra("id", items.get(position).getDealid());
                 i.putExtra("cancelVisible", cancelVisible);
                 activity.startActivity(i);

@@ -29,6 +29,16 @@ public class HotDealsModel  {
     public String outletAddress="";
     public String cta_type="";
 
+    public String getShowPercentage() {
+        return showPercentage;
+    }
+
+    public void setShowPercentage(String showPercentage) {
+        this.showPercentage = showPercentage;
+    }
+
+    public String showPercentage="";
+
     public String getCta_type() {
         return cta_type;
     }

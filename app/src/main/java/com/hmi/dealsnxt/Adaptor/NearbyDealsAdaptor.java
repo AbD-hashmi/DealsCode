@@ -183,6 +183,7 @@ public class NearbyDealsAdaptor extends RecyclerView.Adapter<NearbyDealsAdaptor.
                 //increasecount(viewHolder.tvlikecount);
                 HotDealsModel.setHotDealsModel(items.get(position));
                 Intent i = new Intent(activity, DetailNewActivity.class);
+                i.putExtra("outletid", items.get(position).getOutletid());
                 activity.startActivity(i);
             }
         });

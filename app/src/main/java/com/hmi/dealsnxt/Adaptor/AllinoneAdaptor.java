@@ -137,7 +137,7 @@ public class AllinoneAdaptor extends RecyclerView.Adapter<AllinoneAdaptor.Simple
                     inflate(R.layout.row_hotdeals_new, viewGroup, false);
         } else {
             itemView = LayoutInflater.from(viewGroup.getContext()).
-                    inflate(R.layout.row_compaign, viewGroup, false);
+                    inflate(R.layout.row_hotdeals_new, viewGroup, false);
         }
         return new SimpleItemViewHolder(itemView);
     }
@@ -158,14 +158,19 @@ public class AllinoneAdaptor extends RecyclerView.Adapter<AllinoneAdaptor.Simple
         //textview.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
 
 
-        //     viewHolder.tvcount.setText("" + items.get(position).getNumofOffers());
+        //viewHolder.tvcount.setText("" + items.get(position).getNumofOffers());
+
         viewHolder.tvcount.setText( items.get(position).getNumofOffers()+" Left");
         /*if (items.get(position).getNumofOffers() == 1) {
             viewHolder.LLoffer.setVisibility(View.GONE);
         } else {
             viewHolder.tvcount.setText("" + (items.get(position).getNumofOffers() - 1));
         }*/
-        viewHolder.tvoptionone.setText(items.get(position).getDealTitle());
+        if (items.get(position).getShowPercentage()!="0") {
+            viewHolder.tvoptionone.setText(items.get(position).getPercentage()+" Off on " +items.get(position).getDealTitle());
+        }else{
+            viewHolder.tvoptionone.setText(items.get(position).getDealTitle());
+        }
         System.out.println("data "+items.get(position).getDealTitle());
         viewHolder.tvlocation.setText(items.get(position).getOutletAddress());
         viewHolder.tvdiscount.setText(items.get(position).getPercentage());
@@ -193,6 +198,7 @@ public class AllinoneAdaptor extends RecyclerView.Adapter<AllinoneAdaptor.Simple
                 viewHolder.ivlike.setImageResource(R.drawable.like);
                 Intent i = new Intent(activity, DetailNewActivity.class);
                 i.putExtra("outletid", items.get(position).getOutletid());
+                i.putExtra("quantity", items.get(position).getNumofOffers());
                 activity.startActivity(i);
             }
         });
@@ -276,6 +282,7 @@ public class AllinoneAdaptor extends RecyclerView.Adapter<AllinoneAdaptor.Simple
                     params.put("XAPIKEY", "XXXXX");
                     params.put("deal_id", Dealid);
                     params.put("user_id", SessionManager.getUserID(context));
+                    System.out.println("data "+params);
                     return params;
                 }
 

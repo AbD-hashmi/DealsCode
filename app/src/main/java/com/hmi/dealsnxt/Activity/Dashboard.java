@@ -63,6 +63,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.Dash;
 import com.hmi.dealsnxt.CustomControl.DownloadUrl;
 import com.hmi.dealsnxt.Fragement.FoodDrinkFragment;
 import com.hmi.dealsnxt.Fragement.HotDealsFragment;
@@ -331,13 +332,19 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 ivOrder.setImageDrawable(getResources().getDrawable(R.drawable.inactive_order));
                 ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
                 ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
-
                 tvHome.setTextColor(getResources().getColor(R.color.yellowcol));
                 tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
                 tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
                 tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
+            }
+        });
+
+        ivFavourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Dashboard.this,Chat.class));
             }
         });
         LLfooterOrder.setOnClickListener(new View.OnClickListener() {
@@ -389,6 +396,8 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 tvFavourite.setTextColor(getResources().getColor(R.color.yellowcol));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
                 tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
+
+                startActivity(new Intent(Dashboard.this,Chat.class));
             }
         });
         ivfilter.setOnClickListener(new View.OnClickListener() {
@@ -939,9 +948,14 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                         SessionManager.setLatitude(getApplicationContext(), "");
                         SessionManager.setLongitude(getApplicationContext(), "");
                         SessionManager.setUserID(getApplicationContext(), "");
+                        SessionManager.setUserEmail(getApplicationContext(), "");
+                        SessionManager.setMobileno(getApplicationContext(),"");
                         SessionManager.setIsloc(getApplicationContext(), false);
                         SessionManager.setIstut(getApplicationContext(), true);
                         SessionManager.setIsotp(getApplicationContext(), false);
+                        SessionManager.setIs_verified(getApplicationContext(), "0");
+
+
                         editor.clear();
                         editor.commit();
                         finish();
@@ -1219,13 +1233,13 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (drawer.isDrawerOpen(Gravity.END))
+      /*  if (drawer.isDrawerOpen(Gravity.END))
         {
             drawer.closeDrawer(Gravity.END);
         }
         else {
             finish();
-        }
+        }*/
     }
 
 

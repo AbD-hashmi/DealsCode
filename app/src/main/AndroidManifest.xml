@@ -29,9 +29,9 @@
         android:largeHeap="true"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        android:theme="@style/AppTheme">
         <activity android:name=".Activity.UnverifiedUser"></activity>
-        <activity android:name=".Activity.Chat" />
+        <activity android:name=".Activity.Chat"/>
         <activity android:name=".Activity.Dashboard">
 
             <!--
@@ -105,8 +105,7 @@
         <!-- rzp_test_CGvi2GA5UdQSww -->
         <activity
             android:name=".Activity.NotificationActivity"
-            android:label="@string/title_activity_notification"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:label="@string/title_activity_notification" />
         <activity
             android:name=".Activity.LocationActivity"
             android:screenOrientation="portrait"
@@ -118,11 +117,10 @@
             android:name=".Activity.CouponActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activity.RefertofrndActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:name=".Activity.RefertofrndActivity"/>
+
         <activity android:name=".Activity.PrivacypolicyActivity" />
-        <activity
-            android:name=".Activity.FAQActivity"
+        <activity android:name=".Activity.FAQActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".Activity.NearByActivity"

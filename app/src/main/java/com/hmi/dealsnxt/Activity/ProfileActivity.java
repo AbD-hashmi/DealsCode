@@ -21,6 +21,7 @@ import android.provider.MediaStore;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -58,6 +59,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -105,16 +107,9 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_profile);
 
 
-      /*  this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);*/
         imback = (ImageView) findViewById(R.id.imback);
         ivsignout = (TextView) findViewById(R.id.ivsignout);
         ivEditIcon = (ImageView) findViewById(R.id.ivEditIcon);
@@ -166,28 +161,12 @@ public class ProfileActivity extends AppCompatActivity {
         ivsignout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(ProfileActivity.this, R.style.AppCompatAlertDialogStyle);
+           //     android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(ProfileActivity.this, R.style.AppCompatAlertDialogStyle);
+               AlertDialog.Builder builder =new AlertDialog.Builder(ProfileActivity.this);
                 builder.setTitle("Alert");
                 builder.setMessage("Are you sure you want to Logout?");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        /*Toast.makeText(getApplicationContext(), "Successfully Logout", Toast.LENGTH_SHORT).show();
-                        SessionManager.setIsRegistered(getApplicationContext(), false);
-                        SharedPreferences preferences = getSharedPreferences("uid", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = preferences.edit();
-                        SessionManager.setIsRegistered(getApplicationContext(), false);
-                        SessionManager.setIssignup(getApplicationContext(), false);
-                        SessionManager.setLatitude(getApplicationContext(),"");
-                        SessionManager.setLongitude(getApplicationContext(),"");
-                        SessionManager.setUserID(getApplicationContext(),"");
-                        SessionManager.setIsloc(getApplicationContext(),false);
-                        SessionManager.setIstut(getApplicationContext(),true);
-                        SessionManager.setIsotp(getApplicationContext(),false);
-                        editor.clear();
-                        editor.commit();
-                        finish();
-                        Intent i = new Intent(Dashboard.this, AftersplashActivity.class);
-                        startActivity(i);*/
                         SessionManager.setIsRegistered(getApplicationContext(), false);
                         SessionManager.setIssignup(getApplicationContext(), false);
                         SharedPreferences preferences = getSharedPreferences("uid", Context.MODE_PRIVATE);
@@ -200,6 +179,7 @@ public class ProfileActivity extends AppCompatActivity {
                         SessionManager.setIsloc(getApplicationContext(), false);
                         SessionManager.setIstut(getApplicationContext(), true);
                         SessionManager.setIsotp(getApplicationContext(), false);
+                        SessionManager.setIs_verified(getApplicationContext(), "0");
                         Toast.makeText(getApplicationContext(), "Logout Sucessfully", Toast.LENGTH_SHORT).show();
                         editor.clear();
                         editor.commit();
@@ -219,8 +199,8 @@ public class ProfileActivity extends AppCompatActivity {
         genderSpinner.setVisibility(View.GONE);
         gender_text.setVisibility(View.VISIBLE);
         save.setVisibility(View.INVISIBLE);
-        userimage.setClickable(false);
-        userimage.setEnabled(false);
+        userimage.setClickable(true);
+        userimage.setEnabled(true);
         ivEditIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -243,6 +223,7 @@ public class ProfileActivity extends AppCompatActivity {
         userimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                save.setVisibility(View.VISIBLE);
                 selectImage();
             }
         });
@@ -289,13 +270,12 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
-
-
         setgender(getGender);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 UpdateUser();
+                save.setVisibility(View.GONE);
             }
         });
     }
@@ -428,13 +408,21 @@ public class ProfileActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
+String encoded;
     public void UpdateUser() {
         if (Global.isInternetAvail(ProfileActivity.this)) {
             if (checkValidation()) {
                 progressDialog.show();
                 String url = Constaints.ProfileUpdate;
                 progressBar.setVisibility(View.VISIBLE);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                thumbnail_final.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream .toByteArray();
+                encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
+
+
+
                 StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -490,16 +478,26 @@ public class ProfileActivity extends AppCompatActivity {
                         params.put("id", SessionManager.getUserID(getApplicationContext()).toString());
                         params.put("email", etemail.getText().toString());
                         params.put("dob", stringdob);
-                        params.put("gender", SelectedGender.toString());
+                        //params.put("gender", SelectedGender.toString());
+                        params.put("user_dp", encoded);
 
 
+/*
                         if (IsImageSelected) {
-                            params.put("user_dp", Global.BitmapTobase64(thumbnail_final));
+
                         } else {
                             userimage.buildDrawingCache();
                             thumbnail_final = userimage.getDrawingCache();
-                            params.put("user_dp", Global.BitmapTobase64(thumbnail_final));
+
+                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                            thumbnail_final.compress(Bitmap.CompressFormat.JPEG,100,baos);
+                            byte[] b = baos.toByteArray();
+                            String encImage = Base64.encodeToString(b, Base64.DEFAULT);
+                            params.put("user_dp", encImage);
+
                         }
+*/
+                        System.out.print("Data 0000"+params+"0000");
                         return params;
                     }
 
@@ -608,6 +606,24 @@ public class ProfileActivity extends AppCompatActivity {
         userimage.setImageBitmap(resized);
         thumbnail_final = resized;
         IsImageSelected = true;
+    }
+
+//converts file to 64bytes
+    public static String getFileToByte(String filePath){
+        Bitmap bmp = null;
+        ByteArrayOutputStream bos = null;
+        byte[] bt = null;
+        String encodeString = null;
+        try{
+            bmp = BitmapFactory.decodeFile(filePath);
+            bos = new ByteArrayOutputStream();
+            bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+            bt = bos.toByteArray();
+            encodeString = Base64.encodeToString(bt, Base64.DEFAULT);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return encodeString;
     }
 
     @Override

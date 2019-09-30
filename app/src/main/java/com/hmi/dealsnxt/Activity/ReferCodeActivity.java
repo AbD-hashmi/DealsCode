@@ -22,9 +22,6 @@ public class ReferCodeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_refer_code);
      /*   LayoutInflater layoutInflater = LayoutInflater.from(SignInActivity.this);
         promptView = layoutInflater.inflate(R.layout.activity_share, null);

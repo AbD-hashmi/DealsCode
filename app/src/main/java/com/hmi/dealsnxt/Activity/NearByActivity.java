@@ -51,8 +51,6 @@ public class NearByActivity extends FragmentActivity implements OnMapReadyCallba
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_near_by);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         ImageView imBack= (ImageView) findViewById(R.id.imBack);
@@ -85,6 +83,10 @@ public class NearByActivity extends FragmentActivity implements OnMapReadyCallba
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
+        LatLng test = new LatLng(Double.valueOf(SessionManager.getLatitude(NearByActivity.this))
+                , Double.valueOf(SessionManager.getLongitude(NearByActivity.this)));
+
+        //drawMarker(test,"I am here");
       //  mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
       //  mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         loadOfflineDeals("");
@@ -134,7 +136,6 @@ public class NearByActivity extends FragmentActivity implements OnMapReadyCallba
                                 dealsModel.setOutletLongtitude(outlet.optString("lng"));
                                 dealsModel.setOutletdescription(outlet.optString("description"));
                                 drawMarker(new LatLng(Double.parseDouble(outlet.optString("lat")), Double.parseDouble(outlet.optString("lng"))),outlet.optString("outletName"));
-
 
 
                                 for (int j = 0; j < dealArray.length(); j++) {
@@ -217,14 +218,15 @@ public class NearByActivity extends FragmentActivity implements OnMapReadyCallba
 
     private void drawMarker(LatLng point,String name){
 // Creating an instance of MarkerOptions
-        MarkerOptions markerOptions = new MarkerOptions().position(point).title(name).icon(BitmapDescriptorFactory
-                .fromResource(R.drawable.location_gray));
 
-// Setting latitude and longitude for the marker
-        markerOptions.position(point);
 
-// Adding marker on the Google Map
-        mMap.addMarker(markerOptions);
+        mMap.addMarker(new MarkerOptions().position(point).title(name));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(test));
+
+        float zoomLevel = 16.0f; //This goes up to 21
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(point, zoomLevel));
+        mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15.0f));
     }
 
 }

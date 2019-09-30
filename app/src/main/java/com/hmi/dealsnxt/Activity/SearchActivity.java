@@ -1,10 +1,12 @@
 package com.hmi.dealsnxt.Activity;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.StrictMode;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -66,11 +68,9 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_search);
-        searchView = (SearchView) findViewById(R.id.ivsearch);
+        searchView = (SearchView) findViewById(R.id.iv_search);
         ImageView imBack= (ImageView) findViewById(R.id.imBack);
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -86,9 +86,6 @@ public class SearchActivity extends AppCompatActivity {
         ivmoveup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
 
                 CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) Dashboard.htab_appbar.getLayoutParams();
                 AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
@@ -216,15 +213,21 @@ public class SearchActivity extends AppCompatActivity {
                             sm.setOutlet_name(searchObject.optString("name"));
                             sm.setOutletid(searchObject.optInt("outlet_id"));
                             arrayList.add(sm);
-
-
-
-
-
-
                         }
                     } else {
-                        Toast.makeText(SearchActivity.this, jSONObject.optString("msg"), Toast.LENGTH_LONG).show();
+
+                        AlertDialog.Builder builder=new AlertDialog.Builder(getApplicationContext());
+                        builder.setTitle("Deal expired or Removed");
+                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                                finish();
+                            }
+                        });
+
+
+                        //Toast.makeText(SearchActivity.this, jSONObject.optString("msg"), Toast.LENGTH_LONG).show();
                         swipeContainer.setRefreshing(false);
                     }
                     searchOutletAdapter = new SearchOutletAdapter(SearchActivity.this, arrayList, arrayList, SearchActivity.this);
@@ -237,6 +240,16 @@ public class SearchActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     Log.e("", e.getMessage());
                     swipeContainer.setRefreshing(false);
+                    AlertDialog.Builder builder=new AlertDialog.Builder(getApplicationContext());
+                    builder.setTitle("Could Not Find Deal");
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                            finish();
+                        }
+                    });
+
                 }
                 progressBar.setVisibility(View.GONE);
             }
@@ -246,6 +259,16 @@ public class SearchActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 swipeContainer.setRefreshing(false);
                 Log.e("error", "" + error);
+                AlertDialog.Builder builder=new AlertDialog.Builder(getApplicationContext());
+                builder.setTitle("Deal expired or Removed");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        finish();
+                    }
+                });
+
             }
         }) {
             @Override

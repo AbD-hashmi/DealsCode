@@ -7,6 +7,26 @@ import java.util.ArrayList;
 
 public class OrderModel extends SugarRecord {
 
+    public String gift_applied;
+
+    public String getGift_applied() {
+        return gift_applied;
+    }
+
+    public void setGift_applied(String gift_applied) {
+        this.gift_applied = gift_applied;
+    }
+
+    public String refundable_policy;
+
+    public String getRefundable_policy() {
+        return refundable_policy;
+    }
+
+    public void setRefundable_policy(String refundable_policy) {
+        this.refundable_policy = refundable_policy;
+    }
+
     public String getMerchantid() {
         return merchantid;
     }

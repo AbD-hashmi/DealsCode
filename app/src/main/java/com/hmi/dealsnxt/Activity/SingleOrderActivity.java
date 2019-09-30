@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -72,6 +73,7 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
     ViewPager view_pager;
     TextView tvtotalamount, tvdesc, tvaddcart, tvpayment;
     RelativeLayout LLpayment;
+    CheckBox checkBox;
 
     ArrayList<DealDetailsModel> arrayList = new ArrayList<DealDetailsModel>();
     public String Qtycount = "";
@@ -97,13 +99,12 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
     int coupen_id;
     double max_discount;
     String coupon="0";
+    TextView tnc;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_singledealorder);
         RLdealdata = (RelativeLayout) findViewById(R.id.RLdealdata);
         tvlike = (TextView) findViewById(R.id.tvlike);
@@ -133,6 +134,8 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
         tvtotalamount = (TextView) findViewById(R.id.tvtotalamount);
         LLpayment = (RelativeLayout) findViewById(R.id.LLpayment);
         tvaddcart = (TextView) findViewById(R.id.tvaddcart);
+        tnc=(TextView)findViewById(R.id.tnc);
+        checkBox=(CheckBox)findViewById(R.id.checkbox);
         tvpayment = (TextView) findViewById(R.id.tvpayment);
         progressDialog= Common.getProgressDialog(SingleOrderActivity.this);
 
@@ -143,6 +146,7 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
                 .build();
         imageLoader = com.nostra13.universalimageloader.core.ImageLoader.getInstance();
         imageLoader.init(ImageLoaderConfiguration.createDefault(SingleOrderActivity.this));
+
         tvoutletname.setText(HotDealsModel.getHotDealsModel().getOutletName());
         Outlet_Id = HotDealsModel.getHotDealsModel().getOutletid();
 
@@ -150,6 +154,13 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
         Deal_Title = HotDealsModel.getHotDealsModel().getDealTitle();
         tvoutletaddress.setText(HotDealsModel.getHotDealsModel().getOutletAddress() + ", " + HotDealsModel.getHotDealsModel().getOutletCity() + ", " + HotDealsModel.getHotDealsModel().getOutletzipcode());
         tvTitle.setText(HotDealsModel.getHotDealsModel().getOutletName());
+        tnc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SingleOrderActivity.this,TncActivity.class));
+            }
+        });
+
         imBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -175,7 +186,11 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
         LLpayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendtoserver();
+                if (checkBox.isChecked()) {
+                    sendtoserver();
+                }else {
+                    Toast.makeText(SingleOrderActivity.this, "Accept the terms and conditions to continue", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         apply_now.setOnClickListener(new View.OnClickListener() {
@@ -509,6 +524,7 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
 
 
                             double amount = Double.parseDouble(Dealprice);
+                            double amountMain = Double.parseDouble(Dealprice);
                             double res = (amount / 100.0f) * 10;
 
                             if (res>max_discount)
@@ -522,18 +538,22 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
 
                             Dealprice=String.valueOf(amount);
 
-
                             coupon="1";
+                            TextView textView=(TextView)findViewById(R.id.dealAmount);
+                            TextView amountAfterCouponApplied=(TextView)findViewById(R.id.amountAfterCouponApplied);
+                            textView.setText(amountMain+"");
+                            amountAfterCouponApplied.setText(max_discount+"");
+                            RelativeLayout relativeLayout=(RelativeLayout)findViewById(R.id.totalAmount);
+                            RelativeLayout couponAmount=(RelativeLayout)findViewById(R.id.couponAmount);
+                            relativeLayout.setVisibility(View.VISIBLE);
+                            couponAmount.setVisibility(View.VISIBLE);
+
+
                             tvtotalamount.setText(Dealprice);
                             apply_now.setText("Coupon applied."+" Discount ammount is "+max_discount);
+                            apply_now.setVisibility(View.GONE);
                             coupen_edit.setVisibility(View.GONE);
                             apply_now.setClickable(false);
-                            apply_now.setBackgroundColor(Color.WHITE);
-                            apply_now.setTextColor(Color.GREEN);
-
-
-
-
                         }
                     } else {
                         Toast.makeText(SingleOrderActivity.this, jSONObject.optString("message"), Toast.LENGTH_LONG).show();

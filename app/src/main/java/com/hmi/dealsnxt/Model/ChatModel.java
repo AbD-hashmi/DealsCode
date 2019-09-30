@@ -6,7 +6,6 @@ public class ChatModel extends SugarRecord {
 
     String message;
     String from_user_id;
-    String to_user_id;
 
 
     public String getMessage() {
@@ -25,11 +24,4 @@ public class ChatModel extends SugarRecord {
         this.from_user_id = from_user_id;
     }
 
-    public String getTo_user_id() {
-        return to_user_id;
-    }
-
-    public void setTo_user_id(String to_user_id) {
-        this.to_user_id = to_user_id;
-    }
 }

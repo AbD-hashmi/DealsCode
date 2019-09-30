@@ -54,7 +54,7 @@ public class UpcommingOrderfragment extends Fragment {
     public TextView tvusername, tvTitle;
     public LinearLayout newtoolbar;
     public ImageView imBack, ivmoveup;
-    public ImageView ivsearch;
+    private ImageView ivsearch;
     private SwipeRefreshLayout swipeContainer;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -131,6 +131,9 @@ public class UpcommingOrderfragment extends Fragment {
                                 orderModel.setDealimgurl(Path + "/" + dealobj.optString("dealImge"));
                                 orderModel.setDealavailtime_to(dealobj.optString("timeTo"));
                                 orderModel.setDealavailtime_from(dealobj.optString("timeFrom"));
+                                orderModel.setRefundable_policy(dealobj.optString("refundable_policy"));
+                                orderModel.setGift_applied(dealobj.optString("gift_applied"));
+
                                 arrayList.add(orderModel);
                             }
 
@@ -140,7 +143,11 @@ public class UpcommingOrderfragment extends Fragment {
                         swipeContainer.setRefreshing(false);
                     }
                     OrderBookedAdaptor adapter = new OrderBookedAdaptor(arrayList, getActivity(), getActivity(),UpcommingOrderfragment.this);
-                    recycleVIew.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+                    mLayoutManager.setReverseLayout(true);
+                    mLayoutManager.setStackFromEnd(true);
+                    recycleVIew.setLayoutManager(mLayoutManager);
+                 //   recycleVIew.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recycleVIew.setAdapter(adapter);
 
                 } catch (Exception e) {
@@ -162,6 +169,8 @@ public class UpcommingOrderfragment extends Fragment {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("XAPIKEY", "XXXXX");
                 params.put("user_id", SessionManager.getUserID(getContext()));
+                params.put("order_status",""+1);
+
                 return params;
             }
 
@@ -186,7 +195,7 @@ public class UpcommingOrderfragment extends Fragment {
     public void onResume() {
         super.onResume();
        // loadOfflineDeals("");
-        loadDetailist("");
+      //  loadDetailist("");
 
     }
 }

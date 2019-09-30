@@ -165,11 +165,11 @@
                      android:id="@+id/tvactualprice"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
-                     android:layout_marginTop="40dp"
-                     android:layout_alignParentLeft="true"
+                     android:layout_marginTop="70dp"
                      android:text="200"
-                     android:layout_marginLeft="300dp"
                      android:textColor="@color/white"
+                     android:layout_marginRight="40dp"
+                     android:layout_toLeftOf="@+id/tvwaiveoffrs"
                      android:textSize="20dp" />
 
 
@@ -177,10 +177,9 @@
                      android:id="@+id/tvwaiveoffrs"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
-                     android:layout_marginLeft="20dp"
-                     android:layout_marginTop="40dp"
-                     android:layout_toRightOf="@+id/tvactualprice"
-                     android:text="20"
+                     android:layout_alignParentRight="true"
+                     android:layout_marginTop="70dp"
+                     android:text="2000000"
                      android:textColor="@color/white"
                      android:textSize="20dp"/>
              </RelativeLayout>

@@ -37,6 +37,7 @@ import com.hmi.dealsnxt.Utils.Customutils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
@@ -132,10 +133,10 @@ public class SimilairDealsAdaptor extends RecyclerView.Adapter<SimilairDealsAdap
         View itemView;
         if (viewType ==  0) {
         itemView = LayoutInflater.from(viewGroup.getContext()).
-                inflate(R.layout.similiar_deals, viewGroup, false);
+                inflate(R.layout.row_hotdeals_new , viewGroup, false);
          } else {
             itemView = LayoutInflater.from(viewGroup.getContext()).
-                     inflate(R.layout.row_compaign, viewGroup, false);
+                     inflate(R.layout.row_hotdeals_new, viewGroup, false);
           }
         return new SimpleItemViewHolder(itemView);
     }
@@ -162,7 +163,7 @@ public class SimilairDealsAdaptor extends RecyclerView.Adapter<SimilairDealsAdap
         viewHolder.tvlocation.setText(items.get(position).getOutletAddress());
         viewHolder.tvdiscount.setText(items.get(position).getPercentage());
 
-        viewHolder.tvlikecount.setText(items.get(position).getLikesCount());
+//        viewHolder.tvlikecount.setText(items.get(position).getLikesCount());
         //     viewHolder.ivlike.setText(items.get(position).getLikes());
         if ((items.get(position).getLikes()).equals(1)) {
             viewHolder.ivlike.setImageResource(R.drawable.like);
@@ -174,7 +175,8 @@ public class SimilairDealsAdaptor extends RecyclerView.Adapter<SimilairDealsAdap
         OutletInTime = (items.get(position).getAvailibiltyTime());
         OutletOutTime = (items.get(position).getReminderTime());
         viewHolder.tvactualprice.setPaintFlags(viewHolder.tvactualprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        imageLoader.displayImage(items.get(position).getDealimage(), viewHolder.dealimg, options);
+        //Picasso.with(context).load(items.get(position).getDealimage()).into(viewHolder.dealimg);
+        //imageLoader.displayImage(items.get(position).getDealimage(), viewHolder.dealimg, options);
 
         viewHolder.LLView.setOnClickListener(new View.OnClickListener() {
             @Override

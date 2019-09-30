@@ -1,35 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.v7.widget.CardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="5dp"
+    app:cardBackgroundColor="#333333">
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:orientation="vertical">
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:text="Exclusive dinner experience with live music by rock band"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".25">
+
+        <ImageView
+            android:id="@+id/dealimg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:scaleType="fitXY"
+            android:src="@drawable/banner" />
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/LLView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
         android:orientation="horizontal"
         android:padding="5dp"
         android:weightSum="1">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".25">
-
-            <ImageView
-                android:id="@+id/dealimg"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center_vertical"
-                android:scaleType="fitXY"
-                android:src="@drawable/deal1" />
-        </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight=".75"
             android:orientation="vertical">
@@ -49,6 +67,14 @@
                     android:textColor="@color/white"
                     android:textAppearance="?android:textAppearanceMedium" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:text="15% OFF on 1 pitcher of beer/4 Imfl drinks and one veg starter"/>
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -63,6 +89,7 @@
                         android:drawableLeft="@drawable/map_black"
                         android:drawablePadding="5dp"
                         android:ellipsize="end"
+                        android:visibility="gone"
                         android:gravity="center_vertical"
                         android:maxLength="8"
                         android:text="Gurgaon"
@@ -75,13 +102,26 @@
                         android:layout_centerInParent="true"
                         android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
-                        android:background="@color/Black" />
+                        android:visibility="gone"
+                        android:background="@color/white" />
+
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/yellowcol"
+                        android:textStyle="italic"
+                        android:textSize="18dp"
+                        android:text="5 hours ago"/>
+
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                         android:id="@+id/tvdealdate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
+                        android:visibility="gone"
                         android:layout_marginRight="5dp"
                         android:drawableLeft="@drawable/calender"
                         android:drawablePadding="5dp"
@@ -97,19 +137,21 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="2dp"
                         android:layout_toRightOf="@+id/tvoptionone"
-                        android:background="@color/Black" />
+                        android:background="@color/white" />
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                         android:id="@+id/tvwaiveoffrs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
-                        android:gravity="center_vertical"
+                        android:gravity="center"
+                        android:visibility="gone"
                         android:text="Rs 10000"
+                        android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@color/redFont" />
+                        android:textColor="@color/red" />
                 </LinearLayout>
 
 
@@ -117,36 +159,39 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
+                    android:visibility="gone"
                     android:orientation="horizontal">
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                         android:id="@+id/tvdealstatus"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical|top"
-                        android:drawableLeft="@drawable/cancelled"
                         android:drawablePadding="5dp"
-                        android:gravity="center_vertical"
                         android:padding="5dp"
                         android:text="Cancelled"
+                        android:drawableLeft="@drawable/cross"
+                        android:gravity="left"
                         android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@color/greyfontcol" />
+                        android:textColor="@color/red" />
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                         android:id="@+id/tvcancel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
                         android:layout_alignParentRight="true"
-                        android:layout_centerInParent="true"
-                        android:background="@color/redFont"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="0dp"
+                        android:background="@drawable/button_gradient_image"
                         android:gravity="center"
-                        android:paddingBottom="3dp"
                         android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
                         android:paddingTop="3dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="3dp"
                         android:text="Cancel"
                         android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@color/White" />
+                        android:textColor="@color/Black"
+                        android:visibility="gone" />
 
                 </RelativeLayout>
 
@@ -157,5 +202,5 @@
         </LinearLayout>
     </LinearLayout>
 
-
 </LinearLayout>
+</android.support.v7.widget.CardView>

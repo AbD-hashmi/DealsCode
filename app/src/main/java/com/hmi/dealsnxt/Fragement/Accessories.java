@@ -110,7 +110,7 @@ public class Accessories extends Fragment {
         loadOfflineDeals("");
         //loadOfflineDeals(offlineDealsJSON);
         LandingNewActivity landingNewActivity=new LandingNewActivity();
-        landingNewActivity.loadbannerImages(4,getContext());
+       landingNewActivity.loadbannerImages(4,getContext());
 
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

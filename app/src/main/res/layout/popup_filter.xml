@@ -63,7 +63,6 @@
                                 android:textColor="@color/blackfontcolor" />
 
                             <android.support.v7.widget.SearchView
-                                android:id="@+id/ivsearch"
                                 style="@style/MySearchViewStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

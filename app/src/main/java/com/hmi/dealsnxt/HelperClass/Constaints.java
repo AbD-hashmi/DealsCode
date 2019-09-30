@@ -10,12 +10,18 @@ public class Constaints {
 
     public static String UserRegistrationURL = BaseUrl + "api/v1/userRegister";
     public static String OTPverify = BaseUrl + "api/v1/userVerification";
+    public static String IsUserVerified = BaseUrl + "api/v1/userFinalVerification";
+
+
+    public static String RecieveChats = BaseUrl + "api/v2/get-user-chats";
+    public static String sendChat = BaseUrl + "api/v2/send-message";
 
     public static String BannerUrl = BaseUrl + "api/v1/getBanner";
     public static String DealList = BaseUrl + "api/v1/getDeals";
     public static String DealDetailbyOutlet = BaseUrl + "api/v1/getDealByOutlets";
     public static String DealDetail = BaseUrl + "api/v1/dealDetails";
     public static String DealLikeCount = BaseUrl + "api/v1/dealLikes";
+    public static String CheckForUserVerification = BaseUrl + "api/v1/userFinalVerification";
 
     public static String CategoryDetailbyID = BaseUrl + "api/v1/getDealByCategory";
 

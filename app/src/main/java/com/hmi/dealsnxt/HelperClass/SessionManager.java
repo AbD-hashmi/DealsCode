@@ -20,7 +20,9 @@ public class SessionManager {
     private static String UserEmail = "";
     private static String LocationID = "0";
     private static String DeviceGCMNotificationID = "";
+    private static String verificationMessage = "This is with invitation only, kindly fill the details. Our executives will contact you";
     private static Boolean IsOnlineAccess = false;
+
     /*   private static String EventCityID = "1";
        private static String FacultyUpdateTime = "";
        private static String ScheduleUpdateTime = "";
@@ -35,6 +37,8 @@ public class SessionManager {
     private static String UserID = "";
     private static String Latitude = "28.4358";
     private static String Longitude = "77.1117154";
+    private static String is_verified ="0";
+
     // private static String Latitude = "";
     //  private static String Longitude = "";
     private static Boolean Istut = false;
@@ -72,6 +76,23 @@ public class SessionManager {
         return _Longitude;
     }
 
+
+    public static String getVerificationMessage(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                verificationMessage, Context.MODE_PRIVATE);
+        String _verification = sharedPreferences.getString("_verification",
+                verificationMessage);
+        return _verification;
+    }
+
+    public static void setVerificationMessage(Context context, String value) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                verificationMessage, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("_verification", value);
+        editor.commit();
+    }
+
     public static void setLongitude(Context context, String value) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(
                 Longitude, Context.MODE_PRIVATE);
@@ -94,6 +115,23 @@ public class SessionManager {
                 Latitude, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("_Latitude", value);
+        editor.commit();
+    }
+
+
+    public static String  getIs_verified(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                is_verified, Context.MODE_PRIVATE);
+        String  _is_verified = sharedPreferences.getString("_is_verified",
+                is_verified);
+        return _is_verified;
+    }
+
+    public static void setIs_verified(Context context, String value) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                is_verified, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("_is_verified", value);
         editor.commit();
     }
 

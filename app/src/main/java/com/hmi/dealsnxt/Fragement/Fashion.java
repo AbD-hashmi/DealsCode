@@ -179,7 +179,9 @@ public class Fashion extends Fragment {
                                     dealsModel.setOutletCity(outlet.optString("city"));
                                     dealsModel.setOutletzipcode(outlet.optString("zipcode"));
                                     dealsModel.setTndc(outlet.optString("termAndCondition"));
-                                    dealsModel.setNumofOffers(outlet.optInt("dealCount"));
+                                    dealsModel.setNumofOffers(outlet.optInt("stock_qty"));
+
+                                    // dealsModel.setNumofOffers(outlet.optInt("dealCount"));
                                     dealsModel.setOutletcontactperson(outlet.optString("contactPersonName"));
                                     dealsModel.setOutletcontactnumber(outlet.optString("contactNumber"));
                                     dealsModel.setOutletLatitude(outlet.optString("lat"));

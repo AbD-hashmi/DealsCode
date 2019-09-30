@@ -86,7 +86,7 @@ public class OTPActivity extends AppCompatActivity {
     public static final String MainPP_SP = "MainPP_data";
     public static final int R_PERM = 2822;
     private static final int REQUEST = 112;
-
+    TextView tvresend;
     Context mContext = this;
     ProgressBar progress_bar;
     private static final int PERMISSION_REQUEST_CODE = 200;
@@ -110,8 +110,6 @@ public class OTPActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_otp);
         progress_bar = (ProgressBar) findViewById(R.id.progress_bar);
         progress_bar.setVisibility(View.GONE);
@@ -131,7 +129,14 @@ public class OTPActivity extends AppCompatActivity {
         linearLayout=(LinearLayout)findViewById(R.id.linearLayout);
         relativeLayout=(RelativeLayout) findViewById(R.id.relative_layout);
         spinner=(Spinner)findViewById(R.id.spinner);
+        tvresend=(TextView)findViewById(R.id.resendOtp);
 
+        tvresend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UserRegistration();
+            }
+        });
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -151,8 +156,6 @@ public class OTPActivity extends AppCompatActivity {
         chkselect.setChecked(false);
         tvtnc = (TextView) findViewById(R.id.tvtnc);
         tvprivacy = (TextView) findViewById(R.id.tvprivacy);
-
-
         tvprivacy.setMovementMethod(LinkMovementMethod.getInstance());
         String text = "Privacy Policy";
         tvprivacy.setText(Html.fromHtml(text));
@@ -344,7 +347,13 @@ public class OTPActivity extends AppCompatActivity {
                         SessionManager.setUserGender(getApplicationContext(), jsonObject.optString("gender").toString());
                         SessionManager.setIsotp(getApplicationContext(), true);
 
-                        if (email.equals("")) {
+                        if(jsonObject.optInt("is_verified")!=1) {
+
+                            startActivity(new Intent(OTPActivity.this, UnverifiedUser.class));
+
+                        }
+                            System.out.println("Data "+email);
+                        if (SessionManager.getUserGender(getApplicationContext()).trim().equals("")) {
                             SessionManager.setIsotp(getApplicationContext(), true);
                             SessionManager.setMobileno(getApplicationContext(), etotp.getText().toString());
                             Intent i = new Intent(OTPActivity.this, SignInActivity.class);
@@ -357,13 +366,10 @@ public class OTPActivity extends AppCompatActivity {
                             startActivity(i);
                             finish();
                         }
+
                         progressDialog.dismiss();
                     } else {
-                        Intent i = new Intent(OTPActivity.this, SignInActivity.class);
-                        startActivity(i);
-                        finish();
-
-                      //  Toast.makeText(OTPActivity.this, jSONObject.optString("message"), Toast.LENGTH_LONG).show();
+                        Toast.makeText(OTPActivity.this, jSONObject.optString("message"), Toast.LENGTH_LONG).show();
                         progressDialog.show();
                     }
                 } catch (Exception e) {

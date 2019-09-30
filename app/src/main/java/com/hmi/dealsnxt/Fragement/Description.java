@@ -88,25 +88,7 @@ public class Description extends Fragment {
 
     }
 
-
-
-/*    public void loadOfflineDeals() {
-        String url = Constaints.DealList;
-        progressBar.setVisibility(View.VISIBLE);
-        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jSONObject = new JSONObject(new String(response));
-                    int Status = jSONObject.optInt("status");
-                    if (Status == 1) {
-                        JSONArray infoArray = jSONObject.getJSONArray("info");
-                        offlineDealsJSON = infoArray.toString();
-
-                        JSONArray scheduleArray = new JSONArray(offlineDealsJSON);
-                        arrayLength = scheduleArray.length();
-                        arrayList = new ArrayList<>(scheduleArray.length());
-                */    @Override
+    @Override
     public void onResume() {
         super.onResume();
 

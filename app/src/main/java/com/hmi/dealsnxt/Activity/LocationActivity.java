@@ -154,9 +154,6 @@ public class LocationActivity extends AppCompatActivity implements GoogleApiClie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_location);
         locationManager = (LocationManager) getSystemService(Service.LOCATION_SERVICE);
         locationManager = (LocationManager) getSystemService(Service.LOCATION_SERVICE);
@@ -170,7 +167,7 @@ public class LocationActivity extends AppCompatActivity implements GoogleApiClie
 
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        searchView = (SearchView) findViewById(R.id.ivsearch);
+        searchView = (SearchView) findViewById(R.id.iv_search);
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         progressDialog = Common.getProgressDialog(LocationActivity.this);
         search_list.clear();

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Xclusify.iml" filepath="$PROJECT_DIR$/Xclusify.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DealsCode.iml" filepath="$PROJECT_DIR$/DealsCode.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

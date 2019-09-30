@@ -1,10 +1,9 @@
 package com.hmi.dealsnxt.Fragement;
 
+import android.app.Notification;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,14 +25,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.hmi.dealsnxt.Activity.LandingNewActivity;
-import com.hmi.dealsnxt.Activity.OrderActivity;
-import com.hmi.dealsnxt.Adaptor.AllinoneAdaptor;
+import com.hmi.dealsnxt.Adaptor.NotificationAdapter;
 import com.hmi.dealsnxt.Adaptor.OrderBookedAdaptor;
-import com.hmi.dealsnxt.Adaptor.RedeemorCancelOrder;
 import com.hmi.dealsnxt.HelperClass.Constaints;
 import com.hmi.dealsnxt.HelperClass.SessionManager;
-import com.hmi.dealsnxt.Model.HotDealsModel;
 import com.hmi.dealsnxt.Model.OrderModel;
 import com.hmi.dealsnxt.R;
 
@@ -45,7 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RedeemCancel extends Fragment {
+public class NotificationFragment extends Fragment {
 
     RecyclerView recycleVIew;
     public static ProgressBar progressBar;
@@ -55,7 +50,7 @@ public class RedeemCancel extends Fragment {
     public TextView tvusername, tvTitle;
     public LinearLayout newtoolbar;
     public ImageView imBack, ivmoveup;
-    public ImageView ivsearch;
+    private ImageView ivsearch;
     private SwipeRefreshLayout swipeContainer;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -132,6 +127,9 @@ public class RedeemCancel extends Fragment {
                                 orderModel.setDealimgurl(Path + "/" + dealobj.optString("dealImge"));
                                 orderModel.setDealavailtime_to(dealobj.optString("timeTo"));
                                 orderModel.setDealavailtime_from(dealobj.optString("timeFrom"));
+                                orderModel.setRefundable_policy(dealobj.optString("refundable_policy"));
+                                orderModel.setGift_applied(dealobj.optString("gift_applied"));
+
                                 arrayList.add(orderModel);
                             }
 
@@ -140,8 +138,13 @@ public class RedeemCancel extends Fragment {
                         Toast.makeText(getContext(), jSONObject.optString("msg"), Toast.LENGTH_LONG).show();
                         swipeContainer.setRefreshing(false);
                     }
-                    RedeemorCancelOrder adapter = new RedeemorCancelOrder(arrayList, getActivity(), getActivity(),RedeemCancel.this);
-                    recycleVIew.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    NotificationAdapter adapter = new NotificationAdapter(arrayList, getActivity(), getActivity(),
+                            NotificationFragment.this);
+                    LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+                    mLayoutManager.setReverseLayout(true);
+                    mLayoutManager.setStackFromEnd(true);
+                    recycleVIew.setLayoutManager(mLayoutManager);
+                    //   recycleVIew.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recycleVIew.setAdapter(adapter);
 
                 } catch (Exception e) {
@@ -162,8 +165,9 @@ public class RedeemCancel extends Fragment {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("XAPIKEY", "XXXXX");
-                params.put("order_status", "2");
                 params.put("user_id", SessionManager.getUserID(getContext()));
+                params.put("order_status",""+1);
+
                 return params;
             }
 
@@ -188,7 +192,7 @@ public class RedeemCancel extends Fragment {
     public void onResume() {
         super.onResume();
         // loadOfflineDeals("");
-        loadDetailist("");
+        //  loadDetailist("");
 
     }
 }

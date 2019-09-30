@@ -64,8 +64,8 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
     compile 'com.github.kaushikgopal:CoreTextUtils:c703fa12b6'
+    compile 'com.github.Temidtech:AndroidOtpCustomViewmaster:1.0'
 
 
 
-    compile 'com.github.GoodieBag:Pinview:v1.4'
 }

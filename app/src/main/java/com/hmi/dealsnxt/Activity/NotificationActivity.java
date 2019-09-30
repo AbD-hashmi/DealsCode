@@ -1,5 +1,6 @@
 package com.hmi.dealsnxt.Activity;
 
+import android.app.Notification;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -37,6 +38,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.hmi.dealsnxt.Fragement.NotificationFragment;
 import com.hmi.dealsnxt.Fragement.RedeemCancel;
 import com.hmi.dealsnxt.Fragement.UpcommingOrderfragment;
 import com.hmi.dealsnxt.HelperClass.Constaints;
@@ -77,12 +79,6 @@ public class NotificationActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_notification);
         recycleVIew = (RecyclerView) findViewById(R.id.recycleVIew);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
@@ -133,7 +129,7 @@ public class NotificationActivity extends FragmentActivity {
     }
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new UpcommingOrderfragment(), "Alert");
+        adapter.addFrag(new NotificationFragment(), "Alert");
         adapter.addFrag(new RedeemCancel(), "Promo Codes");
 
         viewPager.setAdapter(adapter);

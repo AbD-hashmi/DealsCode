@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbarnew"
-        android:background="#575757"
         android:orientation="vertical">
 
         <ScrollView
@@ -50,7 +49,6 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ivdeal"
                         android:orientation="vertical"
-                        android:background="#575757"
                         android:layout_marginTop="15dp"
                         android:padding="5dp">
 
@@ -277,7 +275,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
 
-                    android:background="#575757"
                     android:orientation="vertical"
                     android:padding="10dp">
 
@@ -363,7 +360,7 @@
                             android:textColor="@color/white" />
 
                         <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
-                            android:id="@+id/tvtransactionId3"
+                            android:id="@+id/tvtotal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -380,13 +377,14 @@
                 </TableLayout>
 
                 <Button
+                    android:id="@+id/btnCancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_gradient"
                     android:text="Request Cancellation"
+                    android:visibility="gone"
                     android:layout_gravity="center_horizontal"
                     android:padding="10dp"
-                    android:visibility="gone"
                     android:layout_marginTop="90dp"/>
             </LinearLayout>
         </ScrollView>
@@ -418,7 +416,6 @@
             android:textColor="@color/blackfontcolor" />
 
         <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
-            android:id="@+id/tvtotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

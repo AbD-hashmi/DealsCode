@@ -1,15 +1,22 @@
 package com.hmi.dealsnxt.Activity;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -64,12 +71,14 @@ public class OrderDetailActivity extends AppCompatActivity {
     public LinearLayout LLloc;
     public RelativeLayout RLAmount;
     public ImageView ivfilter, ivQR;
+    public Button btnCancel;
+    public String val;
+    public Dialog alertDialogBuilder;
+    View promptView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_orderdetail);
         ivdeal = (ImageView) findViewById(R.id.ivdeal);
         tvvoucherid = (TextView) findViewById(R.id.tvvoucherid);
@@ -93,6 +102,8 @@ public class OrderDetailActivity extends AppCompatActivity {
         tvusername = (TextView) newtoolbar.findViewById(R.id.tvusername);
         RLAmount = (RelativeLayout) findViewById(R.id.RLAmount);
         tvoff = (TextView) findViewById(R.id.tvoff);
+        btnCancel = (Button) findViewById(R.id.btnCancel);
+
         LLloc.setVisibility(View.GONE);
         imBack.setVisibility(View.VISIBLE);
         tvTitle.setVisibility(View.VISIBLE);
@@ -115,9 +126,200 @@ public class OrderDetailActivity extends AppCompatActivity {
         imageLoader.init(ImageLoaderConfiguration.createDefault(OrderDetailActivity.this));
         imageLoader.displayImage(OrderModel.getOrderModel().getDealimgurl(), ivdeal, options);
 
+
+        Intent intent=getIntent();
+        if (intent.hasExtra("commingFrom"))
+        if(getIntent().getExtras().getInt("cancelVisible")==1){
+            btnCancel.setVisibility(View.VISIBLE);
+        }else{
+            btnCancel.setVisibility(View.GONE);
+        }
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelOrder();
+            }
+        });
         orderdetail();
     }
 
+
+    public void cancelOrder(){
+
+        alertDialogBuilder = new Dialog(OrderDetailActivity.this);
+        LayoutInflater layoutInflater = LayoutInflater.from(OrderDetailActivity.this);
+        promptView = layoutInflater.inflate(R.layout.activity_cancelpopup, null);
+        alertDialogBuilder.setContentView(promptView);
+        alertDialogBuilder.setCancelable(false);
+        alertDialogBuilder.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        final CheckBox chkselect1 = (CheckBox) promptView.findViewById(R.id.chkselect1);
+        final CheckBox chkselect2 = (CheckBox) promptView.findViewById(R.id.chkselect2);
+        final CheckBox chkselect3 = (CheckBox) promptView.findViewById(R.id.chkselect3);
+        final CheckBox chkselect4 = (CheckBox) promptView.findViewById(R.id.chkselect4);
+
+        final EditText othertext = (EditText) promptView.findViewById(R.id.othertext);
+        final TextView cancel = (TextView) promptView.findViewById(R.id.cancel);
+        final TextView ok = (TextView) promptView.findViewById(R.id.ok);
+
+        othertext.setVisibility(View.GONE);
+
+        chkselect4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                othertext.setVisibility(View.VISIBLE);
+                chkselect3.setChecked(false);
+                chkselect2.setChecked(false);
+                chkselect1.setChecked(false);
+                val = othertext.getText().toString();
+            }
+        });
+        chkselect1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                othertext.setVisibility(View.GONE);
+                chkselect3.setChecked(false);
+                chkselect2.setChecked(false);
+                chkselect4.setChecked(false);
+                val = "Plan Changed";
+            }
+        });
+        chkselect2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                othertext.setVisibility(View.GONE);
+                chkselect3.setChecked(false);
+                chkselect4.setChecked(false);
+                chkselect1.setChecked(false);
+                val = "Purchease other deal";
+            }
+        });
+        chkselect3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                othertext.setVisibility(View.GONE);
+                chkselect1.setChecked(false);
+                chkselect2.setChecked(false);
+                chkselect4.setChecked(false);
+                val = "Not more Intrested";
+            }
+        });
+
+                /*   if (chkselect1.isChecked()) {
+                    chkselect3.setChecked(false);
+                    chkselect2.setChecked(false);
+                    chkselect4.setChecked(false);
+                    val = "Plan Changed";
+                } else if (chkselect2.isChecked()) {
+                    chkselect3.setChecked(false);
+                    chkselect4.setChecked(false);
+                    chkselect1.setChecked(false);
+                    val = "Purchease other deal";
+                } else if (chkselect3.isChecked()) {
+                    chkselect1.setChecked(false);
+                    chkselect2.setChecked(false);
+                    chkselect4.setChecked(false);
+                    val = "Not more Intrested";
+                } else if (chkselect4.isChecked()) {
+                    chkselect3.setChecked(false);
+                    chkselect2.setChecked(false);
+                    chkselect1.setChecked(false);
+                    othertext.setVisibility(View.VISIBLE);
+                    val = othertext.getText().toString();
+                }*/
+
+               /* if (chkselect4.isChecked()) {
+                    othertext.setVisibility(View.VISIBLE);
+                } else {
+                    othertext.setVisibility(View.GONE);
+                }*/
+
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Global.isInternetAvail(OrderDetailActivity.this)) {
+                    String url = Constaints.OrderedCancel;
+                    OrderActivity.progressBar.setVisibility(View.VISIBLE);
+                    StringRequest request = new StringRequest(Request.Method.POST, url,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    try {
+                                        Log.e("profile update resp", response);
+                                        JSONObject jSONObject = new JSONObject(new String(response));
+                                        String Status = jSONObject.optString("status");
+                                        if (Integer.parseInt(Status) == 1) {
+                                            // loadDetailist("");
+                                            //    Toast.makeText(context, jSONObject.getString("message").toString(), Toast.LENGTH_SHORT).show();
+                                            alertDialogBuilder.dismiss();
+                                            finish();
+                                            Toast.makeText(getApplicationContext(), "Order has been Cancelled", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            alertDialogBuilder.dismiss();
+                                            Toast.makeText(getApplicationContext(), jSONObject.getString("message").toString(), Toast.LENGTH_SHORT).show();
+                                            alertDialogBuilder.cancel();
+                                            finish();
+                                        }
+                                    } catch (Exception e) {
+                                        Log.e("", e.getMessage());
+                                        alertDialogBuilder.dismiss();
+                                        alertDialogBuilder.cancel();
+                                        finish();
+                                    }
+                                    OrderActivity.progressBar.setVisibility(View.GONE);
+                                }
+                            }, new Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            OrderActivity.progressBar.setVisibility(View.GONE);
+                        }
+                    }) {
+                        @Override
+                        protected Map<String, String> getParams() {
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("XAPIKEY", "XXXXX");
+                            params.put("deal_id", getIntent().getExtras().getString("id"));
+                            params.put("status", 2 + "");
+                            params.put("user_id", SessionManager.getUserID(getApplicationContext()));
+                          //  params.put("status", val);
+                            System.out.println("data "+params);
+                            return params;
+                        }
+
+                        @Override
+                        public Map<String, String> getHeaders() throws AuthFailureError {
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("Content-Type", "application/x-www-form-urlencoded");
+                            return params;
+                        }
+                    };
+                    int socketTimeout = 30000;
+                    Volley.newRequestQueue(getApplicationContext()).add(request);
+                    request.setRetryPolicy(new DefaultRetryPolicy(
+                            socketTimeout,
+                            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                } else
+
+                {
+                    Toast.makeText(getApplicationContext(), R.string.ConnectionErrorResponse, Toast.LENGTH_LONG).show();
+                }
+
+
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialogBuilder.dismiss();
+            }
+        });
+        if (!isFinishing())
+            alertDialogBuilder.show();
+
+    }
 
     public void orderdetail() {
 
@@ -137,7 +339,7 @@ public class OrderDetailActivity extends AppCompatActivity {
                                 JSONObject orderJson = orderArray.getJSONObject(i);
                                 System.out.println("data = "+orderArray.getJSONObject(i));
 
-                                tvtotal.setText("\u20B9" + " " + orderJson.optString("totalAmount"));
+                                tvtotal.setText("\u20B9" + " " + orderJson.optString("total_amount"));
                                 tvtransactionId.setText(orderJson.optString("transactions_no"));
                                 try {
                                     String date = orderJson.optString("order_date");
@@ -227,7 +429,7 @@ public class OrderDetailActivity extends AppCompatActivity {
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("XAPIKEY", "XXXXX");
-                    //   params.put("user_id", "16");
+                    params.put("user_id", SessionManager.getUserID(getApplicationContext()));
                     params.put("deal_id", OrderModel.getOrderModel().getDealid());
                     //
                     //   params.put("user_id", SessionManager.getUserID(getApplicationContext()));

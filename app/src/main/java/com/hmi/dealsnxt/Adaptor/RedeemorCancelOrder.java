@@ -64,6 +64,7 @@ public class RedeemorCancelOrder extends RecyclerView.Adapter<RedeemorCancelOrde
     List<CharSequence> list = new ArrayList<CharSequence>();
     View promptView;
     android.app.AlertDialog alert;
+    int cancelVisible=0;
     public String val;
     RedeemCancel redeemOrder;
     // Provide a reference to the views for each data item
@@ -158,6 +159,45 @@ public class RedeemorCancelOrder extends RecyclerView.Adapter<RedeemorCancelOrde
         viewHolder.tvlocation.setText(items.get(position).getOutletaddress());
         viewHolder.tvwaiveoffrs.setText("\u20B9" + " " + items.get(position).getDealpurchaseamount());
         //      orderModel.setDealimgurl(Path + "/" + dealobj.optString("dealImge"));
+
+/*
+        if (Integer.valueOf(items.get(position).getRefundable_policy())==1) {
+            if (!items.get(position).getGift_applied().equals("1")) {
+                if (Integer.valueOf(items.get(position).getDealstatus()) == 1) {
+                    cancelVisible = 1;
+                    try {
+                        Calendar c = Calendar.getInstance();
+                        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm aa");
+                        String getCurrentDateTime = sdf.format(c.getTime());
+                        String getMyTime=items.get(position).getDealavailtime_to();
+                        Log.d("getCurrentDateTime",getCurrentDateTime);
+                        // getCurrentDateTime: 05/23/2016 18:49 PM
+
+                        if (getCurrentDateTime.compareTo(getMyTime) > 0)
+                        {
+                            cancelVisible=1;
+                            Toast.makeText(activity, "greater than 0", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            cancelVisible=0;
+                            Log.d("Return","getMyTime older than getCurrentDateTime ");
+                        }
+                    } catch (Exception e) {
+
+                    }
+
+                } else {
+                    cancelVisible = 0;
+                }
+            } else {
+                cancelVisible = 0;
+            }
+        }else {
+            cancelVisible = 0;
+        }
+*/
+
 
         if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 0) {
             // QR not SHown

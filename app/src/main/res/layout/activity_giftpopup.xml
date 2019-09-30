@@ -121,6 +121,7 @@
                     android:layout_marginRight="15dp"
                     android:hint="Leave your message here."
                     android:maxLines="4"
+                    android:visibility="gone"
                     android:layout_height="wrap_content" />
 
                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularEditText

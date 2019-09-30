@@ -33,8 +33,6 @@ public class RefertofrndActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_refertofrnd);
         final LinearLayout toolbar = (LinearLayout) findViewById(R.id.toolbarnew);
         LLloc = (LinearLayout) toolbar.findViewById(R.id.LLloc);

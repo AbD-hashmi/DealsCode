@@ -126,7 +126,7 @@
                     android:id="@+id/etmobno"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:inputType="number"
+                    android:inputType="number|textFilter"
                     android:layout_marginRight="15dp"
                     android:padding="5dp"
                     android:maxLength="10"
@@ -274,8 +274,8 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:background="@drawable/gradiant_bottom_to_top"
             android:padding="12dp"
-            android:id="@+id/relative_layout"
             android:visibility="gone"
+            android:id="@+id/relative_layout"
             xmlns:android="http://schemas.android.com/apk/res/android">
 
             <android.support.v7.widget.Toolbar
@@ -305,13 +305,22 @@
                 android:layout_height="1dp"
                 android:layout_below="@+id/toolbar_top"
                 android:background="@color/darkGray" />
+            <ImageView
+                android:id="@+id/iop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_weight="2"
+                android:padding="50dp"
+                android:src="@drawable/logo" />
 
             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                 android:id="@+id/tvresend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:layout_below="@+id/view"
+                android:layout_below="@+id/iop"
                 android:textSize="23dp"
                 android:text="Please enter the code sent to"
                 android:textAppearance="?android:textAppearanceSmall"
@@ -360,7 +369,7 @@
                     android:id="@+id/etotp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:inputType="numberPassword"
                     android:maxLength="6"
                     android:layout_marginTop="5dp"
                     android:maxLines="1"
@@ -420,6 +429,7 @@
                 android:theme="@style/AppTheme.button"
                 android:layout_marginTop="20dp"
                 android:text="Resend OTP"
+                android:id="@+id/resendOtp"
                 android:paddingBottom="10dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"

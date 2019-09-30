@@ -11,7 +11,7 @@
                 android:bottomRightRadius="54dp"
                 />
             <solid
-                android:color="#4F4F4F"
+                android:color="@android:color/transparent"
                 />
             <padding
                 android:left="10dp"
@@ -24,7 +24,7 @@
                 android:height="60dp"
                 />
             <stroke
-                android:width="3dp"
+                android:width="1.5dp"
                 android:color="@color/yellowcol"
                 />
         </shape>

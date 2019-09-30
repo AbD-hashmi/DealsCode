@@ -57,6 +57,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentLeft="true"
                                     android:background="#95FFFFFF"
+                                    android:id="@+id/close_filter"
                                     android:textSize="30dp"
                                     android:text="X"
                                     android:textColor="@color/blackfontcolor" />
@@ -68,6 +69,7 @@
                                     android:background="#95FFFFFF"
                                     android:padding="10dp"
                                     android:text="Reset"
+                                    android:id="@+id/filter_reset"
                                     android:textColor="@color/buttoncolnew" />
 
                             </RelativeLayout>
@@ -89,18 +91,6 @@
                                     android:text="Select Location"
                                     android:textColor="@color/blackfontcolor" />
 
-                                <android.support.v7.widget.SearchView
-                                    android:id="@+id/ivsearch"
-                                    style="@style/MySearchViewStyle"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:layout_toLeftOf="@+id/my_loc"
-                                    android:background="@drawable/edittext_border_new"
-                                    android:clickable="false"
-                                    android:goIcon="@drawable/map_black"
-                                    android:searchIcon="@drawable/map_black"
-                                    app:defaultQueryHint="Start Trying you location...." />
 
                                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                                     android:id="@+id/tvdetectlocation"
@@ -345,18 +335,6 @@
                                         android:textAppearance="?android:textAppearanceSmall"
                                         android:textColor="@color/blackfontcolor" />
 
-                                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
-                                        android:id="@+id/tvpricerangstart"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_centerInParent="true"
-                                        android:layout_gravity="left"
-                                        android:layout_marginRight="5dp"
-                                        android:drawablePadding="10dp"
-                                        android:gravity="center|left"
-                                        android:textAppearance="?android:textAppearanceSmall"
-                                        android:textColor="@color/blackfontcolor" />
 
                                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                                         android:id="@+id/tvpricerangend"
@@ -421,19 +399,6 @@
                                         android:textColor="@color/blackfontcolor" />
 
                                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
-                                        android:id="@+id/tvdiscountrangestart"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_centerInParent="true"
-                                        android:layout_gravity="left"
-                                        android:layout_marginRight="5dp"
-                                        android:drawablePadding="10dp"
-                                        android:gravity="center|left"
-                                        android:textAppearance="?android:textAppearanceSmall"
-                                        android:textColor="@color/blackfontcolor" />
-
-                                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                                         android:id="@+id/tvdiscountpercentrangend"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -493,18 +458,6 @@
                                         android:textAppearance="?android:textAppearanceSmall"
                                         android:textColor="@color/blackfontcolor" />
 
-                                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
-                                        android:id="@+id/tvdistancestart"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_centerInParent="true"
-                                        android:layout_gravity="left"
-                                        android:layout_marginRight="5dp"
-                                        android:drawablePadding="10dp"
-                                        android:gravity="center|left"
-                                        android:textAppearance="?android:textAppearanceSmall"
-                                        android:textColor="@color/blackfontcolor" />
 
                                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                                         android:id="@+id/tvdistancerangend"
@@ -962,7 +915,7 @@
                             </LinearLayout>
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
-                                android:id="@+id/btnsearch"
+                                android:id="@+id/btn_filter_done"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -976,6 +929,7 @@
                                 android:paddingRight="20dp"
                                 android:paddingTop="10dp"
                                 android:text="DONE"
+
                                 android:textAppearance="?android:textAppearanceSmall"
                                 android:textColor="@color/blackfontcolor" />
 

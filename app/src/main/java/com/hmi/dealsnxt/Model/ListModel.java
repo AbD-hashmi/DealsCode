@@ -220,6 +220,16 @@ public class ListModel extends SugarRecord {
     public String outletintime;
     public String outletouttime;
 
+    public int getNumofOffers() {
+        return numofOffers;
+    }
+
+    public void setNumofOffers(int numofOffers) {
+        this.numofOffers = numofOffers;
+    }
+
+    public int numofOffers;
+
 
     public ArrayList<DealsDetailModel> getDealsDetailModels() {
         return dealsDetailModels;

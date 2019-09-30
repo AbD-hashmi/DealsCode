@@ -1,17 +1,24 @@
 package com.hmi.dealsnxt.Adaptor;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
@@ -27,24 +34,49 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.JsonIOException;
 import com.hmi.dealsnxt.Activity.DetailNewActivity;
 import com.hmi.dealsnxt.Activity.SingleOrderActivity;
+import com.hmi.dealsnxt.HelperClass.Constaints;
 import com.hmi.dealsnxt.HelperClass.SessionManager;
 import com.hmi.dealsnxt.Model.DealDetailsModel;
+import com.hmi.dealsnxt.Model.DealImagesModel;
 import com.hmi.dealsnxt.Model.ListModel;
 import com.hmi.dealsnxt.R;
+import com.hmi.dealsnxt.Utils.Common;
 import com.hmi.dealsnxt.Utils.Customutils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeallistAdaptorNew.SimpleItemViewHolder> {
     private List<ListModel> items;
@@ -60,12 +92,11 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
     public int totalprice = 0;
     public int itemposition = 0;
     public int qty = 0;
+    String getOutletId;
     View promptView;
     public static String Outletname = "", Outletadress = "", timein = "", timeout = "", Dealdesc = "";
     public Context context;
     public static String Dealimg = "";
-    public String calculateadd;
-    public String calculateminus;
 
     HashMap<Integer, Integer> dealMap = new HashMap<>();
     ArrayList<DealDetailsModel> orderarrayList = new ArrayList<>();
@@ -76,6 +107,7 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
      EditText tvmob4 ;
      EditText tvmob5 ;
      int pos;
+     int numofdeals;
      int deal_count;
 
     // Provide a reference to the views for each data item
@@ -88,6 +120,7 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
         RelativeLayout RLdeal, RLdata;
         ImageView spinnermore,deal_image;
         LinearLayout LLcount;
+        TextView textView;
 
         public SimpleItemViewHolder(View itemView) {
             super(itemView);
@@ -107,16 +140,19 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
             tvavailtime = (TextView) itemView.findViewById(R.id.tvavailtime);
             ivgift=(TextView) itemView.findViewById(R.id.ivgift);
             deal_image=(ImageView) itemView.findViewById(R.id.deal_image);
+            textView=(TextView)itemView.findViewById(R.id.tvSoldOut);
+
             //   spinnermore = (Spinner) itemView.findViewById(R.id.spinnermore);
             //spinnermore = (ImageView) itemView.findViewById(R.id.spinnermore);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public OutletsDeallistAdaptorNew(Context context, List<ListModel> items, Activity _activity) {
+    public OutletsDeallistAdaptorNew(Context context, List<ListModel> items, Activity _activity, String outletId) {
         this.items = items;
         this.activity = _activity;
         this.context = context;
+        this.getOutletId=outletId;
         options = new DisplayImageOptions.Builder()
                 .cacheOnDisc(true).cacheInMemory(true)
                 .imageScaleType(ImageScaleType.EXACTLY)
@@ -168,6 +204,8 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
         viewHolder.ivadd.setTag(position);
         viewHolder.ivminus.setTag(position);
         imageLoader.displayImage(items.get(position).getDealimg(),viewHolder.deal_image,options);
+
+
         final DealDetailsModel bm = new DealDetailsModel();
 
 
@@ -205,6 +243,13 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
                 tvafterdisprice.setText("\u20B9" + items.get(position).getAfterdiscountprice());
                 int a = (Integer.valueOf(items.get(position).getActualprice().toString())) - Integer.valueOf(items.get(position).getAfterdiscountprice().toString());
                 tvsaveamt.setText("\u20B9" + a);
+
+                loadData();
+                if (numofdeals<=0){
+                    viewHolder.LLcount.setVisibility(View.GONE);
+                    viewHolder.textView.setVisibility(View.VISIBLE);
+                }
+                 //items.get(position).getNumberofitem();
                 //     tvexpire.setText(items.get(position).getDesciption());
                 //  tvtimeout.setText(items.get(position).getDesciption());
                 cross.setOnClickListener(new View.OnClickListener() {
@@ -216,76 +261,76 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
             }
         });
 
-        viewHolder.ivadd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int pos = (int) v.getTag();
-                int dealCount = 0;
-                //  String calculate = "";
-                if (dealCount <= 0) {
-                    //viewHolder.ivminus.setImageResource(R.drawable.minus_dark);
-                } else {
-                    //viewHolder.ivminus.setImageResource(R.drawable.minus);
-                }
+            viewHolder.ivadd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = (int) v.getTag();
+                    int dealCount = 0;
+                    //  String calculate = "";
+                    if (dealCount <= 0) {
+                        //viewHolder.ivminus.setImageResource(R.drawable.minus_dark);
 
-                if (dealMap.containsKey(Integer.valueOf(items.get(position).getDealid())))
-                    dealCount = dealMap.get(Integer.valueOf(items.get(position).getDealid()));
-                if (pos == position) {
-                    if (dealCount > 29) {
-                        Toast.makeText(activity, "You have choose max oder", Toast.LENGTH_LONG).show();
                     } else {
-                        dealCount = dealCount + 1;
-                        viewHolder.tvcount.setText("" + dealCount);
-                        totaldiscount = dealCount * discountedprice;
-                        totalprice = dealCount * actualprice;
-                        ListModel.setListModel(items.get(position));
-                        items.get(position).setCount(dealCount + "");
-                        itemposition = Integer.valueOf(items.get(position).getDealid());
-                        Dealdesc = (Html.fromHtml(items.get(position).getDesciption())).toString();
-
-                        Intent i = new Intent("ALERT_CHANGE");
-                        i.putExtra("data", totaldiscount);
-                        i.putExtra("dataprice", totalprice);
-                        i.putExtra("itempos", itemposition);
-                        i.putExtra("qty", dealCount);
-
-                        i.putExtra("imgname", items.get(position).getDealimgname());
-                        i.putExtra("start_time", items.get(position).getOutletintime());
-                        i.putExtra("end_time", items.get(position).getOutletouttime());
-
-                        //   i.putExtra("calculate", calculate);
-
-                        bm.setDealname(items.get(position).getDealname());
-                        bm.setDealid(items.get(position).getDealid());
-                        bm.setDiscountpercent(items.get(position).getDiscountpercent());
-                        bm.setActualprice(items.get(position).getActualprice());
-                        bm.setAfterdiscountprice(items.get(position).getAfterdiscountprice());
-                        bm.setDealQTY(dealCount + "");
-                        bm.setDealImge(items.get(position).getDealimgname());
-                        bm.setPercent(items.get(position).getDiscountpercent());
-                        bm.setDescription(items.get(position).getDesciption());
-                        bm.setTimeFrom(items.get(position).getOutletintime());
-                        bm.setTimeTo(items.get(position).getOutletouttime());
-                        bm.setDeal_date(items.get(position).getDealDate());
-                        bm.setRefundable_policy(items.get(position).getRefundablePolicy());
-                        bm.setShow_percentage(items.get(position).getShowPercentage());
-
-                        if (dealCount > 0) {
-                            orderarrayList.remove(bm);
-                            orderarrayList.add(bm);
-                        } else {
-                            orderarrayList.remove(bm);
-                        }
-                        i.putExtra("order_array", SessionManager.setRecent1(orderarrayList, context));
-                        activity.sendBroadcast(i);
-
+                        //viewHolder.ivminus.setImageResource(R.drawable.minus);
                     }
-                    dealMap.put(Integer.valueOf(items.get(position).getDealid()), dealCount);
-                    //  int a = Integer.valueOf(calculateadd) + Integer.valueOf(DetailNewActivity.tvfinalamount.getText().toString());
-                    //      DetailNewActivity.tvfinalamount.setText(a);
+
+                    if (dealMap.containsKey(Integer.valueOf(items.get(position).getDealid())))
+                        dealCount = dealMap.get(Integer.valueOf(items.get(position).getDealid()));
+                    if (pos == position) {
+                        if (dealCount > 29) {
+                            Toast.makeText(activity, "You have choose max oder", Toast.LENGTH_LONG).show();
+                        } else {
+                            dealCount = dealCount + 1;
+                            viewHolder.tvcount.setText("" + dealCount);
+                            totaldiscount = dealCount * discountedprice;
+                            totalprice = dealCount * actualprice;
+                            ListModel.setListModel(items.get(position));
+                            items.get(position).setCount(dealCount + "");
+                            itemposition = Integer.valueOf(items.get(position).getDealid());
+                            Dealdesc = (Html.fromHtml(items.get(position).getDesciption())).toString();
+
+                            Intent i = new Intent("ALERT_CHANGE");
+                            i.putExtra("data", totaldiscount);
+                            i.putExtra("dataprice", totalprice);
+                            i.putExtra("itempos", itemposition);
+                            i.putExtra("qty", dealCount);
+                            i.putExtra("imgname", items.get(position).getDealimgname());
+                            i.putExtra("start_time", items.get(position).getOutletintime());
+                            i.putExtra("end_time", items.get(position).getOutletouttime());
+
+                            //   i.putExtra("calculate", calculate);
+
+                            bm.setDealname(items.get(position).getDealname());
+                            bm.setDealid(items.get(position).getDealid());
+                            bm.setDiscountpercent(items.get(position).getDiscountpercent());
+                            bm.setActualprice(items.get(position).getActualprice());
+                            bm.setAfterdiscountprice(items.get(position).getAfterdiscountprice());
+                            bm.setDealQTY(dealCount + "");
+                            bm.setDealImge(items.get(position).getDealimgname());
+                            bm.setPercent(items.get(position).getDiscountpercent());
+                            bm.setDescription(items.get(position).getDesciption());
+                            bm.setTimeFrom(items.get(position).getOutletintime());
+                            bm.setTimeTo(items.get(position).getOutletouttime());
+                            bm.setDeal_date(items.get(position).getDealDate());
+                            bm.setRefundable_policy(items.get(position).getRefundablePolicy());
+                            bm.setShow_percentage(items.get(position).getShowPercentage());
+
+                            if (dealCount > 0) {
+                                orderarrayList.remove(bm);
+                                orderarrayList.add(bm);
+                            } else {
+                                orderarrayList.remove(bm);
+                            }
+                            i.putExtra("order_array", SessionManager.setRecent1(orderarrayList, context));
+                            activity.sendBroadcast(i);
+
+                        }
+                        dealMap.put(Integer.valueOf(items.get(position).getDealid()), dealCount);
+                        //  int a = Integer.valueOf(calculateadd) + Integer.valueOf(DetailNewActivity.tvfinalamount.getText().toString());
+                        //      DetailNewActivity.tvfinalamount.setText(a);
+                    }
                 }
-            }
-        });
+            });
 
         viewHolder.ivminus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -393,8 +438,6 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
                 bm.setRefundable_policy(items.get(position).getRefundablePolicy());
                 bm.setShow_percentage(items.get(position).getShowPercentage());
                 bm.setDealQTY(1 + "");
-
-
                 if (1 > 0) {
                     orderarrayList.remove(bm);
                     orderarrayList.add(bm);
@@ -405,7 +448,6 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
                 }
                 deal_count=1;
                 SessionManager.setRecent1(orderarrayList, context);
-
                 pick_contact.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -416,7 +458,6 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
                         origin.startActivityForResult(intent, DetailNewActivity.REQUEST_CODE);
                     }
                 });
-
                 final TextView tvcountnumber = (TextView) promptView.findViewById(R.id.tvcountnumber);
                  tvmob1 = (EditText) promptView.findViewById(R.id.tvmob1);
                  tvmob2 = (EditText) promptView.findViewById(R.id.tvmob2);
@@ -426,164 +467,21 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
                  tvmob5 = (EditText) promptView.findViewById(R.id.tvmob5);
 
 
-                tvmob1.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        final int DRAWABLE_LEFT = 0;
-                        final int DRAWABLE_TOP = 1;
-
-                        final int DRAWABLE_RIGHT = 2;
-                        final int DRAWABLE_BOTTOM = 3;
-
-                        if(event.getAction() == MotionEvent.ACTION_UP) {
-                            if(event.getRawX() >= (tvmob1.getRight() - tvmob1.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                                // your action here
-                                Log.e("drwable click","yes");
-
-                                Uri uri = Uri.parse("content://contacts");
-                                Intent intent = new Intent(Intent.ACTION_PICK, uri);
-                                intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
-                                intent.putExtra("position",""+position);
-                                DetailNewActivity origin = (DetailNewActivity)context;
-
-                                origin.startActivityForResult(intent, DetailNewActivity.REQUEST_CODE);
-                                pos=1;
-                                return true;
-                            }
-                        }
-                        return false;
-                    }
-                });
-
-                tvmob2.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        final int DRAWABLE_LEFT = 0;
-                        final int DRAWABLE_TOP = 1;
-
-                        final int DRAWABLE_RIGHT = 2;
-                        final int DRAWABLE_BOTTOM = 3;
-
-                        if(event.getAction() == MotionEvent.ACTION_UP) {
-                            if(event.getRawX() >= (tvmob1.getRight() - tvmob1.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                                // your action here
-                                Log.e("drwable click","yes");
-
-                                Uri uri = Uri.parse("content://contacts");
-                                Intent intent = new Intent(Intent.ACTION_PICK, uri);
-                                intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
-                                intent.putExtra("position",""+position);
-                                DetailNewActivity origin = (DetailNewActivity)context;
-
-                                origin.startActivityForResult(intent, DetailNewActivity.REQUEST_CODE);
-                                pos=2;
-                                return true;
-                            }
-                        }
-                        return false;
-                    }
-                });
-                tvmob3.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        final int DRAWABLE_LEFT = 0;
-                        final int DRAWABLE_TOP = 1;
-
-                        final int DRAWABLE_RIGHT = 2;
-                        final int DRAWABLE_BOTTOM = 3;
-
-                        if(event.getAction() == MotionEvent.ACTION_UP) {
-                            if(event.getRawX() >= (tvmob1.getRight() - tvmob1.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                                // your action here
-                                Log.e("drwable click","yes");
-
-                                Uri uri = Uri.parse("content://contacts");
-                                Intent intent = new Intent(Intent.ACTION_PICK, uri);
-                                intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
-                                intent.putExtra("position",""+position);
-                                DetailNewActivity origin = (DetailNewActivity)context;
-
-                                origin.startActivityForResult(intent, DetailNewActivity.REQUEST_CODE);
-                                pos=3;
-                                return true;
-                            }
-                        }
-                        return false;
-                    }
-                });
-                tvmob4.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        final int DRAWABLE_LEFT = 0;
-                        final int DRAWABLE_TOP = 1;
-
-                        final int DRAWABLE_RIGHT = 2;
-                        final int DRAWABLE_BOTTOM = 3;
-
-                        if(event.getAction() == MotionEvent.ACTION_UP) {
-                            if(event.getRawX() >= (tvmob1.getRight() - tvmob1.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                                // your action here
-                                Log.e("drwable click","yes");
-
-                                Uri uri = Uri.parse("content://contacts");
-                                Intent intent = new Intent(Intent.ACTION_PICK, uri);
-                                intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
-                                intent.putExtra("position",""+position);
-                                DetailNewActivity origin = (DetailNewActivity)context;
-
-                                origin.startActivityForResult(intent, DetailNewActivity.REQUEST_CODE);
-                                pos=4;
-                                return true;
-                            }
-                        }
-                        return false;
-                    }
-                });
-                tvmob5.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        final int DRAWABLE_LEFT = 0;
-                        final int DRAWABLE_TOP = 1;
-
-                        final int DRAWABLE_RIGHT = 2;
-                        final int DRAWABLE_BOTTOM = 3;
-
-                        if(event.getAction() == MotionEvent.ACTION_UP) {
-                            if(event.getRawX() >= (tvmob1.getRight() - tvmob1.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                                // your action here
-                                Log.e("drwable click","yes");
-
-                                Uri uri = Uri.parse("content://contacts");
-                                Intent intent = new Intent(Intent.ACTION_PICK, uri);
-                                intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
-                                intent.putExtra("position",""+position);
-                                DetailNewActivity origin = (DetailNewActivity)context;
-
-                                origin.startActivityForResult(intent, DetailNewActivity.REQUEST_CODE);
-                                pos=5;
-                                return true;
-                            }
-                        }
-                        return false;
-                    }
-                });
-
-
-                ivplus.setOnClickListener(new View.OnClickListener() {
+                 ivplus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         int giftcount = Integer.parseInt(tvcountnumber.getText().toString());
                         giftcount = giftcount + 1;
                         if (giftcount > 1) {
-                            ivsubstract.setImageResource(R.drawable.minus_dark);
+                            ivsubstract.setImageResource(R.drawable.minus);
                         } else {
                             ivsubstract.setImageResource(R.drawable.minus);
                         }
 
                         if (giftcount > 5) {
-                            Toast.makeText(activity, "You have choose max giftee", Toast.LENGTH_LONG).show();
+                            Toast.makeText(activity, "You have choose max giftees", Toast.LENGTH_LONG).show();
                         } else {
-                            if (giftcount == 2) {
+                           /* if (giftcount == 2) {
                                 tvmob2.setVisibility(View.VISIBLE);
                                 tvmob2.setFocusable(true);
                                 tvcountnumber.setText("" + giftcount);
@@ -599,7 +497,7 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
                                 tvmob5.setVisibility(View.VISIBLE);
                                 tvmob5.setFocusable(true);
                                 tvcountnumber.setText("" + giftcount);
-                            }
+                            }*/
 
                             bm.setDealname(items.get(position).getDealname());
                             bm.setDealid(items.get(position).getDealid());
@@ -639,28 +537,8 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
                         if (giftcount > 1) {
 
                           //  viewHolder.tvcount.setText("" + giftcount);
-                            ivsubstract.setImageResource(R.drawable.minus_dark);
-                            if (giftcount == 2) {
-                                giftcount = giftcount - 1;
-                                tvmob2.setVisibility(View.INVISIBLE);
-                                tvmob2.setFocusable(true);
-                                tvcountnumber.setText("" + giftcount);
-                            } else if (giftcount == 3) {
-                                giftcount = giftcount - 1;
-                                tvmob3.setVisibility(View.INVISIBLE);
-                                tvmob3.setFocusable(true);
-                                tvcountnumber.setText("" + giftcount);
-                            } else if (giftcount == 4) {
-                                giftcount = giftcount - 1;
-                                tvmob4.setVisibility(View.INVISIBLE);
-                                tvmob4.setFocusable(true);
-                                tvcountnumber.setText("" + giftcount);
-                            } else if (giftcount == 5) {
-                                giftcount = giftcount - 1;
-                                tvmob5.setVisibility(View.INVISIBLE);
-                                tvmob5.setFocusable(true);
-                                tvcountnumber.setText("" + giftcount);
-                            }
+                            ivsubstract.setImageResource(R.drawable.minus);
+
                             bm.setDealname(items.get(position).getDealname());
                             bm.setDealid(items.get(position).getDealid());
                             bm.setDiscountpercent(items.get(position).getDiscountpercent());
@@ -711,7 +589,7 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
                             Intent i = new Intent(context, SingleOrderActivity.class);
                             i.putExtra("Dealid", Integer.parseInt(items.get(position).getDealid()));
                             i.putExtra("Qtycount", deal_count);
-
+                            //todo gift apply
                             i.putExtra("Fromdiscount", Integer.parseInt(orderarrayList.get(0).getDealQTY()) * Integer.parseInt(orderarrayList.get(0).getAfterdiscountprice()));
                             i.putExtra("Dealimgname", orderarrayList.get(0).dealImge);
                             i.putExtra("Dealstarttime", items.get(position).getOutletintime());
@@ -731,6 +609,110 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
 
 
     }
+
+    public void loadData(){
+
+        String url = Constaints.DealDetailbyOutlet;
+
+        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jSONObject = new JSONObject(new String(response));
+                    int Status = jSONObject.optInt("status");
+                    String Path = Constaints.BaseUrl + jSONObject.optString("outletCdnpath");
+                    String Path_deal = Constaints.BaseUrl + jSONObject.optString("dealsCdnpath");
+                    //       dealsModel.setDealsName(Constaints.BaseUrl + merchant.optString("dealsCdnpath"));
+                    if (Status == 1) {
+                        JSONArray infoArray = jSONObject.getJSONArray("info");
+                        for (int i = 0; i < infoArray.length(); i++) {
+                            //  ListModel listModel = new ListModel();
+                            final JSONObject outlet = infoArray.getJSONObject(i);
+                            JSONArray dealJsonArray = outlet.optJSONArray("image");
+                            ArrayList<DealImagesModel> ImagesModels = new ArrayList<DealImagesModel>();
+                            // DealImagesModel.deleteRecord("account" + accountJson.optInt("id"));
+                            for (int j = 0; j < dealJsonArray.length(); j++) {
+                                JSONObject review = dealJsonArray.optJSONObject(j);
+                                DealImagesModel um = new DealImagesModel();
+                                um.setImage_ID(review.optString("id"));
+                                numofdeals=outlet.optInt("dealCount");
+
+
+                                //       um.setOutlet_id(outlet.optString("id"));
+                                um.setImage_name(review.optString("image_name"));
+                                //  um.setImage_name(review.optString("image_name"));
+                                um.setImages_url(Path + "/" + review.optString("image_name"));
+                                ImagesModels.add(um);
+                              //  dealimglist.add(um);
+                            }
+                            //       DealImagesModel.saveInTx(ImagesModels);
+
+                        }
+
+                    }
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+              //  adapter = new OutletsDeallistAdaptorNew(DetailNewActivity.this, arrayList, DetailNewActivity.this,Qtycount);
+                //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+                // linearLayoutManager.setStackFromEnd(true);
+                //viewlist.setLayoutManager(linearLayoutManager);
+
+                //   viewlist.setLayoutManager(linearLayoutManager);
+                //viewlist.setAdapter(adapter);
+                //DetailNewActivity.CustomPagerAdapter mCustomPagerAdapter = new DetailNewActivity.CustomPagerAdapter(getApplicationContext(), dealimglist);
+                //view_pager.setAdapter(mCustomPagerAdapter);
+                /*After setting the adapter use the timer */
+
+
+        }
+    }, new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+           // progressBar.setVisibility(View.GONE);
+            Log.e("error", "" + error);
+            AlertDialog.Builder builder=new AlertDialog.Builder(getApplicationContext());
+            builder.setTitle("Could Not Find Deal");
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                    //finish();
+                }
+            });
+            builder.show();
+        }
+    }) {
+        @Override
+        protected Map<String, String> getParams() {
+            Map<String, String> params = new HashMap<String, String>();
+        //    Intent intent = getIntent();
+            params.put("XAPIKEY", "XXXXX");
+            //    params.put("user_id", SessionManager.getUserID(getApplicationContext()).toString());
+            // params.put("id", HotDealsModel.getHotDealsModel().getOutletid());
+            params.put("outlet_id", getOutletId);
+            params.put("user_id", SessionManager.getUserID(getApplicationContext()));
+            System.out.println("data details "+params);
+            return params;
+        }
+
+        @Override
+        public Map<String, String> getHeaders() throws AuthFailureError {
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("Content-Type", "application/x-www-form-urlencoded");
+            return params;
+        }
+    };
+
+    int socketTimeout = 30000;
+        Volley.newRequestQueue(getApplicationContext()).add(request);
+        request.setRetryPolicy(new DefaultRetryPolicy(
+            socketTimeout,
+            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+}
+
 
     @Override
     public int getItemViewType(int position) {
@@ -783,22 +765,6 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
                 if (pos==1)
                 {
                     tvmob1.setText(""+number);
-                }
-                else if (pos==2)
-                {
-                    tvmob2.setText(""+number);
-                }
-                else if (pos==3)
-                {
-                    tvmob3.setText(""+number);
-                }
-                else if (pos==4)
-                {
-                    tvmob4.setText(""+number);
-                }
-                else if (pos==5)
-                {
-                    tvmob5.setText(""+number);
                 }
 
 

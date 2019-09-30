@@ -8,6 +8,8 @@ import android.support.v7.widget.SearchView;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -45,7 +47,6 @@ public class AboutUsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
-
         final LinearLayout toolbar = (LinearLayout) findViewById(R.id.toolbarnew);
         LLloc = (LinearLayout) toolbar.findViewById(R.id.LLloc);
         imBack = (ImageView) toolbar.findViewById(R.id.imBack);
@@ -96,10 +97,7 @@ public class AboutUsActivity extends AppCompatActivity {
                                 if (Integer.parseInt(Status) == 1) {
 
                                     JSONObject jSONinfo = jSONObject.optJSONObject("info");
-                                    webView.setBackgroundColor(R.drawable.gradiant_bottom_to_top);
-                                    String htmlData="<font color='white'>" + jSONinfo.getString("body") + "</font>";
-                                    webView.loadDataWithBaseURL(null, htmlData, "text/html", "UTF-8", null);
-                                    //webView.loadData(jSONinfo.getString("body").toString(), "text/html", "UTF-8");
+                                    webView.loadData(jSONinfo.getString("body").toString(), "text/html", "UTF-8");
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Unable to load data from Server", Toast.LENGTH_SHORT).show();
                                 }

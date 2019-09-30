@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.hmi.dealsnxt.Activity.DetailNewActivity;
 import com.hmi.dealsnxt.Model.CityModel;
+import com.hmi.dealsnxt.Model.HotDealsModel;
 import com.hmi.dealsnxt.Model.SearchModel;
 import com.hmi.dealsnxt.R;
 import com.hmi.dealsnxt.Utils.Common;
@@ -37,6 +38,7 @@ public class SearchOutletAdapter extends RecyclerView.Adapter<SearchOutletAdapte
     public static int count;
     static Context mContext;
     private static Activity activity;
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView posting, name;
         public LinearLayout ll_listitem;
@@ -75,6 +77,10 @@ public class SearchOutletAdapter extends RecyclerView.Adapter<SearchOutletAdapte
         SearchModel movie = filterList.get(position);
         holder.name.setText(movie.getOutlet_name());
         holder.posting.setText(movie.getCity_id());
+
+        HotDealsModel hotDealsModel=new HotDealsModel();
+        hotDealsModel.setOutletName(movie.getOutlet_name());
+        hotDealsModel.setOutletid(movie.getCity_id());
 
         String tti = String.valueOf(Html.fromHtml(filterList.get(position).getOutlet_name()));
         SpannableStringBuilder sb = new SpannableStringBuilder(tti);

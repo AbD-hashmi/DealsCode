@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.hmi.dealsnxt.HelperClass.SessionManager;
+import com.hmi.dealsnxt.Model.ChatModel;
 import com.hmi.dealsnxt.Model.DealDetailsModel;
 import com.hmi.dealsnxt.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -19,10 +21,11 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.SimpleItemViewHolder> {
     // private List<DealDetailsModel> items;
-    public ArrayList<DealDetailsModel> items;
+    public ArrayList<ChatModel> items;
     public Activity activity;
     public String Qtycount;
     public int count = 0;
@@ -31,6 +34,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.SimpleItemView
     DisplayImageOptions options;
     int clickcount = 0;
     public static String Number;
+
 
 
     // Provide a reference to the views for each data item
@@ -43,6 +47,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.SimpleItemView
         RelativeLayout RLdeal;
         ImageView spinnermore;
         TextView tv_orderno;
+        TextView incomming_message,outgoing_message;
 
         public SimpleItemViewHolder(View itemView) {
             super(itemView);
@@ -60,22 +65,16 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.SimpleItemView
             //   spinnermore = (Spinner) itemView.findViewById(R.id.spinnermore);
             //   spinnermore = (ImageView) itemView.findViewById(R.id.spinnermore);
             tv_orderno = (TextView) itemView.findViewById(R.id.tv_orderno);
+            incomming_message=(TextView)itemView.findViewById(R.id.incomming_message);
+            outgoing_message=(TextView)itemView.findViewById(R.id.outgoing_message);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ChatAdapter(ArrayList<DealDetailsModel> items, Activity _activity, String Qtycount) {
+    public ChatAdapter(ArrayList<ChatModel> items, Activity _activity) {
         this.items = items;
         this.activity = _activity;
-        this.Qtycount = Qtycount;
-        options = new DisplayImageOptions.Builder()
-                .cacheOnDisc(true).cacheInMemory(true)
-                .imageScaleType(ImageScaleType.EXACTLY)
-                .showImageOnLoading(R.drawable.banner).showImageForEmptyUri(R.drawable.banner).showImageOnFail(R.drawable.banner)
-                .build();
-        imageLoader = com.nostra13.universalimageloader.core.ImageLoader.getInstance();
-        imageLoader.init(ImageLoaderConfiguration.createDefault(activity));
-    }
+ }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
@@ -104,24 +103,20 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.SimpleItemView
     @Override
     public void onBindViewHolder(final ChatAdapter.SimpleItemViewHolder viewHolder, final int position) {
 
-        viewHolder.tvdiscount.setText(items.get(position).getDiscountpercent() + " " + "off");
-        viewHolder.tvdealname.setText("on" + " " + items.get(position).getDealname());
-        //    viewHolder.tvavaildate.setText(items.get(position).getDealday());
-        viewHolder.tvactualprice.setText("\u20B9" + items.get(position).getActualprice());
-        viewHolder.tvafterdisprice.setText("\u20B9" + items.get(position).getAfterdiscountprice());
-        viewHolder.tv_orderno.setText("Qty " + items.get(position).getDealQTY());
-        viewHolder.tvactualprice.setPaintFlags(viewHolder.tvactualprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+        if (items.get(position).getFrom_user_id().equals(SessionManager.getUserID(activity))){
+            viewHolder.outgoing_message.setText(items.get(position).getMessage());
+            viewHolder.incomming_message.setVisibility(View.GONE);
+        }else {
+            viewHolder.incomming_message.setText(items.get(position).getMessage());
+            viewHolder.outgoing_message.setVisibility(View.GONE);
+        }
+       // viewHolder.tvactualprice.setPaintFlags(viewHolder.tvactualprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
     @Override
     public int getItemViewType(int position) {
         int viewType = 0;
-
-      /*  if (Integer.valueOf(items.get(position).getEventScheduleType()) == 1) {
-            viewType = 1;
-        } else {
-            viewType = 0;
-        }*/
 
         return viewType;
     }

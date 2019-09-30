@@ -22,6 +22,7 @@ import com.hmi.dealsnxt.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -53,7 +54,7 @@ public class DealDetailsAdaptor extends RecyclerView.Adapter<DealDetailsAdaptor.
         RelativeLayout RLdeal;
         ImageView spinnermore;
         TextView tv_orderno;
-
+        ImageView image;
         public SimpleItemViewHolder(View itemView) {
             super(itemView);
             RLdeal = (RelativeLayout) itemView.findViewById(R.id.Rldeal);
@@ -70,6 +71,7 @@ public class DealDetailsAdaptor extends RecyclerView.Adapter<DealDetailsAdaptor.
             //   spinnermore = (Spinner) itemView.findViewById(R.id.spinnermore);
             //   spinnermore = (ImageView) itemView.findViewById(R.id.spinnermore);
             tv_orderno = (TextView) itemView.findViewById(R.id.tv_orderno);
+         //   image=(ImageView)itemView.findViewById(R.id.productImage);
         }
     }
 
@@ -121,6 +123,7 @@ public class DealDetailsAdaptor extends RecyclerView.Adapter<DealDetailsAdaptor.
         viewHolder.tvafterdisprice.setText("\u20B9" + items.get(position).getAfterdiscountprice());
         viewHolder.tv_orderno.setText("Qty " + items.get(position).getDealQTY());
         viewHolder.tvactualprice.setPaintFlags(viewHolder.tvactualprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        Picasso.with(activity).load(items.get(position).dealImge).into(viewHolder.image);
     }
 
     @Override

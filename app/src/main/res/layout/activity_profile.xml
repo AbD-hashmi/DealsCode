@@ -190,6 +190,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textColorHint="@color/white"
+                                android:layout_marginTop="20dp"
                                 >
 
                                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularEditText
@@ -221,6 +222,7 @@
                             <android.support.design.widget.TextInputLayout
                                 android:layout_width="match_parent"
                                 android:textColorHint="@color/white"
+                                android:layout_marginTop="20dp"
                                 android:layout_height="wrap_content">
                             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                                 android:id="@+id/etDOB"
@@ -245,22 +247,20 @@
                             </android.support.design.widget.TextInputLayout>
                             <View
                                 android:layout_width="match_parent"
-                                android:layout_height="15dp"
-                                android:background="@color/blackfontcolor"
-                                />
+                                android:layout_height="3dp"
+                                android:background="#AEB0B2"/>
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                                 android:id="@+id/ivsignout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/etemail"
-                                android:layout_gravity="left"
+                                android:layout_marginTop="20dp"
                                 android:backgroundTint="@android:color/transparent"
-                                android:enabled="false"
                                 android:hint="  Logout"
                                 android:drawableLeft="@drawable/signout"
-                                android:inputType="number"
                                 android:maxLines="1"
+                                android:editable="false"
                                 android:nextFocusDown="@+id/etemail"
                                 android:drawablePadding="10dp"
                                 android:padding="10dp"

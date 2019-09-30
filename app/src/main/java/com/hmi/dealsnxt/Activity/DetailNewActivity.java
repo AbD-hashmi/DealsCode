@@ -1,8 +1,10 @@
 package com.hmi.dealsnxt.Activity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
@@ -27,6 +29,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -77,7 +80,10 @@ import com.hmi.dealsnxt.Utils.Common;
 import com.hmi.dealsnxt.Utils.Customutils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -85,6 +91,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.SocketException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -143,20 +150,16 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
     ScrollView scroll_view;
     RelativeLayout.LayoutParams layoutParams;
     public static final int REQUEST_CODE = 1;
-    RecyclerView recycleVIew;
     public LinearLayout LLloc;
     public ImageView ivfilter;
     public TextView tvusername;
     public LinearLayout newtoolbar;
-
+    String stroutletname;
     public TabLayout tabLayout;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_detail);
         RLdealdata = (LinearLayout) findViewById(R.id.RLdealdata);
         RRl = (RelativeLayout) findViewById(R.id.RRl);
@@ -201,6 +204,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
         viewline = (View) findViewById(R.id.viewcross);
         tvactualprice = (TextView) findViewById(R.id.tvactualprice);
         tvfinalamount = (TextView) findViewById(R.id.tvfinalamount);
+
         tvfinalamount.setVisibility(View.INVISIBLE);
         tvbuy = (TextView) findViewById(R.id.tvbuy);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -301,6 +305,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
             }
         });
 
+        loadOfflineDeals("PullToRefresh");
         loadDetailist();
         initMap();
 
@@ -315,15 +320,11 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
         tvbuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* if (pos >= 0) {
-                    Bundle sendBundle = new Bundle();
-                    sendBundle.putLong("value", value);
-                    Intent i = new Intent(DetailNewActivity.this, SingleOrderActivity.class);
-                    i.putExtras(sendBundle);
-                    startActivity(i);   }  */
-                //   Dealid = pos;
                 if (Qtycount > 0) {
                     Intent i = new Intent(DetailNewActivity.this, SingleOrderActivity.class);
+
+                    HotDealsModel hotDealsModel=new HotDealsModel();
+                    hotDealsModel.setOutletName(stroutletname);
                     i.putExtra("Dealid", pos);
                     i.putExtra("Qtycount", Qtycount);
                     i.putExtra("Fromdiscount", Fromdiscount);
@@ -397,9 +398,19 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             View itemView = mLayoutInflater.inflate(R.layout.pager, container, false);
-            ImageLoader imageLoader = ImageLoader.getInstance();
-            ImageView imageView = (ImageView) itemView.findViewById(R.id.bannerimg);
-            imageLoader.displayImage(dealimglist.get(position).getImages_url(), imageView, defaultOptions);
+           try {
+               ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
+                       .imageDownloader(new BaseImageDownloader(getApplicationContext(), 5 * 1000, 20 * 1000))
+                       .build();
+                   ImageLoader imageLoader = ImageLoader.getInstance();
+               //      imageLoader.getInstance().init(config);
+               ImageView imageView = (ImageView) itemView.findViewById(R.id.bannerimg);
+              // Picasso.with(getApplicationContext()).load(dealimglist.get(position).getImages_url()).into(imageView);
+               if(!dealimglist.get(position).getImages_url().isEmpty())
+               imageLoader.displayImage(dealimglist.get(position).getImages_url(), imageView, defaultOptions);
+           }catch (Exception e){
+               e.printStackTrace();
+           }
             //   imageView.setImageResource(dealimglist.get(position).getImages_url());
             container.addView(itemView);
             return itemView;
@@ -417,6 +428,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
         final ProgressDialog progressDialog = Common.getProgressDialog(DetailNewActivity.this);
         progressDialog.show();
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+
             @Override
             public void onResponse(String response) {
                 try {
@@ -441,10 +453,13 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                             tvTitle.setText(outlet.optString("name"));
 
                             tvoutletname.setText(outlet.optString("name"));
+                            stroutletname=""+outlet.optString("name");
+
                             tvoutletaddress.setText(outlet.optString("address") + "," + outlet.optString("city") + "," + outlet.optString("zipcode"));
                             //      tvphone.setText(outlet.optString("name"));
                             tvphone.setText(outlet.optString("merchantPhone"));
                             tvphone.setOnClickListener(new View.OnClickListener() {
+                                @SuppressLint("MissingPermission")
                                 @Override
                                 public void onClick(View view) {
                                     try {
@@ -459,8 +474,6 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                             });
 
                             tvdetail.setText(Html.fromHtml(outlet.optString("termAndCondition")));
-                            bundle.putString("terms", ""+(Html.fromHtml(outlet.optString("termAndCondition"))));
-                            description.setArguments(bundle);
                             Location loc1 = new Location("");
                             try {
                                 loc1.setLatitude(Double.valueOf(SessionManager.getLatitude(getApplicationContext())));
@@ -476,9 +489,13 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                             }
                             LatLng test = new LatLng(Double.valueOf(Latitude), Double.valueOf(Longtitude));
                             mMap.addMarker(new MarkerOptions().position(test).title(outlet.optString("name")));
-                            mMap.moveCamera(CameraUpdateFactory.newLatLng(test));
+                            //mMap.moveCamera(CameraUpdateFactory.newLatLng(test));
+
+                            float zoomLevel = 16.0f; //This goes up to 21
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(test, zoomLevel));
                             mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
                             mMap.animateCamera(CameraUpdateFactory.zoomTo(15.0f));
+
                             RLlocation.setVisibility(View.VISIBLE);
 
                             ArrayList<DealImagesModel> ImagesModels = new ArrayList<DealImagesModel>();
@@ -507,6 +524,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                                 listModel.setOutletintime(data.optString("deal_available_from"));
                                 listModel.setOutletouttime(data.optString("deal_available_to"));
                                 listModel.setDesciption(data.optString("deal_description"));
+                                listModel.setNumofOffers(outlet.optInt("dealCount"));
                                 listModel.setDiscountpercent(data.optString("percentage"));
                                 listModel.setAfterdiscountprice(data.optString("deal_discount_price"));
                                 listModel.setDealimg(Path_deal + "/" + data.optString("deal_display_photo"));
@@ -523,8 +541,6 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                                 arrayList.add(j, listModel);
                             }
                         }
-
-
                         try {
                             JSONObject jSONObject1 = new JSONObject(new String(response));
                             //   JSONObject jSONObject = new JSONObject(new String(""));
@@ -551,7 +567,6 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                                             dealsModel.setOutletCity(outlet.optString("city"));
                                             dealsModel.setOutletzipcode(outlet.optString("zipcode"));
                                             dealsModel.setTndc(outlet.optString("termAndCondition"));
-                                            dealsModel.setNumofOffers(outlet.optInt("dealCount"));
                                             dealsModel.setOutletcontactperson(outlet.optString("contactPersonName"));
                                             dealsModel.setOutletcontactnumber(outlet.optString("contactNumber"));
                                             dealsModel.setOutletLatitude(outlet.optString("lat"));
@@ -577,7 +592,17 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                                     }
                                 }
                             } else {
-                                //  Toast.makeText(DetailNewActivity.this, jSONObject.optString("msg"), Toast.LENGTH_LONG).show();
+                                //
+                                AlertDialog.Builder builder=new AlertDialog.Builder(getApplicationContext());
+                                builder.setTitle("Could Not Find Deal");
+                                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                        finish();
+                                    }
+                                });
+                                builder.show();
                             }
                             similaradapter = new SimilairDealsAdaptor(similararrayList, DetailNewActivity.this, DetailNewActivity.this);
                             //  mRecyclerView.setLayoutManager(linearLayoutManager);
@@ -591,15 +616,28 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
 
 
                     } else {
-                        Toast.makeText(getApplicationContext(), jSONObject.optString("msg"), Toast.LENGTH_LONG).show();
+                      //  Toast.makeText(getApplicationContext(), jSONObject.optString("msg"), Toast.LENGTH_LONG).show();
+                        AlertDialog.Builder builder=new AlertDialog.Builder(DetailNewActivity.this);
+                        builder.setTitle("Could Not Find Deal");
+                        builder.setCancelable(false);
+                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                                finish();
+                            }
+                        });
+                        builder.create();
+                        builder.show();
                     }
-                    adapter = new OutletsDeallistAdaptorNew(DetailNewActivity.this, arrayList, DetailNewActivity.this);
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, true);
+                    Intent intent = getIntent();
+                    adapter = new OutletsDeallistAdaptorNew(DetailNewActivity.this, arrayList, DetailNewActivity.this,intent.getStringExtra("outletid"));
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+                  // linearLayoutManager.setStackFromEnd(true);
                     viewlist.setLayoutManager(linearLayoutManager);
+
                     //   viewlist.setLayoutManager(linearLayoutManager);
                     viewlist.setAdapter(adapter);
-
-
                     CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(getApplicationContext(), dealimglist);
                     view_pager.setAdapter(mCustomPagerAdapter);
                     /*After setting the adapter use the timer */
@@ -633,6 +671,16 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                 progressBar.setVisibility(View.GONE);
                 Log.e("error", "" + error);
                 progressDialog.dismiss();
+                AlertDialog.Builder builder=new AlertDialog.Builder(getApplicationContext());
+                builder.setTitle("Could Not Find Deal");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        finish();
+                    }
+                });
+                builder.show();
             }
         }) {
             @Override
@@ -644,6 +692,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                 // params.put("id", HotDealsModel.getHotDealsModel().getOutletid());
                 params.put("outlet_id", intent.getStringExtra("outletid"));
                 params.put("user_id", SessionManager.getUserID(getApplicationContext()));
+                System.out.println("data details "+params);
                 return params;
             }
 
@@ -684,7 +733,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
         {
         }*/
     }
-
+String strOid;
     public BroadcastReceiver uiUpdated = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -755,6 +804,8 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
         }
     }
 
+
+
     public void loadOfflineDeals(final String From) {
         // if (From.equals("PullToRefresh")) {
 
@@ -789,8 +840,9 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                                     JSONObject data = dealArray.getJSONObject(j);
                                     System.out.println("data= "+compaing_array.getJSONObject(j));
 
-                                    dealsModel = new HotDealsModel();
+                                    HotDealsModel dealsModel = new HotDealsModel();
                                     dealsModel.setOutletid(outlet.optString("id"));
+                                    strOid=""+outlet.optString("id");
                                     dealsModel.setOutletName(outlet.optString("outletName"));
                                     dealsModel.setOutletAddress(outlet.optString("address"));
                                     dealsModel.setOutletstate(outlet.optString("state"));
@@ -822,7 +874,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                                 for (int k = 0; k < compaing_array.length(); k++) {
                                     try {
                                         JSONObject jsonObject = compaing_array.optJSONObject(k);
-                                        dealsModel = new HotDealsModel();
+                                        HotDealsModel  dealsModel = new HotDealsModel();
                                         System.out.println("data= "+compaing_array.getJSONObject(k));
                                         dealsModel.setOutletid(outlet.optString("id"));
                                         dealsModel.setOutletName(outlet.optString("outletName"));
@@ -889,6 +941,8 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                 params.put("lat", SessionManager.getLatitude(DetailNewActivity.this));
                 params.put("lng", SessionManager.getLongitude(DetailNewActivity.this));
                 params.put("city_id", SessionManager.getCityid(DetailNewActivity.this));
+                params.put("page", "0");
+                System.out.println("data params "+ params);
                 return params;
             }
 
@@ -965,7 +1019,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(description, "Description");
+        adapter.addFrag(new Description(), "Description");
         adapter.addFrag(new Description(), "Terms & Conditions");
 
         viewPager.setAdapter(adapter);
@@ -1002,9 +1056,5 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
         }
 
     }
-
-    HotDealsModel dealsModel;
-    Description description=new Description();
-    Bundle bundle=new Bundle();
 
 }

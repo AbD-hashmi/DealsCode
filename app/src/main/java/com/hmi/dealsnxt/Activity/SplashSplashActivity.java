@@ -88,10 +88,7 @@ public class SplashSplashActivity extends AppCompatActivity {
 
             proceedAfterPermission();
 
-        }
-
-
-        else {
+        } else {
 
 
             RequestMultiplePermission();
@@ -120,10 +117,6 @@ public class SplashSplashActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
     private void proceedAfterPermission() {
         //We've got the permission, now we can proceed further
         //    Toast.makeText(getBaseContext(), "We got the Storage Permission", Toast.LENGTH_LONG).show();
@@ -133,8 +126,28 @@ public class SplashSplashActivity extends AppCompatActivity {
         TelephonyManager mngr = (TelephonyManager) SplashSplashActivity.this.getSystemService(Context.TELEPHONY_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
             DeviceIMEI = mngr.getDeviceId();
         } else {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
             DeviceIMEI = mngr.getDeviceId();
         }
 
@@ -160,10 +173,16 @@ public class SplashSplashActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-        startActivity();
-
-
+       /* if (SessionManager.getIsotp(getApplicationContext())==true) {
+            if (SessionManager.getIs_verified(getApplicationContext()).equals("0")) {
+                checkInUserVerified();
+            } else {
+                startActivity1();
+            }
+        }else
+            startActivity1();
+*/
+       startActivity1();
     }
 
 
@@ -202,13 +221,7 @@ public class SplashSplashActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
-
-
-    private void startActivity() {
+    public void startActivity1() {
 
         new Handler().postDelayed(new Runnable() {
                                       @Override
@@ -218,40 +231,43 @@ public class SplashSplashActivity extends AppCompatActivity {
 
                                               if (SessionManager.getIsotp(getApplicationContext()) == true) {
 
-                                                  if (SessionManager.getIssignup(getApplicationContext()) == true) {
+                                                  if (!SessionManager.getIs_verified(getApplicationContext()).equals("0")){
 
-                                                      if (SessionManager.getrefercode(getApplicationContext()) == true) {
+                                                      if (SessionManager.getIssignup(getApplicationContext()) == true) {
 
-                                                          if (SessionManager.getIsloc(getApplicationContext()) == true) {
+                                                          if (SessionManager.getrefercode(getApplicationContext()) == true) {
 
-                                                              Intent i = new Intent(SplashSplashActivity.this, LandingNewActivity.class);
-                                                              startActivity(i);
-                                                              finish();
+                                                              if (SessionManager.getIsloc(getApplicationContext()) == true) {
+
+                                                                  Intent i = new Intent(SplashSplashActivity.this, Dashboard.class);
+                                                                  startActivity(i);
+                                                                  finish();
+                                                              } else {
+                                                                  Intent i = new Intent(SplashSplashActivity.this, LocationActivity.class);
+                                                                  startActivity(i);
+                                                                  finish();
+                                                              }
                                                           } else {
-                                                              Intent i = new Intent(SplashSplashActivity.this, LocationActivity.class);
+                                                              Intent i = new Intent(SplashSplashActivity.this, ReferCodeActivity.class);
                                                               startActivity(i);
                                                               finish();
                                                           }
-                                                      } else {
-                                                          Intent i = new Intent(SplashSplashActivity.this, ReferCodeActivity.class);
+                                                      }else{
+                                                          Intent i = new Intent(SplashSplashActivity.this, SignInActivity.class);
                                                           startActivity(i);
                                                           finish();
                                                       }
-
-                                                  } else {
-                                                      Intent i = new Intent(SplashSplashActivity.this, SignInActivity.class);
-                                                      startActivity(i);
-                                                      finish();
-                                                  }
+                                                      } else {
+                                                          Intent i = new Intent(SplashSplashActivity.this, UnverifiedUser.class);
+                                                          startActivity(i);
+                                                          finish();
+                                                      }
                                               } else {
                                                   Intent i = new Intent(SplashSplashActivity.this, OTPActivity.class);
                                                   startActivity(i);
                                                   finish();
                                               }
-
-
                                           } else {
-
 
                                               //DeviceInfoToServer();
                                               Intent i = new Intent(SplashSplashActivity.this, AftersplashActivity.class);

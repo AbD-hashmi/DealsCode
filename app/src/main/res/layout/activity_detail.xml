@@ -127,6 +127,7 @@
 
                             <ImageView
                                 android:id="@+id/ivlikecount"
+                                android:visibility="gone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
@@ -309,6 +310,7 @@
                         android:id="@+id/viewlist"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
+                        app:reverseLayout="true"
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
@@ -418,7 +420,7 @@
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                         android:id="@+id/tvdetail"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="200dp"
                         android:layout_marginBottom="3dp"
                         android:layout_marginTop="3dp"
                         android:gravity="center_vertical"
@@ -444,7 +446,7 @@
                         android:id="@+id/map"
                         android:name="com.google.android.gms.maps.SupportMapFragment"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                        android:layout_height="250dp"
                         tools:context="asn.mediquest.com.asn.Activity.LocationActivity" />
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -462,7 +464,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:padding="10dp"
-                        android:visibility="gone"
                         android:text="Similar Deals"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="@color/white" />
@@ -470,8 +471,7 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/similar_scorll"
                         android:layout_width="match_parent"
-                        android:visibility="gone"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:scrollbars="vertical">
 
                     </android.support.v7.widget.RecyclerView>

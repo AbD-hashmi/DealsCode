@@ -145,9 +145,13 @@ public class AftersplashActivity extends AppCompatActivity  {
         @Override
         public void onPageSelected(int position) {
             addBottomDots(position);
+           /* if (position==2){
+                launchHomeScreen();
+            }*/
         }
         @Override
         public void onPageScrolled(int arg0, float arg1, int arg2) {
+            //launchHomeScreen();
         }
         @Override
         public void onPageScrollStateChanged(int arg0) {

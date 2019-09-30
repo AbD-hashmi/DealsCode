@@ -162,9 +162,6 @@ public class Dining extends Fragment {
 
                             JSONObject outlet = infoArray.getJSONObject(i);
                             JSONArray dealArray = outlet.optJSONArray("deals");
-                            //  JSONObject dealArray = outlet.optJSONObject("deals");
-
-                            JSONArray compaing_array = outlet.optJSONArray("compain");
                             if (infoArray.length() > 0) {
                                 for (int j = 0; j < dealArray.length(); j++) {
                                     JSONObject data = dealArray.getJSONObject(j);
@@ -176,14 +173,14 @@ public class Dining extends Fragment {
                                     dealsModel.setOutletCity(outlet.optString("city"));
                                     dealsModel.setOutletzipcode(outlet.optString("zipcode"));
                                     dealsModel.setTndc(outlet.optString("termAndCondition"));
-                                    dealsModel.setNumofOffers(outlet.optInt("dealCount"));
+                                    dealsModel.setNumofOffers(outlet.optInt("stock_qty"));
                                     dealsModel.setOutletcontactperson(outlet.optString("contactPersonName"));
                                     dealsModel.setOutletcontactnumber(outlet.optString("contactNumber"));
                                     dealsModel.setOutletLatitude(outlet.optString("lat"));
                                     dealsModel.setOutletLongtitude(outlet.optString("lng"));
                                     dealsModel.setOutletdescription(outlet.optString("description"));
-
                                     dealsModel.setDealid(data.optInt("id"));
+                                    dealsModel.setShowPercentage(data.getString("show_percentage"));
                                     dealsModel.setMerchantid(data.optString("user_id"));
                                     dealsModel.setDealTitle(data.optString("deal_title"));
                                     dealsModel.setActualPrice(data.optString("deal_price"));
@@ -245,17 +242,8 @@ public class Dining extends Fragment {
                                     {
                                         e.printStackTrace();
                                     }
-
-
-
-
-
-
-
                                 }
-*/
-
-                            }
+*/                            }
                         }
                     } else {
                         Toast.makeText(getActivity(), jSONObject.optString("msg"), Toast.LENGTH_LONG).show();
@@ -292,6 +280,7 @@ public class Dining extends Fragment {
                 params.put("lng", SessionManager.getLongitude(getContext()));
                 params.put("city_id", SessionManager.getCityid(getContext()));
                 params.put("page", "0");
+                System.out.println("data "+params);
                 return params;
             }
 
