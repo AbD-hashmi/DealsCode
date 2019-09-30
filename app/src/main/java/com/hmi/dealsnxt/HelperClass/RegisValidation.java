@@ -81,6 +81,10 @@ public class RegisValidation {
                 return false;
             }*/
         }
+        if (!To.matches("^[0-9]*$")){
+            editTextto.setError("Please enter a valid Phone Number");
+            return false;
+        }
         return true;
     }
 
@@ -89,16 +93,16 @@ public class RegisValidation {
         String To = editTextto.getText().toString().trim();
         //  editTextTo.setError(null);
         // length 0 means there is no text
-        if (To.length() < 4) {
+       /* if (To.length() < 4) {
             editTextto.setError("OTP number must be 4digit");
-            return false;
+            return false;*/
         /*} else {
             if (To.length() == 10) {
             } else {
                 editTextto.setError("Mobile No. length must have 10");
                 return false;
             }*/
-        }
+        //}
         return true;
 
     }

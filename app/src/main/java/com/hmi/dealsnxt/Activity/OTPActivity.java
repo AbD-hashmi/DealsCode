@@ -19,7 +19,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -46,6 +48,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.hbb20.CountryCodePicker;
 import com.hmi.dealsnxt.HelperClass.Constaints;
 import com.hmi.dealsnxt.HelperClass.Global;
 import com.hmi.dealsnxt.HelperClass.RegisValidation;
@@ -91,7 +94,9 @@ public class OTPActivity extends AppCompatActivity {
     ProgressBar progress_bar;
     private static final int PERMISSION_REQUEST_CODE = 200;
     public static ProgressDialog progressDialog;
-
+    EditText et1,et2,et3,et4,et5,et6;
+    String otp="";
+    String selected_country_code;
     public class ResponseReceiver extends BroadcastReceiver {
         public static final String ACTION_RESP = "com.starstar.dial.OTP_MESSAGE";
         @Override
@@ -128,8 +133,166 @@ public class OTPActivity extends AppCompatActivity {
 
         linearLayout=(LinearLayout)findViewById(R.id.linearLayout);
         relativeLayout=(RelativeLayout) findViewById(R.id.relative_layout);
-        spinner=(Spinner)findViewById(R.id.spinner);
+       // spinner=(Spinner)findViewById(R.id.spinner);
         tvresend=(TextView)findViewById(R.id.resendOtp);
+        et1 = (EditText) findViewById(R.id.et1);
+        et2 = (EditText) findViewById(R.id.et2);
+        et3 = (EditText) findViewById(R.id.et3);
+        et4 = (EditText) findViewById(R.id.et4);
+        et5 = (EditText) findViewById(R.id.et5);
+        et6 = (EditText) findViewById(R.id.et6);
+
+
+        et1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                otp+=s;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()==1)
+                {
+                    et2.requestFocus();
+                }
+                else if(s.length()==0)
+                {
+                    et1.clearFocus();
+                }
+            }
+        });
+
+        et2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                otp+=s;
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()==1)
+                {
+                    et3.requestFocus();
+                }
+                else if(s.length()==0)
+                {
+                    et1.requestFocus();
+                }
+            }
+        });
+
+        et3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                otp+=s;
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()==1)
+                {
+                    et4.requestFocus();
+                }
+                else if(s.length()==0)
+                {
+                    et2.requestFocus();
+                }
+            }
+        });
+
+        et4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                otp+=s;
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()==1)
+                {
+                    et5.requestFocus();
+                }
+                else if(s.length()==0)
+                {
+                    et3.requestFocus();
+                }
+            }
+        });
+
+        et5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                otp+=s;
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()==1)
+                {
+                    et6.requestFocus();
+                }
+                else if(s.length()==0)
+                {
+                    et4.requestFocus();
+                }
+            }
+        });
+
+        et6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                otp+=s;
+
+               // Toast.makeText(mContext, ""+s, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()==1)
+                {
+                    //et6.clearFocus();
+                }
+                else if(s.length()==0)
+                {
+                    et5.requestFocus();
+                }
+            }
+        });
+
 
         tvresend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,6 +320,8 @@ public class OTPActivity extends AppCompatActivity {
         tvtnc = (TextView) findViewById(R.id.tvtnc);
         tvprivacy = (TextView) findViewById(R.id.tvprivacy);
         tvprivacy.setMovementMethod(LinkMovementMethod.getInstance());
+
+        ccp = (CountryCodePicker) findViewById(R.id.ccp);
         String text = "Privacy Policy";
         tvprivacy.setText(Html.fromHtml(text));
         tvprivacy.setOnClickListener(new View.OnClickListener() {
@@ -176,6 +341,8 @@ public class OTPActivity extends AppCompatActivity {
             }
         });
 
+
+
         tvagree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -188,6 +355,17 @@ public class OTPActivity extends AppCompatActivity {
                         Toast.makeText(OTPActivity.this, R.string.ConnectionErrorResponse, Toast.LENGTH_LONG).show();
                     }
                 }
+            }
+        });
+    }
+
+    CountryCodePicker ccp;
+    public void onCountryPickerClick(View view ) {
+        ccp.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
+            @Override
+            public void onCountrySelected() {
+                //Alert.showMessage(RegistrationActivity.this, ccp.getSelectedCountryCodeWithPlus());
+                selected_country_code = ccp.getSelectedCountryCodeWithPlus();
             }
         });
     }
@@ -229,7 +407,7 @@ public class OTPActivity extends AppCompatActivity {
                         etotp = (EditText) findViewById(R.id.etotp);
                         final FloatingActionButton tverify = (FloatingActionButton) findViewById(R.id.tverify);
                         final ImageView image = (ImageView) findViewById(R.id.image);
-                        tvnmobile.setText("+91" + " " + etmobno.getText().toString());
+                        tvnmobile.setText(selected_country_code + " " + etmobno.getText().toString());
 
                         //  etotp.setText(OTP.toString());
 
@@ -395,11 +573,12 @@ public class OTPActivity extends AppCompatActivity {
                 params.put("XAPIKEY", "XXXXX");
                 params.put("phone", SessionManager.getMobileno(getApplicationContext()));
                 params.put("id", SessionManager.getUserID(getApplicationContext()));
-                params.put("otp", etotp.getText().toString());
+                params.put("otp", otp);
                 params.put("device_fcm_token", "123333");
                 params.put("os_version", DeviceOSVersion);
                 params.put("device_os", "ANDROID");
                 params.put("device_imei", SessionManager.getDeviceIMEI(OTPActivity.this));
+                System.out.println("data "+params);
                 return params;
             }
 
@@ -443,12 +622,12 @@ public class OTPActivity extends AppCompatActivity {
         boolean ret = true;
 
 
-        if (!etotp.getText().toString().equals("")) {
-            if (!RegisValidation.hasNumber(etotp)) {
+        if (!(et1.getText().toString()+et2.getText().toString()+et3.getText().toString()+et4.getText().toString()+et5.getText().toString()+et6.getText().toString()).equals("")) {
+            if (!RegisValidation.hasNumber(et1)) {
                 ret = false;
             }
         } else {
-            etotp.setError("Please provide OTP number");
+           // etotp.setError("Please provide OTP number");
             ret = false;
         }
         return ret;

@@ -83,13 +83,16 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
             <TableRow>
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:layout_width="50dp"
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/ccp"
+                    android:layout_width="wrap_content"
+                    android:background="@color/greyfontcol"
                     android:layout_height="50dp"
-                    android:theme="@style/AppTheme.buttonnew"
-
-                    ></Spinner>
+                    android:gravity="center_vertical"
+                    app:textSize="15dp"
+                    app:hideNameCode="true"
+                    app:contentColor="@android:color/background_light"
+                    android:onClick="onCountryPickerClick"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -97,6 +100,7 @@
                     android:inputType="number"
                     android:padding="5dp"
                     android:maxLength="10"
+                    android:visibility="gone"
                     android:gravity="center"
                     android:textSize="20dp"
                     android:maxLines="1"
@@ -131,7 +135,7 @@
                     android:padding="5dp"
                     android:maxLength="10"
                     android:gravity="center_vertical"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:maxLines="1"
                     android:hint="Enter Mobile Number"
                     android:textColorHint="@color/white"
@@ -285,8 +289,6 @@
                 android:minHeight="?attr/actionBarSize"
                 app:theme="@style/AppTheme.button">
 
-
-
             </android.support.v7.widget.Toolbar>
 
             <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
@@ -338,6 +340,100 @@
                 android:text="+91-9876543210"
                 android:textAppearance="?android:textAppearanceLarge" />
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvnmobile">
+
+                <EditText
+                    android:id="@+id/et1"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:inputType="numberPassword"
+                    android:textColor="@android:color/background_light"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/background_otp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp" />
+
+                <android.support.v4.widget.Space
+                    android:layout_width="2dp"
+                    android:layout_height="0dp" />
+
+                <EditText
+                    android:id="@+id/et2"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:inputType="numberPassword"
+                    android:textColor="@android:color/background_light"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/background_otp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"  />
+
+                <android.support.v4.widget.Space
+                    android:layout_width="2dp"
+                    android:layout_height="0dp" />
+
+                <EditText
+                    android:id="@+id/et3"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:inputType="numberPassword"
+                    android:textColor="@android:color/background_light"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/background_otp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp" />
+
+                <android.support.v4.widget.Space
+                    android:layout_width="2dp"
+                    android:layout_height="0dp" />
+
+                <EditText
+                    android:id="@+id/et4"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:inputType="numberPassword"
+                    android:textColor="@android:color/background_light"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/background_otp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"  />
+
+                <android.support.v4.widget.Space
+                    android:layout_width="2dp"
+                    android:layout_height="0dp" />
+
+                <EditText
+                    android:id="@+id/et5"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:inputType="numberPassword"
+                    android:textColor="@android:color/background_light"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/background_otp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"  />
+
+                <android.support.v4.widget.Space
+                    android:layout_width="2dp"
+                    android:layout_height="0dp" />
+
+                <EditText
+                    android:id="@+id/et6"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:inputType="numberPassword"
+                    android:textColor="@android:color/background_light"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/background_otp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp" />
+
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -373,6 +469,7 @@
                     android:maxLength="6"
                     android:layout_marginTop="5dp"
                     android:maxLines="1"
+                    android:visibility="gone"
                     android:textSize="40dp"
                     android:backgroundTint="@android:color/white"
                     android:nextFocusDown="@+id/etcode"
@@ -383,6 +480,8 @@
                     android:textColorHint="@color/white"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@color/white" />
+
+
 
                 <View
                     android:id="@+id/viezczw"
