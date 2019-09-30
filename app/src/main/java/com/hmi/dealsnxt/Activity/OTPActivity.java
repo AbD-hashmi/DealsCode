@@ -407,7 +407,7 @@ public class OTPActivity extends AppCompatActivity {
                         etotp = (EditText) findViewById(R.id.etotp);
                         final FloatingActionButton tverify = (FloatingActionButton) findViewById(R.id.tverify);
                         final ImageView image = (ImageView) findViewById(R.id.image);
-                        tvnmobile.setText(selected_country_code + " " + etmobno.getText().toString());
+                        tvnmobile.setText(ccp.getSelectedCountryCodeWithPlus() + " " + etmobno.getText().toString());
 
                         //  etotp.setText(OTP.toString());
 
