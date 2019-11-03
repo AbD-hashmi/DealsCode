@@ -30,7 +30,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Home"
-            android:textAppearance="?android:textAppearanceSmall" />
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/avenir"
+            android:textSize="10dp" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/LLfooterOrder"
@@ -52,7 +54,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="My Orders"
-            android:textAppearance="?android:textAppearanceSmall" />
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/avenir"
+            android:textSize="10dp"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/LLfooterProfile"
@@ -75,7 +79,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Notification"
-            android:textAppearance="?android:textAppearanceSmall" />
+            android:layout_marginTop="3dp"
+            android:textSize="10dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -98,7 +103,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Chat"
-            android:textAppearance="?android:textAppearanceSmall" />
+            android:fontFamily="@font/avenir"
+            android:layout_marginTop="3dp"
+            android:textSize="10dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -121,7 +128,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="More"
-            android:textAppearance="?android:textAppearanceSmall" />
+            android:fontFamily="@font/avenir"
+            android:layout_marginTop="3dp"
+            android:textSize="10dp" />
     </LinearLayout>
 
 

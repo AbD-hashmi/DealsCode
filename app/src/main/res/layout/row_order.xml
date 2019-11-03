@@ -2,8 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:background="@android:color/background_dark"
+    android:layout_marginLeft="3dp"
+    android:layout_marginRight="3dp"
+    android:layout_marginTop="3dp"
+    android:background="@color/gray"
     android:orientation="vertical">
 
     <LinearLayout
@@ -22,11 +24,13 @@
 
             <ImageView
                 android:id="@+id/dealimg"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="3dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/deal1" />
+                android:background="@drawable/border_square"
+                android:src="@mipmap/ic_launcher_round" />
         </LinearLayout>
 
         <LinearLayout
@@ -45,17 +49,29 @@
                     android:id="@+id/tvoutletname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
                     android:text="burger king"
                     android:textColor="@color/white"
-                    android:textAppearance="?android:textAppearanceMedium" />
+                    android:layout_margin="3dp"
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_medium" />
+
+                <TextView
+                    android:id="@+id/orderId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Order id"
+                    android:background="@color/yellowcol"
+                    android:layout_margin="3dp"
+
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_medium"/>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
+                    android:orientation="horizontal">
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                         android:id="@+id/tvlocation"
@@ -68,39 +84,30 @@
                         android:gravity="center_vertical"
                         android:maxLength="8"
                         android:text="Gurgaon"
+                        android:fontFamily="@font/avenir"
                         android:textAppearance="?android:textAppearanceSmall"
                         android:textColor="@color/white" />
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="15dp"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:visibility="gone"
-                        android:background="@color/white" />
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                         android:id="@+id/tvdealdate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:drawableLeft="@drawable/calender"
-                        android:drawablePadding="5dp"
                         android:gravity="center_vertical"
                         android:text="24 nov 2016"
-                        android:textAppearance="?android:textAppearanceSmall"
+                        android:layout_margin="3dp"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/avenir"
+                        android:textSize="@dimen/font_small"
+                        android:layout_weight="1"
                         android:textColor="@color/white" />
 
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="15dp"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="2dp"
-                        android:layout_toRightOf="@+id/tvoptionone"
-                        android:background="@color/white" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:drawableRight="@drawable/ic_keyboard_right_arrow_button"/>
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                         android:id="@+id/tvwaiveoffrs"
@@ -109,10 +116,12 @@
                         android:layout_marginLeft="3dp"
                         android:gravity="center"
                         android:text="Rs 10000"
+                        android:visibility="gone"
                         android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:textAppearance="?android:textAppearanceSmall"
+                        android:fontFamily="@font/avenir"
+                        android:textSize="@dimen/font_small"
                         android:textColor="@color/red" />
                 </LinearLayout>
 
@@ -128,11 +137,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="5dp"
-                        android:padding="5dp"
+                        android:paddingTop="7dp"
                         android:text="Cancelled"
-                        android:drawableLeft="@drawable/cross"
-                        android:gravity="left"
-                        android:textAppearance="?android:textAppearanceSmall"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/avenir"
+                        android:layout_margin="3dp"
+
+                        android:textSize="@dimen/font_small"
                         android:textColor="@color/red" />
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -150,7 +161,7 @@
                         android:paddingRight="10dp"
                         android:paddingBottom="3dp"
                         android:text="Cancel"
-                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textSize="@dimen/font_small"
                         android:textColor="@color/Black"
                         android:visibility="gone" />
 
@@ -164,7 +175,7 @@
     </LinearLayout>
 <View
     android:layout_width="match_parent"
-    android:layout_height="@dimen/divider"
-    android:background="@color/white"/>
+    android:layout_height="1dp"
+    android:background="@color/greey"/>
 
 </LinearLayout>

@@ -105,7 +105,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:text="30%"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textSize="@dimen/font_small"
                             android:textColor="@color/yellowcol" />
 
                         <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -115,7 +115,7 @@
                             android:layout_toRightOf="@+id/tvdiscount"
                             android:gravity="left"
                             android:text="OFF"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textSize="@dimen/font_small"
                             android:textColor="@color/yellowcol" />
                     </RelativeLayout>
 
@@ -156,7 +156,7 @@
                             android:gravity="center"
                             android:maxLines="1"
                             android:text="Gurgaon"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textSize="@dimen/font_small"
                             android:textColor="@color/White" />
 
                         <View
@@ -178,7 +178,7 @@
                             android:drawablePadding="5dp"
                             android:gravity="left"
                             android:text="4pm"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textSize="@dimen/font_small"
                             android:textColor="@color/White" />
 
 
@@ -201,7 +201,7 @@
                             android:drawablePadding="5dp"
                             android:gravity="left"
                             android:text="10pm"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textSize="@dimen/font_small"
                             android:textColor="@color/White" />
                     </LinearLayout>
 
@@ -225,7 +225,7 @@
                             android:maxLength="10"
                             android:maxLines="1"
                             android:text="Gurgaon"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textSize="@dimen/font_small"
                             android:textColor="@color/White" />
 
                         <View
@@ -262,7 +262,7 @@
                                 android:gravity="bottom"
                                 android:maxLines="1"
                                 android:text="99999"
-                                android:textAppearance="?android:textAppearanceSmall"
+                                android:textSize="@dimen/font_small"
                                 android:textColor="@color/White" />
 
                         </RelativeLayout>
@@ -275,7 +275,7 @@
                             android:gravity="bottom"
                             android:maxLines="1"
                             android:text="33333"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textSize="@dimen/font_small"
                             android:textColor="@color/White" />
 
                     </LinearLayout>
@@ -489,7 +489,7 @@
                             android:drawableRight="@drawable/arrow"
                             android:gravity="center|left"
                             android:text="Deals in Proximity"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textSize="@dimen/font_small"
                             android:textColor="@color/blackfontcolor" />
 
                     </LinearLayout>
@@ -525,7 +525,7 @@
                             android:drawableRight="@drawable/arrow"
                             android:gravity="center|left"
                             android:text="Popular Deals"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textSize="@dimen/font_small"
                             android:textColor="@color/blackfontcolor" />
 
                     </LinearLayout>
@@ -561,7 +561,7 @@
                             android:drawableRight="@drawable/arrow"
                             android:gravity="center|left"
                             android:text="Share &amp; Like"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textSize="@dimen/font_small"
                             android:textColor="@color/blackfontcolor" />
 
                     </LinearLayout>
@@ -597,7 +597,7 @@
                             android:drawableRight="@drawable/arrow"
                             android:gravity="center|left"
                             android:text="Notifications"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textSize="@dimen/font_small"
                             android:textColor="@color/blackfontcolor" />
 
                     </LinearLayout>
@@ -633,7 +633,7 @@
                             android:drawableRight="@drawable/arrow"
                             android:gravity="center|left"
                             android:text="Refer To Friends"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textSize="@dimen/font_small"
                             android:textColor="@color/blackfontcolor" />
 
                     </LinearLayout>
@@ -669,7 +669,7 @@
                             android:drawableRight="@drawable/arrow"
                             android:gravity="center|left"
                             android:text="Privacy Policy"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textSize="@dimen/font_small"
                             android:textColor="@color/blackfontcolor" />
 
                     </LinearLayout>
@@ -705,7 +705,7 @@
                             android:drawableRight="@drawable/arrow"
                             android:gravity="center|left"
                             android:text="Terms of Use"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textSize="@dimen/font_small"
                             android:textColor="@color/blackfontcolor" />
 
                     </LinearLayout>
@@ -741,7 +741,7 @@
                             android:drawableRight="@drawable/arrow"
                             android:gravity="center|left"
                             android:text="About Us"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textSize="@dimen/font_small"
                             android:textColor="@color/blackfontcolor" />
 
                     </LinearLayout>
@@ -778,7 +778,7 @@
                             android:drawableRight="@drawable/arrow"
                             android:gravity="center|left"
                             android:text="Contact Us"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textSize="@dimen/font_small"
                             android:textColor="@color/blackfontcolor" />
 
                     </LinearLayout>
@@ -814,7 +814,7 @@
                             android:drawableRight="@drawable/arrow"
                             android:gravity="center|left"
                             android:text="Logout"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textSize="@dimen/font_small"
                             android:textColor="@color/blackfontcolor" />
 
                     </LinearLayout>

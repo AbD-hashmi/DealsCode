@@ -158,11 +158,11 @@ public class HotDealsAdaptor extends RecyclerView.Adapter<HotDealsAdaptor.Simple
         viewHolder.tvactualprice.setText("\u20B9" + items.get(position).getActualPrice());
         viewHolder.tvwaiveoffrs.setText(items.get(position).getAfterDiscountPrice());
         //     viewHolder.tvcount.setText("" + items.get(position).getNumofOffers());
-        viewHolder.tvcount.setText("" + (items.get(position).getNumofOffers() - 1));
-        if (items.get(position).getNumofOffers() == 1) {
+        viewHolder.tvcount.setText("" + (Integer.parseInt(items.get(position).getNumofOffers()) - 1));
+        if (Integer.parseInt(items.get(position).getNumofOffers()) == 1) {
             viewHolder.LLoffer.setVisibility(View.GONE);
         } else {
-            viewHolder.tvcount.setText("" + (items.get(position).getNumofOffers() - 1));
+            viewHolder.tvcount.setText("" + (Integer.parseInt(items.get(position).getNumofOffers())- 1));
         }
         viewHolder.tvoptionone.setText(items.get(position).getDealTitle());
         viewHolder.tvlocation.setText(items.get(position).getOutletAddress());

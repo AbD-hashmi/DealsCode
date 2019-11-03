@@ -5,4 +5,8 @@
     <dimen name="menu_item_size">70dp</dimen>
     <dimen name="menu_item_imagesize">30dp</dimen>
     <dimen name="divider">1dp</dimen>
+    <dimen name="font_small">14dp</dimen>
+    <dimen name="font_medium">18dp</dimen>
+    <dimen name="font_large">22dp</dimen>
+
 </resources>

@@ -47,6 +47,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.analytics.Tracker;
 import com.hmi.dealsnxt.HelperClass.Constaints;
 import com.hmi.dealsnxt.HelperClass.Global;
@@ -126,6 +127,8 @@ public class ProfileActivity extends AppCompatActivity {
         progressDialog = Common.getProgressDialog(ProfileActivity.this);
 
         String ProfileImageURL = SessionManager.getUserImagePath(getApplicationContext());
+        System.out.println("image "+ProfileImageURL+ "image "+SessionManager.getUserImagePath(getApplicationContext()));
+
         imageLoader = ImageLoader.getInstance();
         imageLoader.init(ImageLoaderConfiguration.createDefault(getApplicationContext()));
         options = new DisplayImageOptions.Builder()
@@ -138,6 +141,8 @@ public class ProfileActivity extends AppCompatActivity {
         etemail2.setText(SessionManager.getUserEmail(getApplicationContext()));
         etmobile.setText(SessionManager.getMobileno(getApplicationContext()));
         getGender = SessionManager.getUserGender(getApplicationContext());
+        System.out.println("gender "+getGender);
+        gender_text.setText(getGender);
 
         if (SessionManager.getUserDOB(getApplicationContext()).equals("")) {
             etDOB.setText("DOB  ");
@@ -183,7 +188,6 @@ public class ProfileActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Logout Sucessfully", Toast.LENGTH_SHORT).show();
                         editor.clear();
                         editor.commit();
-                        finish();
                         Intent i = new Intent(ProfileActivity.this, OTPActivity.class);
                         startActivity(i);
                         finish();
@@ -278,6 +282,7 @@ public class ProfileActivity extends AppCompatActivity {
                 save.setVisibility(View.GONE);
             }
         });
+
     }
 
 
@@ -296,7 +301,7 @@ public class ProfileActivity extends AppCompatActivity {
                 // int a = DealTypeList.get(i).getDeal_TypeId();
                 if (list.get(i).equals(getGender)) {
                     genderSpinner.setSelection(i);
-                    gender_text.setText(list.get(i));
+                 //   gender_text.setText(list.get(i));
                     break;
                 }
             }
@@ -420,9 +425,6 @@ String encoded;
                 byte[] byteArray = byteArrayOutputStream .toByteArray();
                 encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
-
-
-
                 StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -431,6 +433,7 @@ String encoded;
                             String Status = jSONObject.optString("status");
                             String Path = Constaints.BaseUrl + jSONObject.optString("bannerCdnpath");
                             //  JSONObject jSONinfo = jSONObject.getJSONObject("info");
+                            System.out.println("data "+response);
                             if (Integer.parseInt(Status) == 1) {
                                 IsImageSelected = false;
                                 JSONObject ProfileInfo = jSONObject.getJSONObject("info");
@@ -440,14 +443,17 @@ String encoded;
                                 SessionManager.setUserEmail(getApplicationContext(), ProfileInfo.optString("email").toString());
                                 SessionManager.setUserDOB(getApplicationContext(), ProfileInfo.optString("dob").toString());
                                 SessionManager.setUserGender(getApplicationContext(), ProfileInfo.optString("gender").toString());
+                                //SessionManager.setUserGender(getApplicationContext(), "Male");
                                 //getGender = ProfileInfo.getJSONObject("gender").toString();
                                 imageLoader.displayImage(SessionManager.getImage(getApplicationContext()), userimage);
                                 SessionManager.setImage(getApplicationContext(), ProfileInfo.optString("user_dp"));
+
                                 SessionManager.setUserImagePath(getApplicationContext(), Path + "/" + ProfileInfo.optString("user_dp"));
                                 Toast.makeText(getApplicationContext(), jSONObject.optString("message").toString(), Toast.LENGTH_LONG).show();
                                 progressDialog.show();
-                                Intent i = new Intent(ProfileActivity.this, Dashboard.class);
-                                startActivity(i);
+                              /*  Intent i = new Intent(ProfileActivity.this, Dashboard.class);
+                                startActivity(i);*/
+                                finish();
                             } else {
                                 progressDialog.dismiss();
                                 Toast.makeText(getApplicationContext(), jSONObject.optString("message").toString(), Toast.LENGTH_LONG).show();
@@ -477,10 +483,10 @@ String encoded;
                         params.put("name", etname.getText().toString());
                         params.put("id", SessionManager.getUserID(getApplicationContext()).toString());
                         params.put("email", etemail.getText().toString());
-                        params.put("dob", stringdob);
-                        //params.put("gender", SelectedGender.toString());
+                        params.put("dob", etDOB.getText().toString());
+                        params.put("gender", SessionManager.getUserGender(getApplicationContext()).toString());
                         params.put("user_dp", encoded);
-
+                        System.out.println(params);
 
 /*
                         if (IsImageSelected) {
@@ -539,6 +545,7 @@ String encoded;
                             SELECT_FILE);
                 } else if (items[item].equals("Cancel")) {
                     dialog.dismiss();
+                    save.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -554,6 +561,8 @@ String encoded;
                 onSelectFromGalleryResult(data);
             else if (requestCode == REQUEST_CAMERA)
                 onCaptureImageResult(data);
+        }else {
+            save.setVisibility(View.GONE);
         }
     }
 
@@ -603,7 +612,8 @@ String encoded;
             e.printStackTrace();
         }
         Bitmap resized = Bitmap.createScaledBitmap(bmp, 150, 150, true);
-        userimage.setImageBitmap(resized);
+
+        userimage.setImageBitmap(bmp);
         thumbnail_final = resized;
         IsImageSelected = true;
     }

@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:elevation="10dp"
+    app:cardBackgroundColor="@color/greyfontcol"
+    android:layout_margin="8dp"
+    app:cardMaxElevation="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -23,9 +31,6 @@
                 android:layout_gravity="center_vertical"
                 android:orientation="vertical"
                 android:weightSum="1">
-
-
-
                 <RelativeLayout
                     android:id="@+id/Rllikecount"
                     android:layout_width="match_parent"
@@ -34,7 +39,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:visibility="gone"
-                    android:background="@color/greyfontcol"
+                    android:background="@color/greey"
                     android:layout_gravity="right"
                     android:padding="5dp">
 
@@ -63,8 +68,7 @@
                         android:hint=" 99 "
                         android:visibility="gone"
                         android:textColorHint="@android:color/transparent"
-                        android:textColor="@color/White"
-                        android:textSize="10dp" />
+                        android:textColor="@color/White"/>
 
 
                 </RelativeLayout>
@@ -77,15 +81,16 @@
                     android:layout_alignParentLeft="true"
                     android:layout_gravity="top"
                     android:layout_weight=".6"
-                    android:background="@color/greyfontcol"
                     android:ellipsize="end"
                     android:gravity="top"
-                    android:maxLines="1"
+                    android:maxLines="2"
                     android:padding="10dp"
-                    android:textSize="20dp"
                     android:text="Gurgaon"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/White" />
+
+
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -104,9 +109,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="6 km"
-                        android:background="@color/greyfontcol"
+                        android:fontFamily="@font/avenir"
+                        android:textSize="@dimen/font_small"
+                        android:background="#A6292a2c"
                         android:textColor="@color/white"
                         android:padding="5dp"
+                        android:drawableLeft="@drawable/location2"
                         android:textStyle="bold"
                         android:layout_alignParentBottom="true"
                         android:layout_margin="10dp"/>
@@ -116,7 +124,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="6 km"
-                        android:background="@color/greyfontcol"
+                        android:fontFamily="@font/avenir"
+                        android:textSize="@dimen/font_small"
+                        android:background="#A6292A2C"
                         android:textColor="@color/white"
                         android:padding="5dp"
                         android:textStyle="bold|italic"
@@ -125,64 +135,91 @@
                         android:layout_margin="10dp"/>
 
                 </RelativeLayout>
-             <RelativeLayout
+             <TableLayout
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
-                 android:background="@color/Black"
+
                  android:padding="5dp">
+                 <TableRow>
                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                     android:id="@+id/tvdealname"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:ellipsize="end"
                     android:gravity="left"
+                    android:layout_marginRight="100dp"
                     android:maxLines="1"
-                    android:paddingLeft="5dp"
-                    android:textSize="25dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/avenir"
                     android:text="Cafe Coffe Day"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_large"
                     android:textColor="@color/White" />
+                     <TextView
+                         android:id="@+id/tvwaiveoffrs"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_toRightOf="@+id/tvdealname"
+                         android:layout_below="@+id/tvactualprice"
+                         android:text="2000000"
+                         android:textColor="@color/white"
+                         android:fontFamily="@font/avenir"
+                         android:textSize="@dimen/font_medium"/>
+
+                  </TableRow>
+
+                 <TableRow>
 
                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                     android:id="@+id/tvlocation"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight=".8"
-                    android:drawableLeft="@drawable/location2"
+                    android:layout_weight="1"
                     android:drawablePadding="5dp"
+                    android:layout_marginRight="100dp"
+                    android:maxLines="2"
                     android:ellipsize="end"
                     android:layout_below="@+id/tvdealname"
                     android:gravity="center_vertical"
-                    android:maxLines="1"
-                    android:text="Gurgaon"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:text="Gurgaon sdkfdskl dkfn lefkn SDFAFsdfsdfdsfekfn wekf nekwfn ekwlfklefn lwekf  ewklf ekfn wekfn ewlk we fknwe fkew lkfe  lwekfew"
+                    android:maxWidth="250dp"
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_small"
                     android:textColor="@color/White" />
 
-                 <TextView
-                     android:id="@+id/tvactualprice"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_marginTop="70dp"
-                     android:text="200"
-                     android:textColor="@color/white"
-                     android:layout_marginRight="40dp"
-                     android:layout_toLeftOf="@+id/tvwaiveoffrs"
-                     android:textSize="20dp" />
+                     <TextView
+                         android:id="@+id/tvactualprice"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="200"
+                         android:gravity="center"
+                         android:textColor="@color/white"
+                         android:fontFamily="@font/avenir"
+                         android:textSize="@dimen/font_small"/>
 
 
-                 <TextView
-                     android:id="@+id/tvwaiveoffrs"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_alignParentRight="true"
-                     android:layout_marginTop="70dp"
-                     android:text="2000000"
-                     android:textColor="@color/white"
-                     android:textSize="20dp"/>
-             </RelativeLayout>
+                 </TableRow>
+
+                 <TableRow
+
+                     android:layout_marginTop="-15dp"
+                     android:background="@android:color/transparent">
+                     <TextView
+                         android:id="@+id/tvDealsCount"
+                         android:layout_width="match_parent"
+                         android:layout_height="30dp"
+                         android:layout_weight="1"
+                         android:padding="2dp"
+                         android:gravity="right"
+                         android:text="+1 More"
+                         android:fontFamily="@font/avenir"
+                         android:textSize="@dimen/font_small"
+                         android:textColor="@color/yellowcol"
+                         android:textStyle="italic"/>
+                 </TableRow>
+             </TableLayout>
 
                 <RelativeLayout
                     android:id="@+id/RLpercent"
@@ -202,7 +239,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:text="30%"
-                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textSize="@dimen/font_small"
                         android:textColor="@color/White" />
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -212,7 +249,7 @@
                         android:layout_toRightOf="@+id/tvdiscount"
                         android:gravity="left"
                         android:text="OFF"
-                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textSize="@dimen/font_small"
                         android:textColor="@color/White" />
                 </RelativeLayout>
 
@@ -249,7 +286,7 @@
                         android:drawablePadding="5dp"
                         android:gravity="left"
                         android:text="4pm"
-                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textSize="@dimen/font_small"
                         android:textColor="@color/White" />
 
                     <TextView
@@ -271,7 +308,7 @@
                         android:drawablePadding="5dp"
                         android:gravity="left"
                         android:text="10pm"
-                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textSize="@dimen/font_small"
                         android:textColor="@color/White" />
                 </LinearLayout>
 
@@ -340,7 +377,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:text="+"
-                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textSize="@dimen/font_small"
                         android:textColor="@color/redcolor" />
 
 
@@ -350,7 +387,7 @@
                         android:layout_marginLeft="3dp"
                         android:layout_toRightOf="@+id/tvcount"
                         android:text="More deal(s)"
-                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textSize="@dimen/font_small"
                         android:textColor="@color/redcolor" />
                 </LinearLayout>
 
@@ -365,10 +402,11 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="Buy Now"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textSize="@dimen/font_small"
                     android:textColor="@color/White" />
 
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
+</android.support.v7.widget.CardView>

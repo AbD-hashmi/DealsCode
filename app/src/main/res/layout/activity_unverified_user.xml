@@ -8,73 +8,142 @@
     android:background="@drawable/gradiant_bottom_to_top"
     tools:context=".Activity.UnverifiedUser">
 
-    <include layout="@layout/activity_toolbar"/>
 
     <TextView
-        android:id="@+id/texttop"
+        android:id="@+id/tvtitile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:layout_margin="5dp"
+        android:layout_height="60dp"
+        android:padding="10dp"
         android:text="fd"
-        android:textColor="@color/yellowcol"
-        android:textSize="18dp"/>
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:fontFamily="@font/avenir"
+        android:textSize="@dimen/font_large"
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
 
-    <android.support.design.widget.TextInputLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#292a2a"
+        android:padding="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/texttop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginBottom="40dp"
+            android:text="fd"
+            android:fontFamily="@font/avenir"
+            android:textSize="@dimen/font_medium"
+            android:textColor="@color/yellowcol"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Spinner
+                android:id="@+id/spinnergender"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/avenir"
+                android:backgroundTint="@color/white"
+                android:layout_weight="0"
+                android:textSize="@dimen/font_medium"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="-10dp"
+                android:textColorHint="@color/white">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/avenir"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:textSize="@dimen/font_medium"
+                    android:hint="Name"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"/>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+        <TableRow>
+
+</TableRow>
+            <TableRow>
+    <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:textColorHint="@color/white">
 
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/name"
-            android:textColorHint="@color/white"
+            android:fontFamily="@font/avenir"
+            android:textSize="@dimen/font_medium"
+            android:hint="Email"
+            android:backgroundTint="@color/white"
             android:textColor="@color/white"
-            android:textSize="20dp"
-            android:hint="Name" />
-    </android.support.design.widget.TextInputLayout>
-
-
-    <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-        android:textColorHint="@color/white">
-
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/email"
-                android:textColorHint="@color/white"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                android:hint="Email" />
+            android:maxLines="1"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/white"/>
         </android.support.design.widget.TextInputLayout>
 
-
+            </TableRow>
+            <TableRow>
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:textColorHint="@color/white">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/phone"
-                android:textColorHint="@color/white"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                android:enabled="false"
                 android:clickable="false"
-                android:hint="Phone" />
+                android:maxLines="1"
+                android:maxLength="10"
+                android:enabled="false"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_medium"
+                android:hint="Phone"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:layout_marginBottom="150dp"/>
         </android.support.design.widget.TextInputLayout>
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="150dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Submit"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:fontFamily="@font/avenir"
+        android:textStyle="bold"
+        android:textSize="@dimen/font_medium"
         android:layout_gravity="center"
         android:textColor="@color/Black"
         android:background="@drawable/button_gradient"/>

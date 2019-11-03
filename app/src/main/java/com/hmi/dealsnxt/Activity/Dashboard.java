@@ -50,6 +50,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.Switch;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -81,17 +82,24 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.orm.dsl.Table;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class Dashboard extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener , View.OnClickListener {
@@ -104,11 +112,13 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
             R.drawable.hotels,
             R.drawable.spas
     };
+
+    de.hdodenhof.circleimageview.CircleImageView image;
     public static BottomNavigationView navigationView;
     NavigationView filter_view;
     LinearLayout LLrate, LLshare, LLNotification, LLRefer, LLPrivacy, LLUse, LLAbout, LLcontact, LLlogout,LLclose;
     LinearLayout LLpopulardeals, LLproximity, LLwishlistXnearby, LLorder;
-    TextView tvmore;
+    TextView tvmore,etname;
     LinearLayout LLfooter, LLfooterHome, LLfooterOrder, LLfooterProfile, LLfootermore, LLfooterFavourite, LLloc;
     ImageView imBack, imlocation, ivfilter;
     TextView tvTitle, tvaddress, tvusername;
@@ -121,9 +131,11 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     int currentPage = 0;
     Timer timer;
+    DisplayImageOptions options;
+
     public ProgressBar progress_bar;
-    final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
-    final long PERIOD_MS = 3000;
+    final long DELAY_MS = 5000;//delay in milliseconds before task is to be executed
+    final long PERIOD_MS = 5000;
     com.nostra13.universalimageloader.core.ImageLoader imageLoader;
     DisplayImageOptions defaultOptions;
     public DrawerLayout drawer;
@@ -153,6 +165,12 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
     LinearLayout LLfilter1, LLfilter2, LLfilter3, LLfilter4;
     TextView tvpricerangend, tvpricerangstart;
 
+    /*@Override
+    protected void onStart() {
+        super.onStart();
+        if (SessionManager.getImage(getApplicationContext().em)
+        Picasso.with(Dashboard.this).load(SessionManager.getImage(getApplicationContext())).into(image);
+    }*/
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -180,6 +198,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         progress_bar = (ProgressBar) findViewById(R.id.progress_bar);
         view_pager = (ViewPager) findViewById(R.id.view_pager);
+        image=(de.hdodenhof.circleimageview.CircleImageView)findViewById(R.id.userImage);
 
         q=(TextView)findViewById(R.id.btn1);
         w=(TextView)findViewById(R.id.btn2);
@@ -196,9 +215,23 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         SessionManager.setrefercode(Dashboard.this,true);
         drawer.setNestedScrollingEnabled(false);
 
-        TextView etname=(TextView)findViewById(R.id.name);
+        etname=(TextView)findViewById(R.id.name);
         etname.setText(SessionManager.getUserName(getApplicationContext()));
 
+        String ProfileImageURL = SessionManager.getUserImagePath(getApplicationContext());
+        System.out.println("image "+ProfileImageURL+ "image "+SessionManager.getUserImagePath(getApplicationContext()));
+        //Picasso.with(this).load(ProfileImageURL).into(image);
+        imageLoader = ImageLoader.getInstance();
+        imageLoader.init(ImageLoaderConfiguration.createDefault(getApplicationContext()));
+        options = new DisplayImageOptions.Builder()
+                .cacheOnDisc(true).cacheInMemory(true)
+                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
+                .showImageOnLoading(R.drawable.profileimages).showImageForEmptyUri(R.drawable.profileimages).showImageOnFail(R.drawable.profileimages)
+                .build();
+
+        if ((SessionManager.getUserImagePath(getApplicationContext()) != null)) {
+            imageLoader.displayImage(ProfileImageURL, image, options);
+        }
         ivsearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -215,12 +248,14 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
             }
         });
 
-        String test = SessionManager.getUserName(getApplicationContext()).toString();
         //   String test = "Priyanshu";
         // char first = test.charAt(0);
-        tvusername.setText(test);
+
+       displayname();
+
         tvusername.setVisibility(View.GONE);
-        etname.setOnClickListener(new View.OnClickListener() {
+        TableLayout tableLayout=(TableLayout)findViewById(R.id.table);
+        tableLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(Dashboard.this,ProfileActivity.class);
@@ -252,10 +287,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         } catch (Exception e) {
 
         }
-
         loadbannerImages();
-
-
 
         //final ViewPager viewPager = (ViewPager) findViewById(R.id.htab_viewpager);
        //tabLayout = (TabLayout) findViewById(R.id.htab_tabs);
@@ -321,9 +353,9 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
         ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
         tvHome.setTextColor(getResources().getColor(R.color.yellowcol));
-        tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
+        tvOrder.setTextColor(getResources().getColor(R.color.white));
+        tvProfile.setTextColor(getResources().getColor(R.color.white));
+        tvFavourite.setTextColor(getResources().getColor(R.color.white));
 
         LLfooterHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -333,11 +365,11 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
                 ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
                 tvHome.setTextColor(getResources().getColor(R.color.yellowcol));
-                tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
+                tvOrder.setTextColor(getResources().getColor(R.color.white));
+                tvProfile.setTextColor(getResources().getColor(R.color.white));
+                tvFavourite.setTextColor(getResources().getColor(R.color.white));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
-                tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
+                tvmore.setTextColor(getResources().getColor(R.color.white));
             }
         });
 
@@ -354,12 +386,12 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 ivOrder.setImageDrawable(getResources().getDrawable(R.drawable.active_order));
                 ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
                 ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
-                tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
+                tvHome.setTextColor(getResources().getColor(R.color.white));
                 tvOrder.setTextColor(getResources().getColor(R.color.yellowcol));
-                tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
+                tvProfile.setTextColor(getResources().getColor(R.color.white));
+                tvFavourite.setTextColor(getResources().getColor(R.color.white));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
-                tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
+                tvmore.setTextColor(getResources().getColor(R.color.white));
 
                 Intent i = new Intent(Dashboard.this, OrderActivity.class);
                 startActivity(i);
@@ -372,12 +404,12 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 ivOrder.setImageDrawable(getResources().getDrawable(R.drawable.inactive_order));
                 ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.active_profile));
                 ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
-                tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
+                tvHome.setTextColor(getResources().getColor(R.color.white));
+                tvOrder.setTextColor(getResources().getColor(R.color.white));
                 tvProfile.setTextColor(getResources().getColor(R.color.yellowcol));
-                tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
+                tvFavourite.setTextColor(getResources().getColor(R.color.white));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
-                tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
+                tvmore.setTextColor(getResources().getColor(R.color.white));
 
                 Intent i = new Intent(Dashboard.this, NotificationActivity.class);
                 startActivity(i);
@@ -390,12 +422,12 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 ivOrder.setImageDrawable(getResources().getDrawable(R.drawable.inactive_order));
                 ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
                 ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.active_favorite));
-                tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
+                tvHome.setTextColor(getResources().getColor(R.color.white));
+                tvOrder.setTextColor(getResources().getColor(R.color.white));
+                tvProfile.setTextColor(getResources().getColor(R.color.white));
                 tvFavourite.setTextColor(getResources().getColor(R.color.yellowcol));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
-                tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
+                tvmore.setTextColor(getResources().getColor(R.color.white));
 
                 startActivity(new Intent(Dashboard.this,Chat.class));
             }
@@ -423,11 +455,11 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 } else {
                     drawer.openDrawer(GravityCompat.END);
                 }
-                seekbar = (SeekBar) findViewById(R.id.seekbar);
+              //  seekbar = (SeekBar) findViewById(R.id.seekbar);
                 ivsearch = (ImageView) findViewById(R.id.ivsearch);
                 tvdetectlocation = (TextView) findViewById(R.id.tvdetectlocation);
                 time_recycler_view = (RecyclerView) findViewById(R.id.time_recycler_view);
-                tvpricerangstart = (TextView) findViewById(R.id.tvpricerangstart);
+                //tvpricerangstart = (TextView) findViewById(R.id.tvpricerangstart);
                 tvpricerangend = (TextView) findViewById(R.id.tvpricerangend);
                 switch2 = (Switch) findViewById(R.id.switch2);
                 switch3 = (Switch) findViewById(R.id.switch3);
@@ -465,10 +497,10 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 ivOrder.setImageDrawable(getResources().getDrawable(R.drawable.inactive_order));
                 ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
                 ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
-                tvHome.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
-                tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
+                tvHome.setTextColor(getResources().getColor(R.color.white));
+                tvOrder.setTextColor(getResources().getColor(R.color.white));
+                tvProfile.setTextColor(getResources().getColor(R.color.white));
+                tvFavourite.setTextColor(getResources().getColor(R.color.white));
                 ivmore.setImageDrawable(getResources().getDrawable(R.drawable.active_more));
                 tvmore.setTextColor(getResources().getColor(R.color.yellowcol));
                 DrawerLayout.LayoutParams params = new DrawerLayout.LayoutParams(DrawerLayout.LayoutParams.MATCH_PARENT, DrawerLayout.LayoutParams.MATCH_PARENT);
@@ -605,6 +637,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                             BannerImagesModel um = new BannerImagesModel();
                             um.setBannerimage_ID(review.optString("id"));
                             um.setBanner_outletid(review.optString("link"));
+                            um.setBannerimage_name(review.optString("image_name"));
                             //       um.setOutlet_id(outlet.optString("id"));
                             // um.setBannerimages_url(review.optString("image_name"));
                             //  um.setImage_name(review.optString("image_name"));
@@ -625,7 +658,12 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                             if (currentPage == bannerimglist.size() - 1) {
                                 currentPage = 0;
                             }
-                            view_pager.setCurrentItem(currentPage++, true);
+                            if(bannerimglist.size()>1) {
+                                view_pager.setCurrentItem(currentPage++, true);
+                                view_pager.setClipToPadding(false);
+                                view_pager.setPadding(0, 0, 40, 0);
+                                view_pager.setPageMargin(10);
+                            }
                         }
                     };
                     timer = new Timer(); // This will create a new Thread
@@ -1165,16 +1203,18 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
     @Override
     public void onResume() {
         super.onResume();
+
+
         ivHome.setImageDrawable(getResources().getDrawable(R.drawable.active_home));
         ivOrder.setImageDrawable(getResources().getDrawable(R.drawable.inactive_order));
         ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.inactive_profile));
         ivFavourite.setImageDrawable(getResources().getDrawable(R.drawable.inactive_favorite));
         ivmore.setImageDrawable(getResources().getDrawable(R.drawable.inactive_more));
         tvHome.setTextColor(getResources().getColor(R.color.yellowcol));
-        tvOrder.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvProfile.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvFavourite.setTextColor(getResources().getColor(R.color.greyfontcol));
-        tvmore.setTextColor(getResources().getColor(R.color.greyfontcol));
+        tvOrder.setTextColor(getResources().getColor(R.color.white));
+        tvProfile.setTextColor(getResources().getColor(R.color.white));
+        tvFavourite.setTextColor(getResources().getColor(R.color.white));
+        tvmore.setTextColor(getResources().getColor(R.color.white));
 
         Geocoder geocoder;
         List<Address> addresses = new ArrayList<>();
@@ -1358,4 +1398,51 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
             }
         }
     }
+
+    @Override
+    protected void onPostResume() {
+        displayname();
+        super.onPostResume();
+    }
+
+    public void displayname(){
+
+        String test = SessionManager.getUserName(getApplicationContext());/*
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        String str = sdf.format(new Date());
+        String currentTime = sdf.format(Calendar.getInstance().getTime());*/
+        Calendar rightNow = Calendar.getInstance();
+        String hours = String.valueOf(rightNow.get(Calendar.HOUR_OF_DAY));
+        System.out.println("hours " + hours);
+        if (Integer.parseInt(hours) >= 3 && Integer.parseInt(hours) <= 11){
+            etname.setText("Good morining, "+test);
+        }
+        if (Integer.parseInt(hours.trim()) >= 11 && Integer.parseInt(hours) < 16){
+            etname.setText("Good afternoon, "+test);
+        }
+        if (Integer.parseInt(hours.trim()) >= 16 && Integer.parseInt(hours) < 19){
+            System.out.println("hours "+hours);
+            etname.setText("Good evening, "+test);
+        }
+        if (Integer.parseInt(hours.trim()) >= 19 && Integer.parseInt(hours) < 3){
+            etname.setText("Good night, "+test);
+
+        }
+
+        String ProfileImageURL = SessionManager.getUserImagePath(getApplicationContext());
+        System.out.println("image "+ProfileImageURL+ "image "+SessionManager.getUserImagePath(getApplicationContext()));
+        //Picasso.with(this).load(ProfileImageURL).into(image);
+        imageLoader = ImageLoader.getInstance();
+        imageLoader.init(ImageLoaderConfiguration.createDefault(getApplicationContext()));
+        options = new DisplayImageOptions.Builder()
+                .cacheOnDisc(true).cacheInMemory(true)
+                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
+                .showImageOnLoading(R.drawable.profileimages).showImageForEmptyUri(R.drawable.profileimages).showImageOnFail(R.drawable.profileimages)
+                .build();
+
+        if ((SessionManager.getUserImagePath(getApplicationContext()) != null)) {
+            imageLoader.displayImage(ProfileImageURL, image, options);
+        }
+    }
+
 }

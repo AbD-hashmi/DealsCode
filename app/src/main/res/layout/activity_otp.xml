@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradiant_bottom_to_top"
@@ -19,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:weightSum="2"
+
             android:orientation="vertical">
 
             <ImageView
@@ -32,26 +32,14 @@
             android:padding="50dp"
             android:src="@drawable/logo" />
 
-        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
-            android:id="@+id/view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:textSize="20dp"
-            android:text="Please enter your mobile number to proceed"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/white" />
 
-
-
-
-        <!--    <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center_vertical|left|bottom"
-            android:orientation="horizontal"
-            android:padding="5dp">-->
+            <!--    <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical|left|bottom"
+                android:orientation="horizontal"
+                android:padding="5dp">-->
 
         <!--  <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
               android:layout_width="wrap_content"
@@ -66,7 +54,7 @@
               android:paddingRight="15dp"
               android:paddingTop="10dp"
               android:text="Mobile Number "
-              android:textAppearance="?android:textAppearanceMedium"
+              android:textSize="@dimen/font_medium"
               android:textColor="@color/blackfontcolor" />-->
 
         <!--            </LinearLayout>-->
@@ -78,21 +66,33 @@
                 android:orientation="horizontal"
                 android:padding="5dp">
 -->
-        <TableLayout
+            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:id="@+id/view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/avenir"
+                android:padding="5dp"
+                android:text="Enter your mobile number"
+                android:textSize="@dimen/font_large"
+                android:textColor="@color/white"/>
+
+            <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1">
             <TableRow>
+
                 <com.hbb20.CountryCodePicker
                     android:id="@+id/ccp"
                     android:layout_width="wrap_content"
-                    android:background="@color/greyfontcol"
                     android:layout_height="50dp"
+                    android:background="@color/Black"
+                    android:fontFamily="@font/avenir"
                     android:gravity="center_vertical"
-                    app:textSize="15dp"
-                    app:hideNameCode="true"
+                    android:onClick="onCountryPickerClick"
+                    android:textSize="@dimen/font_medium"
                     app:contentColor="@android:color/background_light"
-                    android:onClick="onCountryPickerClick"/>
+                    app:hideNameCode="true"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -122,27 +122,28 @@
                     android:nextFocusDown="@+id/tvagree"
                     android:selectAllOnFocus="true"
                     android:singleLine="true"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/blackfontcolor"
                     android:visibility="gone" />
+
 
                 <EditText
                     android:id="@+id/etmobno"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:inputType="number|textFilter"
-                    android:layout_marginRight="15dp"
+                    android:inputType="phone"
                     android:padding="5dp"
+                    android:fontFamily="@font/avenir"
                     android:maxLength="10"
                     android:gravity="center_vertical"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/font_medium"
                     android:maxLines="1"
                     android:hint="Enter Mobile Number"
                     android:textColorHint="@color/white"
                     android:singleLine="true"
                     android:layout_weight="1"
                     android:textColor="@color/white"
-                    android:background="@color/greyfontcol"/>
+                    android:background="@color/Black"/>
 
             </TableRow>
         </TableLayout>
@@ -160,7 +161,7 @@
             android:paddingRight="15dp"
             android:paddingTop="10dp"
             android:text="Referal Code If Any"
-            android:textAppearance="?android:textAppearanceMedium"
+            android:textSize="@dimen/font_medium"
             android:textColor="@color/blackfontcolor"
             android:visibility="gone" />
 
@@ -176,7 +177,7 @@
             android:nextFocusDown="@+id/tvagree"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:textAppearance="?android:textAppearanceMedium"
+            android:textSize="@dimen/font_medium"
             android:textColor="@color/white"
             android:visibility="gone" />
 
@@ -185,17 +186,19 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp">
+            android:layout_marginTop="20dp"
+            android:padding="5dp">
+
             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:id="@+id/by"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:id="@+id/by"
+                android:textSize="@dimen/font_medium"
+                android:fontFamily="@font/avenir"
                 android:paddingTop="5dp"
-                android:text="By signing up I agree to the"
-                android:textAppearance="?android:textAppearanceSmall"
+                android:paddingRight="5dp"
+                android:text="By continuing, I agree to the"
                 android:textColor="@color/white" />
 
             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -203,10 +206,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Privacy Policy"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_medium"
                 android:layout_below="@+id/by"
-                android:textAppearance="?android:textAppearanceSmall"
                 android:textColor="@color/yellowcol" />
 
             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -215,11 +217,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/by"
                 android:text=" and "
+                android:fontFamily="@font/avenir"
                 android:layout_toEndOf="@+id/tvprivacy"
 
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:textAppearance="?android:textAppearanceSmall"
+                android:textSize="@dimen/font_medium"
                 android:textColor="@color/white"
                 android:layout_toRightOf="@+id/tvprivacy" />
 
@@ -227,22 +228,20 @@
                 android:id="@+id/tvtnc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Terms of use"
-                android:layout_toEndOf="@+id/and"
-
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
                 android:layout_below="@+id/by"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="@color/yellowcol"
-                android:layout_toRightOf="@+id/and" />
+                android:layout_toEndOf="@+id/and"
+                android:layout_toRightOf="@+id/and"
+                android:fontFamily="@font/avenir"
+                android:text="Terms and Conditions"
+                android:textSize="@dimen/font_medium"
+                android:textColor="@color/yellowcol" />
 
-            <android.support.design.widget.FloatingActionButton
+            <ImageButton
                 android:id="@+id/tvagree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:src="@drawable/ic_arrow_forward_black_24dp"
-
+                android:background="@drawable/button_circle_gradient"
                 android:theme="@style/AppTheme.button"
                 android:layout_alignParentRight="true" />
 
@@ -257,7 +256,7 @@
             android:layout_marginTop="10dp"
             android:checked="false"
             android:hint="Subscribe me to email newsletters"
-            android:textAppearance="?android:textAppearanceSmall"
+            android:textSize="@dimen/font_small"
             android:textColor="@color/Black"
             android:visibility="gone" />
 
@@ -298,7 +297,8 @@
                 android:layout_height="wrap_content"
                 android:padding="20dp"
                 android:text="DealNext"
-                android:textAppearance="?android:textAppearanceMedium" />
+
+                android:textSize="@dimen/font_medium" />
 
             <View
                 android:id="@+id/view"
@@ -323,9 +323,9 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:layout_below="@+id/iop"
-                android:textSize="23dp"
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_large"
                 android:text="Please enter the code sent to"
-                android:textAppearance="?android:textAppearanceSmall"
                 android:textColor="@color/white" />
 
             <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
@@ -333,12 +333,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvresend"
-                android:textSize="23dp"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/white"
                 android:padding="5dp"
                 android:text="+91-9876543210"
-                android:textAppearance="?android:textAppearanceLarge" />
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_large" />
 
 
             <LinearLayout
@@ -353,6 +353,8 @@
                     android:inputType="numberPassword"
                     android:textColor="@android:color/background_light"
                     android:layout_margin="5dp"
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_medium"
                     android:background="@drawable/background_otp"
                     android:layout_width="35dp"
                     android:layout_height="35dp" />
@@ -370,6 +372,8 @@
                     android:layout_margin="5dp"
                     android:background="@drawable/background_otp"
                     android:layout_width="35dp"
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_medium"
                     android:layout_height="35dp"  />
 
                 <android.support.v4.widget.Space
@@ -383,6 +387,8 @@
                     android:inputType="numberPassword"
                     android:textColor="@android:color/background_light"
                     android:layout_margin="5dp"
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_medium"
                     android:background="@drawable/background_otp"
                     android:layout_width="35dp"
                     android:layout_height="35dp" />
@@ -398,6 +404,8 @@
                     android:inputType="numberPassword"
                     android:textColor="@android:color/background_light"
                     android:layout_margin="5dp"
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_medium"
                     android:background="@drawable/background_otp"
                     android:layout_width="35dp"
                     android:layout_height="35dp"  />
@@ -413,6 +421,8 @@
                     android:inputType="numberPassword"
                     android:textColor="@android:color/background_light"
                     android:layout_margin="5dp"
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_medium"
                     android:background="@drawable/background_otp"
                     android:layout_width="35dp"
                     android:layout_height="35dp"  />
@@ -428,6 +438,8 @@
                     android:inputType="numberPassword"
                     android:textColor="@android:color/background_light"
                     android:layout_margin="5dp"
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_medium"
                     android:background="@drawable/background_otp"
                     android:layout_width="35dp"
                     android:layout_height="35dp" />
@@ -458,7 +470,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:paddingTop="10dp"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/Black" />-->
 
                 <EditText
@@ -470,7 +482,6 @@
                     android:layout_marginTop="5dp"
                     android:maxLines="1"
                     android:visibility="gone"
-                    android:textSize="40dp"
                     android:backgroundTint="@android:color/white"
                     android:nextFocusDown="@+id/etcode"
                     android:hint="- - - - - -"
@@ -478,7 +489,7 @@
                     android:singleLine="true"
                     android:background="@null"
                     android:textColorHint="@color/white"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/white" />
 
 
@@ -505,21 +516,21 @@
 
 
             </LinearLayout>
-            <android.support.design.widget.FloatingActionButton
+            <ImageButton
                 android:id="@+id/tverify"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_alignParentRight="true"
                 android:theme="@style/AppTheme.button"
                 android:src="@drawable/ic_arrow_forward_black_24dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/button_gradient_image"
+                android:background="@drawable/button_circle_gradient"
                 android:paddingBottom="10dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:layout_alignParentBottom="true"
                 android:paddingTop="10dp"
-                android:textAppearance="?android:textAppearanceSmall"
+                android:textSize="@dimen/font_small"
                 android:textColor="@color/White" />
 
             <TextView
@@ -534,7 +545,8 @@
                 android:paddingRight="10dp"
                 android:layout_alignParentBottom="true"
                 android:paddingTop="10dp"
-                android:textAppearance="?android:textAppearanceSmall"
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_medium"
                 android:textColor="@color/yellowcol" />
 
         </RelativeLayout>

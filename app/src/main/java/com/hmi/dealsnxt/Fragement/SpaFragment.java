@@ -183,7 +183,7 @@ public class SpaFragment extends Fragment {
                                     dealsModel.setOutletLatitude(outlet.optString("lat"));
                                     dealsModel.setOutletLongtitude(outlet.optString("lng"));
                                     dealsModel.setOutletdescription(outlet.optString("description"));
-                                    dealsModel.setNumofOffers(outlet.optInt("stock_qty"));
+                                    dealsModel.setNumofOffers(data.optString("stock_qty"));
 
                                     dealsModel.setDealid(data.optInt("id"));
                                     dealsModel.setMerchantid(data.optString("user_id"));
@@ -199,6 +199,7 @@ public class SpaFragment extends Fragment {
                                     dealsModel.setDealimage(Path + "/" + data.optString("deal_display_photo"));
                                     dealsModel.setLikes(data.optString("like"));
                                     dealsModel.setLikesCount(data.optString("totalLike"));
+                                    dealsModel.setDealCount(outlet.optString("dealCount"));
 
 
                                     arrayList.add(dealsModel);
@@ -264,7 +265,8 @@ public class SpaFragment extends Fragment {
                         swipeContainer.setRefreshing(false);
                         no_result.setVisibility(View.VISIBLE);
                     }
-                    adapter = new AllinoneAdaptor(arrayList, getActivity(), getActivity());
+                    String category_id="3";
+                    adapter = new AllinoneAdaptor(arrayList, getActivity(), getActivity(),category_id);
                     mRecyclerView.setLayoutManager(linearLayoutManager);
                     mRecyclerView.setAdapter(adapter);
                     progressBar.setVisibility(View.INVISIBLE);

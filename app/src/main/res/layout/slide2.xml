@@ -15,9 +15,10 @@
         android:gravity="center"
         android:padding="5dp"
         android:text="For the classy in you"
-        android:textAppearance="?android:textAppearanceMedium"
+        android:textAppearance="?android:textAppearanceLargeInverse"
         android:textColor="@color/White"
-        android:textSize="25dp"
+        android:fontFamily="@font/avenir"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/fixtext"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -28,10 +29,10 @@
         android:layout_height="wrap_content"
         android:maxLines="2"
         android:padding="10dp"
-        android:text="We are here to provide you the quality experience you deserve"
-        android:textAppearance="?android:textAppearanceSmall"
+        android:text="We are here to provide you the quality\nexperience you deserve"
+        android:textAppearance="?android:textAppearanceMediumInverse"
         android:textColor="@color/White"
-        android:textSize="20dp"
+        android:fontFamily="@font/avenir"
         android:gravity="center"
         android:layout_marginBottom="70dp"
         app:layout_constraintBottom_toBottomOf="parent" />

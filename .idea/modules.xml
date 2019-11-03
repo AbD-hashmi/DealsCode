@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DealsCode.iml" filepath="$PROJECT_DIR$/DealsCode.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dealsnxt-master.iml" filepath="$PROJECT_DIR$/dealsnxt-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/dealsnxt-master-app.iml" filepath="$PROJECT_DIR$/app/dealsnxt-master-app.iml" />
     </modules>
   </component>
 </project>

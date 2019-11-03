@@ -20,6 +20,7 @@
         android:layout_below="@+id/fixtext"
         android:gravity="center"
         android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,21 +28,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="0.860" />
 
-    <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+    <TextView
         android:id="@+id/tvstart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="18dp"
         android:layout_marginStart="18dp"
         android:layout_marginLeft="18dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginRight="18dp"
+        android:layout_marginBottom="28dp"
         android:background="@android:color/transparent"
-        android:text="Skip"
-        android:textAppearance="?android:textAppearanceMedium"
+        android:fontFamily="@font/avenir"
+        android:text="SKIP"
+        android:textAppearance="?android:textAppearanceMediumInverse"
+        android:textStyle="bold"
+        android:clickable="true"
+        android:enabled="true"
         android:textColor="@color/white"
-        android:textSize="20dp"
-        android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginBottom="28dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/avenir"
+        android:text="NEXT"
+        android:textAppearance="?android:textAppearanceMediumInverse"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>

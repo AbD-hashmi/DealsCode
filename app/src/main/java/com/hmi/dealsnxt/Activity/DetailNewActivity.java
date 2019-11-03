@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -16,6 +17,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -28,13 +31,17 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.text.Spanned;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -67,6 +74,7 @@ import com.hmi.dealsnxt.Adaptor.OutletsDeallistAdaptorNew;
 import com.hmi.dealsnxt.Adaptor.SimilairDealsAdaptor;
 import com.hmi.dealsnxt.Fragement.Description;
 import com.hmi.dealsnxt.Fragement.RedeemCancel;
+import com.hmi.dealsnxt.Fragement.TermsAndConditiona;
 import com.hmi.dealsnxt.Fragement.UpcommingOrderfragment;
 import com.hmi.dealsnxt.HelperClass.Constaints;
 import com.hmi.dealsnxt.HelperClass.SessionManager;
@@ -76,6 +84,7 @@ import com.hmi.dealsnxt.Model.HotDealsModel;
 import com.hmi.dealsnxt.Model.ListModel;
 import com.hmi.dealsnxt.Model.OrderModel;
 import com.hmi.dealsnxt.R;
+import com.hmi.dealsnxt.ScrollableTextView;
 import com.hmi.dealsnxt.Utils.Common;
 import com.hmi.dealsnxt.Utils.Customutils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -96,6 +105,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -108,13 +118,15 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class DetailNewActivity extends FragmentActivity implements OnMapReadyCallback {
     TextView tvlike, tvoutletname, tvoutletdistncekm, tvoutletaddress, tvstartime, tvendtime, tvtncdetail, tvdealdetail, tvshowextra;
-    TextView tvdealaddress, tvbuy, tvTitle, tvdetail, tvphone;
+    TextView tvdealaddress, tvbuy, tvTitle, tvdetail, tvphone,tvCountBanner;
     LinearLayout LLlist, LLtnc, LLdeal, RLlocation, RLdealdata;
     RelativeLayout LLrember, LLpayment, RLAmount, RLtoolbar_new, RRl;
     ImageView ivdeal, ivshare, ivlikecount, ivgift, imBack;
-    View viewline;
     RecyclerView viewlist;
     ProgressBar progressBar;
+    RelativeLayout rll;
+    public Spanned description;
+    public Spanned termsandconditions;
     private GoogleMap mMap;
     ViewPager view_pager;
     public static final int RequestPermissionCode = 888;
@@ -140,19 +152,19 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
     int currentPage = 0;
     Timer timer;
     TextView tvoutletdetail;
-    final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
-    final long PERIOD_MS = 3000;
+    final long DELAY_MS = 500000;//delay in milliseconds before task is to be executed
+    final long PERIOD_MS = 3000000;
     // public static String Outletname = "", Outletadress = "", timein = "", timeout = "";
     //   UploadLeadsBroad uploadLeadsBroad;
     ArrayList<DealDetailsModel> orderarrayList = new ArrayList<>();
     RecyclerView recyclerView;
     SimilairDealsAdaptor similaradapter;
-    ScrollView scroll_view;
+    NestedScrollView scroll_view;
     RelativeLayout.LayoutParams layoutParams;
     public static final int REQUEST_CODE = 1;
     public LinearLayout LLloc;
     public ImageView ivfilter;
-    public TextView tvusername;
+    public TextView tvusername ,getDirections;
     public LinearLayout newtoolbar;
     String stroutletname;
     public TabLayout tabLayout;
@@ -163,7 +175,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
         setContentView(R.layout.activity_detail);
         RLdealdata = (LinearLayout) findViewById(R.id.RLdealdata);
         RRl = (RelativeLayout) findViewById(R.id.RRl);
-        scroll_view = (ScrollView) findViewById(R.id.scroll_view);
+        scroll_view = (NestedScrollView) findViewById(R.id.scroll_view);
         layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.MATCH_PARENT);
         layoutParams.setMargins(0, 0, 0, 0);
@@ -179,8 +191,9 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
         ivshare = (ImageView) findViewById(R.id.ivshare);
         ivlikecount = (ImageView) findViewById(R.id.ivlikecount);
         tvoutletname = (TextView) findViewById(R.id.tvoutletname);
+        tvCountBanner = (TextView) findViewById(R.id.tvCount);
         tvoutletdistncekm = (TextView) findViewById(R.id.tvoutletdistncekm);
-       // ivgift = (ImageView) findViewById(R.id.ivgift);
+        // ivgift = (ImageView) findViewById(R.id.ivgift);
         tvoutletaddress = (TextView) findViewById(R.id.tvoutletaddress);
         tvstartime = (TextView) findViewById(R.id.tvstartime);
         tvendtime = (TextView) findViewById(R.id.tvendtime);
@@ -188,6 +201,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
         viewlist = (RecyclerView) findViewById(R.id.viewlist);
         viewlist.setNestedScrollingEnabled(false);
         LLtnc = (LinearLayout) findViewById(R.id.LLtnc);
+        rll=(RelativeLayout) findViewById(R.id.rll);
         // tvtncdetail = (TextView) findViewById(R.id.tvdetail);
         LLdeal = (LinearLayout) findViewById(R.id.LLdeal);
         tvdealdetail = (TextView) findViewById(R.id.tvdealdetail);
@@ -201,10 +215,9 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
         tvdealaddress = (TextView) findViewById(R.id.tvdealaddress);
         LLpayment = (RelativeLayout) findViewById(R.id.LLpayment);
         RLAmount = (RelativeLayout) findViewById(R.id.RLAmount);
-        viewline = (View) findViewById(R.id.viewcross);
         tvactualprice = (TextView) findViewById(R.id.tvactualprice);
         tvfinalamount = (TextView) findViewById(R.id.tvfinalamount);
-
+        getDirections=(TextView)findViewById(R.id.getDirections);
         tvfinalamount.setVisibility(View.INVISIBLE);
         tvbuy = (TextView) findViewById(R.id.tvbuy);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -262,7 +275,6 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                     Bitmap bitmap = scroll_view.getDrawingCache().copy(Bitmap.Config.RGB_565, false);
                     scroll_view.setDrawingCacheEnabled(false);
 
-
                     String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() +
                             "/ProjectName";
                     File path = Environment.getExternalStoragePublicDirectory(
@@ -305,8 +317,36 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
             }
         });
 
+
+        rll.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (v.getId() == R.id.rll) {
+                    v.getParent().requestDisallowInterceptTouchEvent(true);
+                    switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                        case MotionEvent.ACTION_UP:
+                            v.getParent().requestDisallowInterceptTouchEvent(false);
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
+
         loadOfflineDeals("PullToRefresh");
         loadDetailist();
+
+/*
+        scroll_view.setSmoothScrollingEnabled(true);
+        scroll_view.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                ScrollableTextView.enableScroll(scroll_view);
+                //viewlist.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });*/
         initMap();
 
         // view_pager.setAdapter(new CustomPagerAdapter(DetailNewActivity.this, mlist));
@@ -317,27 +357,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
         //LLpayment.setO;
 
 
-        tvbuy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Qtycount > 0) {
-                    Intent i = new Intent(DetailNewActivity.this, SingleOrderActivity.class);
 
-                    HotDealsModel hotDealsModel=new HotDealsModel();
-                    hotDealsModel.setOutletName(stroutletname);
-                    i.putExtra("Dealid", pos);
-                    i.putExtra("Qtycount", Qtycount);
-                    i.putExtra("Fromdiscount", Fromdiscount);
-                    i.putExtra("Dealimgname", Dealimgname);
-                    i.putExtra("Dealstarttime", Dealstarttime);
-                    i.putExtra("Dealendtime", Dealendtime);
-                    i.putExtra("order_list", SessionManager.setRecent1(orderarrayList, DetailNewActivity.this));
-                    startActivity(i);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Please choose any order", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
 
         //     tvfinalamount.setTextColor(DealDetailsModel.getDealDetailsModel().getDealcalculatedprice().toString());
 
@@ -355,7 +375,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                 if (scroll_view != null) {
                     if (scroll_view.getChildAt(0).getBottom() <= (scroll_view.getHeight() + scroll_view.getScrollY())) {
 //scroll view is at bottom
-                        ivmoveup.setVisibility(View.VISIBLE);
+                        //ivmoveup.setVisibility(View.VISIBLE);
                     } else {
 //scroll view is not at bottom
                         ivmoveup.setVisibility(View.INVISIBLE);
@@ -398,19 +418,19 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             View itemView = mLayoutInflater.inflate(R.layout.pager, container, false);
-           try {
-               ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
-                       .imageDownloader(new BaseImageDownloader(getApplicationContext(), 5 * 1000, 20 * 1000))
-                       .build();
-                   ImageLoader imageLoader = ImageLoader.getInstance();
-               //      imageLoader.getInstance().init(config);
-               ImageView imageView = (ImageView) itemView.findViewById(R.id.bannerimg);
-              // Picasso.with(getApplicationContext()).load(dealimglist.get(position).getImages_url()).into(imageView);
-               if(!dealimglist.get(position).getImages_url().isEmpty())
-               imageLoader.displayImage(dealimglist.get(position).getImages_url(), imageView, defaultOptions);
-           }catch (Exception e){
-               e.printStackTrace();
-           }
+            try {
+                ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
+                        .imageDownloader(new BaseImageDownloader(getApplicationContext(), 5 * 1000, 20 * 1000))
+                        .build();
+                ImageLoader imageLoader = ImageLoader.getInstance();
+                //      imageLoader.getInstance().init(config);
+                ImageView imageView = (ImageView) itemView.findViewById(R.id.bannerimg);
+                // Picasso.with(getApplicationContext()).load(dealimglist.get(position).getImages_url()).into(imageView);
+                if(!dealimglist.get(position).getImages_url().isEmpty())
+                    imageLoader.displayImage(dealimglist.get(position).getImages_url(), imageView, defaultOptions);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             //   imageView.setImageResource(dealimglist.get(position).getImages_url());
             container.addView(itemView);
             return itemView;
@@ -421,7 +441,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
             container.removeView((LinearLayout) object);
         }
     }
-
+    public String path="";
     public void loadDetailist() {
         String url = Constaints.DealDetailbyOutlet;
         progressBar.setVisibility(View.VISIBLE);
@@ -435,6 +455,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                     JSONObject jSONObject = new JSONObject(new String(response));
                     int Status = jSONObject.optInt("status");
                     String Path = Constaints.BaseUrl + jSONObject.optString("outletCdnpath");
+                    path.equals(Path);
                     String Path_deal = Constaints.BaseUrl + jSONObject.optString("dealsCdnpath");
                     //       dealsModel.setDealsName(Constaints.BaseUrl + merchant.optString("dealsCdnpath"));
                     progressDialog.dismiss();
@@ -451,7 +472,19 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                             Longtitude = outlet.optString("lng");
                             //     ArrayList<AssetsModel> assetsModels = new ArrayList<>(assetsJsonArray.length());
                             tvTitle.setText(outlet.optString("name"));
+                            String title=outlet.optString("name");
+                            getDirections.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
 
+                                    String geoUri = "http://maps.google.com/maps?q=loc:" + Double.valueOf(Latitude) +
+                                            "," + Double.valueOf(Longtitude) + " (" + title+ ")";
+                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoUri));
+                                    intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+
+                                    startActivity(intent);
+                                }
+                            });
                             tvoutletname.setText(outlet.optString("name"));
                             stroutletname=""+outlet.optString("name");
 
@@ -472,8 +505,18 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
 
                                 }
                             });
+                            SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(DetailNewActivity.this);
+                            SharedPreferences.Editor editor=sharedPreferences.edit();
 
-                            tvdetail.setText(Html.fromHtml(outlet.optString("termAndCondition")));
+                            description=Html.fromHtml(outlet.optString("description"));
+                            termsandconditions=Html.fromHtml(outlet.optString("termAndCondition"));
+                            editor.putString("description", String.valueOf(description));
+                            editor.putString("tnc", String.valueOf(termsandconditions));
+                            editor.commit();
+
+
+                            tvdetail.setText(Html.fromHtml(outlet.optString("description")));
+
                             Location loc1 = new Location("");
                             try {
                                 loc1.setLatitude(Double.valueOf(SessionManager.getLatitude(getApplicationContext())));
@@ -524,7 +567,8 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                                 listModel.setOutletintime(data.optString("deal_available_from"));
                                 listModel.setOutletouttime(data.optString("deal_available_to"));
                                 listModel.setDesciption(data.optString("deal_description"));
-                                listModel.setNumofOffers(outlet.optInt("dealCount"));
+                                listModel.setNumofOffers(data.optInt("stock_qty"));
+                                listModel.setDealCount(outlet.optInt("dealCount"));
                                 listModel.setDiscountpercent(data.optString("percentage"));
                                 listModel.setAfterdiscountprice(data.optString("deal_discount_price"));
                                 listModel.setDealimg(Path_deal + "/" + data.optString("deal_display_photo"));
@@ -539,6 +583,31 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                                 //   tvfinalamount.setText("\u20B9" + (data.optString("deal_discount_price")));
 
                                 arrayList.add(j, listModel);
+
+                                tvbuy.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        if (Qtycount > 0) {
+                                            Intent i = new Intent(DetailNewActivity.this, SingleOrderActivity.class);
+
+                                            HotDealsModel hotDealsModel=new HotDealsModel();
+                                            hotDealsModel.setOutletName(stroutletname);
+                                            i.putExtra("Dealid", pos);
+                                            i.putExtra("Qtycount", Qtycount);
+                                            i.putExtra("Fromdiscount", Fromdiscount);
+                                            i.putExtra("Dealimgname",listModel.getDealimg());
+                                            System.out.println("deal image "+listModel.getDealimg());
+                                            i.putExtra("Dealstarttime", Dealstarttime);
+                                            i.putExtra("Dealendtime", Dealendtime);
+                                            i.putExtra("path", Path_deal + "/" );
+                                            i.putExtra("order_list", SessionManager.setRecent1(orderarrayList, DetailNewActivity.this));
+                                            startActivity(i);
+                                        } else {
+                                            Toast.makeText(getApplicationContext(), "Please choose any order", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                });
                             }
                         }
                         try {
@@ -607,6 +676,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                             similaradapter = new SimilairDealsAdaptor(similararrayList, DetailNewActivity.this, DetailNewActivity.this);
                             //  mRecyclerView.setLayoutManager(linearLayoutManager);
                             recyclerView.setAdapter(similaradapter);
+
                             progressBar.setVisibility(View.INVISIBLE);
                         } catch (Exception e) {
                             Log.e("", e.getMessage());
@@ -616,7 +686,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
 
 
                     } else {
-                      //  Toast.makeText(getApplicationContext(), jSONObject.optString("msg"), Toast.LENGTH_LONG).show();
+                        //  Toast.makeText(getApplicationContext(), jSONObject.optString("msg"), Toast.LENGTH_LONG).show();
                         AlertDialog.Builder builder=new AlertDialog.Builder(DetailNewActivity.this);
                         builder.setTitle("Could Not Find Deal");
                         builder.setCancelable(false);
@@ -631,25 +701,58 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                         builder.show();
                     }
                     Intent intent = getIntent();
-                    adapter = new OutletsDeallistAdaptorNew(DetailNewActivity.this, arrayList, DetailNewActivity.this,intent.getStringExtra("outletid"));
+                    adapter = new OutletsDeallistAdaptorNew(DetailNewActivity.this, arrayList, DetailNewActivity.this,
+                            intent.getStringExtra("outletid"));
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
-                  // linearLayoutManager.setStackFromEnd(true);
+                    // linearLayoutManager.setStackFromEnd(true);
+
                     viewlist.setLayoutManager(linearLayoutManager);
+                    viewlist.setClipToPadding(false);
+                    viewlist.setPadding(0,0,80,0);
 
                     //   viewlist.setLayoutManager(linearLayoutManager);
                     viewlist.setAdapter(adapter);
                     CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(getApplicationContext(), dealimglist);
                     view_pager.setAdapter(mCustomPagerAdapter);
+
                     /*After setting the adapter use the timer */
                     final Handler handler = new Handler();
                     final Runnable Update = new Runnable() {
                         public void run() {
                             if (currentPage == dealimglist.size() - 1) {
                                 currentPage = 0;
+
                             }
                             view_pager.setCurrentItem(currentPage++, true);
                         }
                     };
+
+                    if (dealimglist.size()>1){
+
+                        view_pager.setClipToPadding(false);
+                        view_pager.setPadding(0,0,40,0);
+                        view_pager.setPageMargin(10);
+
+                    view_pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                        @Override
+                        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                            tvCountBanner.setText(position+1+"/"+dealimglist.size());
+                        }
+
+                        @Override
+                        public void onPageSelected(int position) {
+                            tvCountBanner.setText(position+1+"/"+dealimglist.size());
+                        }
+
+                        @Override
+                        public void onPageScrollStateChanged(int state) {
+
+                        }
+                    });
+                    }else {
+                        tvCountBanner.setVisibility(View.GONE);
+                    }
+
                     timer = new Timer(); // This will create a new Thread
                     timer.schedule(new TimerTask() { // task to be scheduled
                         @Override
@@ -690,6 +793,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                 params.put("XAPIKEY", "XXXXX");
                 //    params.put("user_id", SessionManager.getUserID(getApplicationContext()).toString());
                 // params.put("id", HotDealsModel.getHotDealsModel().getOutletid());
+                params.put("category_id",intent.getStringExtra("category_id"));
                 params.put("outlet_id", intent.getStringExtra("outletid"));
                 params.put("user_id", SessionManager.getUserID(getApplicationContext()));
                 System.out.println("data details "+params);
@@ -733,7 +837,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
         {
         }*/
     }
-String strOid;
+    String strOid;
     public BroadcastReceiver uiUpdated = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -768,7 +872,7 @@ String strOid;
                 finalprice = finalprice + (Integer.parseInt(orderarrayList.get(i).getDealQTY()) * Integer.parseInt(orderarrayList.get(i).getAfterdiscountprice()));
 
             }
-            tvfinalamount.setText(finalprice + "");
+            tvfinalamount.setText("\u20B9"+finalprice + "");
             tvactualprice.setText("\u20B9" + actual + "");
             if (finalprice == 0) {
                 tvfinalamount.setVisibility(View.INVISIBLE);
@@ -848,7 +952,7 @@ String strOid;
                                     dealsModel.setOutletstate(outlet.optString("state"));
                                     dealsModel.setOutletCity(outlet.optString("city"));
                                     dealsModel.setOutletzipcode(outlet.optString("zipcode"));
-                                    dealsModel.setNumofOffers(outlet.optInt("dealCount"));
+                                    dealsModel.setNumofOffers(outlet.optString("dealCount"));
                                     dealsModel.setOutletcontactperson(outlet.optString("contactPersonName"));
                                     dealsModel.setOutletcontactnumber(outlet.optString("contactNumber"));
                                     dealsModel.setOutletLatitude(outlet.optString("lat"));
@@ -883,7 +987,7 @@ String strOid;
                                         dealsModel.setOutletCity(outlet.optString("city"));
                                         dealsModel.setOutletzipcode(outlet.optString("zipcode"));
                                         dealsModel.setTndc(outlet.optString("termAndCondition"));
-                                        dealsModel.setNumofOffers(outlet.optInt("dealCount"));
+                                        dealsModel.setNumofOffers(outlet.optString("dealCount"));
                                         dealsModel.setOutletcontactperson(outlet.optString("contactPersonName"));
                                         dealsModel.setOutletcontactnumber(outlet.optString("contactNumber"));
                                         dealsModel.setOutletLatitude(outlet.optString("lat"));
@@ -977,14 +1081,14 @@ String strOid;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 
-            if (requestCode == REQUEST_CODE) {
-                if (resultCode == RESULT_OK) {
-                    adapter.onActivityResult(requestCode, resultCode,
-                            intent);
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                adapter.onActivityResult(requestCode, resultCode,
+                        intent);
 
 
-                }
-            }        super.onActivityResult(requestCode, resultCode, intent);
+            }
+        }        super.onActivityResult(requestCode, resultCode, intent);
 
     }
 
@@ -1020,7 +1124,7 @@ String strOid;
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new Description(), "Description");
-        adapter.addFrag(new Description(), "Terms & Conditions");
+        adapter.addFrag(new TermsAndConditiona(), "Terms & Conditions");
 
         viewPager.setAdapter(adapter);
     }
@@ -1028,7 +1132,6 @@ String strOid;
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
-        private final List<String> mFragmenttext = new ArrayList<>();
 
         public ViewPagerAdapter(FragmentManager manager) {
             super(manager);
@@ -1044,6 +1147,7 @@ String strOid;
             return mFragmentList.size();
         }
 
+
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
@@ -1056,5 +1160,4 @@ String strOid;
         }
 
     }
-
 }

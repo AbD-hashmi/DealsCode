@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+   <item android:drawable="@drawable/button_circle_gradient"/>
     <item>
         <shape android:shape="rectangle"
-            android:padding="20dp"
+            android:padding="10dp"
             >
             <corners
-                android:topLeftRadius="54dp"
-                android:topRightRadius="54dp"
-                android:bottomLeftRadius="54dp"
-                android:bottomRightRadius="54dp"
+                android:radius="58dp"
+                android:topLeftRadius="58dp"
+                android:topRightRadius="58dp"
+                android:bottomLeftRadius="58dp"
+                android:bottomRightRadius="58dp"
                 />
             <solid
-                android:color="@android:color/transparent"
+                android:color="@color/gray"
                 />
             <padding
                 android:left="10dp"
@@ -20,12 +22,12 @@
                 android:bottom="10dp"
                 />
             <size
-                android:width="60dp"
-                android:height="60dp"
+                android:width="64dp"
+                android:height="64dp"
                 />
             <stroke
-                android:width="1.5dp"
-                android:color="@color/yellowcol"
+                android:width="2dp"
+                android:color="@android:color/transparent"
                 />
         </shape>
     </item>

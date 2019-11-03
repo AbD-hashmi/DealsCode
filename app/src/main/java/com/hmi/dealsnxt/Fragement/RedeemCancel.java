@@ -121,9 +121,12 @@ public class RedeemCancel extends Fragment {
                                 orderModel.setDealtransactionid(orderJson.optString("transactions_no"));
                                 orderModel.setOutletorderstatus(orderJson.optString("status"));
                                 orderModel.setDealpurchasedate(orderJson.optString("order_date"));
-                                orderModel.setDealorderid(orderJson.optString("order_id"));
                                 orderModel.setOutletaddress(orderJson.optString("city"));
                                 orderModel.setDealid(dealobj.optString("id"));
+                                orderModel.setDealorderid(dealobj.optString("voucherCode"));
+                                orderModel.setRefundable_policy(dealobj.optString("refundable_policy"));
+                                orderModel.setGift_applied(orderJson.optString("gift_applied"));
+
                                 orderModel.setDealdeatilid(dealobj.optString("deal_detail_id"));
                                 orderModel.setDealQty(dealobj.optString("qty"));
                                 orderModel.setDealtitle(dealobj.optString("title"));
@@ -141,7 +144,11 @@ public class RedeemCancel extends Fragment {
                         swipeContainer.setRefreshing(false);
                     }
                     RedeemorCancelOrder adapter = new RedeemorCancelOrder(arrayList, getActivity(), getActivity(),RedeemCancel.this);
-                    recycleVIew.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+                    LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+                    mLayoutManager.setReverseLayout(true);
+                    mLayoutManager.setStackFromEnd(true);
+                    recycleVIew.setLayoutManager(mLayoutManager);
                     recycleVIew.setAdapter(adapter);
 
                 } catch (Exception e) {

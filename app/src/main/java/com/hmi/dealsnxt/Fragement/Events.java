@@ -107,9 +107,7 @@ public class Events extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        LandingNewActivity landingNewActivity=new LandingNewActivity();
-        landingNewActivity.loadbannerImages(5,getContext());
-        loadOfflineDeals(offlineDealsJSON);
+       loadOfflineDeals("");
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -182,8 +180,8 @@ public class Events extends Fragment {
                                     dealsModel.setOutletLatitude(outlet.optString("lat"));
                                     dealsModel.setOutletLongtitude(outlet.optString("lng"));
                                     dealsModel.setOutletdescription(outlet.optString("description"));
-                                    dealsModel.setNumofOffers(outlet.optInt("stock_qty"));
-
+                                    dealsModel.setNumofOffers(data.optString("stock_qty"));
+                                    dealsModel.setDealCount(outlet.optString("dealCount"));
                                     dealsModel.setDealid(data.optInt("id"));
                                     dealsModel.setMerchantid(data.optString("user_id"));
                                     dealsModel.setDealTitle(data.optString("deal_title"));
@@ -198,7 +196,6 @@ public class Events extends Fragment {
                                     dealsModel.setDealimage(Path + "/" + data.optString("deal_display_photo"));
                                     dealsModel.setLikes(data.optString("like"));
                                     dealsModel.setLikesCount(data.optString("totalLike"));
-
 
                                     arrayList.add(dealsModel);
                                 }
@@ -263,7 +260,8 @@ public class Events extends Fragment {
                         swipeContainer.setRefreshing(false);
                         no_result.setVisibility(View.VISIBLE);
                     }
-                    adapter = new AllinoneAdaptor(arrayList, getActivity(), getActivity());
+                    String category_id="5";
+                    adapter = new AllinoneAdaptor(arrayList, getActivity(), getActivity(),category_id);
                     mRecyclerView.setLayoutManager(linearLayoutManager);
                     mRecyclerView.setAdapter(adapter);
                     progressBar.setVisibility(View.INVISIBLE);

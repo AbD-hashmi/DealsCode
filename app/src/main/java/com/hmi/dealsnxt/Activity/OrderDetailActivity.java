@@ -58,7 +58,7 @@ import java.util.Map;
 public class OrderDetailActivity extends AppCompatActivity {
     public ImageView ivdeal;
     public TextView tvorderid, tvoutletname, tvoutletaddress, tvstartime, tvendtime, tvdealdate, tvtransactionId, tvtotal;
-    public TextView tvvoucherid;
+    public TextView tvvoucherid,total_amount,tv_offerText;
     public ProgressBar progressBar;
     public RecyclerView viewlist;
     com.nostra13.universalimageloader.core.ImageLoader imageLoader;
@@ -100,10 +100,10 @@ public class OrderDetailActivity extends AppCompatActivity {
         ivfilter = (ImageView) newtoolbar.findViewById(R.id.ivfilter);
         ivsearch = (ImageView) newtoolbar.findViewById(R.id.ivsearch);
         tvusername = (TextView) newtoolbar.findViewById(R.id.tvusername);
-        RLAmount = (RelativeLayout) findViewById(R.id.RLAmount);
         tvoff = (TextView) findViewById(R.id.tvoff);
         btnCancel = (Button) findViewById(R.id.btnCancel);
-
+        total_amount=(TextView)findViewById(R.id.total_amount);
+        tv_offerText=(TextView)findViewById(R.id.tv_offerText);
         LLloc.setVisibility(View.GONE);
         imBack.setVisibility(View.VISIBLE);
         tvTitle.setVisibility(View.VISIBLE);
@@ -124,16 +124,20 @@ public class OrderDetailActivity extends AppCompatActivity {
                 .build();
         imageLoader = com.nostra13.universalimageloader.core.ImageLoader.getInstance();
         imageLoader.init(ImageLoaderConfiguration.createDefault(OrderDetailActivity.this));
-        imageLoader.displayImage(OrderModel.getOrderModel().getDealimgurl(), ivdeal, options);
+        System.out.println("img url "+ OrderModel.getOrderModel().getDealimgurl());
+        imageLoader.displayImage(OrderModel.getOrderModel().getDealimgurl().replace("http://dealsnxt.nuagedigitech.com/application/public/uploads/deals/http://dealsnxt.nuagedigitech.com/application/public/uploads/deals/",
+                "http://dealsnxt.nuagedigitech.com/application/public/uploads/deals/"), ivdeal, options);
 
-
-        Intent intent=getIntent();
-        if (intent.hasExtra("commingFrom"))
-        if(getIntent().getExtras().getInt("cancelVisible")==1){
+        Bundle bundle=getIntent().getExtras();
+        if (bundle.containsKey("cancelVisible"))
+        {
+            if (bundle.getInt("cancelVisible") == 1)
             btnCancel.setVisibility(View.VISIBLE);
         }else{
             btnCancel.setVisibility(View.GONE);
         }
+
+
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -201,7 +205,7 @@ public class OrderDetailActivity extends AppCompatActivity {
                 chkselect1.setChecked(false);
                 chkselect2.setChecked(false);
                 chkselect4.setChecked(false);
-                val = "Not more Intrested";
+                val = "No more Interested";
             }
         });
 
@@ -253,7 +257,7 @@ public class OrderDetailActivity extends AppCompatActivity {
                                             //    Toast.makeText(context, jSONObject.getString("message").toString(), Toast.LENGTH_SHORT).show();
                                             alertDialogBuilder.dismiss();
                                             finish();
-                                            Toast.makeText(getApplicationContext(), "Order has been Cancelled", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(), ""+jSONObject.getString("message"), Toast.LENGTH_SHORT).show();
                                         } else {
                                             alertDialogBuilder.dismiss();
                                             Toast.makeText(getApplicationContext(), jSONObject.getString("message").toString(), Toast.LENGTH_SHORT).show();
@@ -280,9 +284,11 @@ public class OrderDetailActivity extends AppCompatActivity {
                             Map<String, String> params = new HashMap<String, String>();
                             params.put("XAPIKEY", "XXXXX");
                             params.put("deal_id", getIntent().getExtras().getString("id"));
-                            params.put("status", 2 + "");
+                            params.put("status", "2");
                             params.put("user_id", SessionManager.getUserID(getApplicationContext()));
                           //  params.put("status", val);
+                            params.put("reason",val);
+
                             System.out.println("data "+params);
                             return params;
                         }
@@ -320,7 +326,7 @@ public class OrderDetailActivity extends AppCompatActivity {
             alertDialogBuilder.show();
 
     }
-
+String totalAmount,offerApplied="90000";
     public void orderdetail() {
 
         if (Global.isInternetAvail(OrderDetailActivity.this)) {
@@ -339,7 +345,10 @@ public class OrderDetailActivity extends AppCompatActivity {
                                 JSONObject orderJson = orderArray.getJSONObject(i);
                                 System.out.println("data = "+orderArray.getJSONObject(i));
 
-                                tvtotal.setText("\u20B9" + " " + orderJson.optString("total_amount"));
+                              //  tvtotal.setText("\u20B9" + " " + orderJson.optString("total_amount"));
+                                totalAmount="\u20B9" + " " + orderJson.optString("total_amount");
+                                offerApplied=orderJson.optString("offer_applied");
+
                                 tvtransactionId.setText(orderJson.optString("transactions_no"));
                                 try {
                                     String date = orderJson.optString("order_date");
@@ -368,9 +377,38 @@ public class OrderDetailActivity extends AppCompatActivity {
                             for (int i = 0; i < dealArray.length(); i++) {
                                 JSONObject orderJson = dealArray.getJSONObject(i);
 
-                                tvstartime.setText(Customutils.dateFormat(orderJson.optString("timeFrom")) + "-" + Customutils.dateFormat(orderJson.optString("timeTo")));
-                                tvoff.setText(orderJson.optString("percent") + "%" + " " + "off");
-                                tvdealname.setText("on" + " " + orderJson.optString("deal_title"));
+                                if(orderJson.optString("final_price").equals("")){
+                                 tvtotal.setText(totalAmount);
+                                 total_amount.setText(totalAmount);
+                                 tvoff.setText("\u20B9" + " " +"0");
+                                }else {
+                                    if (offerApplied.equals("1")){
+                                        tv_offerText.setText("Coupon Applied");
+                                    }else {
+                                        tv_offerText.setText("Offer Applied");
+                                    }
+                                    totalAmount=orderJson.optString("final_price").replace(",", "");
+
+                                    tvtotal.setText("\u20B9" + " " + totalAmount);
+
+                                    total_amount.setText("\u20B9" + " " +orderJson.optString("price"));
+
+                                    int price=Integer.parseInt(orderJson.optString("price"));
+                                    Double offer=price-Double.valueOf(totalAmount);
+                                    System.out.println("werfwef "+Double.valueOf(totalAmount));
+                                    tvoff.setText("\u20B9" + " " +String.format("%.0f", offer));
+                                }
+
+                                tvstartime.setText(" "+Customutils.dateFormat(orderJson.optString("timeFrom")) + "-" + Customutils.dateFormat(orderJson.optString("timeTo")));
+                               // tvoff.setText(orderJson.optString("offer_applied"));
+
+                               // tvdealname.setText(" " + orderJson.optString("deal_title"));
+                                if (!orderJson.optString("show_percentage").equals("0") || orderJson.optString("show_percentage")!="0") {
+                                    tvdealname.setText(orderJson.getString("percent")+"% Off on " +orderJson.optString("deal_title"));
+
+                                }else{
+                                    tvdealname.setText(orderJson.optString("deal_title"));
+                                }
                                 tvvoucherid.setText(orderJson.optString("voucherCode"));
                                        /* if (Integer.valueOf(OrderModel.getOrderModel().getOutletorderstatus()) == 0) {
                                             ivQR.setVisibility(View.GONE);
@@ -433,6 +471,7 @@ public class OrderDetailActivity extends AppCompatActivity {
                     params.put("deal_id", OrderModel.getOrderModel().getDealid());
                     //
                     //   params.put("user_id", SessionManager.getUserID(getApplicationContext()));
+                    System.out.println(params);
                     return params;
                 }
 

@@ -225,15 +225,16 @@ public class LocationActivity extends AppCompatActivity implements GoogleApiClie
         });
         tvTitle.setText("Pick your location");
         ImageView im = (ImageView) searchView.findViewById(R.id.search_button);
-        im.setImageResource(R.drawable.search_vi);
+        im.setImageResource(R.drawable.ic_search_black_24dp);
         SearchView.SearchAutoComplete search_src_text = (SearchView.SearchAutoComplete) searchView.findViewById(R.id.search_src_text);
 
         ImageView search_close_btn = (ImageView) findViewById(R.id.search_close_btn);
         ImageView search_mag_icon = (ImageView) findViewById(R.id.search_mag_icon);
 
-        search_close_btn.setImageResource(R.drawable.cross_vi);
-        search_mag_icon.setImageResource(R.drawable.search_vi);
-        search_src_text.setTextColor(Color.GRAY);
+        search_close_btn.setImageResource(R.drawable.close_white);
+        search_mag_icon.setImageResource(R.drawable.ic_search_black_24dp);
+        search_src_text.setTextColor(Color.WHITE);
+        search_src_text.setHintTextColor(getResources().getColor(R.color.white));
         search_src_text.setHint("Search Here");
         // EditText ed=new EditText(LocationActivity.this);
 

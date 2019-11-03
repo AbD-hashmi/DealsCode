@@ -21,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.Html;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -33,6 +34,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -76,7 +78,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class OTPActivity extends AppCompatActivity {
 
-    FloatingActionButton tvagree;
+    ImageButton tvagree;
     public EditText etmobno, etcode, etotp;
     CheckBox chkselect;
     LinearLayout linearLayout;
@@ -310,7 +312,7 @@ public class OTPActivity extends AppCompatActivity {
         }
         progressDialog = Common.getProgressDialog(OTPActivity.this);
         DeviceOSVersion = android.os.Build.VERSION.RELEASE;
-        tvagree = (FloatingActionButton) findViewById(R.id.tvagree);
+        tvagree = (ImageButton) findViewById(R.id.tvagree);
         progress_bar = (ProgressBar) findViewById(R.id.progress_bar);
         //  progress_bar = (ProgressBar) findViewById(R.id.progress_bar);
         etmobno = (EditText) findViewById(R.id.etmobno);
@@ -331,7 +333,7 @@ public class OTPActivity extends AppCompatActivity {
             }
         });
         tvtnc.setMovementMethod(LinkMovementMethod.getInstance());
-        String text2 = "Terms of Use";
+        String text2 = "Terms & Conditions";
         tvtnc.setText(Html.fromHtml(text2));
 
         tvtnc.setOnClickListener(new View.OnClickListener() {
@@ -365,7 +367,7 @@ public class OTPActivity extends AppCompatActivity {
             @Override
             public void onCountrySelected() {
                 //Alert.showMessage(RegistrationActivity.this, ccp.getSelectedCountryCodeWithPlus());
-                selected_country_code = ccp.getSelectedCountryCodeWithPlus();
+               // selected_country_code = ccp.getSelectedCountryCodeWithPlus();
             }
         });
     }
@@ -405,7 +407,7 @@ public class OTPActivity extends AppCompatActivity {
                         final Handler handler = new Handler();
                         final TextView tvnmobile = (TextView) findViewById(R.id.tvnmobile);
                         etotp = (EditText) findViewById(R.id.etotp);
-                        final FloatingActionButton tverify = (FloatingActionButton) findViewById(R.id.tverify);
+                        final ImageButton tverify = (ImageButton) findViewById(R.id.tverify);
                         final ImageView image = (ImageView) findViewById(R.id.image);
                         tvnmobile.setText(ccp.getSelectedCountryCodeWithPlus() + " " + etmobno.getText().toString());
 
@@ -474,7 +476,7 @@ public class OTPActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("XAPIKEY", "XXXXX");
                 params.put("phone", etmobno.getText().toString());
-                params.put("userType", "User");
+                params.put("userTycpe", "User");
 
                 // params.put("device_imei", SessionManager.getDeviceIMEI(RegistrationActivity.this));
                 return params;
@@ -510,6 +512,7 @@ public class OTPActivity extends AppCompatActivity {
                         //{"status":1,"message":"","info":[{"id":29,"role_id":"3","name":"Hh","email":"sd@gmail.com","phone":"9812273583","merchant_commission_percentage":"","status":"1","otp":"0","user_dp":null,"created_at":"2017-11-28 13:44:25","updated_at":"2017-12-11 12:06:28","dob":"0000-00-00","gender":"Male"}]}
                         //{"status":1,"message":"","info":[{"id":41,"role_id":"3","name":"","email":"","phone":"9812273583","merchant_commission_percentage":"","status":"1","otp":"0","user_dp":null,"created_at":"2017-12-13 18:48:53","updated_at":"2017-12-13 18:49:03","dob":null,"gender":""}]}
                        // alert.dismiss();
+                        otp="";
                         JSONArray jsonArray = jSONObject.optJSONArray("info");
                         JSONObject jsonObject = jsonArray.optJSONObject(0);
                         String email = jsonObject.optString("email");
@@ -528,17 +531,17 @@ public class OTPActivity extends AppCompatActivity {
                         if(jsonObject.optInt("is_verified")!=1) {
 
                             startActivity(new Intent(OTPActivity.this, UnverifiedUser.class));
+                            finish();
 
-                        }
-                            System.out.println("Data "+email);
-                        if (SessionManager.getUserGender(getApplicationContext()).trim().equals("")) {
+                        }else if (SessionManager.getUserGender(getApplicationContext()).trim().equals("")) {
+                            SessionManager.setIs_verified(getApplicationContext(),"1");
                             SessionManager.setIsotp(getApplicationContext(), true);
                             SessionManager.setMobileno(getApplicationContext(), etotp.getText().toString());
                             Intent i = new Intent(OTPActivity.this, SignInActivity.class);
                             startActivity(i);
                             finish();
                         } else {
-
+                            SessionManager.setIs_verified(getApplicationContext(),"1");
                             SessionManager.setIssignup(getApplicationContext(), true);
                             Intent i = new Intent(OTPActivity.this, LocationActivity.class);
                             startActivity(i);
@@ -547,10 +550,24 @@ public class OTPActivity extends AppCompatActivity {
 
                         progressDialog.dismiss();
                     } else {
+                        et1.setText("");
+                        et2.setText("");
+                        et3.setText("");
+                        et4.setText("");
+                        et5.setText("");
+                        et6.setText("");
+                        otp="";
                         Toast.makeText(OTPActivity.this, jSONObject.optString("message"), Toast.LENGTH_LONG).show();
                         progressDialog.show();
                     }
                 } catch (Exception e) {
+                    et1.setText("");
+                    et2.setText("");
+                    et3.setText("");
+                    et4.setText("");
+                    et5.setText("");
+                    et6.setText("");
+                    otp="";
                     Log.e("", e.getMessage());
                     Toast.makeText(OTPActivity.this, R.string.ConnectionErrorResponse, Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
@@ -562,7 +579,13 @@ public class OTPActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progress_bar.setVisibility(View.GONE);
-
+                et1.setText("");
+                et2.setText("");
+                et3.setText("");
+                et4.setText("");
+                et5.setText("");
+                et6.setText("");
+                otp="";
                 System.out.println("   ooppop"+error.getMessage());
                 progressDialog.dismiss();
             }
@@ -696,6 +719,13 @@ public class OTPActivity extends AppCompatActivity {
         else {
             linearLayout.setVisibility(View.VISIBLE);
             relativeLayout.setVisibility(View.GONE);
+            et1.setText("");
+            et2.setText("");
+            et3.setText("");
+            et4.setText("");
+            et5.setText("");
+            et6.setText("");
+            otp="";
             return;
         }
     }

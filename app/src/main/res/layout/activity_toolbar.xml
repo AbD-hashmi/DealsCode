@@ -24,30 +24,32 @@
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
             android:padding="10dp"
-            android:src="@drawable/back"
-            android:visibility="gone" />
+            android:visibility="invisible"
+            android:src="@drawable/back" />
 
         <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
             android:id="@+id/tvTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center"
             android:text="Title"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="#ffffff"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:fontFamily="@font/avenir"
+            android:layout_marginLeft="50dp"
+            android:visibility="invisible"
+            android:textSize="@dimen/font_medium"
+            android:textColor="@color/white"
             android:textStyle="bold"
-            android:visibility="invisible" />
+            />
 
         <LinearLayout
             android:id="@+id/LLloc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
-
             android:gravity="center"
+
             android:orientation="horizontal">
 
             <ImageView
@@ -68,7 +70,7 @@
                 android:ellipsize="end"
                 android:gravity="left"
                 android:maxLines="1"
-                android:textAppearance="?android:textAppearanceSmall"
+                android:textSize="@dimen/font_small"
                 android:textColor="#ffffff"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -96,9 +98,9 @@
             android:layout_marginRight="5dp"
             android:layout_alignParentRight="true"
             android:clickable="false"
-            android:goIcon="@drawable/search_updated"
+            android:goIcon="@drawable/ic_search_black_24dp"
             android:src="@drawable/search_white"
-            android:searchIcon="@drawable/search_updated" />
+            android:searchIcon="@drawable/ic_search_black_24dp" />
 
 
 
@@ -126,7 +128,7 @@
             android:maxLength="1"
             android:text="Ps"
             android:visibility="gone"
-            android:textAppearance="?android:textAppearanceSmall"
+            android:textSize="@dimen/font_small"
             android:textColor="@color/White" />
     </RelativeLayout>
 

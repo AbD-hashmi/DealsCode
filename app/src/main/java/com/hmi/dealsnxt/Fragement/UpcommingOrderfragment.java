@@ -53,6 +53,7 @@ public class UpcommingOrderfragment extends Fragment {
     public ImageView ivfilter;
     public TextView tvusername, tvTitle;
     public LinearLayout newtoolbar;
+    TextView orderId;
     public ImageView imBack, ivmoveup;
     private ImageView ivsearch;
     private SwipeRefreshLayout swipeContainer;
@@ -71,6 +72,7 @@ public class UpcommingOrderfragment extends Fragment {
         recycleVIew = (RecyclerView) view.findViewById(R.id.recycleVIew);
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+
 
     }
 
@@ -113,6 +115,7 @@ public class UpcommingOrderfragment extends Fragment {
                         JSONArray infoArray = jSONObject.getJSONArray("info");
                         for (int i = 0; i < infoArray.length(); i++) {
                             JSONObject orderJson = infoArray.getJSONObject(i);
+                            System.out.println("data "+response);
                             JSONArray dealorderdetail = orderJson.getJSONArray("orderDetails");
                             for (int j = 0; j < dealorderdetail.length(); j++) {
                                 JSONObject dealobj = dealorderdetail.getJSONObject(j);
@@ -120,7 +123,7 @@ public class UpcommingOrderfragment extends Fragment {
                                 orderModel.setDealtransactionid(orderJson.optString("transactions_no"));
                                 orderModel.setOutletorderstatus(orderJson.optString("status"));
                                 orderModel.setDealpurchasedate(orderJson.optString("order_date"));
-                                orderModel.setDealorderid(orderJson.optString("order_id"));
+                                orderModel.setDealorderid(dealobj.optString("voucherCode"));
                                 orderModel.setOutletaddress(orderJson.optString("city"));
                                 orderModel.setDealid(dealobj.optString("id"));
                                 orderModel.setDealdeatilid(dealobj.optString("deal_detail_id"));
@@ -169,7 +172,7 @@ public class UpcommingOrderfragment extends Fragment {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("XAPIKEY", "XXXXX");
                 params.put("user_id", SessionManager.getUserID(getContext()));
-                params.put("order_status",""+1);
+                params.put("order_status","1");
 
                 return params;
             }

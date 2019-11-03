@@ -111,8 +111,6 @@ public class Fashion extends Fragment {
 
         loadOfflineDeals("");
         //loadOfflineDeals(offlineDealsJSON);
-        LandingNewActivity landingNewActivity=new LandingNewActivity();
-        landingNewActivity.loadbannerImages(3,getContext());
 
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -179,7 +177,8 @@ public class Fashion extends Fragment {
                                     dealsModel.setOutletCity(outlet.optString("city"));
                                     dealsModel.setOutletzipcode(outlet.optString("zipcode"));
                                     dealsModel.setTndc(outlet.optString("termAndCondition"));
-                                    dealsModel.setNumofOffers(outlet.optInt("stock_qty"));
+                                    dealsModel.setNumofOffers(data.optString("stock_qty"));
+                                    dealsModel.setDealCount(outlet.optString("dealCount"));
 
                                     // dealsModel.setNumofOffers(outlet.optInt("dealCount"));
                                     dealsModel.setOutletcontactperson(outlet.optString("contactPersonName"));
@@ -267,7 +266,9 @@ public class Fashion extends Fragment {
                         swipeContainer.setRefreshing(false);
                         no_result.setVisibility(View.VISIBLE);
                     }
-                    adapter = new AllinoneAdaptor(arrayList, getActivity(), getActivity());
+                    String category_id="3";
+
+                    adapter = new AllinoneAdaptor(arrayList, getActivity(), getActivity(),category_id);
                     mRecyclerView.setLayoutManager(linearLayoutManager);
                     mRecyclerView.setAdapter(adapter);
                     progressBar.setVisibility(View.INVISIBLE);

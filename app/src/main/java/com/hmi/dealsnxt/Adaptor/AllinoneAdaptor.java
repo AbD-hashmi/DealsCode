@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
+import android.location.Location;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
@@ -45,6 +46,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +57,7 @@ public class AllinoneAdaptor extends RecyclerView.Adapter<AllinoneAdaptor.Simple
     public Activity activity;
     public int count = 0;
     public Context context;
+    String category_id;
     public static String Dealid;
     com.nostra13.universalimageloader.core.ImageLoader imageLoader;
     public static String OutlletName, OutlletAddress, OutletInTime, OutletOutTime, Dealdescription;
@@ -74,7 +77,8 @@ public class AllinoneAdaptor extends RecyclerView.Adapter<AllinoneAdaptor.Simple
         RelativeLayout RLpercent, LLbanner;
         LinearLayout LLoption;
         LinearLayout LLView;
-        public TextView tvcount;
+        public TextView tvcount,distance,tvDealsCount;
+
         //  public TextView tvcount;
 
         public SimpleItemViewHolder(View itemView) {
@@ -99,16 +103,19 @@ public class AllinoneAdaptor extends RecyclerView.Adapter<AllinoneAdaptor.Simple
             tvcount = (TextView) itemView.findViewById(R.id.tvcount);
             LLoffer = (LinearLayout) itemView.findViewById(R.id.LLoffer);
             date = (TextView) itemView.findViewById(R.id.date);
+            distance = (TextView) itemView.findViewById(R.id.distance);
             dealimg = (ImageView) itemView.findViewById(R.id.dealimg);
             ivlike = (ImageView) itemView.findViewById(R.id.ivlike);
+            tvDealsCount=(TextView)itemView.findViewById(R.id.tvDealsCount);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public AllinoneAdaptor(List<HotDealsModel> items, Activity _activity, Context context) {
+    public AllinoneAdaptor(List<HotDealsModel> items, Activity _activity, Context context,String category_id) {
         this.items = items;
         this.activity = _activity;
         this.context = context;
+        this.category_id=category_id;
 
         options = new DisplayImageOptions.Builder()
                 .cacheOnDisc(true).cacheInMemory(true)
@@ -148,26 +155,56 @@ public class AllinoneAdaptor extends RecyclerView.Adapter<AllinoneAdaptor.Simple
     @Override
     public void onBindViewHolder(final SimpleItemViewHolder viewHolder, final int position) {
 
+
         viewHolder.tvdealname.setText(items.get(position).getOutletName());
         viewHolder.tvstartime.setText(Customutils.dateFormat(items.get(position).getAvailibiltyTime()));
         viewHolder.tvendtime.setText(Customutils.dateFormat(items.get(position).getReminderTime()));
         viewHolder.tvactualprice.setText("\u20B9" + items.get(position).getActualPrice());
-        viewHolder.tvwaiveoffrs.setText(items.get(position).getAfterDiscountPrice());
+        viewHolder.tvwaiveoffrs.setText("\u20B9"+ items.get(position).getAfterDiscountPrice());
 
+        if (!items.get(position).getDealCount().equals(""))
+        if(Integer.parseInt(items.get(position).getDealCount())>1){
+            viewHolder.tvDealsCount.setVisibility(View.VISIBLE);
+            viewHolder.tvDealsCount.setText("+" + (Integer.parseInt(items.get(position).getDealCount())-1 + " More"));
+        }else {
+            viewHolder.tvDealsCount.setVisibility(View.GONE);
+        }
+
+        System.out.println("deal count "+ items.get(position).getDealCount());
+        Location loc1 = new Location("");
+        try {
+            loc1.setLatitude(Double.valueOf(SessionManager.getLatitude(context)));
+            loc1.setLongitude(Double.valueOf(SessionManager.getLongitude(context)));
+            Location loc2 = new Location("");
+            loc2.setLatitude(Double.valueOf(items.get(position).getOutletLatitude()));
+            loc2.setLongitude(Double.valueOf(items.get(position).getOutletLongtitude()));
+            float distanceInMeters = loc1.distanceTo(loc2);
+            viewHolder.distance.setText((new DecimalFormat("##.##").format(distanceInMeters * 0.001)) + " km");
+
+        } catch (Exception e) {
+
+        }
         //to make the text strike through
         //textview.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
 
 
         //viewHolder.tvcount.setText("" + items.get(position).getNumofOffers());
 
+        System.out.println("count "+items.get(position).getNumofOffers());
         viewHolder.tvcount.setText( items.get(position).getNumofOffers()+" Left");
         /*if (items.get(position).getNumofOffers() == 1) {
             viewHolder.LLoffer.setVisibility(View.GONE);
         } else {
             viewHolder.tvcount.setText("" + (items.get(position).getNumofOffers() - 1));
+
         }*/
-        if (items.get(position).getShowPercentage()!="0") {
+
+        if (items.get(position).getNumofOffers().equals("0")){
+            viewHolder.tvcount.setText("Sold Out");
+        }
+        if (items.get(position).getShowPercentage().equals("1") || items.get(position).getShowPercentage()=="1") {
             viewHolder.tvoptionone.setText(items.get(position).getPercentage()+" Off on " +items.get(position).getDealTitle());
+
         }else{
             viewHolder.tvoptionone.setText(items.get(position).getDealTitle());
         }
@@ -199,6 +236,7 @@ public class AllinoneAdaptor extends RecyclerView.Adapter<AllinoneAdaptor.Simple
                 Intent i = new Intent(activity, DetailNewActivity.class);
                 i.putExtra("outletid", items.get(position).getOutletid());
                 i.putExtra("quantity", items.get(position).getNumofOffers());
+                i.putExtra("category_id",category_id);
                 activity.startActivity(i);
             }
         });
@@ -281,6 +319,7 @@ public class AllinoneAdaptor extends RecyclerView.Adapter<AllinoneAdaptor.Simple
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("XAPIKEY", "XXXXX");
                     params.put("deal_id", Dealid);
+                    params.put("category_id",category_id);
                     params.put("user_id", SessionManager.getUserID(context));
                     System.out.println("data "+params);
                     return params;

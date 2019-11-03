@@ -33,7 +33,7 @@
                     android:gravity="center"
                     android:paddingLeft="20dp"
                     android:text="More"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/blackfontcolor" />
 
                 <ImageView
@@ -64,7 +64,7 @@
                     android:gravity="center|left"
                     android:paddingLeft="20dp"
                     android:text="My Order"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/blackfontcolor" />
 
                 <ImageView
@@ -95,7 +95,7 @@
                     android:gravity="center|left"
                     android:paddingLeft="20dp"
                     android:text="Tranding Deals"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/blackfontcolor" />
 
                 <ImageView
@@ -126,7 +126,7 @@
                     android:gravity="center|left"
                     android:paddingLeft="20dp"
                     android:text="Deals in Proximity"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/blackfontcolor" />
 
                 <ImageView
@@ -157,7 +157,7 @@
                     android:gravity="center|left"
                     android:paddingLeft="20dp"
                     android:text="Popular Deals"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/blackfontcolor" />
 
                 <ImageView
@@ -188,7 +188,7 @@
                     android:gravity="center|left"
                     android:paddingLeft="20dp"
                     android:text="Share &amp; Like"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/blackfontcolor" />
 
                 <ImageView
@@ -218,7 +218,7 @@
                     android:gravity="center|left"
                     android:paddingLeft="20dp"
                     android:text="Notifications"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/blackfontcolor" />
 
                 <ImageView
@@ -250,7 +250,7 @@
                     android:gravity="center|left"
                     android:paddingLeft="20dp"
                     android:text="Refer to Friends"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/blackfontcolor" />
 
                 <ImageView
@@ -280,7 +280,7 @@
                     android:gravity="center|left"
                     android:paddingLeft="20dp"
                     android:text="Privacy Policy"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/blackfontcolor" />
 
                 <ImageView
@@ -310,7 +310,7 @@
                     android:gravity="center|left"
                     android:paddingLeft="20dp"
                     android:text="Terms of Use"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/blackfontcolor" />
 
                 <ImageView
@@ -340,7 +340,7 @@
                     android:gravity="center|left"
                     android:paddingLeft="20dp"
                     android:text="About Us"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/blackfontcolor" />
 
                 <ImageView
@@ -370,7 +370,7 @@
                     android:gravity="center|left"
                     android:paddingLeft="20dp"
                     android:text="Logout"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/blackfontcolor" />
 
                 <ImageView
@@ -400,7 +400,7 @@
                     android:gravity="center|left"
                     android:paddingLeft="20dp"
                     android:text="My Order"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/blackfontcolor" />
 
                 <ImageView

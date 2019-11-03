@@ -15,10 +15,11 @@
         android:paddingLeft="35dp"
         android:paddingTop="20dp"
         android:paddingBottom="10dp"
+        android:fontFamily="@font/avenir"
+        android:textSize="@dimen/font_medium"
         android:maxWidth="350dp"
         android:layout_marginTop="10dp"
-        android:paddingRight="10dp"
-        android:textSize="20dp"/>
+        android:paddingRight="10dp"/>
 
     <TextView
         android:id="@+id/outgoing_message"
@@ -34,7 +35,9 @@
         android:paddingRight="35dp"
         android:paddingTop="20dp"
         android:maxWidth="350dp"
-        android:paddingLeft="10dp"
-        android:textSize="20dp"/>
+
+        android:fontFamily="@font/avenir"
+        android:textSize="@dimen/font_medium"
+        android:paddingLeft="10dp"/>
 
 </LinearLayout>

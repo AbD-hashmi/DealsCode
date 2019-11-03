@@ -401,12 +401,12 @@ public class Playground extends AppCompatActivity implements BottomNavigationVie
 
 
 
-                seekbar = (SeekBar) findViewById(R.id.seekbar);
+               /* seekbar = (SeekBar) findViewById(R.id.seekbar);
                 ivsearch = (ImageView) findViewById(R.id.ivsearch);
                 tvdetectlocation = (TextView) findViewById(R.id.tvdetectlocation);
                 time_recycler_view = (RecyclerView) findViewById(R.id.time_recycler_view);
                 tvpricerangstart = (TextView) findViewById(R.id.tvpricerangstart);
-                tvpricerangend = (TextView) findViewById(R.id.tvpricerangend);
+                tvpricerangend = (TextView) findViewById(R.id.tvpricerangend);*/
                 switch2 = (Switch) findViewById(R.id.switch2);
                 switch3 = (Switch) findViewById(R.id.switch3);
                 switch4 = (Switch) findViewById(R.id.switch4);

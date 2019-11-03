@@ -1,5 +1,6 @@
 package com.hmi.dealsnxt.Activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,10 +22,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hmi.dealsnxt.HelperClass.SessionManager;
+import com.hmi.dealsnxt.OnSwipeTouchListener;
 import com.hmi.dealsnxt.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+
+import java.util.Random;
 
 public class AftersplashActivity extends AppCompatActivity  {
     // TextView tvstart;
@@ -33,13 +37,12 @@ public class AftersplashActivity extends AppCompatActivity  {
     ImageView ivbanner;
     //  int[] listbanner = {R.drawable.banner01, R.drawable.banner02, R.drawable.banner03};
     int[] listicon = {R.drawable.circle_border_red};
-
-
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
     private LinearLayout dotsLayout;
     private TextView[] dots;
     public TextView tvstart;
+    public TextView tvend;
     private int[] layouts;
     private Button btnSkip, btnNext;
     private SessionManager prefManager;
@@ -62,6 +65,7 @@ public class AftersplashActivity extends AppCompatActivity  {
          DisplayImageOptions defaultOptions;
 
         tvstart = (TextView) findViewById(R.id.tvstart);
+        tvend = (TextView) findViewById(R.id.tvend);
         changeStatusBarColor();
         options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.drawable.circle_border_red)
@@ -79,7 +83,6 @@ public class AftersplashActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_aftersplash);
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
-        tvstart = (TextView) findViewById(R.id.tvstart);
         dotsLayout = (LinearLayout) findViewById(R.id.LLimage);
 
         view = (View) findViewById(R.id.view);
@@ -92,6 +95,18 @@ public class AftersplashActivity extends AppCompatActivity  {
 
         addBottomDots(0);
 
+        tvstart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launchHomeScreen();
+            }
+        });
+        tvstart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchHomeScreen();
+            }
+        });
 
         myViewPagerAdapter = new MyViewPagerAdapter();
         viewPager.setAdapter(myViewPagerAdapter);
@@ -99,14 +114,6 @@ public class AftersplashActivity extends AppCompatActivity  {
 
 
 
-        tvstart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                launchHomeScreen();
-
-            }
-        });
 
 
     }
@@ -139,6 +146,7 @@ public class AftersplashActivity extends AppCompatActivity  {
         SessionManager.setIstut(getApplicationContext(),true);
     }
 
+
     //  viewpager change listener
     ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
 
@@ -148,10 +156,31 @@ public class AftersplashActivity extends AppCompatActivity  {
            /* if (position==2){
                 launchHomeScreen();
             }*/
+         /*  if (position + 1 <= 2){
+            tvend.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    viewPager.setCurrentItem(position+1);
+                }
+            });
+           }
+            */
+            if (position == 2) {
+                tvend.setVisibility(View.INVISIBLE);
+                viewPager.setOnTouchListener(new OnSwipeTouchListener(AftersplashActivity.this) {
+                    @Override
+                    public void onSwipeLeft() {
+                        super.onSwipeRight();
+                        launchHomeScreen();
+                    }
+                });
+            }
         }
         @Override
         public void onPageScrolled(int arg0, float arg1, int arg2) {
             //launchHomeScreen();
+
+
         }
         @Override
         public void onPageScrollStateChanged(int arg0) {

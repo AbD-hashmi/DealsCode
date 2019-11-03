@@ -129,7 +129,7 @@ public class NotificationActivity extends FragmentActivity {
     }
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new NotificationFragment(), "Alert");
+        adapter.addFrag(new NotificationFragment(), "Alerts");
         adapter.addFrag(new RedeemCancel(), "Promo Codes");
 
         viewPager.setAdapter(adapter);

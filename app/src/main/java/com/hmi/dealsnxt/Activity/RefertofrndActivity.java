@@ -68,7 +68,7 @@ public class RefertofrndActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String shareBody = "Download Deal next and user refere code NNALNF and get 40% off on all deals ";
+                String shareBody = "Download Deal next and user referer code NNALNF and get 40% off on all deals ";
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Download Deal next");

@@ -108,9 +108,6 @@ public class Membership extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         loadOfflineDeals("");
-        //loadOfflineDeals(offlineDealsJSON);
-        LandingNewActivity landingNewActivity=new LandingNewActivity();
-        landingNewActivity.loadbannerImages(6,getContext());
 
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -183,7 +180,8 @@ public class Membership extends Fragment {
                                     dealsModel.setOutletLatitude(outlet.optString("lat"));
                                     dealsModel.setOutletLongtitude(outlet.optString("lng"));
                                     dealsModel.setOutletdescription(outlet.optString("description"));
-                                    dealsModel.setNumofOffers(outlet.optInt("stock_qty"));
+                                    dealsModel.setNumofOffers(data.optString("stock_qty"));
+                                    dealsModel.setDealCount(outlet.optString("dealCount"));
 
                                     dealsModel.setDealid(data.optInt("id"));
                                     dealsModel.setMerchantid(data.optString("user_id"));
@@ -264,7 +262,9 @@ public class Membership extends Fragment {
                         swipeContainer.setRefreshing(false);
                         no_result.setVisibility(View.VISIBLE);
                     }
-                    adapter = new AllinoneAdaptor(arrayList, getActivity(), getActivity());
+                    String category_id="6";
+
+                    adapter = new AllinoneAdaptor(arrayList, getActivity(), getActivity(),category_id);
                     mRecyclerView.setLayoutManager(linearLayoutManager);
                     mRecyclerView.setAdapter(adapter);
                     progressBar.setVisibility(View.INVISIBLE);

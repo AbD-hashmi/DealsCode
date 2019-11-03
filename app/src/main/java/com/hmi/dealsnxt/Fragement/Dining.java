@@ -49,6 +49,7 @@ public class Dining extends Fragment {
     LinearLayoutManager linearLayoutManager;
     AllinoneAdaptor adapter;
     ImageView ivmoveup;
+    String category_id;
     public List<HotDealsModel> arrayList = new ArrayList<>();
     //    private RelativeLayout rvMain;
 //    private HashMap<Integer, Boolean> isNew = new HashMap<>(0);
@@ -107,9 +108,6 @@ public class Dining extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         loadOfflineDeals("");
-
-        LandingNewActivity landingNewActivity=new LandingNewActivity();
-        landingNewActivity.loadbannerImages(1,getContext());
         //loadOfflineDeals(offlineDealsJSON);
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -135,16 +133,19 @@ public class Dining extends Fragment {
 
                     JSONObject jSONObject = new JSONObject(new String(response));
                     //   JSONObject jSONObject = new JSONObject(new String(""));
-
+                    System.out.println("data response "+ response);
                     if (From.equals("PullToRefresh")) {
                         swipeContainer.setRefreshing(false);
                     }
                     arrayList.clear();
+
                     int Status = jSONObject.optInt("status");
                     String Path = Constaints.BaseUrl + jSONObject.optString("dealsCdnpath");
                     //       dealsModel.setDealsName(Constaints.BaseUrl + merchant.optString("dealsCdnpath"));
                     if (Status == 1) {
                         JSONArray infoArray = jSONObject.getJSONArray("info");
+
+
                         //  scheduleJSONArray = infoArray.toString();
                         ////  JSONArray scheduleArray = new JSONArray(scheduleJSONArray);
                         //  arrayLength = scheduleArray.length();
@@ -173,7 +174,8 @@ public class Dining extends Fragment {
                                     dealsModel.setOutletCity(outlet.optString("city"));
                                     dealsModel.setOutletzipcode(outlet.optString("zipcode"));
                                     dealsModel.setTndc(outlet.optString("termAndCondition"));
-                                    dealsModel.setNumofOffers(outlet.optInt("stock_qty"));
+                                    dealsModel.setNumofOffers(data.optString("stock_qty"));
+                                    dealsModel.setDealCount(outlet.optString("dealCount"));
                                     dealsModel.setOutletcontactperson(outlet.optString("contactPersonName"));
                                     dealsModel.setOutletcontactnumber(outlet.optString("contactNumber"));
                                     dealsModel.setOutletLatitude(outlet.optString("lat"));
@@ -194,7 +196,8 @@ public class Dining extends Fragment {
                                     dealsModel.setDealimage(Path + "/" + data.optString("deal_display_photo"));
                                     dealsModel.setLikes(data.optString("like"));
                                     dealsModel.setLikesCount(data.optString("totalLike"));
-
+                                    System.out.println("data dealsmodel " +outlet.optString("stock_qty") +" "+dealsModel.getShowPercentage());
+                                    System.out.println(response);
 
                                     arrayList.add(dealsModel);
                                 }
@@ -250,7 +253,8 @@ public class Dining extends Fragment {
                         swipeContainer.setRefreshing(false);
                         no_result.setVisibility(View.VISIBLE);
                     }
-                    adapter = new AllinoneAdaptor(arrayList, getActivity(), getActivity());
+                    category_id="1";
+                    adapter = new AllinoneAdaptor(arrayList, getActivity(), getActivity(),category_id);
                     mRecyclerView.setLayoutManager(linearLayoutManager);
                     mRecyclerView.setAdapter(adapter);
                     progressBar.setVisibility(View.INVISIBLE);

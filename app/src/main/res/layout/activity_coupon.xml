@@ -73,7 +73,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:text="30%"
-                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textSize="@dimen/font_small"
                         android:textColor="@color/White" />
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -83,7 +83,7 @@
                         android:layout_toRightOf="@+id/tvdiscount"
                         android:gravity="left"
                         android:text="OFF"
-                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textSize="@dimen/font_small"
                         android:textColor="@color/White" />
                 </RelativeLayout>
 
@@ -102,7 +102,7 @@
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
                 android:text="Cafe Coffe Day"
-                android:textAppearance="?android:textAppearanceMedium"
+                android:textSize="@dimen/font_medium"
                 android:textColor="@color/White" />
 
             <LinearLayout
@@ -126,7 +126,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:text="Gurgaon"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textSize="@dimen/font_small"
                     android:textColor="@color/White" />
 
                 <View
@@ -148,7 +148,7 @@
                     android:drawablePadding="5dp"
                     android:gravity="left"
                     android:text="4pm"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textSize="@dimen/font_small"
                     android:textColor="@color/White" />
 
                 <TextView
@@ -171,7 +171,7 @@
                     android:drawablePadding="5dp"
                     android:gravity="left"
                     android:text="10pm"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textSize="@dimen/font_small"
                     android:textColor="@color/White" />
             </LinearLayout>
 
@@ -195,7 +195,7 @@
                     android:maxLength="10"
                     android:maxLines="1"
                     android:text="Gurgaon"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textSize="@dimen/font_small"
                     android:textColor="@color/White" />
 
                 <View
@@ -234,7 +234,7 @@
                         android:maxLength="4"
                         android:maxLines="1"
                         android:text="999"
-                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textSize="@dimen/font_small"
                         android:textColor="@color/White" />
 
                 </RelativeLayout>
@@ -249,7 +249,7 @@
                     android:maxLength="4"
                     android:maxLines="1"
                     android:text="333"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textSize="@dimen/font_small"
                     android:textColor="@color/White" />
 
             </LinearLayout>

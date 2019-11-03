@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -130,7 +131,7 @@ public class SignInActivity extends AppCompatActivity {
         etemail = (EditText) findViewById(R.id.etemail);
         etgender = (EditText) findViewById(R.id.etgender);
         tvcalender = (TextView) findViewById(R.id.tvcalender);
-        LLcalender = (LinearLayout) findViewById(R.id.LLcalender);
+     //   LLcalender = (LinearLayout) findViewById(R.id.LLcalender);
         etdob = (EditText) findViewById(R.id.etdob);
         tvsignin = (TextView) findViewById(R.id.tvsignin);
         // tvfblogin = (TextView) findViewById(R.id.tvfblogin);
@@ -140,6 +141,9 @@ public class SignInActivity extends AppCompatActivity {
 
         onload();
 
+
+        etname.setText(SessionManager.getUserName(getApplicationContext()));
+        etemail.setText(SessionManager.getUserEmail(getApplicationContext()));
         accessTokenTracker = new AccessTokenTracker() {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldToken, AccessToken newToken) {
@@ -158,6 +162,8 @@ public class SignInActivity extends AppCompatActivity {
         loginButton.setReadPermissions(Arrays.asList("public_profile", "email", "user_status", "user_likes", "user_location", "user_birthday", "user_friends"));
         // "public_profile", "email", "user_status", "user_likes", "user_location", "user_birthday", "user_friends"
 
+
+
         fbbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,10 +175,10 @@ public class SignInActivity extends AppCompatActivity {
         loginButton.registerCallback(callbackManager, callback);
 
         ArrayList<String> list = new ArrayList<String>();
-        list.add("Select Gender");
         list.add("Female");
         list.add("Male");
-        spinnergender.setAdapter(new CustomSpinnerAdapter(getApplicationContext(), list));
+
+        spinnergender.setAdapter(new ArrayAdapter<String >(SignInActivity.this,R.layout.list_items_gender, list));
         spinnergender.setSelection(0);
 
         spinnergender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -210,7 +216,7 @@ public class SignInActivity extends AppCompatActivity {
                 String first = "";
                 if (s.length() > 0) {
                     if (!(Pattern.matches("^[\\p{L} .'-]+$", etname.getText().toString()))) {
-                        etname.setError("Special Chracters and Numerical values are not allowed");
+                        etname.setError("Special Characters and Numerical values are not allowed");
 
                     }
 
@@ -391,8 +397,9 @@ public class SignInActivity extends AppCompatActivity {
                                 params.put("name", etname.getText().toString());
                                 params.put("id", SessionManager.getUserID(getApplicationContext()));
                                 params.put("email", etemail.getText().toString());
-                                params.put("dob", stringdob);
-                                params.put("gender", SelectedGender.toString());
+                                params.put("dob", etdob.getText().toString());
+                                params.put("gender", spinnergender.getSelectedItem().toString());
+                                System.out.println("params "+params);
                                 return params;
                             }
 

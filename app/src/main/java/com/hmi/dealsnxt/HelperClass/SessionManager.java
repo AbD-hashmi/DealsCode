@@ -20,7 +20,7 @@ public class SessionManager {
     private static String UserEmail = "";
     private static String LocationID = "0";
     private static String DeviceGCMNotificationID = "";
-    private static String verificationMessage = "This is with invitation only, kindly fill the details. Our executives will contact you";
+    private static String verificationMessage = "This is with invitation only kindly fill the info and Xclusify will contact you";
     private static Boolean IsOnlineAccess = false;
 
     /*   private static String EventCityID = "1";

@@ -44,7 +44,7 @@
                         android:gravity="center_vertical"
                         android:padding="5dp"
                         android:text="Please provide reason to Cancel Deal"
-                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textSize="@dimen/font_medium"
                         android:textColor="@color/White" />
 
                 </RelativeLayout>
@@ -122,7 +122,7 @@
                     android:padding="5dp"
                     android:selectAllOnFocus="true"
                     android:singleLine="true"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textSize="@dimen/font_small"
                     android:textColor="@color/Black"
                     android:textColorHint="#BDBDBD" />
 
@@ -160,7 +160,7 @@
                     android:paddingRight="10dp"
                     android:paddingTop="5dp"
                     android:text="Cancel"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/blackfontcolor" />
 
 
@@ -180,7 +180,7 @@
                     android:paddingRight="15dp"
                     android:paddingTop="5dp"
                     android:text="Ok"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/blackfontcolor" />
 
 

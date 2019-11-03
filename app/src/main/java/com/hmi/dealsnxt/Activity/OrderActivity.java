@@ -131,7 +131,7 @@ public class OrderActivity extends FragmentActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new UpcommingOrderfragment(), "Upcomming");
-        adapter.addFrag(new RedeemCancel(), "Redeem/Cancel");
+        adapter.addFrag(new RedeemCancel(), "Redeemeded & Canceled");
 
         viewPager.setAdapter(adapter);
     }

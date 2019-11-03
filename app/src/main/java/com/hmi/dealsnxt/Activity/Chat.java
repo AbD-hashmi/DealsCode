@@ -57,7 +57,6 @@ public class Chat extends AppCompatActivity {
     public LinearLayout newtoolbar;
     public ImageView imBack, ivmoveup;
     public ImageView ivsearch;
-    private SwipeRefreshLayout swipeContainer;
     public ArrayList<ChatModel> arrayList = new ArrayList<>();
     LinearLayoutManager linearLayoutManager;
 
@@ -82,7 +81,6 @@ public class Chat extends AppCompatActivity {
         ivfilter = (ImageView) newtoolbar.findViewById(R.id.ivfilter);
         ivsearch = (ImageView) newtoolbar.findViewById(R.id.ivsearch);
         tvusername = (TextView) newtoolbar.findViewById(R.id.tvusername);
-        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         recyclerView= (RecyclerView) findViewById(R.id.recycleVIew);
 
         editMessage=(EditText)findViewById(R.id.ed_message);
@@ -96,7 +94,7 @@ public class Chat extends AppCompatActivity {
             }
         });
 
-        tvTitle.setText("Chat");
+        tvTitle.setText("Xclusify Chat");
         tvTitle.setVisibility(View.VISIBLE);
 
         imBack.setOnClickListener(new View.OnClickListener() {
@@ -116,14 +114,14 @@ public class Chat extends AppCompatActivity {
 
 
         loadDetailist();
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+       /* swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 //  loadOfflineDeals("PullToRefresh");
                 loadDetailist();
 
             }
-        });
+        });*/
     }
 
     @Override
@@ -216,7 +214,6 @@ public class Chat extends AppCompatActivity {
                                 }
                         }
                     } else {
-                        swipeContainer.setRefreshing(false);
                     }
                     ChatAdapter adapter = new ChatAdapter(arrayList, Chat.this);
                     recyclerView.setLayoutManager(linearLayoutManager);
@@ -224,13 +221,11 @@ public class Chat extends AppCompatActivity {
                     recyclerView.scrollToPosition(adapter.getItemCount()-1);
                 } catch (Exception e) {
                     Log.e("", e.getMessage());
-                    swipeContainer.setRefreshing(false);
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                swipeContainer.setRefreshing(false);
                 Log.e("error", "" + error);
             }
         }) {

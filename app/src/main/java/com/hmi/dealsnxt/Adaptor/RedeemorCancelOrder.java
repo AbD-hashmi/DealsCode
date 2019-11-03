@@ -75,7 +75,7 @@ public class RedeemorCancelOrder extends RecyclerView.Adapter<RedeemorCancelOrde
         ImageView dealimg;
         //  LinearLayout LLoption;
         LinearLayout LLView;
-        TextView tvoutletname, tvcancel;
+        TextView tvoutletname, tvcancel,orderId;
         com.nostra13.universalimageloader.core.ImageLoader imageLoader;
 
         DisplayImageOptions options;
@@ -92,6 +92,8 @@ public class RedeemorCancelOrder extends RecyclerView.Adapter<RedeemorCancelOrde
             tvwaiveoffrs = (TextView) itemView.findViewById(R.id.tvwaiveoffrs);
             tvdealstatus = (TextView) itemView.findViewById(R.id.tvdealstatus);
             tvcancel = (TextView) itemView.findViewById(R.id.tvcancel);
+            orderId =(TextView)itemView.findViewById(R.id.orderId);
+
 
         }
     }
@@ -106,7 +108,8 @@ public class RedeemorCancelOrder extends RecyclerView.Adapter<RedeemorCancelOrde
         options = new DisplayImageOptions.Builder()
                 .cacheOnDisc(true).cacheInMemory(true)
                 .imageScaleType(ImageScaleType.EXACTLY)
-                .showImageOnLoading(R.drawable.deal1).showImageForEmptyUri(R.drawable.deal1).showImageOnFail(R.drawable.deal1)
+                .showImageOnLoading(R.mipmap.ic_launcher).showImageForEmptyUri(R.mipmap.ic_launcher)
+                .showImageOnFail(R.mipmap.ic_launcher)
                 .build();
         imageLoader = com.nostra13.universalimageloader.core.ImageLoader.getInstance();
         imageLoader.init(ImageLoaderConfiguration.createDefault(activity));
@@ -140,8 +143,10 @@ public class RedeemorCancelOrder extends RecyclerView.Adapter<RedeemorCancelOrde
     @Override
     public void onBindViewHolder(final SimpleItemViewHolder viewHolder, final int position) {
 
-        imageLoader.displayImage(items.get(position).getDealimgurl(), viewHolder.dealimg, options);
-
+        String path=items.get(position).getDealimgurl().replace("http://dealsnxt.nuagedigitech.com/application/public/uploads/deals/http://dealsnxt.nuagedigitech.com/application/public/uploads/deals/",
+                "http://dealsnxt.nuagedigitech.com/application/public/uploads/deals/");
+        imageLoader.displayImage(path, viewHolder.dealimg, options);
+        System.out.println("imgLink " + items.get(position).getDealimgurl());
         try {
             String date = items.get(position).getDealpurchasedate();
             // SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
@@ -159,11 +164,10 @@ public class RedeemorCancelOrder extends RecyclerView.Adapter<RedeemorCancelOrde
         viewHolder.tvlocation.setText(items.get(position).getOutletaddress());
         viewHolder.tvwaiveoffrs.setText("\u20B9" + " " + items.get(position).getDealpurchaseamount());
         //      orderModel.setDealimgurl(Path + "/" + dealobj.optString("dealImge"));
-
-/*
-        if (Integer.valueOf(items.get(position).getRefundable_policy())==1) {
+        viewHolder.orderId.setText("Order ID: "+items.get(position).getDealorderid());
+        if (items.get(position).getRefundable_policy().equals("1")) {
             if (!items.get(position).getGift_applied().equals("1")) {
-                if (Integer.valueOf(items.get(position).getDealstatus()) == 1) {
+                if (items.get(position).getDealstatus().equals("1")) {
                     cancelVisible = 1;
                     try {
                         Calendar c = Calendar.getInstance();
@@ -176,7 +180,7 @@ public class RedeemorCancelOrder extends RecyclerView.Adapter<RedeemorCancelOrde
                         if (getCurrentDateTime.compareTo(getMyTime) > 0)
                         {
                             cancelVisible=1;
-                            Toast.makeText(activity, "greater than 0", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(activity, "greater than 0", Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
@@ -196,8 +200,6 @@ public class RedeemorCancelOrder extends RecyclerView.Adapter<RedeemorCancelOrde
         }else {
             cancelVisible = 0;
         }
-*/
-
 
         if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 0) {
             // QR not SHown
@@ -212,8 +214,8 @@ public class RedeemorCancelOrder extends RecyclerView.Adapter<RedeemorCancelOrde
                 viewHolder.tvcancel.setVisibility(View.INVISIBLE);
             } else {*/
             if (Integer.valueOf(items.get(position).getDealstatus()) == 1) {
-                //  viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
-                viewHolder.tvcancel.setVisibility(View.VISIBLE);
+                //viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
+                //viewHolder.tvcancel.setVisibility(View.VISIBLE);
                 viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
                 viewHolder.tvdealstatus.setText("Paid");
                 viewHolder.tvdealstatus.setTextColor(context.getResources().getColor(R.color.green));
@@ -244,25 +246,26 @@ public class RedeemorCancelOrder extends RecyclerView.Adapter<RedeemorCancelOrde
                 //viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
             }
         }
-        /* else if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 2) {
+         else if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 2) {
             // QR not SHown
             viewHolder.tvdealstatus.setText("Redeemed");
             viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.delivered, 0, 0, 0);
             viewHolder.tvcancel.setVisibility(View.INVISIBLE);
         } else if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 3) {
             // QR not SHown
-            viewHolder.tvcancel.setVisibility(View.VISIBLE);
+            viewHolder.tvcancel.setVisibility(View.INVISIBLE);
             viewHolder.tvdealstatus.setText("Expired");
             viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
             viewHolder.tvcancel.setVisibility(View.INVISIBLE);
-        }*/
+        }
 
 
         viewHolder.LLView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 OrderModel.setOrderModel(items.get(position));
-                Intent i = new Intent(activity, OrderDetailActivity.class);
+                Intent i = new Intent(activity, OrderDetailActivity.class)
+                        .putExtra("cancelVisible", cancelVisible);
                 activity.startActivity(i);
             }
         });
@@ -274,8 +277,6 @@ public class RedeemorCancelOrder extends RecyclerView.Adapter<RedeemorCancelOrde
         viewHolder.tvcancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
               /*  items.get(position).getDealavailtime_from().toString();
                 try {
                     Calendar date = Calendar.getInstance();

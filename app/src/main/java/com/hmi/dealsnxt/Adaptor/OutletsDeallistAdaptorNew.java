@@ -31,6 +31,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,7 +54,9 @@ import com.hmi.dealsnxt.HelperClass.SessionManager;
 import com.hmi.dealsnxt.Model.DealDetailsModel;
 import com.hmi.dealsnxt.Model.DealImagesModel;
 import com.hmi.dealsnxt.Model.ListModel;
+import com.hmi.dealsnxt.OnSwipeTouchListener;
 import com.hmi.dealsnxt.R;
+import com.hmi.dealsnxt.ScrollableTextView;
 import com.hmi.dealsnxt.Utils.Common;
 import com.hmi.dealsnxt.Utils.Customutils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -94,6 +97,7 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
     public int qty = 0;
     String getOutletId;
     View promptView;
+    DetailNewActivity detailNewActivity;
     public static String Outletname = "", Outletadress = "", timein = "", timeout = "", Dealdesc = "";
     public Context context;
     public static String Dealimg = "";
@@ -113,7 +117,7 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
     // Provide a reference to the views for each data item
 // Provide access to all the views for a data item in a view holder
     public final static class SimpleItemViewHolder extends RecyclerView.ViewHolder {
-        TextView tvdiscount, tvdealname, tvavaildate, tvactualprice, tvafterdisprice, tvcount, tvmore, tvavailtime, ivgift;
+        TextView tvdiscount, tvdealname, tvavaildate, tvactualprice, tvafterdisprice, tvcount, tvmore, tvdescription, ivgift;
         ImageView ivadd, ivminus;
         // Spinner spinnermore;
         View viewline;
@@ -124,7 +128,7 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
 
         public SimpleItemViewHolder(View itemView) {
             super(itemView);
-            RLdata = (RelativeLayout) itemView.findViewById(R.id.RLdata);
+         //   RLdata = (RelativeLayout) itemView.findViewById(R.id.RLdata);
             RLdeal = (RelativeLayout) itemView.findViewById(R.id.Rldeal);
             tvdiscount = (TextView) itemView.findViewById(R.id.tvdiscount);
             tvdealname = (TextView) itemView.findViewById(R.id.tvdealname);
@@ -137,7 +141,7 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
             ivadd = (ImageView) itemView.findViewById(R.id.ivadd);
             tvmore = (TextView) itemView.findViewById(R.id.tvmore);
             LLcount = (LinearLayout) itemView.findViewById(R.id.LLcount);
-            tvavailtime = (TextView) itemView.findViewById(R.id.tvavailtime);
+            tvdescription = (TextView) itemView.findViewById(R.id.tvdescription);
             ivgift=(TextView) itemView.findViewById(R.id.ivgift);
             deal_image=(ImageView) itemView.findViewById(R.id.deal_image);
             textView=(TextView)itemView.findViewById(R.id.tvSoldOut);
@@ -199,8 +203,64 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
         final int discountedprice = Integer.valueOf(items.get(position).getAfterdiscountprice());
         viewHolder.tvactualprice.setPaintFlags(viewHolder.tvactualprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         Dealimg = (items.get(position).getDealimg());
-        viewHolder.tvavailtime.setText("Avail from: "+Customutils.dateFormat(items.get(position).getOutletintime()) + "-" + Customutils.dateFormat(items.get(position).getOutletouttime())
-                +"  ("+items.get(position).getDealday()+")");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            viewHolder.tvdescription.setText(Html.fromHtml(items.get(position).getDesciption(),Html.FROM_HTML_MODE_COMPACT));
+
+        } else {
+            viewHolder.tvdescription.setText(items.get(position).getDesciption());
+           // viewHolder.tvdescription.setMovementMethod(new ScrollingMovementMethod());
+
+        }
+
+        if (items.get(position).getShowPercentage().equals("1") || items.get(position).getShowPercentage()=="1") {
+            viewHolder.tvdealname.setText(items.get(position).getDiscountpercent()+" Off on " +items.get(position).getDealname());
+        }else{
+            viewHolder.tvdealname.setText(items.get(position).getDealname());
+        }
+
+        //loadData();
+        if (items.get(position).getNumofOffers()==0){
+
+            viewHolder.LLcount.setVisibility(View.GONE);
+            viewHolder.textView.setVisibility(View.VISIBLE);
+        }
+
+
+
+       /* viewHolder.tvdescription.setMovementMethod(new ScrollingMovementMethod());
+        viewHolder.tvdescription.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (v.getId() == R.id.tvdescription) {
+                    v.getParent().requestDisallowInterceptTouchEvent(true);
+                    switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                        case MotionEvent.ACTION_UP:
+                            v.getParent().requestDisallowInterceptTouchEvent(false);
+                            break;
+                    }
+                }
+                return false;
+            }
+        });*/
+      /*  ScrollableTextView.enableScroll(viewHolder.tvdescription);
+        viewHolder.deal_image.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                ScrollableTextView.disableScroll(viewHolder.tvdescription);
+                return false;
+            }
+        });*/
+     /*   viewHolder.tvdescription.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                viewHolder.tvdescription.getParent().requestDisallowInterceptTouchEvent(true);
+
+                return false;
+            }
+        });*/
+
         viewHolder.ivadd.setTag(position);
         viewHolder.ivminus.setTag(position);
         imageLoader.displayImage(items.get(position).getDealimg(),viewHolder.deal_image,options);
@@ -244,11 +304,9 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
                 int a = (Integer.valueOf(items.get(position).getActualprice().toString())) - Integer.valueOf(items.get(position).getAfterdiscountprice().toString());
                 tvsaveamt.setText("\u20B9" + a);
 
-                loadData();
-                if (numofdeals<=0){
-                    viewHolder.LLcount.setVisibility(View.GONE);
-                    viewHolder.textView.setVisibility(View.VISIBLE);
-                }
+                DetailNewActivity detailNewActivity=new DetailNewActivity();
+
+
                  //items.get(position).getNumberofitem();
                 //     tvexpire.setText(items.get(position).getDesciption());
                 //  tvtimeout.setText(items.get(position).getDesciption());
@@ -267,6 +325,8 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
                     int pos = (int) v.getTag();
                     int dealCount = 0;
                     //  String calculate = "";
+
+
                     if (dealCount <= 0) {
                         //viewHolder.ivminus.setImageResource(R.drawable.minus_dark);
 
@@ -276,10 +336,11 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
 
                     if (dealMap.containsKey(Integer.valueOf(items.get(position).getDealid())))
                         dealCount = dealMap.get(Integer.valueOf(items.get(position).getDealid()));
+
                     if (pos == position) {
                         if (dealCount > 29) {
                             Toast.makeText(activity, "You have choose max oder", Toast.LENGTH_LONG).show();
-                        } else {
+                        } else if (dealCount+1 <=items.get(position).getNumofOffers()){
                             dealCount = dealCount + 1;
                             viewHolder.tvcount.setText("" + dealCount);
                             totaldiscount = dealCount * discountedprice;
@@ -300,13 +361,16 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
 
                             //   i.putExtra("calculate", calculate);
 
+
+
                             bm.setDealname(items.get(position).getDealname());
                             bm.setDealid(items.get(position).getDealid());
                             bm.setDiscountpercent(items.get(position).getDiscountpercent());
                             bm.setActualprice(items.get(position).getActualprice());
                             bm.setAfterdiscountprice(items.get(position).getAfterdiscountprice());
                             bm.setDealQTY(dealCount + "");
-                            bm.setDealImge(items.get(position).getDealimgname());
+                            bm.setDealImge(Constaints.BaseUrl +"application/public/uploads/deals/"+items.get(position).getDealimgname());
+                            System.out.println("image outlet "+Constaints.BaseUrl +"application/public/uploads/deals/"+items.get(position).getDealimgname());
                             bm.setPercent(items.get(position).getDiscountpercent());
                             bm.setDescription(items.get(position).getDesciption());
                             bm.setTimeFrom(items.get(position).getOutletintime());
@@ -314,6 +378,8 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
                             bm.setDeal_date(items.get(position).getDealDate());
                             bm.setRefundable_policy(items.get(position).getRefundablePolicy());
                             bm.setShow_percentage(items.get(position).getShowPercentage());
+
+
 
                             if (dealCount > 0) {
                                 orderarrayList.remove(bm);
@@ -324,6 +390,10 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
                             i.putExtra("order_array", SessionManager.setRecent1(orderarrayList, context));
                             activity.sendBroadcast(i);
 
+                        } else {
+                            viewHolder.LLcount.setVisibility(View.GONE);
+                            viewHolder.textView.setVisibility(View.VISIBLE);
+                            Toast.makeText(activity, " Can not add more deals into this order", Toast.LENGTH_SHORT).show();
                         }
                         dealMap.put(Integer.valueOf(items.get(position).getDealid()), dealCount);
                         //  int a = Integer.valueOf(calculateadd) + Integer.valueOf(DetailNewActivity.tvfinalamount.getText().toString());
@@ -474,13 +544,17 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
                         giftcount = giftcount + 1;
                         if (giftcount > 1) {
                             ivsubstract.setImageResource(R.drawable.minus);
+                            tvcountnumber.setText(""+giftcount);
                         } else {
                             ivsubstract.setImageResource(R.drawable.minus);
                         }
 
                         if (giftcount > 5) {
                             Toast.makeText(activity, "You have choose max giftees", Toast.LENGTH_LONG).show();
+                            ivplus.setEnabled(false);
+                            return;
                         } else {
+                            ivplus.setEnabled(true);
                            /* if (giftcount == 2) {
                                 tvmob2.setVisibility(View.VISIBLE);
                                 tvmob2.setFocusable(true);
@@ -518,7 +592,6 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
                             if (giftcount > 0) {
                                 orderarrayList.remove(bm);
                                 orderarrayList.add(bm);
-
                             } else {
 
                                 orderarrayList.remove(bm);
@@ -533,9 +606,10 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
                     @Override
                     public void onClick(View v) {
                         int giftcount = Integer.parseInt(tvcountnumber.getText().toString());
-
+                        giftcount=giftcount-1;
                         if (giftcount > 1) {
 
+                            tvcountnumber.setText(""+giftcount);
                           //  viewHolder.tvcount.setText("" + giftcount);
                             ivsubstract.setImageResource(R.drawable.minus);
 

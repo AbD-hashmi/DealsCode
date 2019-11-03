@@ -24,6 +24,16 @@ public class ListModel extends SugarRecord {
     public String refundablePolicy;
     public String showPercentage;
 
+    public int getDealCount() {
+        return dealCount;
+    }
+
+    public void setDealCount(int dealCount) {
+        this.dealCount = dealCount;
+    }
+
+    public int dealCount;
+
     public String getOutletLatitude() {
         return outletLatitude;
     }

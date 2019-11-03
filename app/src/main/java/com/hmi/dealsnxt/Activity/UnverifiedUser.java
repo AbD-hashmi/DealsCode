@@ -1,18 +1,18 @@
 package com.hmi.dealsnxt.Activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.webkit.WebView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -24,10 +24,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.hmi.dealsnxt.Adaptor.AllinoneAdaptor;
 import com.hmi.dealsnxt.HelperClass.Constaints;
 import com.hmi.dealsnxt.HelperClass.SessionManager;
-import com.hmi.dealsnxt.Model.HotDealsModel;
 import com.hmi.dealsnxt.R;
 
 import org.json.JSONArray;
@@ -40,14 +38,13 @@ public class UnverifiedUser extends AppCompatActivity {
 
     int is_verified = 0;
     EditText name,email,phone;
-    Toolbar toolbar;
 
-    ImageView imBack, imlocation, ivfilter;
     TextView tvTitle, tvaddress, tvusername;
-    ImageView ivsearch;
     LinearLayout LLloc;
     ProgressBar progress_bar;
     TextView texttop;
+    Spinner spinner;
+    String [] sex={"Mr.","Mrs."};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,34 +61,16 @@ public class UnverifiedUser extends AppCompatActivity {
         phone.setEnabled(false);
         phone.setClickable(false);
 
-        final LinearLayout toolbar = (LinearLayout) findViewById(R.id.toolbarnew);
-        LLloc = (LinearLayout) toolbar.findViewById(R.id.LLloc);
-        imBack = (ImageView) toolbar.findViewById(R.id.imBack);
-        tvTitle = (TextView) toolbar.findViewById(R.id.tvTitle);
-        LLloc = (LinearLayout) toolbar.findViewById(R.id.LLloc);
-        imlocation = (ImageView) toolbar.findViewById(R.id.imlocation);
-        tvaddress = (TextView) toolbar.findViewById(R.id.tvaddress);
-        ivfilter = (ImageView) toolbar.findViewById(R.id.ivfilter);
-        ivsearch = (ImageView) toolbar.findViewById(R.id.ivsearch);
-        tvusername= (TextView) toolbar.findViewById(R.id.tvusername);
+        tvTitle = (TextView) findViewById(R.id.tvtitile);
         texttop= (TextView) findViewById(R.id.texttop);
-        tvusername.setVisibility(View.INVISIBLE);
-        imBack.setVisibility(View.GONE);
+        spinner=(Spinner)findViewById(R.id.spinnergender);
         tvTitle.setVisibility(View.VISIBLE);
-        imlocation.setVisibility(View.GONE);
-        tvaddress.setVisibility(View.GONE);
-        ivfilter.setVisibility(View.GONE);
-        ivsearch.setVisibility(View.GONE);
+
+        tvTitle.setText("Contact Us");
 
 
-        imBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-        tvTitle.setText("Reach Us");
-
+        ArrayAdapter arrayAdapter=new ArrayAdapter(UnverifiedUser.this, R.layout.resource,sex);
+        spinner.setAdapter(arrayAdapter);
         Button button = (Button) findViewById(R.id.button2);
         texttop.setText(SessionManager.getVerificationMessage(getApplicationContext()));
         button.setOnClickListener(new View.OnClickListener() {
@@ -144,15 +123,13 @@ public class UnverifiedUser extends AppCompatActivity {
                       SessionManager.setUserEmail(getApplicationContext(), jsonObject.optString("email").toString());
                       SessionManager.setUserDOB(getApplicationContext(), jsonObject.optString("dob").toString());
                       SessionManager.setUserGender(getApplicationContext(), jsonObject.optString("gender").toString());
-                      if (SessionManager.getUserGender(getApplicationContext()).trim().equals("")) {
+                      if (!jsonObject.optString("gender").toString().equals("")) {
                           SessionManager.setIsotp(getApplicationContext(), true);
                       }
 
                         if(jsonObject.optInt("is_verified")==1){
                             startActivity(new Intent(UnverifiedUser.this,SplashSplashActivity.class));
                             finish();
-
-
                         }
                     } else {
                         Toast.makeText(getApplicationContext(), jSONObject.optString("msg"), Toast.LENGTH_LONG).show();
@@ -204,5 +181,10 @@ public class UnverifiedUser extends AppCompatActivity {
 
         }*/
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

@@ -26,7 +26,8 @@
             <RelativeLayout
                 android:id="@+id/head"
                 android:layout_width="match_parent"
-                android:layout_height="160dp">
+                android:background="@drawable/gradient"
+                android:layout_height="210dp">
 
                 <RelativeLayout
                     android:id="@id/toolbar"
@@ -50,10 +51,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:gravity="center"
+                        android:gravity="left|center_vertical"
+                        android:layout_toRightOf="@+id/imback"
                         android:maxLines="1"
+                        android:padding="10dp"
                         android:text="Profile"
-                        android:textAppearance="?android:textAppearanceMedium"
+                        android:fontFamily="@font/avenir"
+                        android:textSize="@dimen/font_medium"
                         android:textColor="@color/White"
                         android:textStyle="bold" />
 
@@ -75,7 +79,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/head"
-                android:layout_marginTop="30dp"
                 android:orientation="vertical"
                 android:weightSum="1">
 
@@ -116,7 +119,6 @@
 
                         <LinearLayout
                             android:id="@+id/lll"
-                            android:layout_marginTop="15dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
@@ -127,10 +129,11 @@
                                 android:background="@color/blackfontcolor"
                                 android:textColor="@color/yellowcol"
                                 android:text="  Personal"
-                                android:textSize="25dp"
+                                android:padding="5dp"
+                                android:fontFamily="@font/avenir"
+                                android:textSize="@dimen/font_medium"
                                 android:layout_gravity="center_vertical|center_horizontal"
                                 android:gravity="center_vertical"
-                                android:layout_marginTop="8dp"
                                 />
 
 
@@ -138,59 +141,80 @@
                             <android.support.design.widget.TextInputLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:background="@color/greyfontcol"
+                                android:padding="5dp"
                                 android:textColorHint="@color/white">
 
-                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularEditText
                                 android:id="@+id/gender_text"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:drawableLeft="@drawable/gender"
-                                android:layout_marginTop="20dp"
-                                android:padding="10dp"
+                                android:layout_below="@+id/ll"
                                 android:backgroundTint="@android:color/transparent"
                                 android:enabled="false"
-                                android:hint= "Gender"
-                                android:inputType="number"
+                                android:hint="Gender"
+                                android:padding="10dp"
+                                android:drawableLeft="@drawable/gender"
+                                android:inputType="textEmailAddress"
                                 android:maxLines="1"
+                                android:fontFamily="@font/avenir"
+                                android:nextFocusDown="@+id/etFullName"
                                 android:drawablePadding="10dp"
                                 android:singleLine="true"
-                                android:textAppearance="?android:textAppearanceMedium"
+                                android:textSize="@dimen/font_medium"
                                 android:textColor="@color/white"
-                                android:textColorHint="@color/white" />
+                                android:textColorHint="@color/white"/>
                             </android.support.design.widget.TextInputLayout>
+
+
                             <View
                                 android:layout_width="match_parent"
-                                android:layout_height="3dp"
-                                android:background="#AEB0B2"/>
+                                android:layout_height="1dp"
+                                android:background="@color/whitetrans"/>
+
                             <android.support.design.widget.TextInputLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:visibility="gone"
+                                android:background="@color/greyfontcol"
+                                android:padding="5dp"
                                 android:textColorHint="@color/white"
-                                android:hint="Email Id">
+                                >
 
-                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularEditText
-                                android:id="@+id/etemail2"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                               android:enabled="false"
-                                android:hint="Email Id"
-                                android:inputType="textEmailAddress"
-                                android:padding="10dp"
-                                android:maxLines="1"
-                                android:layout_marginTop="20dp"
-                                android:drawablePadding="10dp"
-                                android:singleLine="true"
-                                android:drawableLeft="@drawable/mail"
-                                android:textColor="@color/white"
-                                android:textColorHint="@color/white" />
+                                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularEditText
+                                    android:id="@+id/etemail2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/ll"
+                                    android:backgroundTint="@android:color/transparent"
+                                    android:enabled="false"
+                                    android:hint="Email"
+                                    android:padding="10dp"
+                                    android:drawableLeft="@drawable/mail"
+                                    android:inputType="textEmailAddress"
+                                    android:maxLines="1"
+                                    android:fontFamily="@font/avenir"
+                                    android:nextFocusDown="@+id/etFullName"
+                                    android:drawablePadding="10dp"
+                                    android:singleLine="true"
+                                    android:textSize="@dimen/font_medium"
+                                    android:textColor="@color/white"
+                                    android:textColorHint="@color/white"/>
                             </android.support.design.widget.TextInputLayout>
 
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/whitetrans"/>
+
+
                             <android.support.design.widget.TextInputLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textColorHint="@color/white"
-                                android:layout_marginTop="20dp"
+                                android:background="@color/greyfontcol"
+                                android:padding="5dp"
                                 >
 
                                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularEditText
@@ -201,54 +225,58 @@
                                     android:backgroundTint="@android:color/transparent"
                                     android:enabled="false"
                                     android:hint="Phone"
-                                    android:layout_marginTop="20dp"
                                     android:padding="10dp"
                                     android:drawableLeft="@drawable/phone"
                                     android:inputType="number"
                                     android:maxLines="1"
+                                    android:fontFamily="@font/avenir"
                                     android:nextFocusDown="@+id/etFullName"
                                     android:drawablePadding="10dp"
                                     android:singleLine="true"
-                                    android:textAppearance="?android:textAppearanceMedium"
+                                    android:textSize="@dimen/font_medium"
                                     android:textColor="@color/white"
                                     android:textColorHint="@color/white" />
                             </android.support.design.widget.TextInputLayout>
 
                             <View
                                 android:layout_width="match_parent"
-                                android:layout_height="3dp"
-                                android:background="#AEB0B2"/>
+                                android:layout_height="1dp"
+                                android:background="@color/whitetrans"/>
 
                             <android.support.design.widget.TextInputLayout
                                 android:layout_width="match_parent"
-                                android:textColorHint="@color/white"
-                                android:layout_marginTop="20dp"
-                                android:layout_height="wrap_content">
-                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
-                                android:id="@+id/etDOB"
-                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_below="@+id/etemail"
-                                android:layout_gravity="left"
-                                android:layout_marginTop="20dp"
-                                android:backgroundTint="@android:color/transparent"
-                                android:enabled="false"
-                                android:hint="DOB"
-                                android:drawableLeft="@drawable/cake"
-                                android:padding="10dp"
-                                android:inputType="number"
-                                android:maxLines="1"
-                                android:nextFocusDown="@+id/etemail"
-                                android:drawablePadding="10dp"
-                                android:singleLine="true"
-                                android:textAppearance="?android:textAppearanceMedium"
-                                android:textColor="@color/white"
-                                android:textColorHint="@color/white" />
+                                android:textColorHint="@color/white"
+                                android:background="@color/greyfontcol"
+                                android:padding="5dp"
+                                >
+
+                                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularEditText
+                                    android:id="@+id/etDOB"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/ll"
+                                    android:backgroundTint="@android:color/transparent"
+                                    android:enabled="false"
+                                    android:hint="Birthday"
+                                    android:padding="10dp"
+                                    android:drawableLeft="@drawable/cake"
+                                    android:inputType="number"
+                                    android:maxLines="1"
+                                    android:fontFamily="@font/avenir"
+                                    android:nextFocusDown="@+id/etFullName"
+                                    android:drawablePadding="10dp"
+                                    android:singleLine="true"
+                                    android:textSize="@dimen/font_medium"
+                                    android:textColor="@color/white"
+                                    android:textColorHint="@color/white" />
                             </android.support.design.widget.TextInputLayout>
+
+
                             <View
                                 android:layout_width="match_parent"
-                                android:layout_height="3dp"
-                                android:background="#AEB0B2"/>
+                                android:layout_height="1dp"
+                                android:background="@color/whitetrans"/>
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                                 android:id="@+id/ivsignout"
@@ -256,16 +284,17 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/etemail"
                                 android:layout_marginTop="20dp"
-                                android:backgroundTint="@android:color/transparent"
+                                android:background="@color/greyfontcol"
                                 android:hint="  Logout"
                                 android:drawableLeft="@drawable/signout"
                                 android:maxLines="1"
                                 android:editable="false"
+                                android:fontFamily="@font/avenir"
                                 android:nextFocusDown="@+id/etemail"
                                 android:drawablePadding="10dp"
                                 android:padding="10dp"
                                 android:singleLine="true"
-                                android:textAppearance="?android:textAppearanceMedium"
+                                android:textSize="@dimen/font_medium"
                                 android:textColor="@color/white"
                                 android:textColorHint="@color/white" />
                         </LinearLayout>
@@ -284,7 +313,7 @@
                                 android:layout_height="45dp"
                                 android:layout_alignParentLeft="true"
                                 android:layout_marginTop="5dp"
-                                android:textAppearance="?android:textAppearanceMedium"
+                                android:textSize="@dimen/font_medium"
                                 android:textColor="@color/Black"
                                 android:layout_gravity="center" />
 
@@ -300,7 +329,7 @@
                                 android:inputType="textCapWords|textPersonName"
                                 android:spinnerMode="dropdown"
                                 android:textAlignment="center"
-                                android:textAppearance="?android:textAppearanceMedium"
+                                android:textSize="@dimen/font_medium"
                                 android:textColor="@color/Black"
                                 android:textColorHint="@color/Black" />
 
@@ -315,11 +344,13 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
                             android:layout_centerHorizontal="true"
-                            android:background="@color/buttoncol"
+                            android:background="@drawable/button_gradient"
                             android:gravity="center"
                             android:padding="10dp"
+
+                            android:fontFamily="@font/avenir"
                             android:text="Save"
-                            android:textAppearance="?android:textAppearanceMedium"
+                            android:textSize="@dimen/font_medium"
                             android:textColor="@color/blackfontcolor" />
                     </RelativeLayout>
 
@@ -337,16 +368,21 @@
 
             </LinearLayout>
 
+
+
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/userimage"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginLeft="15dp"
-                android:layout_alignParentTop="true"
                 android:layout_marginTop="80dp"
+                android:background="@drawable/profile_back"
                 android:src="@drawable/profile_pic"
-                app:civ_border_color="#FFFFFF"
-                app:civ_border_width="3dp" />
+                android:layout_alignParentTop="true"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@android:color/transparent"
+                />
 
             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularEditText
                 android:id="@+id/etname"
@@ -354,6 +390,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="100dp"
+                android:fontFamily="@font/avenir"
                 android:backgroundTint="@android:color/transparent"
                 android:enabled="false"
                 android:hint="Name"
@@ -362,7 +399,7 @@
                 android:nextFocusDown="@+id/etFullName"
                 android:padding="10dp"
                 android:singleLine="true"
-                android:textAppearance="?android:textAppearanceMedium"
+                android:textSize="@dimen/font_medium"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:layout_toRightOf="@+id/userimage" />
@@ -375,14 +412,16 @@
                 android:layout_marginTop="135dp"
                 android:backgroundTint="@android:color/transparent"
                 android:enabled="false"
+                android:fontFamily="@font/avenir"
                 android:hint="Email Id"
                 android:layout_toRightOf="@+id/userimage"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:nextFocusDown="@+id/etname"
                 android:padding="10dp"
+                android:layout_marginRight="2dp"
                 android:singleLine="true"
-                android:textAppearance="?android:textAppearanceMedium"
+                android:textSize="@dimen/font_medium"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
 

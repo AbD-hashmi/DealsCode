@@ -91,9 +91,7 @@ public class DealDetailsModel extends SugarRecord {
         return dealimgurl;
     }
 
-    public void setDealimgurl(String dealimgurl) {
-        this.dealimgurl = dealimgurl;
-    }
+
 
     public String getDealdescription() {
         return dealdescription;

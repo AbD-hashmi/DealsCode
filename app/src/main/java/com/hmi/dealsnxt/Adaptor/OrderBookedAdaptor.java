@@ -75,7 +75,7 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
         ImageView dealimg;
         //  LinearLayout LLoption;
         LinearLayout LLView;
-        TextView tvoutletname, tvcancel;
+        TextView tvoutletname, tvcancel,orderId;
         com.nostra13.universalimageloader.core.ImageLoader imageLoader;
 
         DisplayImageOptions options;
@@ -92,6 +92,7 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
             tvwaiveoffrs = (TextView) itemView.findViewById(R.id.tvwaiveoffrs);
             tvdealstatus = (TextView) itemView.findViewById(R.id.tvdealstatus);
             tvcancel = (TextView) itemView.findViewById(R.id.tvcancel);
+            orderId =(TextView)itemView.findViewById(R.id.orderId);
 
         }
     }
@@ -140,7 +141,10 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
     @Override
     public void onBindViewHolder(final SimpleItemViewHolder viewHolder, final int position) {
 
-        imageLoader.displayImage(items.get(position).getDealimgurl(), viewHolder.dealimg, options);
+        String path=items.get(position).getDealimgurl().replace("http://dealsnxt.nuagedigitech.com/application/public/uploads/deals/http://dealsnxt.nuagedigitech.com/application/public/uploads/deals/",
+                "http://dealsnxt.nuagedigitech.com/application/public/uploads/deals/");
+        imageLoader.displayImage(path, viewHolder.dealimg, options);
+       // System.out.println("imgLink " + items.get(position).getDealimgurl());
 
         try {
             String date = items.get(position).getDealpurchasedate();
@@ -148,21 +152,21 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
             SimpleDateFormat sf = new SimpleDateFormat("dd-MM-yyyy HH:mm aaa", Locale.US);
             Date newDate = sf.parse(date);
             long startDate = newDate.getTime();
-            String dateString = new SimpleDateFormat("dd MMM yyyy").format(startDate);
+            String dateString = new SimpleDateFormat("dd MMM yyyy HH:mm aaa").format(startDate);
             viewHolder.tvdealdate.setText(dateString);
         } catch (Exception e) {
             e.printStackTrace();
         }
         // viewHolder.tvdealdate.setText(items.get(position).getDealpurchasedate());
-
+        viewHolder.orderId.setText("Order ID: "+items.get(position).getDealorderid());
         viewHolder.tvoutletname.setText(items.get(position).getDealtitle());
         viewHolder.tvlocation.setText(items.get(position).getOutletaddress());
         viewHolder.tvwaiveoffrs.setText("\u20B9" + " " + items.get(position).getDealpurchaseamount());
         //      orderModel.setDealimgurl(Path + "/" + dealobj.optString("dealImge"));
 
-        if (Integer.valueOf(items.get(position).getRefundable_policy())==1) {
+        if (items.get(position).getRefundable_policy().equals("1")) {
             if (!items.get(position).getGift_applied().equals("1")) {
-                if (Integer.valueOf(items.get(position).getDealstatus()) == 1) {
+                if (items.get(position).getDealstatus().equals("1")) {
                     cancelVisible = 1;
                     try {
                         Calendar c = Calendar.getInstance();
@@ -170,16 +174,16 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
                         String getCurrentDateTime = sdf.format(c.getTime());
                         String getMyTime=items.get(position).getDealavailtime_to();
                         Log.d("getCurrentDateTime",getCurrentDateTime);
-                                // getCurrentDateTime: 05/23/2016 18:49 PM
+                        // getCurrentDateTime: 05/23/2016 18:49 PM
 
                         if (getCurrentDateTime.compareTo(getMyTime) > 0)
                         {
-                            cancelVisible=1;
-                            Toast.makeText(activity, "greater than 0", Toast.LENGTH_SHORT).show();
+                            cancelVisible=0;
+                            // Toast.makeText(activity, "greater than 0", Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
-                            cancelVisible=0;
+                            cancelVisible=1;
                             Log.d("Return","getMyTime older than getCurrentDateTime ");
                         }
                     } catch (Exception e) {
@@ -195,62 +199,60 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
         }else {
             cancelVisible = 0;
         }
+
         if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 0) {
             // QR not SHown
             viewHolder.tvdealstatus.setText("Failed");
-            viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
+            //  viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
             viewHolder.tvcancel.setVisibility(View.INVISIBLE);
         } else if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 1) {
-            if (Integer.valueOf(items.get(position).getDealstatus()) == 0) {
+           /* if (Integer.valueOf(items.get(position).getDealstatus()) == 0) {
                 viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
                 viewHolder.tvdealstatus.setText("Cancelled");
-
                 viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
                 viewHolder.tvcancel.setVisibility(View.INVISIBLE);
-            } else {
-                if (Integer.valueOf(items.get(position).getDealstatus()) == 1) {
-                    viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
-                   // viewHolder.tvcancel.setVisibility(View.VISIBLE);
-                 //   cancelVisible=1;
-                    viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
-                    viewHolder.tvdealstatus.setText("Paid");
-                    viewHolder.tvdealstatus.setTextColor(context.getResources().getColor(R.color.green));
-                    viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.delivered, 0, 0, 0);
-                } else if (Integer.valueOf(items.get(position).getDealstatus()) == 2) {
-                    viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
-                    viewHolder.tvcancel.setVisibility(View.INVISIBLE);
-                    viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
-                    viewHolder.tvdealstatus.setText("Cancelled");
-                    viewHolder.tvdealstatus.setTextColor(context.getResources().getColor(R.color.red));
+            } else {*/
+            if (Integer.valueOf(items.get(position).getDealstatus()) == 1) {
+                //viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
+                //viewHolder.tvcancel.setVisibility(View.VISIBLE);
+                viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
+                viewHolder.tvdealstatus.setText("Paid");
+                viewHolder.tvdealstatus.setTextColor(context.getResources().getColor(R.color.green));
+                //  viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.delivered, 0, 0, 0);
+            } else if (Integer.valueOf(items.get(position).getDealstatus()) == 2) {
+                //  viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
+                viewHolder.tvcancel.setVisibility(View.INVISIBLE);
+                viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
+                viewHolder.tvdealstatus.setText("Cancelled");
+                viewHolder.tvdealstatus.setTextColor(context.getResources().getColor(R.color.red));
 
-                    viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
-                } else if (Integer.valueOf(items.get(position).getDealstatus()) == 3) {
-                    viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
-                    viewHolder.tvcancel.setVisibility(View.INVISIBLE);
-                    viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
-                    viewHolder.tvdealstatus.setText("Redeemed");
-                    viewHolder.tvdealstatus.setTextColor(context.getResources().getColor(R.color.green));
+                //   viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
+            } else if (Integer.valueOf(items.get(position).getDealstatus()) == 3) {
+                //  viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
+                viewHolder.tvcancel.setVisibility(View.INVISIBLE);
+                viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
+                viewHolder.tvdealstatus.setText("Redeemed");
+                viewHolder.tvdealstatus.setTextColor(context.getResources().getColor(R.color.green));
 
-                    viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.delivered, 0, 0, 0);
-                } else if (Integer.valueOf(items.get(position).getDealstatus()) == 4) {
-                    viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
-                    viewHolder.tvcancel.setVisibility(View.INVISIBLE);
-                    viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
-                    viewHolder.tvdealstatus.setText("Expired");
-                    viewHolder.tvdealstatus.setTextColor(context.getResources().getColor(R.color.red));
+                //viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.delivered, 0, 0, 0);
+            } else if (Integer.valueOf(items.get(position).getDealstatus()) == 4) {
+                //  viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
+                viewHolder.tvcancel.setVisibility(View.INVISIBLE);
+                viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
+                viewHolder.tvdealstatus.setText("Expired");
+                viewHolder.tvdealstatus.setTextColor(context.getResources().getColor(R.color.red));
 
-                    viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
-                }
+                //viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
             }
-        }else if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 2) {
+        }
+        else if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 2) {
             // QR not SHown
             viewHolder.tvdealstatus.setText("Redeemed");
             viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.delivered, 0, 0, 0);
             viewHolder.tvcancel.setVisibility(View.INVISIBLE);
         } else if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 3) {
             // QR not SHown
-           // viewHolder.tvcancel.setVisibility(View.VISIBLE);
-          //  cancelVisible=1;
+            viewHolder.tvcancel.setVisibility(View.INVISIBLE);
             viewHolder.tvdealstatus.setText("Expired");
             viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
             viewHolder.tvcancel.setVisibility(View.INVISIBLE);
@@ -261,10 +263,9 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
             @Override
             public void onClick(View v) {
                 OrderModel.setOrderModel(items.get(position));
-                Intent i = new Intent(activity, OrderDetailActivity.class);
+                Intent i = new Intent(activity, OrderDetailActivity.class).putExtra("cancelVisible", cancelVisible);
                 i.putExtra("commingFrom", 1);
                 i.putExtra("id", items.get(position).getDealid());
-                i.putExtra("cancelVisible", cancelVisible);
                 activity.startActivity(i);
             }
         });

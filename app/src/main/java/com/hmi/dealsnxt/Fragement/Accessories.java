@@ -109,8 +109,6 @@ public class Accessories extends Fragment {
         super.onActivityCreated(savedInstanceState);
         loadOfflineDeals("");
         //loadOfflineDeals(offlineDealsJSON);
-        LandingNewActivity landingNewActivity=new LandingNewActivity();
-       landingNewActivity.loadbannerImages(4,getContext());
 
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -177,7 +175,7 @@ public class Accessories extends Fragment {
                                     dealsModel.setOutletCity(outlet.optString("city"));
                                     dealsModel.setOutletzipcode(outlet.optString("zipcode"));
                                     dealsModel.setTndc(outlet.optString("termAndCondition"));
-                                    dealsModel.setNumofOffers(outlet.optInt("dealCount"));
+                                    dealsModel.setNumofOffers(outlet.optString("dealCount"));
                                     dealsModel.setOutletcontactperson(outlet.optString("contactPersonName"));
                                     dealsModel.setOutletcontactnumber(outlet.optString("contactNumber"));
                                     dealsModel.setOutletLatitude(outlet.optString("lat"));
@@ -254,7 +252,9 @@ public class Accessories extends Fragment {
                         swipeContainer.setRefreshing(false);
                         no_result.setVisibility(View.VISIBLE);
                     }
-                    adapter = new AllinoneAdaptor(arrayList, getActivity(), getActivity());
+                    String category_id="4";
+
+                    adapter = new AllinoneAdaptor(arrayList, getActivity(), getActivity(),category_id);
                     mRecyclerView.setLayoutManager(linearLayoutManager);
                     mRecyclerView.setAdapter(adapter);
                     progressBar.setVisibility(View.INVISIBLE);

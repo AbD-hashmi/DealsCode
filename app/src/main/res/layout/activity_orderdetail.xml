@@ -1,18 +1,14 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradiant_bottom_to_top"
     android:orientation="vertical">
 
-    <include
-        layout="@layout/activity_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbarnew"
         android:orientation="vertical">
 
         <ScrollView
@@ -38,7 +34,7 @@
                     <ImageView
                         android:id="@+id/ivdeal"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                        android:layout_height="250dp"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:scaleType="centerCrop"
@@ -48,6 +44,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ivdeal"
+                        android:background="@color/gray"
                         android:orientation="vertical"
                         android:layout_marginTop="15dp"
                         android:padding="5dp">
@@ -68,8 +65,9 @@
                                 android:layout_gravity="center_vertical"
                                 android:drawablePadding="10dp"
                                 android:gravity="center_vertical"
-                                android:text="Voucher ID :"
-                                android:textAppearance="?android:textAppearanceSmall"
+                                android:text="Order ID :"
+                                android:fontFamily="@font/avenir"
+                                android:textSize="@dimen/font_medium"
                                 android:textColor="@color/white" />
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
@@ -81,9 +79,9 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_toRightOf="@+id/tvview"
                                 android:gravity="center_vertical"
-
+                                android:fontFamily="@font/avenir"
                                 android:padding="3dp"
-                                android:textAppearance="?android:textAppearanceMedium"
+                                android:textSize="@dimen/font_medium"
                                 android:textColor="@color/White" />
                             <!--         android:background="@color/buttoncol"-->
 
@@ -99,22 +97,21 @@
 
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
-                                android:id="@+id/tvoff"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentLeft="true"
                                 android:layout_gravity="top"
-                                android:textAppearance="?android:textAppearanceMedium"
+                                android:fontFamily="@font/avenir"
+                                android:textSize="@dimen/font_medium"
                                 android:textColor="@color/white" />
 
                             <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
                                 android:id="@+id/tvdealname"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
                                 android:gravity="left"
-                                android:text=""
-                                android:textAppearance="?android:textAppearanceMedium"
+                                android:fontFamily="@font/avenir"
+                                android:textSize="@dimen/font_medium"
                                 android:textColor="@color/white"
                                 android:textStyle="bold" />
 
@@ -143,7 +140,8 @@
                                     android:gravity="left"
                                     android:padding="3dp"
                                     android:text=""
-                                    android:textAppearance="?android:textAppearanceMedium"
+                                    android:fontFamily="@font/avenir"
+                                    android:textSize="@dimen/font_medium"
                                     android:textColor="@color/white"
                                     android:textStyle="bold" />
 
@@ -154,7 +152,7 @@
                                     android:gravity="center_vertical"
                                     android:padding="3dp"
                                     android:text=""
-                                    android:textAppearance="?android:textAppearanceSmall"
+                                    android:textSize="@dimen/font_small"
                                     android:textColor="@color/white"
                                     android:textStyle="bold" />
 
@@ -165,17 +163,6 @@
                                     android:orientation="horizontal"
                                     android:padding="3dp">
 
-                                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
-                                        android:id="@+id/tvstartime"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentLeft="true"
-                                        android:layout_gravity="center_vertical"
-                                        android:drawableLeft="@drawable/timer"
-                                        android:drawablePadding="10dp"
-                                        android:gravity="center_vertical"
-                                        android:textAppearance="?android:textAppearanceSmall"
-                                        android:textColor="@color/white" />
 
                                     <TextView
                                         android:id="@+id/tvview"
@@ -186,9 +173,10 @@
                                         android:layout_marginRight="5dp"
                                         android:layout_toRightOf="@+id/tvstartime"
                                         android:text="-"
+                                        android:visibility="gone"
+                                        android:fontFamily="@font/avenir"
                                         android:textColor="@color/white"
-                                        android:textStyle="bold"
-                                        android:visibility="gone" />
+                                        android:textStyle="bold"/>
 
                                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                                         android:id="@+id/tvendtime"
@@ -199,17 +187,10 @@
                                         android:layout_toRightOf="@+id/tvview"
                                         android:gravity="center_horizontal"
                                         android:text="10pm"
-                                        android:textAppearance="?android:textAppearanceSmall"
-                                        android:textColor="@color/white"
-                                        android:visibility="gone" />
-
-                                    <View
-                                        android:layout_width="1dp"
-                                        android:layout_height="15dp"
-                                        android:layout_centerInParent="true"
-                                        android:layout_gravity="center"
-                                        android:layout_marginLeft="10dp"
-                                        android:background="@color/Black" />
+                                        android:visibility="gone"
+                                        android:fontFamily="@font/avenir"
+                                        android:textSize="@dimen/font_small"
+                                        android:textColor="@color/white"/>
 
                                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                                         android:id="@+id/tvdealdate"
@@ -219,10 +200,23 @@
                                         android:layout_marginLeft="5dp"
                                         android:drawableLeft="@drawable/calender"
                                         android:drawablePadding="10dp"
+                                        android:fontFamily="@font/avenir"
                                         android:gravity="center_vertical"
-                                        android:textAppearance="?android:textAppearanceSmall"
-                                        android:textColor="@color/white"
-                                        android:textSize="12sp" />
+                                        android:textSize="@dimen/font_small"
+                                        android:textColor="@color/white" />
+
+                                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                        android:id="@+id/tvstartime"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+
+                                        android:layout_gravity="center_vertical"
+                                        android:fontFamily="@font/avenir"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="center_vertical"
+                                        android:textSize="@dimen/font_small"
+                                        android:textColor="@color/white" />
+
 
                                 </LinearLayout>
 
@@ -232,6 +226,7 @@
                                 android:id="@+id/ivQR"
                                 android:layout_width="80dp"
                                 android:layout_height="80dp"
+                                android:scaleType="fitXY"
                                 android:layout_alignParentRight="true"
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp" />
@@ -265,16 +260,13 @@
                         android:indeterminateTint="@color/ProgressBarColor"
                         android:visibility="gone" />
                 </LinearLayout>
-                <View android:layout_width="match_parent"
-                    android:layout_height="@dimen/divider"
-                    android:background="@color/white"/>
 
                 <TableLayout
                     android:id="@+id/RLAmaefsdount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-
+                    android:visibility="gone"
                     android:orientation="vertical"
                     android:padding="10dp">
 
@@ -286,7 +278,8 @@
                             android:layout_alignParentLeft="true"
                             android:layout_weight="1"
                             android:text="Transaction ID"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:fontFamily="@font/avenir"
+                            android:textSize="@dimen/font_medium"
                             android:textColor="@color/white" />
 
                         <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
@@ -299,26 +292,34 @@
                             android:gravity="center_horizontal"
                             android:padding="5dp"
                             android:text="1000"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textSize="@dimen/font_medium"
                             android:textColor="@color/white" />
 
 
                     </TableRow>
 
-                    <TableRow
-                        android:visibility="gone">
+
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="25dp"
+                    android:background="@color/gray"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+                    <TableRow>
                         <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                            android:id="@+id/tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/amt"
-                            android:id="@+id/amt2"
-                            android:text="Offer Applied "
+                            android:text="Amount"
                             android:layout_weight="1"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:fontFamily="@font/avenir"
+                            android:textSize="@dimen/font_medium"
                             android:textColor="@color/white" />
 
                         <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
-                            android:id="@+id/tvtransactionId2"
+                            android:id="@+id/total_amount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -328,23 +329,42 @@
                             android:gravity="center_horizontal"
                             android:padding="5dp"
                             android:text="1000"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textSize="@dimen/font_medium"
+                            android:textColor="@color/white"/>
+                    </TableRow>
+
+                    <TableRow>
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/amt"
+                            android:id="@+id/tv_offerText"
+                            android:text="Offer Applied "
+                            android:layout_weight="1"
+                            android:fontFamily="@font/avenir"
+
+                            android:textSize="@dimen/font_medium"
+                            android:textColor="@color/white" />
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                            android:id="@+id/tvoff"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvtotalamount"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="10dp"
+                            android:fontFamily="@font/avenir"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="1000"
+                            android:textSize="@dimen/font_medium"
                             android:textColor="@color/white" />
 
                     </TableRow>
 
-                </TableLayout>
 
-                <View android:layout_width="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:layout_height="@dimen/divider"
-                    android:background="@color/white"/>
-
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="25dp"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
                     <TableRow>
 
                         <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
@@ -355,8 +375,9 @@
                             android:id="@+id/amt3"
                             android:layout_below="@+id/amt2"
                             android:layout_weight="1"
-                            android:text="Net Amount "
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:text="Net Amount Paid"
+                            android:fontFamily="@font/avenir"
+                            android:textSize="@dimen/font_medium"
                             android:textColor="@color/white" />
 
                         <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
@@ -370,9 +391,11 @@
                             android:gravity="center_horizontal"
                             android:padding="5dp"
                             android:text="1000"
-                            android:textAppearance="?android:textAppearanceSmall"
+                            android:fontFamily="@font/avenir"
+                            android:textSize="@dimen/font_medium"
                             android:textColor="@color/white" />
                     </TableRow>
+
 
                 </TableLayout>
 
@@ -380,12 +403,15 @@
                     android:id="@+id/btnCancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
                     android:background="@drawable/button_gradient"
                     android:text="Request Cancellation"
+                    android:fontFamily="@font/avenir"
                     android:visibility="gone"
+                    android:textSize="@dimen/font_medium"
                     android:layout_gravity="center_horizontal"
                     android:padding="10dp"
-                    android:layout_marginTop="90dp"/>
+                    />
             </LinearLayout>
         </ScrollView>
 
@@ -400,36 +426,15 @@
         android:background="@drawable/button_gradient_image"
         android:orientation="vertical">
 
-        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
-            android:id="@+id/tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:paddingBottom="10dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="10dp"
-            android:text="Total"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@color/blackfontcolor" />
 
-        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:paddingBottom="10dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="10dp"
-            android:text="Rs 30000"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/blackfontcolor" />
 
     </RelativeLayout>
 
-</RelativeLayout>
+
+    <include
+        layout="@layout/activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+
+</android.support.constraint.ConstraintLayout>
 

@@ -15,10 +15,11 @@
         android:gravity="center"
         android:padding="5dp"
         android:layout_margin="5dp"
-        android:text="Welcome to Exclusify"
-        android:textAppearance="?android:textAppearanceMedium"
+        android:text="Welcome to Xclusify"
+        android:textAppearance="?android:textAppearanceLargeInverse"
         android:textColor="@color/White"
-        android:textSize="25dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/avenir"
         app:layout_constraintBottom_toTopOf="@+id/fixtext"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -29,10 +30,10 @@
         android:layout_height="wrap_content"
         android:maxLines="2"
         android:padding="10dp"
-        android:text="We are here to make every experience in your life worth living"
-        android:textAppearance="?android:textAppearanceSmall"
+        android:fontFamily="@font/avenir"
+        android:text="We are here to make every experience\nin your life worth living"
+        android:textAppearance="?android:textAppearanceMediumInverse"
         android:textColor="@color/White"
-        android:textSize="20dp"
         android:gravity="center"
         android:layout_marginBottom="70dp"
         app:layout_constraintBottom_toBottomOf="parent" />

@@ -82,7 +82,7 @@ public class OutletsDeallistAdaptor extends RecyclerView.Adapter<OutletsDeallist
             ivadd = (ImageView) itemView.findViewById(R.id.ivadd);
             tvmore = (TextView) itemView.findViewById(R.id.tvmore);
             LLcount = (LinearLayout) itemView.findViewById(R.id.LLcount);
-            tvavailtime = (TextView) itemView.findViewById(R.id.tvavailtime);
+            tvavailtime = (TextView) itemView.findViewById(R.id.tvdescription);
             //   spinnermore = (Spinner) itemView.findViewById(R.id.spinnermore);
             //spinnermore = (ImageView) itemView.findViewById(R.id.spinnermore);
         }
@@ -139,7 +139,16 @@ public class OutletsDeallistAdaptor extends RecyclerView.Adapter<OutletsDeallist
         final int discountedprice = Integer.valueOf(items.get(position).getAfterdiscountprice());
         viewHolder.tvactualprice.setPaintFlags(viewHolder.tvactualprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         Dealimg = (items.get(position).getDealimg());
-        viewHolder.tvavailtime.setText(items.get(position).getOutletintime() + "-" + items.get(position).getOutletouttime());
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            viewHolder.tvavailtime.setText(Html.fromHtml(items.get(position).getDesciption(),Html.FROM_HTML_MODE_COMPACT));
+         //   viewHolder.tvavailtime.setMovementMethod(new ScrollingMovementMethod());
+        } else {
+            viewHolder.tvavailtime.setText(items.get(position).getDesciption());
+           // viewHolder.tvavailtime.setMovementMethod(new ScrollingMovementMethod());
+
+        }
+
         viewHolder.ivadd.setTag(position);
         viewHolder.ivminus.setTag(position);
 
@@ -197,7 +206,7 @@ public class OutletsDeallistAdaptor extends RecyclerView.Adapter<OutletsDeallist
 
                     if (clickcount > 29) {
                         Toast.makeText(activity, "You have choose max oder", Toast.LENGTH_LONG).show();
-                    } else {
+                    } else if (clickcount + 1 <=items.get(position).getNumofOffers()) {
                         clickcount = clickcount + 1;
                         viewHolder.tvcount.setText("" + clickcount);
                         totaldiscount = clickcount * discountedprice;
@@ -236,6 +245,9 @@ public class OutletsDeallistAdaptor extends RecyclerView.Adapter<OutletsDeallist
                         }
                         i.putExtra("order_array", orderarrayList);
                         activity.sendBroadcast(i);
+                    }
+                    else {
+                        Toast.makeText(activity, "Cannot add more deals into the order", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

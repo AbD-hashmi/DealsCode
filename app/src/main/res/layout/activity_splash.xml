@@ -4,9 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/Rl"
-    android:background="@drawable/splash"
+    android:background="@drawable/gradiant_bottom_to_top"
     tools:context="com.hmi.dealsnxt.Activity.SplashSplashActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/splash"
+        android:background="@drawable/splash"
+        android:scaleType="fitXY"/>
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"

@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="10dp"
-            android:textAppearance="?android:textAppearanceMedium"
+            android:textSize="@dimen/font_medium"
             android:textColor="#14234E" />
 
         <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -54,7 +54,7 @@
             android:gravity="center"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:textAppearance="?android:textAppearanceSmall"
+            android:textSize="@dimen/font_small"
             android:textColor="@color/White" />
 
     </LinearLayout>
@@ -70,7 +70,7 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="15dp"
-        android:textAppearance="?android:textAppearanceSmall"
+        android:textSize="@dimen/font_small"
         android:textColor="@color/White">
 
         <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -82,7 +82,7 @@
             android:gravity="center"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:textAppearance="?android:textAppearanceSmall"
+            android:textSize="@dimen/font_small"
             android:textColor="@color/white" />
 
     </LinearLayout>

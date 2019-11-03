@@ -38,8 +38,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:text="Near by Deals"
-                android:textAppearance="?android:textAppearanceMedium"
+                android:text="Experience near you"
+                android:textSize="@dimen/font_medium"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:visibility="visible" />
@@ -76,7 +76,7 @@
                     android:maxLength="20"
                     android:maxLines="1"
                     android:text="Near By Deals"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textSize="@dimen/font_small"
                     android:textColor="#ffffff"
                     android:textStyle="bold"
                     android:visibility="gone" />
@@ -126,7 +126,7 @@
                 android:gravity="center|left"
                 android:padding="5dp"
                 android:text="Ps"
-                android:textAppearance="?android:textAppearanceMedium"
+                android:textSize="@dimen/font_medium"
                 android:textColor="@color/White"
                 android:visibility="gone" />
         </RelativeLayout>

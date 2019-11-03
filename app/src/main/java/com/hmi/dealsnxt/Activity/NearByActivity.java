@@ -129,7 +129,7 @@ public class NearByActivity extends FragmentActivity implements OnMapReadyCallba
                                 dealsModel.setOutletCity(outlet.optString("city"));
                                 dealsModel.setOutletzipcode(outlet.optString("zipcode"));
                                 dealsModel.setTndc(outlet.optString("termAndCondition"));
-                                dealsModel.setNumofOffers(outlet.optInt("dealCount"));
+                                dealsModel.setNumofOffers(outlet.optString("dealCount"));
                                 dealsModel.setOutletcontactperson(outlet.optString("contactPersonName"));
                                 dealsModel.setOutletcontactnumber(outlet.optString("contactNumber"));
                                 dealsModel.setOutletLatitude(outlet.optString("lat"));

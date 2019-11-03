@@ -28,6 +28,25 @@ public class HotDealsModel  {
     public String outletcontactnumber="";
     public String outletAddress="";
     public String cta_type="";
+    public String numofOffers="";
+
+    public String getDealCount() {
+        return dealCount;
+    }
+
+    public void setDealCount(String dealCount) {
+        this.dealCount = dealCount;
+    }
+
+    public String dealCount="";
+
+    public String getNumofOffers() {
+        return numofOffers;
+    }
+
+    public void setNumofOffers(String numofOffers) {
+        this.numofOffers = numofOffers;
+    }
 
     public String getShowPercentage() {
         return showPercentage;
@@ -137,7 +156,6 @@ public class HotDealsModel  {
     public String outletName="";
     public String Dealimage="";
     public String Percentage="";
-    public int NumofOffers;
 
     public String getDealdescription() {
         return Dealdescription;
@@ -351,13 +369,7 @@ public class HotDealsModel  {
         AfterDiscountPrice = afterDiscountPrice;
     }
 
-    public int getNumofOffers() {
-        return NumofOffers;
-    }
 
-    public void setNumofOffers(int numofOffers) {
-        NumofOffers = numofOffers;
-    }
 
    /* public static List<HotDealsModel> getAlldeals() {
         //  List<HotDealsModel> allList = new ArrayList<>(0);

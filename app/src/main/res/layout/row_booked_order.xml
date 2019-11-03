@@ -27,8 +27,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:gravity="center"
-
-                android:textAppearance="?android:textAppearanceMedium"
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_medium"
                 android:textColor="@color/redFont" />
 
             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -39,8 +39,8 @@
                 android:layout_toRightOf="@+id/tvdiscount"
                 android:ellipsize="end"
                 android:gravity="center_vertical"
-
-                android:textAppearance="?android:textAppearanceMedium"
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_medium"
                 android:textColor="@color/white" />
         </RelativeLayout>
 
@@ -68,8 +68,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="bottom"
+                    android:fontFamily="@font/avenir"
                     android:maxLines="1"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textSize="@dimen/font_small"
                     android:textColor="@color/white" />
 
             </RelativeLayout>
@@ -82,8 +83,8 @@
                 android:gravity="bottom"
                 android:maxLines="1"
                 android:padding="5dp"
-
-          android:textAppearance="?android:textAppearanceSmall"
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_small"
                 android:textColor="@color/white" />
 
             <LinearLayout
@@ -101,8 +102,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_toRightOf="@+id/tvstartime"
-
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_small"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white" />
                 

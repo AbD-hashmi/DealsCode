@@ -3,15 +3,19 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">#2B2B2B</item>
+        <item name="colorPrimaryDark">#2B2B2B</item>
+        <item name="colorAccent">@color/yellowcol</item>
+        <item name="android:textViewStyle">@font/avenir</item>
+        <item name="buttonStyle">@font/avenir</item>
 
     </style>
 
     <style name="AppTheme.buttonnew" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorAccent">#2B2B2B</item>
+        <item name="android:textViewStyle">@font/avenir</item>
+        <item name="buttonStyle">@font/avenir</item>
     </style>
 
     <style name="AppTheme.button" parent="Theme.AppCompat.Light.NoActionBar">
@@ -19,6 +23,8 @@
         <item name="colorAccent">@color/yellowcol</item>
         <item name="colorPrimary">@color/yellowcol</item>
         <item name="colorPrimaryDark">@color/yellowcol</item>
+        <item name="android:textViewStyle">@font/avenir</item>
+        <item name="buttonStyle">@font/avenir</item>
 
     </style>
 
@@ -35,9 +41,11 @@
     </style>-->
     <style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView">
         <!-- Search button icon -->
-        <item name="searchIcon">@drawable/inactive_search</item>
-        <item name="searchHintIcon">@drawable/inactive_search</item>
+        <item name="searchIcon">@drawable/ic_search_black_24dp</item>
+        <item name="searchHintIcon">@drawable/ic_search_black_24dp</item>
         <item name="android:editTextColor">#ffffff</item>
+        <item name="android:hint">#ffffff</item>
+        <item name="android:textColor">#ffffff</item>
     </style>
 
 
@@ -64,5 +72,7 @@
         <item name="android:background">@android:color/transparent</item>
         <item name="colorAccent">@color/redcolor</item>
     </style>
+
+
 
 </resources>

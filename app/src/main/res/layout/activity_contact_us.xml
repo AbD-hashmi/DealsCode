@@ -38,12 +38,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:backgroundTint="@android:color/transparent"
-                    android:drawableLeft="@drawable/mobile"
+                    android:drawableLeft="@drawable/phone"
                     android:drawablePadding="15dp"
                     android:gravity="center_vertical"
                     android:padding="5dp"
                     android:text="91-9876543210"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
 
@@ -54,13 +55,14 @@
                     android:layout_below="@+id/etmobile"
                     android:layout_gravity="left"
                     android:backgroundTint="@android:color/transparent"
-                    android:drawableLeft="@drawable/active_map"
+                    android:drawableLeft="@drawable/inactive_location"
                     android:drawablePadding="15dp"
                     android:gravity="center_vertical"
                     android:padding="5dp"
                     android:text="304 &amp; 306, IIIrd Floor,Suncity Arcade, Sec-54, Suncity Township,Golf Road,Gurgaon   "
-                    android:textAppearance="?android:textAppearanceMedium"
-                    android:textColor="@color/white"
+
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_medium" android:textColor="@color/white"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -85,12 +87,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/mobile"
+                    android:drawableLeft="@drawable/user"
                     android:drawablePadding="15dp"
                     android:gravity="center_vertical"
                     android:padding="5dp"
                     android:text="Name"
-                    android:textAppearance="?android:textAppearanceMedium"
+
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
 
@@ -108,8 +112,9 @@
                     android:textColorHint="@color/white"
                     android:inputType="textAutoComplete|text|textCapSentences|textMultiLine"
                     android:padding="5dp"
-                    android:textAppearance="?android:textAppearanceMedium"
-                    android:textColor="@color/white"
+
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_medium" android:textColor="@color/white"
                     android:textStyle="bold" />
             </RelativeLayout>
 
@@ -133,12 +138,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/mobile"
+                    android:drawableLeft="@drawable/inactive_more"
                     android:drawablePadding="15dp"
                     android:gravity="center_vertical"
                     android:padding="5dp"
                     android:text="Query"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
 
@@ -159,8 +165,9 @@
                     android:padding="5dp"
                     android:textColorHint="@color/white"
                     android:scrollbars="vertical"
-                    android:textAppearance="?android:textAppearanceMedium"
-                    android:textColor="@color/white"
+
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_medium" android:textColor="@color/white"
                     android:textStyle="bold" />
             </RelativeLayout>
 
@@ -178,12 +185,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
-            android:layout_margin="10dp"
+            android:layout_margin="50dp"
             android:background="@drawable/button_gradient"
             android:gravity="center|bottom"
             android:padding="10dp"
             android:text="Submit"
-            android:textAppearance="?android:textAppearanceMedium"
+            android:textStyle="bold"
+            android:fontFamily="@font/avenir"
+            android:textSize="@dimen/font_medium"
             android:textColor="@color/Black" />
 
     </RelativeLayout>

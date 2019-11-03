@@ -117,7 +117,7 @@ public class SearchActivity extends AppCompatActivity {
         search_close_btn.setImageResource(R.drawable.close_white);
         search_mag_icon.setImageResource(R.drawable.search_white);
         search_src_text.setTextColor(Color.WHITE);
-        search_src_text.setHintTextColor(getResources().getColor(R.color.whitetrans));
+        search_src_text.setHintTextColor(getResources().getColor(R.color.white));
         search_src_text.setHint("Search here");
         _disposable = RxTextView.textChangeEvents(search_src_text)
                 .debounce(600, TimeUnit.MILLISECONDS) // default Scheduler is Computation

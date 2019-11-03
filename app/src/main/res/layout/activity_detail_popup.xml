@@ -56,7 +56,7 @@
                     android:layout_alignParentLeft="true"
                     android:gravity="center"
                     android:text="30%off"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/colorPrimary" />
 
                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -67,7 +67,7 @@
                     android:layout_toRightOf="@+id/tvdiscount"
                     android:gravity="left|center_horizontal"
                     android:text="on"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/colorPrimary" />
 
                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -78,7 +78,7 @@
                     android:layout_toRightOf="@+id/tvon"
                     android:gravity="left"
                     android:text="Cappuccino / Masala "
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/colorPrimary" />
             </RelativeLayout>
 
@@ -100,7 +100,7 @@
                     android:layout_centerInParent="true"
                     android:maxLines="1"
                     android:text="33333"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textSize="@dimen/font_small"
                         android:textColor="@color/colorPrimary" />
 
                 <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
@@ -112,7 +112,7 @@
                     android:layout_toRightOf="@+id/tvactualprice"
                     android:maxLines="1"
                     android:text="33333"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textSize="@dimen/font_small"
                     android:textColor="@color/colorPrimary" />
 
                 <LinearLayout
@@ -132,7 +132,7 @@
                         android:layout_centerInParent="true"
                         android:maxLines="1"
                         android:text="Save"
-                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textSize="@dimen/font_small"
                         android:textColor="@color/blackfontcolor" />
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -144,7 +144,7 @@
                         android:layout_toRightOf="@+id/tvsave"
                         android:maxLines="1"
                         android:text="33333"
-                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textSize="@dimen/font_small"
                         android:textColor="@color/blackfontcolor" />
 
                 </LinearLayout>
@@ -160,7 +160,7 @@
                 android:padding="15dp"
                 android:scrollbars="vertical"
                 android:text="By signing up I agree to the Privacy Policy and Terms of use"
-                android:textAppearance="?android:textAppearanceSmall"
+                android:textSize="@dimen/font_small"
                 android:textColor="#80000000" />
 
             <TextView
@@ -179,7 +179,7 @@
                 android:layout_gravity="center"
                 android:padding="5dp"
                 android:text="Deal Description"
-                android:textAppearance="?android:textAppearanceMedium"
+                android:textSize="@dimen/font_medium"
                 android:textColor="@color/blackfontcolor"
                 android:visibility="gone" />
 

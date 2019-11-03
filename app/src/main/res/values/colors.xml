@@ -7,12 +7,12 @@
     <color name="background">#ffe1e4</color>
     <color name="buttoncol">#EEBC38</color>
     <color name="buttoncolnew">#3b5999</color>
-
+    <color name="gray">#292a2c</color>
     <color name="redcolor">#a60000</color>
-    <color name="yellowcol">#FFDF00</color>
+    <color name="yellowcol">#d39b51</color>
     <color name="white">#eeeeee</color>
     <color name="blackfontcolor">#000</color>
-    <color name="greyfontcol">#616161</color>
+    <color name="greyfontcol">#292a2c</color>
     <color name="whitetrans">#60FFFFFF</color>
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="windowBackground">#FFFFFF</color>
@@ -31,6 +31,7 @@
     <color name="White">#FFFFFF</color>
     <color name="blur_color">#30000000</color>
     <color name="grey">#4D4D49</color>
+    <color name="greey">#585856</color>
     <color name="lightblue">#ccf2ff</color>
 
 

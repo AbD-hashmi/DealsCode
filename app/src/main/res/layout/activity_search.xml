@@ -42,7 +42,7 @@
                 android:gravity="center"
                 android:text="Title"
 
-                android:textAppearance="?android:textAppearanceMedium"
+                android:textSize="@dimen/font_medium"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:visibility="gone" />
@@ -54,13 +54,10 @@
                 android:layout_centerInParent="true"
                 android:layout_marginRight="15dp"
                 app:iconifiedByDefault="false"
-
                 android:layout_toRightOf="@+id/imBack"
-
                 android:clickable="false"
-                android:goIcon="@drawable/search_updated"
-
-                android:searchIcon="@drawable/search_updated" />
+                android:goIcon="@drawable/ic_search_black_24dp"
+                android:searchIcon="@drawable/ic_search_black_24dp" />
 
             <LinearLayout
                 android:id="@+id/LLloc"
@@ -94,7 +91,7 @@
                     android:maxLength="20"
                     android:maxLines="1"
                     android:text="Sector 55,Gurgaon"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textSize="@dimen/font_small"
                     android:textColor="#ffffff"
                     android:textStyle="bold"
                     android:visibility="gone" />
@@ -144,7 +141,7 @@
                 android:gravity="center|left"
                 android:padding="5dp"
                 android:text="Ps"
-                android:textAppearance="?android:textAppearanceMedium"
+                android:textSize="@dimen/font_medium"
                 android:textColor="@color/White"
                 android:visibility="gone" />
         </RelativeLayout>

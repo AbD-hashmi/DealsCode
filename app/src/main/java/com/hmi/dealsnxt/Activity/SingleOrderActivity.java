@@ -84,7 +84,7 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
     public String Outlet_Id = "";
     public String Merhant_Id = "";
     public String Deal_Title = "";
-
+    public String path = "";
     public String Dealimgname = "";
     public String Dealstarttime = "";
     public String Dealendtime = "";
@@ -174,15 +174,20 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
         Dealimgname = String.valueOf(getIntent().getStringExtra("Dealimgname"));
         Dealstarttime = String.valueOf(getIntent().getStringExtra("Dealstarttime"));
         Dealendtime = String.valueOf(getIntent().getStringExtra("Dealendtime"));
-
+        path=String.valueOf(getIntent().getStringExtra("path"));
 
 
         tvstartime.setText(Customutils.dateFormat(Dealstarttime));
         tvendtime.setText(Customutils.dateFormat(Dealendtime));
         tvtotalamount.setText("\u20B9" + Dealprice);
         imageLoader.displayImage(OutletsDeallistAdaptor.Dealimg, ivdeal, options);
+        arrayList=SessionManager.getRecent1(SingleOrderActivity.this, getIntent().getStringExtra("order_list"));
 
-        //loadDetail();
+        System.out.println("data dealsmodel " + getIntent().getStringExtra("order_list"));
+        recyleaAdpter = new DealDetailsAdaptor(arrayList, SingleOrderActivity.this, Qtycount,Dealimgname);
+        viewlist.setLayoutManager(new LinearLayoutManager(SingleOrderActivity.this));
+        viewlist.setAdapter(recyleaAdpter);
+
         LLpayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -205,14 +210,18 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
 
                     Common.hideKeyboard(apply_now,SingleOrderActivity.this);
                     loadOfflineDeals();
+
+                    arrayList=SessionManager.getRecent1(SingleOrderActivity.this, getIntent().getStringExtra("order_list"));
+
+                    System.out.println("data dealsmodel " + getIntent().getStringExtra("order_list"));
+                    recyleaAdpter = new DealDetailsAdaptor(arrayList, SingleOrderActivity.this, Qtycount,Dealimgname);
+                    viewlist.setLayoutManager(new LinearLayoutManager(SingleOrderActivity.this));
+                    viewlist.setAdapter(recyleaAdpter);
                 }
             }
         });
-        arrayList=SessionManager.getRecent1(SingleOrderActivity.this, getIntent().getStringExtra("order_list"));
 
-        recyleaAdpter = new DealDetailsAdaptor(arrayList, SingleOrderActivity.this, Qtycount);
-        viewlist.setLayoutManager(new LinearLayoutManager(SingleOrderActivity.this));
-        viewlist.setAdapter(recyleaAdpter);
+
     }
 
 
@@ -223,8 +232,7 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
             student1.put("qty", Qtycount);
             student1.put("title", Deal_Title);//
             student1.put("price", Dealprice);//
-
-            student1.put("dealImge", Dealimgname);
+            student1.put("dealImge", Dealimgname.replace(path, ""));
             student1.put("timeFrom", Dealstarttime);
             student1.put("timeTo", Dealendtime);
 
@@ -308,12 +316,13 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
         final Checkout co = new Checkout();
         try {
             JSONObject options = new JSONObject();
-            options.put("name", "Dealnxt");
-            options.put("description", "Demoing Charges");
+            options.put("name", "Xclusify");
+            options.put("description", "Total amount to be payed");
             //You can omit the image option to fetch the image from dashboard
-            options.put("image", "http://logiquebrainexaminer.com/Dealsnxt-Website/AppIcon.png");
+            //options.put("image", getResources().getDrawable(R.mipmap.ic_launcher));
             Double payment = Double.valueOf(Dealprice);
             options.put("currency", "INR");
+            options.put("color", getResources().getColor(R.color.blackfontcolor));
             //   double total = Double.parseDouble(payment);
             double total = payment * 100;
             options.put("amount", total);
@@ -344,6 +353,8 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
                     JSONObject jSONObject = new JSONObject(new String(response));
                     int Status = jSONObject.optInt("status");
                     if (Status == 1) {
+
+/*
                         LayoutInflater layoutInflater = LayoutInflater.from(getApplicationContext());
                         promptView = layoutInflater.inflate(R.layout.dialouge_thanks, null);
                         android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(SingleOrderActivity.this);
@@ -359,8 +370,6 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
                         tvtransaction.setText(TransactionId);
                        // VCard QRdealdeatil = new VCard(order_id);
                         ins.setText("Scan the QR code from My Orders section to redeem any deal and please refer to T&C for refund process");
-                        VCard QRdealdeatil = new VCard(TransactionId);
-                        Bitmap myBitmap = QRCode.from(QRdealdeatil).withSize(300, 300).bitmap();
                         ivQRnew.setImageBitmap(myBitmap);
                         // Hide after some seconds
                         final Handler handler = new Handler();
@@ -371,7 +380,7 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
                                     @Override
                                     public void onClick(View v) {
                                         alert.dismiss();
-                                        Intent i = new Intent(SingleOrderActivity.this, LandingNewActivity.class);
+                                        Intent i = new Intent(SingleOrderActivity.this, OrderActivity.class);
                                         startActivity(i);
                                     }
                                 });
@@ -384,7 +393,14 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
                             }
                         });
                         alert.show();
-                        handler.postDelayed(runnable, 1000);
+                        handler.postDelayed(runnable, 1000);*/
+                        VCard QRdealdeatil = new VCard(TransactionId);
+
+                        Bitmap myBitmap = QRCode.from(QRdealdeatil).withSize(300, 300).bitmap();
+                        finish();
+
+                        startActivity(new Intent(SingleOrderActivity.this,ThankyouActivity.class)
+                        .putExtra("trans_id", TransactionId).putExtra("qrCode", myBitmap));
                     } else {
                         Toast.makeText(getApplicationContext(), jSONObject.optString("message"), Toast.LENGTH_LONG).show();
                     }
@@ -439,24 +455,6 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
         } catch (Exception e) {
             Log.e("OnPaymentError", "Exception in onPaymentError", e);
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-       // new Reverse().execute();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        // Collections.reverse(arrayList);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        //  Collections.reverse(arrayList);
     }
 
 
@@ -514,11 +512,10 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
 
                         for (int i = 0; i < infoArray.length(); i++) {
 
-
                             JSONObject searchObject = infoArray.optJSONObject(i);
 
                            coupen_id= searchObject.optInt("id");
-                            searchObject.optInt("coupon_percentage");
+                           searchObject.optInt("coupon_percentage");
                            max_discount= Double.parseDouble(searchObject.optString("max_discount"));
 
 
@@ -581,8 +578,7 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("XAPIKEY", "XXXXX");
                 params.put("user_id", SessionManager.getUserID(SingleOrderActivity.this));
-
-                params.put("coupon_code", coupen_edit.getText().toString());
+                params.put("coupon_code", coupen_edit.getText().toString().trim());
 
                 return params;
             }
@@ -601,7 +597,5 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
                 socketTimeout,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
-
     }
 }

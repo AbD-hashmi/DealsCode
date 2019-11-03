@@ -2,16 +2,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
+    android:background="@color/gray"
+    android:layout_margin="1dp"
     android:orientation="vertical">
 
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/Dealimage"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_launcher"
+                android:layout_margin="10dp"/>
     <RelativeLayout
         android:id="@+id/Rldeal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         android:layout_gravity="center_vertical"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="5dp">
 
         <RelativeLayout
             android:id="@+id/RLdata"
@@ -27,20 +44,22 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:gravity="center"
+                android:visibility="gone"
                 android:text="30%off"
-                android:textAppearance="?android:textAppearanceMedium" />
+                android:textSize="@dimen/font_medium" />
 
             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                 android:id="@+id/tvdealname"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/tvdiscount"
-                android:ellipsize="end"
                 android:gravity="center_vertical"
+                android:fontFamily="@font/avenir"
                 android:text="Cappuccino / Masala Chhai"
-                android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/blackfontcolor" />
+                android:maxLines="2"
+                android:textSize="@dimen/font_medium"
+                android:textColor="@color/white" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -58,9 +77,7 @@
                 android:id="@+id/RLAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_gravity="center_vertical"
-                android:padding="5dp">
+                android:layout_alignParentLeft="true">
 
                 <!-- <View
                      android:id="@+id/viewline"
@@ -73,29 +90,36 @@
                      android:background="@color/redFont"
                      android:gravity="left" />-->
 
-                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                <TextView
                     android:id="@+id/tvactualprice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
                     android:gravity="bottom"
                     android:maxLines="1"
+                    android:fontFamily="@font/avenir"
                     android:text="99999"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textSize="@dimen/font_small"
                     android:textColor="@color/darkGray" />
+
+                <TextView
+                    android:id="@+id/tvafterdisprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tvactualprice"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="bottom"
+                    android:maxLines="1"
+                    android:fontFamily="@font/avenir"
+                    android:text="99999"
+                    android:textSize="@dimen/font_small"
+                    android:textColor="@color/darkGray"/>
 
             </RelativeLayout>
 
-            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
-                android:id="@+id/tvafterdisprice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/RLAmount"
-                android:gravity="bottom"
-                android:maxLines="1"
-                android:padding="5dp"
-                android:text="33333"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="@color/blackfontcolor" />
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -120,9 +144,11 @@
                     android:layout_gravity="center_vertical"
                     android:layout_toRightOf="@+id/tvstartime"
                     android:text="Qty 1"
-                    android:textAppearance="?android:textAppearanceSmall"
-                    android:textColor="@color/Black"
-                    android:textColorHint="@color/Black" />
+                    android:fontFamily="@font/avenir"
+                    android:visibility="gone"
+                    android:textSize="@dimen/font_small"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
 
                 <!-- <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                      android:id="@+id/tvcount"
@@ -132,9 +158,9 @@
                      android:layout_marginLeft="10dp"
                      android:layout_toRightOf="@+id/tvstartime"
                      android:hint="0"
-                     android:textAppearance="?android:textAppearanceSmall"
-                     android:textColor="@color/Black"
-                     android:textColorHint="@color/Black" />-->
+                     android:textSize="@dimen/font_small"
+                     android:textColor="@color/white"
+                     android:textColorHint="@color/white" />-->
 
                 <!--         <ImageView
                              android:id="@+id/ivadd"
@@ -148,5 +174,7 @@
         </RelativeLayout>
 
     </RelativeLayout>
+        </TableRow>
+    </TableLayout>
 
 </LinearLayout>

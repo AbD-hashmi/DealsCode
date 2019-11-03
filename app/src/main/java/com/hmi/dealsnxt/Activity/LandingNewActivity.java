@@ -1,5 +1,6 @@
 package com.hmi.dealsnxt.Activity;
 
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -121,7 +122,7 @@ public class LandingNewActivity extends AppCompatActivity {
     int currentPage = 0;
     Timer timer;
     public ProgressBar progress_bar;
-    final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
+    final long DELAY_MS = 5000;//delay in milliseconds before task is to be executed
     final long PERIOD_MS = 3000;
     com.nostra13.universalimageloader.core.ImageLoader imageLoader;
     DisplayImageOptions defaultOptions;
@@ -189,6 +190,15 @@ public class LandingNewActivity extends AppCompatActivity {
         filter_view=(NavigationView)findViewById(R.id.filter_view);
 //        tabnum=getIntent().getExtras().getInt("tab");
 
+
+        LLloc.setVisibility(View.INVISIBLE);
+        imBack.setVisibility(View.VISIBLE);
+        tvTitle.setVisibility(View.VISIBLE);
+        tvTitle.setGravity(View.FOCUS_LEFT);
+        ivfilter.setVisibility(View.VISIBLE);
+
+
+
         imBack.setVisibility(View.VISIBLE);
         ivfilter.setVisibility(View.VISIBLE);
 
@@ -208,6 +218,7 @@ public class LandingNewActivity extends AppCompatActivity {
             }
         });
 
+       // loadbannerImages("",getApplicationContext());
 
         ivfilter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -243,22 +254,22 @@ public class LandingNewActivity extends AppCompatActivity {
                 filter_reset.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        tvpricerangend.setText("1");
-                        tv_discount_filter.setText("1%");
-                        tv_distance_filter.setText("1 KM");
-                        seekbar.setProgress(1);
-                        seekbar2.setProgress(1);
-                        seekbar3.setProgress(1);
+                        tvpricerangend.setText("0");
+                        tv_discount_filter.setText("0%");
+                        tv_distance_filter.setText("0 KM");
+                        seekbar.setProgress(0);
+                        seekbar2.setProgress(0);
+                        seekbar3.setProgress(0);
                     }
                 });
-                tvpricerangend.setText(""+seekbar.getProgress());
-                tv_discount_filter.setText(""+seekbar2.getProgress()+ "%");
-                tv_distance_filter.setText(""+seekbar3.getProgress()+ " KM");
+                tvpricerangend.setText("\u20B90 - "+seekbar.getProgress());
+                tv_discount_filter.setText("0% - "+seekbar2.getProgress()+ "%");
+                tv_distance_filter.setText("0 KM - "+seekbar3.getProgress()+ " KM");
 
                 seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                        tvpricerangend.setText(""+i);
+                        tvpricerangend.setText("\u20B90 - " +"\u20B9"+i);
                     }
 
                     @Override
@@ -275,7 +286,7 @@ public class LandingNewActivity extends AppCompatActivity {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress,
                                                   boolean fromUser) {
-                        tv_discount_filter.setText(progress + "%");
+                        tv_discount_filter.setText("0% - "+progress + "%");
                     }
 
                     @Override
@@ -290,7 +301,7 @@ public class LandingNewActivity extends AppCompatActivity {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress,
                                                   boolean fromUser) {
-                        tv_distance_filter.setText(progress+ " KM");
+                        tv_distance_filter.setText("0 KM - "+progress+ " KM");
                     }
 
                     @Override
@@ -343,7 +354,6 @@ public class LandingNewActivity extends AppCompatActivity {
 
         }
 
-        loadbannerImages(0,getApplicationContext());
 
 
 
@@ -364,9 +374,141 @@ public class LandingNewActivity extends AppCompatActivity {
        // filter_view.setVisibility(View.GONE);
 
 
-        viewPager.setCurrentItem(getIntent().getIntExtra("tab", 0));
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener()
+        int q=getIntent().getIntExtra("tab", 0);
+        viewPager.setCurrentItem(q);
+        switch (q){
+            case 0:
+                tvTitle.setText("Dining");
+                bannerimglist.clear();
+                loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
+                break;
+            case 1:
+                tvTitle.setText("Wellness");
+                bannerimglist.clear();
+                loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
 
+                break;
+            case 2:
+                tvTitle.setText("Fashion");
+                bannerimglist.clear();
+                loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
+
+                break;
+            case 3:
+                tvTitle.setText("Accessories");
+                bannerimglist.clear();
+                loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
+
+                break;
+            case 4:
+                tvTitle.setText("Events");
+                bannerimglist.clear();
+                loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
+
+                break;
+            case 5:
+                tvTitle.setText("Membership");
+                bannerimglist.clear();
+                loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
+                break;
+
+        }
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+/*
+                switch (position){
+                    case 0:
+                        tvTitle.setText("Dining");
+                        bannerimglist.clear();
+                        loadbannerImages(String.valueOf(position+1),LandingNewActivity.this);
+                        break;
+                    case 1:
+                        tvTitle.setText("Wellness");
+                        bannerimglist.clear();
+                        loadbannerImages(String.valueOf(position+1),LandingNewActivity.this);
+
+                        break;
+                    case 2:
+                        tvTitle.setText("Fashion");
+                        bannerimglist.clear();
+                        loadbannerImages(String.valueOf(position+1),LandingNewActivity.this);
+
+                        break;
+                    case 3:
+                        tvTitle.setText("Accessories");
+                        bannerimglist.clear();
+                        loadbannerImages(String.valueOf(position+1),LandingNewActivity.this);
+
+                        break;
+                    case 4:
+                        tvTitle.setText("Events");
+                        bannerimglist.clear();
+                        loadbannerImages(String.valueOf(position+1),LandingNewActivity.this);
+
+                        break;
+                    case 5:
+                        tvTitle.setText("Membership");
+                        bannerimglist.clear();
+                        loadbannerImages(String.valueOf(position+1),LandingNewActivity.this);
+                        break;
+
+                }
+*/
+            }
+
+            @Override
+            public void onPageSelected(int q) {
+                switch (q){
+                    case 0:
+                        tvTitle.setText("Dining");
+                        bannerimglist.clear();
+                        loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
+                        break;
+                    case 1:
+                        tvTitle.setText("Wellness");
+                        bannerimglist.clear();
+                        loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
+
+                        break;
+                    case 2:
+                        tvTitle.setText("Fashion");
+                        bannerimglist.clear();
+                        loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
+
+                        break;
+                    case 3:
+                        tvTitle.setText("Accessories");
+                        bannerimglist.clear();
+                        loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
+
+                        break;
+                    case 4:
+                        tvTitle.setText("Events");
+                        bannerimglist.clear();
+                        loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
+
+                        break;
+                    case 5:
+                        tvTitle.setText("Membership");
+                        bannerimglist.clear();
+                        loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
+                        break;
+
+                }
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+
+/*
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener()
         {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
@@ -379,98 +521,75 @@ public class LandingNewActivity extends AppCompatActivity {
                 if (tabnum == 0) { // that means first tab
                     //    Toast.makeText(getApplicationContext(), "This is my 1 message!",
                     //   Toast.LENGTH_LONG).show();
-                    LLloc.setVisibility(View.INVISIBLE);
-                    imBack.setVisibility(View.VISIBLE);
-                    tvTitle.setVisibility(View.VISIBLE);
-                    tvTitle.setGravity(View.FOCUS_LEFT);
-                    ivfilter.setVisibility(View.VISIBLE);
                     tvTitle.setText("Dining");
+                    bannerimglist.clear();
+                    loadbannerImages(String.valueOf(tabnum+1),LandingNewActivity.this);
 
+                   // mCustomPagerAdapter.notifyDataSetChanged();
                 } else if (tabnum == 1) { // that means it's a last tab
                     // Toast.makeText(getApplicationContext(), "This is my 2 message!",
                     //         Toast.LENGTH_LONG).show();
-                    LLloc.setVisibility(View.INVISIBLE);
-                    imBack.setVisibility(View.VISIBLE);
-                    tvTitle.setVisibility(View.VISIBLE);
-                    tvTitle.setGravity(View.FOCUS_LEFT);
-                    ivfilter.setVisibility(View.VISIBLE);
+
                     tvTitle.setText("Wellness");
+                 */
+/*   loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
+                    mCustomPagerAdapter.notifyDataSetChanged();
+*//*
+              bannerimglist.clear();
+                    loadbannerImages(String.valueOf(tabnum+1),LandingNewActivity.this);
 
-                    imBack.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                           onBackPressed();
-                        }
-                    });
+
                 } else if (tabnum == 2) { // that means it's a last tab
-                    // Toast.makeText(getApplicationContext(), "This is my 3 message!",
-                    //         Toast.LENGTH_LONG).show();
-                    LLloc.setVisibility(View.INVISIBLE);
-                    imBack.setVisibility(View.VISIBLE);
-                    tvTitle.setVisibility(View.VISIBLE);
-                    tvTitle.setGravity(View.FOCUS_LEFT);
-                    ivfilter.setVisibility(View.VISIBLE);
+
                     tvTitle.setText("Fashion");
-                    imBack.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            onBackPressed();
+                    bannerimglist.clear();
+                    loadbannerImages(String.valueOf(tabnum+1),LandingNewActivity.this);
 
-                        }
-                    });
+                 */
+/*   loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
+                    mCustomPagerAdapter.notifyDataSetChanged();
+*//*
+
                 } else if (tabnum == 3) { // that means it's a last tab
-                    //  Toast.makeText(getApplicationContext(), "This is my 4 message!",
-                    //        Toast.LENGTH_LONG).show();
-                    LLloc.setVisibility(View.INVISIBLE);
-                    imBack.setVisibility(View.VISIBLE);
-                    tvTitle.setVisibility(View.VISIBLE);
-                    tvTitle.setGravity(View.FOCUS_LEFT);
-                    ivfilter.setVisibility(View.VISIBLE);
+
+                    bannerimglist.clear();
                     tvTitle.setText("Accessories");
-                    imBack.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            onBackPressed();
+                    loadbannerImages(String.valueOf(tabnum+1),LandingNewActivity.this);
 
-                        }
-                    });
+              */
+/*      loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
+                    mCustomPagerAdapter.notifyDataSetChanged();
+*//*
+
                 }else if (tabnum == 4) { // that means it's a last tab
-                    //  Toast.makeText(getApplicationContext(), "This is my 4 message!",
-                    //        Toast.LENGTH_LONG).show();
-                    LLloc.setVisibility(View.INVISIBLE);
-                    imBack.setVisibility(View.VISIBLE);
-                    tvTitle.setVisibility(View.VISIBLE);
-                    tvTitle.setGravity(View.FOCUS_LEFT);
-                    ivfilter.setVisibility(View.VISIBLE);
+
                     tvTitle.setText("Events");
-                    imBack.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            onBackPressed();
+                    bannerimglist.clear();
+                    loadbannerImages(String.valueOf(tabnum+1),LandingNewActivity.this);
 
-                        }
-                    });
+              */
+/*      loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
+                    mCustomPagerAdapter.notifyDataSetChanged();
+
+*//*
+
                 }else if (tabnum == 5) { // that means it's a last tab
-                    //  Toast.makeText(getApplicationContext(), "This is my 4 message!",
-                    //        Toast.LENGTH_LONG).show();
-                    LLloc.setVisibility(View.INVISIBLE);
-                    imBack.setVisibility(View.VISIBLE);
-                    tvTitle.setVisibility(View.VISIBLE);
-                    tvTitle.setGravity(View.FOCUS_LEFT);
-                    ivfilter.setVisibility(View.VISIBLE);
-                    tvTitle.setText("Membership");
-                    imBack.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            onBackPressed();
 
-                        }
-                    });
+                    tvTitle.setText("Membership");
+                    bannerimglist.clear();
+                    loadbannerImages(String.valueOf(tabnum+1),LandingNewActivity.this);
+
+              */
+/*      loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
+                    mCustomPagerAdapter.notifyDataSetChanged();
+*//*
+
                 }
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
+                bannerimglist.clear();
             }
 
             @Override
@@ -478,18 +597,23 @@ public class LandingNewActivity extends AppCompatActivity {
 
             }
         });
+*/
 
-        if (
-                checkPlayServices()) {
+        if (checkPlayServices()) {
             // Start IntentService to register this application with GCM.
             Intent intent = new Intent(this, RegistrationIntentService.class);
             startService(intent);
         }
     }
 
-    public void loadbannerImages(int id,Context context) {
+    public void loadbannerImages(String id ,Context context) {
+        bannerimglist.clear();
+
         String url = Constaints.BannerUrl;
-//        progress_bar.setVisibility(View.VISIBLE);
+        ProgressDialog progress_bar=new ProgressDialog(LandingNewActivity.this);
+        progress_bar.setTitle("Loading");
+        progress_bar.show();
+     //   progress_bar.setVisibility(View.VISIBLE);
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -497,7 +621,6 @@ public class LandingNewActivity extends AppCompatActivity {
                     JSONObject jSONObject = new JSONObject(response);
                     int Status = jSONObject.optInt("status");
                     String Path = Constaints.BaseUrl + jSONObject.optString("bannerCdnpath");
-                    
                     if (Status == 1) {
                         JSONArray infoArray = jSONObject.getJSONArray("info");
                         for (int i = 0; i < infoArray.length(); i++) {
@@ -523,9 +646,19 @@ public class LandingNewActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(getApplicationContext(), jSONObject.optString("msg"), Toast.LENGTH_LONG).show();
                     }
-                    CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(getApplicationContext(), bannerimglist);
+                    mCustomPagerAdapter = new CustomPagerAdapter(LandingNewActivity.this, bannerimglist);
+                    mCustomPagerAdapter.notifyDataSetChanged();
+                    //view_pager.notify();
                     view_pager.setAdapter(mCustomPagerAdapter);
-                     /*After setting the adapter use the timer */
+                    if(bannerimglist.size()>1) {
+                        view_pager.setClipToPadding(false);
+                        view_pager.setPadding(0, 0, 40, 0);
+                        view_pager.setPageMargin(10);
+                    }
+                    mCustomPagerAdapter.notifyDataSetChanged();
+                    mCustomPagerAdapter.notify();
+                   // mCustomPagerAdapter.notify();
+                    /*After setting the adapter use the timer */
                     final Handler handler = new Handler();
                     final Runnable Update = new Runnable() {
                         public void run() {
@@ -545,20 +678,21 @@ public class LandingNewActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     Log.e("", e.getMessage());
                 }
-                //progress_bar.setVisibility(View.GONE);
+                progress_bar.dismiss();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //progress_bar.setVisibility(View.GONE);
+                progress_bar.dismiss();
                 Log.e("error", "" + error);
+
             }
         }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("XAPIKEY", "XXXXX");
-                params.put("category_id", String.valueOf(id));
+                params.put("category_id", id);
                 System.out.println("data "+params);
                 return params;
             }
@@ -616,6 +750,7 @@ public class LandingNewActivity extends AppCompatActivity {
         progress_bar.setVisibility(View.GONE);
     }
 
+CustomPagerAdapter mCustomPagerAdapter;
 
     class CustomPagerAdapter extends PagerAdapter {
 
@@ -636,9 +771,15 @@ public class LandingNewActivity extends AppCompatActivity {
             mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             imageLoader = ImageLoader.getInstance();
         }
+        private boolean doNotifyDataSetChangedOnce = false;
+
 
         @Override
         public int getCount() {
+            if (doNotifyDataSetChangedOnce) {
+                doNotifyDataSetChangedOnce = false;
+                notifyDataSetChanged();
+            }
             return bannerimglist.size();
         }
 
@@ -702,8 +843,15 @@ public class LandingNewActivity extends AppCompatActivity {
             return mFragmentList.get(position);
         }
 
+        private boolean doNotifyDataSetChangedOnce = false;
+
+
         @Override
         public int getCount() {
+            if (doNotifyDataSetChangedOnce) {
+                doNotifyDataSetChangedOnce = false;
+                notifyDataSetChanged();
+            }
             return mFragmentList.size();
         }
 

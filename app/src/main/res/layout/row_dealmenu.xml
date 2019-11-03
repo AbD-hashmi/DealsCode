@@ -1,44 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="480dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:elevation="10dp"
+    android:layout_margin="8dp"
+    app:cardMaxElevation="10dp"
+    app:cardBackgroundColor="@color/gray"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
     android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/Rldeal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/greyfontcol"
         android:padding="10dp"
+
         android:orientation="vertical">
         <ImageView
             android:id="@+id/deal_image"
             android:layout_width="match_parent"
-            android:scaleType="centerCrop"
-            android:layout_marginRight="10dp"
-            android:layout_height="100dp" />
+            android:scaleType="fitXY"
+            android:layout_height="200dp" />
 
-        <RelativeLayout
+        <TableLayout
             android:id="@+id/RLdata"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:gravity="center_vertical"
-            android:layout_below="@+id/deal_image"
-            android:orientation="horizontal">
+            android:layout_below="@+id/deal_image">
+
+            <TableRow>
             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                 android:id="@+id/tvdealname"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/tvdiscount"
-                android:gravity="right"
                 android:layout_alignParentLeft="true"
-                android:maxLines="1"
-                android:text="Cappuccino / Masala Chhai"
-                android:textAppearance="?android:textAppearanceMedium"
+                android:maxLines="2"
+                android:padding="4dp"
+                android:layout_weight="1"
+                android:text="Cappuccino / Masala Chhai kmjhl"
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_medium"
                 android:textColor="@color/white" />
+
+
+
+                <!--    </RelativeLayout>-->
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    android:id="@+id/tvafterdisprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|right"
+                    android:layout_gravity="right|center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tvactualprice"
+                    android:maxLines="1"
+                    android:padding="4dp"
+                    android:text="33333"
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_medium"
+                    android:textColor="@color/white" />
+
+
+                <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    android:id="@+id/tvactualprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|right"
+                    android:layout_gravity="right|center"
+                    android:maxLines="1"
+                    android:padding="4dp"
+                    android:layout_above="@+id/LLcount"
+                    android:text="33333"
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_small"
+                    android:textColor="@color/white" />
+            </TableRow>
 
             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                 android:id="@+id/tvdiscount"
@@ -49,12 +94,12 @@
                 android:gravity="left"
                 android:text="30%off"
                 android:visibility="gone"
-                android:textAppearance="?android:textAppearanceMedium"
+                android:textSize="@dimen/font_medium"
                 android:textColor="@color/redcolor" />
 
 
 
-        </RelativeLayout>
+        </TableLayout>
 
         <!--
                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -69,67 +114,74 @@
                     android:gravity="center_vertical"
                     android:maxLines="1"
                     android:text="Thuesday / Friday"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/white" />
         -->
-    <RelativeLayout
+    <TableLayout
         android:id="@+id/RLimage"
         android:layout_below="@+id/RLdata"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_gravity="center_vertical"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
-            android:id="@+id/tvavailtime"
+<TableRow>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="130dp"
+        android:layout_weight="1">
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:drawablePadding="10dp"
-            android:gravity="center_vertical"
-            android:maxLines="1"
-            android:layout_centerInParent="true"
-            android:text="9.30am"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/white" />
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvdescription"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_alignParentLeft="true"
+                android:padding="5dp"
+                android:layout_centerInParent="true"
+                android:overScrollMode="always"
+                android:scrollbarStyle="insideInset"
+                android:fontFamily="@font/avenir"
+                android:scrollbars="vertical"
+                android:text="9.30amkljsflisdzkjfhakdjsfnsjkfns jkndfjaNKJ NFJASN DFJKADN FJKDN FKAjfn j fnkdjfn djfnajkdnkfjandsfkjnadkfj ndkjfnKJ FNKJ NFk fnkJD NFKJDN FKJDN FEUNWUIEFHQWIURNFKLSFNLAUIWRFN Kjfn oeuifnklWENFURFHlwkenpoiefnpoawirfhawonsdklfn qpojf aofijsdfjas oifjoai fodisfj osiafja oifjaodfoijfnawofjfnajkfnakjfnakwjfnaksjfnkjsfnkawjfkawfnskajfnakjfkajwf oawnflakwnf "
+                android:textSize="@dimen/font_small"
+                android:textColor="@color/white"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
+</TableRow>
 
+    </TableLayout>
 
-        </RelativeLayout>
         <RelativeLayout
             android:id="@+id/LL"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@+id/RLimage"
             android:layout_marginTop="25dp"
+            android:padding="5dp"
             android:orientation="horizontal"
             android:weightSum="1">
 
-            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
-                android:id="@+id/tvactualprice"
+            <TextView
+                android:id="@+id/ivgift"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gift Now "
+                android:padding="10dp"
+                android:drawablePadding="10dp"
                 android:gravity="center"
-                android:maxLines="1"
-                android:text="33333"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="@color/white" />
-
-            <!--    </RelativeLayout>-->
-
-            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
-                android:id="@+id/tvafterdisprice"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/tvactualprice"
-                android:maxLines="1"
-                android:text="33333"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="@color/white" />
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/Black"
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_medium"
+                android:background="@drawable/new_button_circle"
+                android:drawableLeft="@drawable/gift_deal" />
 
 
             <TextView
@@ -139,7 +191,8 @@
                 android:text="Sold Out   "
                 android:visibility="gone"
                 android:textColor="@color/white"
-                android:textSize="30dp"
+                android:textSize="@dimen/font_medium"
+                android:fontFamily="@font/avenir"
                 android:layout_alignParentRight="true"
                 android:gravity="center_vertical"/>
 
@@ -150,21 +203,12 @@
                 android:layout_alignParentRight="true"
                 android:orientation="horizontal">
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="Quantity   "
-                    android:textColor="@color/white"
-                    android:textSize="20dp"/>
-
                 <ImageView
                     android:id="@+id/ivminus"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:background="@drawable/minus_drawable"
-                    android:src="@drawable/minus" />
+                    android:src="@drawable/ic_remove_black_24dp" />
 
                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                     android:id="@+id/tvcount"
@@ -175,7 +219,8 @@
                     android:layout_toRightOf="@+id/tvstartime"
                     android:text="0"
                     android:maxLength="2"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_small"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white" />
 
@@ -185,26 +230,26 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/minus_drawable"
-                    android:src="@drawable/add" />
+                    android:src="@drawable/ic_add_black_24dp"
+                    />
             </LinearLayout>
-
-
-
 
         </RelativeLayout>
 
-        <!--   <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/LL"
-            android:orientation="horizontal"
-            android:padding="5dp">
--->
 
+
+    <!--   <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LL"
+        android:orientation="horizontal"
+        android:padding="5dp">
+-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:layout_below="@+id/LL">
 
         <TextView
@@ -217,28 +262,14 @@
             android:layout_margin="10dp"
             android:textSize="15dp"
             android:paddingTop="10dp"
+            android:visibility="invisible"
             android:textStyle="bold"
             android:gravity="center_vertical"
             android:paddingBottom="10dp"
             android:background="@drawable/new_button"
             android:textColor="@color/Black"/>
 
-        <TextView
-            android:id="@+id/ivgift"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gift"
-            android:layout_weight="1"
-            android:paddingLeft="50dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:textSize="15dp"
-            android:gravity="left|center_vertical"
-            android:textColor="@color/Black"
-            android:layout_margin="10dp"
-            android:textStyle="bold"
-            android:background="@drawable/new_button"
-            android:drawableLeft="@drawable/gift_deal" />
+
         </LinearLayout>
         <!--        <Spinner
                         android:id="@+id/spinnermore"
@@ -269,3 +300,4 @@
 
 
 </LinearLayout>
+</android.support.v7.widget.CardView>

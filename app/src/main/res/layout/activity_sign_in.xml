@@ -40,8 +40,10 @@
                 android:drawableLeft="@drawable/profileimages"
                 android:drawablePadding="15dp"
                 android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
                 android:text="Name"
-                android:textAppearance="?android:textAppearanceMedium"
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_small"
                 android:textColor="@color/windowBackground" />
 
             <EditText
@@ -56,7 +58,8 @@
                 android:maxLines="1"
                 android:paddingLeft="45dp"
                 android:singleLine="true"
-                android:textAppearance="?android:textAppearanceMedium"
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_medium"
                 android:textColor="@color/white"
                 android:textCursorDrawable="@null" />
 
@@ -70,8 +73,8 @@
                 android:drawablePadding="15dp"
                 android:gravity="center_vertical"
                 android:text="Email Address"
-
-                android:textAppearance="?android:textAppearanceMedium"
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_small"
                 android:textColor="@color/white" />
 
             <EditText
@@ -86,11 +89,12 @@
                 android:maxLines="1"
                 android:paddingLeft="45dp"
                 android:singleLine="true"
-                android:textAppearance="?android:textAppearanceMedium"
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_medium"
                 android:textColor="@color/white"/>
         </LinearLayout>
 
-        <LinearLayout
+        <TableLayout
             android:id="@+id/ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -98,14 +102,9 @@
             android:orientation="horizontal"
             android:paddingBottom="15dp"
             android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:weightSum="1">
+            android:paddingRight="15dp">
 
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".5"
-                android:orientation="vertical">
+            <TableRow>
 
                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                     android:id="@+id/josefinSansRegularTextView"
@@ -115,38 +114,13 @@
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/gender"
                     android:padding="4dp"
+                    android:drawablePadding="15dp"
                     android:gravity="center_vertical"
+                    android:layout_weight="1"
                     android:text="Gender"
-                    android:textAppearance="?android:textAppearanceMedium"
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_small"
                     android:textColor="@color/white" />
-
-                <LinearLayout
-                    android:id="@+id/LLspin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/josefinSansRegularTextView"
-                    android:orientation="vertical">
-
-                    <Spinner
-                        android:id="@+id/spinnergender"
-                        android:layout_width="match_parent"
-                        android:layout_height="42dp"
-                        android:gravity="left"
-                        android:background="@drawable/custom_spin"
-                        android:paddingLeft="20dp"
-                        android:popupTheme="@style/AppTheme.buttonnew"
-                        android:spinnerMode="dialog"
-                        android:theme="@style/AppTheme.buttonnew"
-                        android:textAppearance="?android:textAppearanceMedium"
-                        android:textColor="@color/white" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignBottom="@+id/LLspin"
-                    android:background="@color/white" />
 
                 <EditText
                     android:id="@+id/etgender"
@@ -157,20 +131,12 @@
                     android:layout_marginTop="5dp"
                     android:gravity="center"
                     android:inputType="textPersonName|textAutoComplete|textAutoCorrect"
-                    android:maxLength="5"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:textAppearance="?android:textAppearanceMedium"
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_medium"
                     android:textColor="@color/white"
                     android:visibility="gone" />
-            </RelativeLayout>
-
-            <LinearLayout
-                android:id="@+id/LLcalender"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".5"
-                android:orientation="vertical">
 
                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                     android:id="@+id/tvcalender"
@@ -180,32 +146,51 @@
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/calender"
                     android:drawablePadding="15dp"
+                    android:layout_weight="1"
+                    android:paddingTop="4dp"
                     android:gravity="center_vertical"
-                    android:text="DOB"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:text="Birthday"
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_small"
+                    android:textColor="@color/white" />
+
+            </TableRow>
+            <TableRow>
+
+                <Spinner
+                    android:id="@+id/spinnergender"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/white"
+                    android:fontFamily="@font/avenir"
+                    android:gravity="center"
+                    android:paddingLeft="43dp"
+                    android:popupBackground="@color/Black"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/white" />
 
                 <EditText
                     android:id="@+id/etdob"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
+                    android:layout_height="match_parent"
                     android:layout_gravity="left"
-                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
                     android:clickable="false"
                     android:cursorVisible="false"
+                    android:backgroundTint="@color/white"
                     android:focusable="false"
                     android:gravity="center"
                     android:hint="dd/mm/yyyy"
                     android:inputType="number"
-                    android:maxLines="1"
-                    android:theme="@style/AppTheme.buttonnew"
                     android:textColorHint="@color/white"
                     android:singleLine="true"
-                    android:textAppearance="?android:textAppearanceMedium"
+                    android:fontFamily="@font/avenir"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/white" />
-            </LinearLayout>
-        </LinearLayout>
+            </TableRow>
+        </TableLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -225,8 +210,13 @@
                 android:background="@drawable/button_gradient"
                 android:gravity="center"
                 android:padding="10dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
                 android:text="Sign Up"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold"
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_medium"
                 android:textColor="@color/blackfontcolor" />
 
             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
@@ -240,7 +230,8 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="OR"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:fontFamily="@font/avenir"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/Black"
                 android:textStyle="bold" />
 
@@ -261,6 +252,8 @@
                 android:background="@color/buttoncolnew"
                 android:gravity="center"
                 android:padding="10dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginLeft="40dp"
                 android:text="Sign Up with Facebook"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/White" />
