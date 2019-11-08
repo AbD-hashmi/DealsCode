@@ -165,9 +165,12 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
         //      orderModel.setDealimgurl(Path + "/" + dealobj.optString("dealImge"));
 
         if (items.get(position).getRefundable_policy().equals("1")) {
+            cancelVisible=1;
             if (!items.get(position).getGift_applied().equals("1")) {
+                cancelVisible=1;
                 if (items.get(position).getDealstatus().equals("1")) {
                     cancelVisible = 1;
+/*
                     try {
                         Calendar c = Calendar.getInstance();
                         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm aa");
@@ -189,6 +192,7 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
                     } catch (Exception e) {
 
                     }
+*/
 
                 } else {
                     cancelVisible = 0;
@@ -248,13 +252,13 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
         else if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 2) {
             // QR not SHown
             viewHolder.tvdealstatus.setText("Redeemed");
-            viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.delivered, 0, 0, 0);
+        //    viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.delivered, 0, 0, 0);
             viewHolder.tvcancel.setVisibility(View.INVISIBLE);
         } else if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 3) {
             // QR not SHown
             viewHolder.tvcancel.setVisibility(View.INVISIBLE);
             viewHolder.tvdealstatus.setText("Expired");
-            viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
+        //    viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
             viewHolder.tvcancel.setVisibility(View.INVISIBLE);
         }
 

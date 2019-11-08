@@ -45,6 +45,8 @@ public class TncActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_tnc);
         final LinearLayout toolbar = (LinearLayout) findViewById(R.id.toolbarnew);
         LLloc = (LinearLayout) toolbar.findViewById(R.id.LLloc);
@@ -99,7 +101,11 @@ public class TncActivity extends AppCompatActivity {
                                 if (Integer.parseInt(Status) == 1) {
 
                                     JSONObject jSONinfo = jSONObject.optJSONObject("info");
-                                   webView.loadData(jSONinfo.getString("body").toString(), "text/html", "UTF-8");
+                                    webView.setBackgroundColor(R.drawable.gradiant_bottom_to_top);
+
+                                    String htmlData="<font color='white'>" + jSONinfo.getString("body") + "</font>";
+                                    webView.loadDataWithBaseURL(null, htmlData, "text/html", "UTF-8", null);
+                                    //webView.loadData(jSONinfo.getString("body").toString(), "text/html", "UTF-8");
 
                                     //webView.loadData(jSONinfo.getString("body").toString(), "text/html", "UTF-8");
                                 } else {

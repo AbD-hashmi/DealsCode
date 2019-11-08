@@ -5,7 +5,7 @@
     app:cardCornerRadius="10dp"
     android:elevation="10dp"
     app:cardBackgroundColor="@color/greyfontcol"
-    android:layout_margin="8dp"
+    android:layout_margin="6dp"
     app:cardMaxElevation="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout
@@ -74,13 +74,17 @@
                 </RelativeLayout>
 
 
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TableRow>
                 <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                     android:id="@+id/tvoptionone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_gravity="top"
-                    android:layout_weight=".6"
+                    android:layout_weight="1"
                     android:ellipsize="end"
                     android:gravity="top"
                     android:maxLines="2"
@@ -90,12 +94,31 @@
                     android:textSize="@dimen/font_medium"
                     android:textColor="@color/White" />
 
+                        <TextView
+                            android:id="@+id/tvDealsCount"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="2dp"
+                            android:gravity="right|center"
 
+                            android:text="+1 More"
+                            android:fontFamily="@font/avenir"
+                            android:textSize="@dimen/font_small"
+                            android:textColor="@color/yellowcol"
+                            android:textStyle="italic"/>
+
+                    </TableRow>
+
+
+
+                </TableLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_weight="1">
+
+
 
                 <ImageView
                     android:id="@+id/dealimg"
@@ -204,20 +227,9 @@
 
                  <TableRow
 
-                     android:layout_marginTop="-15dp"
+                     android:layout_marginTop="-18dp"
                      android:background="@android:color/transparent">
-                     <TextView
-                         android:id="@+id/tvDealsCount"
-                         android:layout_width="match_parent"
-                         android:layout_height="30dp"
-                         android:layout_weight="1"
-                         android:padding="2dp"
-                         android:gravity="right"
-                         android:text="+1 More"
-                         android:fontFamily="@font/avenir"
-                         android:textSize="@dimen/font_small"
-                         android:textColor="@color/yellowcol"
-                         android:textStyle="italic"/>
+
                  </TableRow>
              </TableLayout>
 
@@ -408,5 +420,11 @@
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginBottom="3dp"
+        android:background="@color/yellowcol"/>
 </LinearLayout>
 </android.support.v7.widget.CardView>

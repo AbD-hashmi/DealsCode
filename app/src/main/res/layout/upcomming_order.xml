@@ -28,9 +28,8 @@
             android:id="@+id/recycleVIew"
             class="android.support.v7.widget.RecyclerView"
             android:layout_width="match_parent"
+            android:paddingTop="10dp"
             android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_marginBottom="30dp"
             android:layout_toEndOf="@+id/progress_bar"
             android:layout_toRightOf="@+id/progress_bar"
             android:layout_weight=".91" />

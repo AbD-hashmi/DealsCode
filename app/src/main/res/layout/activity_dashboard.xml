@@ -15,10 +15,10 @@
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="fill_parent">
 
         <include
             layout="@layout/activity_toolbar"
@@ -31,8 +31,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/table"
             android:layout_below="@+id/toolbarnew"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/round_button"
             android:layout_marginBottom="@dimen/fab_margin"
             android:padding="3dp">
@@ -83,6 +83,8 @@
                     android:id="@+id/htab_appbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+
                     android:fitsSystemWindows="true"
                     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -92,18 +94,21 @@
                         android:minHeight="160dp"
                         android:layout_gravity="center_vertical"
                         android:orientation="vertical"
+                        android:background="@android:color/transparent"
                         app:layout_collapseMode="parallax">
 
 
                         <android.support.v4.view.ViewPager
                             android:id="@+id/view_pager"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="195dp"
+                            android:background="@android:color/transparent"
+
                             android:minHeight="160dp"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
                             android:scaleType="fitXY"
-                            android:src="@drawable/banner_new" />
+                            />
 
                         <ProgressBar
                             android:id="@+id/progress_bar"
@@ -147,25 +152,43 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:layout_below="@+id/htab_maincontent"
-                android:orientation="vertical"
-                android:padding="20dp">
+                android:orientation="vertical">
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:paddingRight="-5dp"
+                        android:src="@drawable/logo"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:textStyle="bold"
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="-50dp"
                     android:textColor="@color/white"
                     android:fontFamily="@font/avenir"
-                    android:textSize="@dimen/font_large"
+                    android:textSize="@dimen/font_medium"
                     android:text="Curated Collection"
                     android:layout_marginBottom="@dimen/fab_margin"/>
 
+               </LinearLayout>
                 <TableLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="6dp">
-<TableRow>
+                    android:layout_weight="1"
+                    android:id="@+id/tabTable"
+                    android:layout_height="match_parent"
+                    android:padding="2dp">
+                <TableRow>
 
                     <TextView
                         android:id="@+id/btn1"
@@ -178,7 +201,6 @@
                         android:drawablePadding="5dp"
                         android:textColor="@color/white"
                         android:fontFamily="@font/avenir"
-                        
                         android:textSize="@dimen/font_small"/>
 
 
@@ -284,6 +306,7 @@
     <include layout="@layout/navigation_menu"
         android:visibility="gone"/>
     <include layout="@layout/bottom_nav"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

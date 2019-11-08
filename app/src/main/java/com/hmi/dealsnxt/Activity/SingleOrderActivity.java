@@ -170,7 +170,6 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
         Dealprice = String.valueOf(getIntent().getIntExtra("Fromdiscount", 0));
         Qtycount = String.valueOf(getIntent().getIntExtra("Qtycount", 0));
         SelectedDealId = String.valueOf(getIntent().getIntExtra("Dealid", 0));
-
         Dealimgname = String.valueOf(getIntent().getStringExtra("Dealimgname"));
         Dealstarttime = String.valueOf(getIntent().getStringExtra("Dealstarttime"));
         Dealendtime = String.valueOf(getIntent().getStringExtra("Dealendtime"));
@@ -207,21 +206,18 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
                     coupen_edit.setError("Please enter coupon code");
                 }
                 else {
-
                     Common.hideKeyboard(apply_now,SingleOrderActivity.this);
                     loadOfflineDeals();
-
                     arrayList=SessionManager.getRecent1(SingleOrderActivity.this, getIntent().getStringExtra("order_list"));
 
-                    System.out.println("data dealsmodel " + getIntent().getStringExtra("order_list"));
+                    /*System.out.println("data dealsmodel " + getIntent().getStringExtra("order_list"));
                     recyleaAdpter = new DealDetailsAdaptor(arrayList, SingleOrderActivity.this, Qtycount,Dealimgname);
                     viewlist.setLayoutManager(new LinearLayoutManager(SingleOrderActivity.this));
-                    viewlist.setAdapter(recyleaAdpter);
+                    viewlist.setLayoutManager(new LinearLayoutManager(SingleOrderActivity.this));
+                    viewlist.setAdapter(recyleaAdpter);*/
                 }
             }
         });
-
-
     }
 
 
@@ -317,12 +313,13 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
         try {
             JSONObject options = new JSONObject();
             options.put("name", "Xclusify");
-            options.put("description", "Total amount to be payed");
+            options.put("description", "Total amount to be paid");
             //You can omit the image option to fetch the image from dashboard
-            //options.put("image", getResources().getDrawable(R.mipmap.ic_launcher));
+            options.put("image", "https://rzp-mobile.s3.amazonaws.com/images/rzp.png");
             Double payment = Double.valueOf(Dealprice);
             options.put("currency", "INR");
-            options.put("color", getResources().getColor(R.color.blackfontcolor));
+            options.put("color", "#333333");
+           // options.put("background",R.color.blackfontcolor);
             //   double total = Double.parseDouble(payment);
             double total = payment * 100;
             options.put("amount", total);
@@ -427,6 +424,7 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
                 params.put("final_amout",Dealprice);
                 params.put("max_disocunt",""+max_discount);
                 params.put("coupon_status",coupon);
+                System.out.println("server "+params);
                 return params;
             }
 
@@ -509,20 +507,18 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
                     if (Status == 1) {
                         JSONArray infoArray = jSONObject.getJSONArray("info");
 
-
                         for (int i = 0; i < infoArray.length(); i++) {
 
                             JSONObject searchObject = infoArray.optJSONObject(i);
 
                            coupen_id= searchObject.optInt("id");
-                           searchObject.optInt("coupon_percentage");
+                           int percent=searchObject.optInt("coupon_percentage");
                            max_discount= Double.parseDouble(searchObject.optString("max_discount"));
-
-
 
                             double amount = Double.parseDouble(Dealprice);
                             double amountMain = Double.parseDouble(Dealprice);
-                            double res = (amount / 100.0f) * 10;
+                            double per=Double.parseDouble(String.valueOf(percent));
+                            double res = (amount / 100.0f) * per;
 
                             if (res>max_discount)
                             {
@@ -538,16 +534,16 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
                             coupon="1";
                             TextView textView=(TextView)findViewById(R.id.dealAmount);
                             TextView amountAfterCouponApplied=(TextView)findViewById(R.id.amountAfterCouponApplied);
-                            textView.setText(amountMain+"");
-                            amountAfterCouponApplied.setText(max_discount+"");
+                            textView.setText("\u20B9" +amountMain+"");
+                            amountAfterCouponApplied.setText("- "+"\u20B9" +max_discount);
                             RelativeLayout relativeLayout=(RelativeLayout)findViewById(R.id.totalAmount);
                             RelativeLayout couponAmount=(RelativeLayout)findViewById(R.id.couponAmount);
                             relativeLayout.setVisibility(View.VISIBLE);
                             couponAmount.setVisibility(View.VISIBLE);
 
 
-                            tvtotalamount.setText(Dealprice);
-                            apply_now.setText("Coupon applied."+" Discount ammount is "+max_discount);
+                            tvtotalamount.setText("\u20B9" +Dealprice);
+                            apply_now.setText("Coupon applied."+" Discount ammount is "+"\u20B9" +max_discount);
                             apply_now.setVisibility(View.GONE);
                             coupen_edit.setVisibility(View.GONE);
                             apply_now.setClickable(false);
@@ -579,7 +575,7 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
                 params.put("XAPIKEY", "XXXXX");
                 params.put("user_id", SessionManager.getUserID(SingleOrderActivity.this));
                 params.put("coupon_code", coupen_edit.getText().toString().trim());
-
+                System.out.println("params "+params);
                 return params;
             }
 

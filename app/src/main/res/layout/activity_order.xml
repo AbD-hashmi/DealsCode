@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@drawable/gradiant_bottom_to_top"
     android:orientation="vertical"
+    android:background="@color/gray"
     android:weightSum="1">
 
     <include
@@ -26,19 +26,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:tabIndicatorColor="@color/white"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:minHeight="20dp"
                 app:tabBackground="@drawable/tab_background"
                 app:tabIndicatorHeight="0dp"
                 app:tabPadding="0dp"
-                android:background="@color/Black"
+                android:layout_marginBottom="5dp"
+                android:background="@android:color/transparent"
                 app:tabMinWidth="20dp"/>
 
             <android.support.v4.view.ViewPager
+
+                android:background="@drawable/gradiant_bottom_to_top"
                 android:id="@+id/htab_viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="7dp"
                 android:layout_below="@+id/htab_tabs"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 

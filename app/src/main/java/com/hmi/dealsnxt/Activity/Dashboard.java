@@ -31,6 +31,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -134,8 +135,8 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
     DisplayImageOptions options;
 
     public ProgressBar progress_bar;
-    final long DELAY_MS = 5000;//delay in milliseconds before task is to be executed
-    final long PERIOD_MS = 5000;
+    final long DELAY_MS = 10000;//delay in milliseconds before task is to be executed
+    final long PERIOD_MS = 8000;
     com.nostra13.universalimageloader.core.ImageLoader imageLoader;
     DisplayImageOptions defaultOptions;
     public DrawerLayout drawer;
@@ -262,6 +263,14 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 startActivity(i);
             }
         });
+
+
+        int displayWidth = getWindowManager().getDefaultDisplay().getWidth();
+        TableLayout linearLayout1 = (TableLayout) findViewById(R.id.tabTable);
+        linearLayout1.getLayoutParams().height = displayWidth*10 ;
+
+
+
         Geocoder geocoder;
         List<Address> addresses = new ArrayList<>();
         geocoder = new Geocoder(this, Locale.getDefault());
@@ -625,6 +634,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                     String Path = Constaints.BaseUrl + jSONObject.optString("bannerCdnpath");
                     if (Status == 1) {
                         JSONArray infoArray = jSONObject.getJSONArray("info");
+                        System.out.println("response "+ infoArray);
                         for (int i = 0; i < infoArray.length(); i++) {
                             //  ListModel listModel = new ListModel();
                             //  JSONObject outlet = infoArray.getJSONObject(i);
@@ -641,7 +651,8 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                             //       um.setOutlet_id(outlet.optString("id"));
                             // um.setBannerimages_url(review.optString("image_name"));
                             //  um.setImage_name(review.optString("image_name"));
-                            um.setBannerimages_url(Path + "/" + review.optString("img"));
+                            um.setBannerimages_url(Path + "/" + review.optString("img").replace("_138x138",""));
+                            System.out.println("img path "+um.getBannerimages_url());
                             ImagesModels.add(um);
                             bannerimglist.add(um);
                         }
@@ -650,22 +661,30 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                         Toast.makeText(getApplicationContext(), jSONObject.optString("msg"), Toast.LENGTH_LONG).show();
                     }
                     CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(getApplicationContext(), bannerimglist);
+                    if(bannerimglist.size()>1) {
+
+                       //
+                    }
+
                     view_pager.setAdapter(mCustomPagerAdapter);
+
+                    view_pager.setCurrentItem(currentPage++, true);
+                    view_pager.setClipToPadding(false);
+                    view_pager.setPadding(0, 0, 40, 0);
+                    view_pager.setPageMargin(10);
+
                     /*After setting the adapter use the timer */
+
                     final Handler handler = new Handler();
                     final Runnable Update = new Runnable() {
                         public void run() {
                             if (currentPage == bannerimglist.size() - 1) {
                                 currentPage = 0;
                             }
-                            if(bannerimglist.size()>1) {
-                                view_pager.setCurrentItem(currentPage++, true);
-                                view_pager.setClipToPadding(false);
-                                view_pager.setPadding(0, 0, 40, 0);
-                                view_pager.setPageMargin(10);
-                            }
+                            view_pager.setCurrentItem(currentPage++, true);
                         }
                     };
+
                     timer = new Timer(); // This will create a new Thread
                     timer.schedule(new TimerTask() { // task to be scheduled
                         @Override
@@ -817,7 +836,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
             imageLoader.init(ImageLoaderConfiguration.createDefault(getBaseContext()));
             View itemView = mLayoutInflater.inflate(R.layout.pager, container, false);
             ImageView imageView = (ImageView) itemView.findViewById(R.id.bannerimg);
-            imageLoader.displayImage(bannerimglist.get(position).getBannerimages_url(), imageView, defaultOptions);
+            imageLoader.displayImage(bannerimglist.get(position).getBannerimages_url().replace("_138x138",""), imageView, defaultOptions);
             banner_outletid = bannerimglist.get(position).getBanner_outletid();
             container.addView(itemView);
             bannerimglist.get(position).getBanner_outletid();
@@ -840,7 +859,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((LinearLayout) object);
+            container.removeView((CardView) object);
         }
     }
 
@@ -1414,19 +1433,18 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         Calendar rightNow = Calendar.getInstance();
         String hours = String.valueOf(rightNow.get(Calendar.HOUR_OF_DAY));
         System.out.println("hours " + hours);
-        if (Integer.parseInt(hours) >= 3 && Integer.parseInt(hours) <= 11){
+        if (Integer.parseInt(hours) >= 3 && Integer.parseInt(hours) < 11){
             etname.setText("Good morining, "+test);
         }
         if (Integer.parseInt(hours.trim()) >= 11 && Integer.parseInt(hours) < 16){
             etname.setText("Good afternoon, "+test);
         }
         if (Integer.parseInt(hours.trim()) >= 16 && Integer.parseInt(hours) < 19){
-            System.out.println("hours "+hours);
+            System.out.println("hoursr "+hours);
             etname.setText("Good evening, "+test);
         }
-        if (Integer.parseInt(hours.trim()) >= 19 && Integer.parseInt(hours) < 3){
+        if (Integer.parseInt(hours.trim()) >= 19 ){
             etname.setText("Good night, "+test);
-
         }
 
         String ProfileImageURL = SessionManager.getUserImagePath(getApplicationContext());

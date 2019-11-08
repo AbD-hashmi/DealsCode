@@ -44,7 +44,7 @@ public class UnverifiedUser extends AppCompatActivity {
     ProgressBar progress_bar;
     TextView texttop;
     Spinner spinner;
-    String [] sex={"Mr.","Mrs."};
+    String [] sex={"Mr. ","Mrs."};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +66,7 @@ public class UnverifiedUser extends AppCompatActivity {
         spinner=(Spinner)findViewById(R.id.spinnergender);
         tvTitle.setVisibility(View.VISIBLE);
 
-        tvTitle.setText("Contact Us");
+        tvTitle.setText("Fill your contact details");
 
 
         ArrayAdapter arrayAdapter=new ArrayAdapter(UnverifiedUser.this, R.layout.resource,sex);

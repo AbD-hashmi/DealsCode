@@ -80,7 +80,6 @@ public class AftersplashActivity extends AppCompatActivity  {
         prefManager = new SessionManager(getApplicationContext());
 
 
-        setContentView(R.layout.activity_aftersplash);
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         dotsLayout = (LinearLayout) findViewById(R.id.LLimage);
@@ -97,14 +96,15 @@ public class AftersplashActivity extends AppCompatActivity  {
 
         tvstart.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 launchHomeScreen();
             }
         });
-        tvstart.setOnClickListener(new View.OnClickListener() {
+
+        tvend.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                launchHomeScreen();
+            public void onClick(View view) {
+                viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
             }
         });
 
@@ -156,21 +156,13 @@ public class AftersplashActivity extends AppCompatActivity  {
            /* if (position==2){
                 launchHomeScreen();
             }*/
-         /*  if (position + 1 <= 2){
-            tvend.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    viewPager.setCurrentItem(position+1);
-                }
-            });
-           }
-            */
+         /*  if (position < 2){
+               tvend.setVisibility(View.VISIBLE);
+           }*/
             if (position == 2) {
-                tvend.setVisibility(View.INVISIBLE);
-                viewPager.setOnTouchListener(new OnSwipeTouchListener(AftersplashActivity.this) {
+                tvend.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onSwipeLeft() {
-                        super.onSwipeRight();
+                    public void onClick(View view) {
                         launchHomeScreen();
                     }
                 });

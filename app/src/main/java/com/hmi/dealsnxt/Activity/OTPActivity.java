@@ -145,6 +145,8 @@ public class OTPActivity extends AppCompatActivity {
         et6 = (EditText) findViewById(R.id.et6);
 
 
+
+
         et1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -409,7 +411,8 @@ public class OTPActivity extends AppCompatActivity {
                         etotp = (EditText) findViewById(R.id.etotp);
                         final ImageButton tverify = (ImageButton) findViewById(R.id.tverify);
                         final ImageView image = (ImageView) findViewById(R.id.image);
-                        tvnmobile.setText(ccp.getSelectedCountryCodeWithPlus() + " " + etmobno.getText().toString());
+                        tvnmobile.setText(/*ccp.getSelectedCountryCodeWithPlus() + */" " + etmobno.getText().toString());
+
 
                         //  etotp.setText(OTP.toString());
 

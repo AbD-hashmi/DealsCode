@@ -211,7 +211,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:background="@android:color/transparent"
+                    android:background="@color/gray"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -224,8 +224,7 @@
                         android:layout_marginLeft="45dp"
                         android:fontFamily="@font/avenir"
                         android:textSize="@dimen/font_medium"
-                        android:textColor="#ffffff"
-                        android:textStyle="bold" />
+                        android:textColor="#ffffff"/>
 
                     <ImageView
                         android:id="@+id/imBack"
@@ -244,6 +243,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/RLdealdata"
                     android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/avenir"
+
                     android:layout_marginTop="60dp"
                     android:orientation="vertical">
 
@@ -261,6 +262,7 @@
                         android:layout_margin="7dp"
                         android:textStyle="bold"
                         android:padding="5dp"
+
                         android:fontFamily="@font/avenir"
                         android:textColor="@color/white"/>
 
@@ -269,22 +271,23 @@
                         android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-
+                        android:background="@color/gray"
                         android:orientation="vertical"
                         android:padding="10dp">
 
-                        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_centerInParent="true"
                             android:gravity="center_horizontal"
-                            android:text="Amount"
+                            android:text="Total Amount"
+                            android:fontFamily="@font/avenir"
+
                             android:textSize="@dimen/font_medium"
                             android:textColor="@color/white" />
 
-                        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                        <TextView
                             android:id="@+id/dealAmount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -294,6 +297,8 @@
                             android:gravity="center_horizontal"
                             android:padding="5dp"
                             android:text="532"
+                            android:fontFamily="@font/avenir"
+
                             android:textSize="@dimen/font_medium"
                             android:textColor="@color/white" />
                     </RelativeLayout>
@@ -302,21 +307,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:visibility="gone"
-                        android:layout_marginTop="2dp"
+                        android:background="@color/gray"
                         android:orientation="vertical"
                         android:padding="10dp">
 
-                        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_centerInParent="true"
                             android:gravity="center_horizontal"
-                            android:text="Discount: Coupon Applied"
+                            android:fontFamily="@font/avenir"
+                            android:text="Discount Offer"
                             android:textSize="@dimen/font_medium"
                             android:textColor="@color/white" />
 
-                        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                        <TextView
                             android:id="@+id/amountAfterCouponApplied"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -325,6 +331,7 @@
                             android:layout_marginRight="10dp"
                             android:gravity="center_horizontal"
                             android:padding="5dp"
+                            android:fontFamily="@font/avenir"
                             android:text="532"
                             android:textSize="@dimen/font_medium"
                             android:textColor="@color/white" />
@@ -335,7 +342,6 @@
                         android:id="@+id/RLAmount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
                         android:orientation="vertical"
                         android:background="@color/gray"
                         android:padding="10dp">
@@ -372,7 +378,6 @@
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:padding="10dp"
-                        android:background="@color/gray"
                         android:layout_height="wrap_content">
                         <com.hmi.dealsnxt.HelperClass.JosefinSansRegularEditText
                             android:id="@+id/coupen_edit"
@@ -380,10 +385,12 @@
                             android:textColor="@color/white"
                             android:textColorHint="@color/white"
                             android:layout_weight="2"
-                            android:backgroundTint="@color/white"
+                            android:backgroundTint="@color/border"
                             android:fontFamily="@font/avenir"
                             android:hint="Enter Coupen Code"
                             android:layout_height="wrap_content" />
+
+
                         <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
                             android:id="@+id/apply_now"
                             android:layout_width="0dp"
@@ -402,7 +409,6 @@
                     </LinearLayout>
                   <TableLayout
                       android:layout_width="match_parent"
-                      android:background="@color/gray"
                       android:layout_height="wrap_content">
 
                       <TableRow>
@@ -431,7 +437,7 @@
                               android:gravity="center_vertical"
                               android:fontFamily="@font/avenir"
                               android:textSize="@dimen/font_small"
-                              android:text="Terms and Conditions"/>
+                              android:text="Terms &amp; Conditions"/>
                       </TableRow>
                   </TableLayout>
                 </LinearLayout>
@@ -457,8 +463,10 @@
                     android:id="@+id/LLpayment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="15dp"
                     android:layout_alignParentBottom="true"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="25dp"
                     android:background="@drawable/button_gradient"
                     android:orientation="vertical">
 
@@ -470,10 +478,8 @@
                         android:gravity="center"
                         android:paddingBottom="10dp"
                         android:fontFamily="@font/avenir"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
                         android:paddingTop="10dp"
-                        android:text="Proceed to Pay"
+                        android:text="Proceed"
                         android:textSize="@dimen/font_medium"
                         android:textColor="@color/blackfontcolor" />
 

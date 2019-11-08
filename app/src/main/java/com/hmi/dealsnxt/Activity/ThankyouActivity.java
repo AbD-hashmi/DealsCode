@@ -44,6 +44,7 @@ public class ThankyouActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(ThankyouActivity.this, OrderActivity.class);
                 startActivity(i);
+                finish();
             }
         });
     }

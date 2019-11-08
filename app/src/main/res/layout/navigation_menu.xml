@@ -37,7 +37,20 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
-
+                            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentLeft="true"
+                                android:text="X"
+                                android:id="@+id/close_filter"
+                                android:background="@color/Black"
+                                android:padding="10dp"
+                                android:layout_gravity="right"
+                                android:gravity="right"
+                                android:fontFamily="@font/avenir"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/font_medium"
+                                android:textColor="@color/White" />
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -49,9 +62,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:layout_alignParentLeft="true"
-                                    android:id="@+id/close_filter"
                                     android:text="Filters"
-
                                     android:padding="10dp"
                                     android:fontFamily="@font/avenir"
                                     android:textStyle="bold"
@@ -364,7 +375,8 @@
                                     android:max="50000"
                                     android:progress="0"
                                     android:theme="@style/AppTheme.button"
-                                    android:scrollIndicators="left" />
+                                    android:scrollIndicators="left"
+                                    android:progressDrawable="@drawable/seek_bar"/>
 
 
                             </LinearLayout>
@@ -425,6 +437,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="right"
                                     android:max="99"
+
+                                    android:progressDrawable="@drawable/seek_bar"
                                     android:progress="0"
                                     android:theme="@style/AppTheme.button"
                                     android:scrollIndicators="left" />
@@ -488,6 +502,8 @@
                                     android:layout_gravity="right"
                                     android:max="30"
                                     android:progress="0"
+
+                                    android:progressDrawable="@drawable/seek_bar"
                                     android:theme="@style/AppTheme.button"
                                     android:scrollIndicators="left" />
 
@@ -927,7 +943,7 @@
                                 android:layout_marginBottom="10dp"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
-                                android:layout_marginTop="20dp"
+                                android:layout_marginTop="120dp"
                                 android:gravity="center"
                                 android:paddingBottom="10dp"
                                 android:paddingLeft="10dp"

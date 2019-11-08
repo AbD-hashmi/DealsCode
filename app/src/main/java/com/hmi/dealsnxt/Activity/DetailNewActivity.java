@@ -152,8 +152,8 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
     int currentPage = 0;
     Timer timer;
     TextView tvoutletdetail;
-    final long DELAY_MS = 500000;//delay in milliseconds before task is to be executed
-    final long PERIOD_MS = 3000000;
+    final long DELAY_MS = 5000;//delay in milliseconds before task is to be executed
+    final long PERIOD_MS = 5000;
     // public static String Outletname = "", Outletadress = "", timein = "", timeout = "";
     //   UploadLeadsBroad uploadLeadsBroad;
     ArrayList<DealDetailsModel> orderarrayList = new ArrayList<>();
@@ -308,7 +308,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                     intent.setType("image/*");
 
                     intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Get 40 % of on this deal");
-                    intent.putExtra(android.content.Intent.EXTRA_TEXT, " Check out this amazing deal I found on DealsNxt.Register with referral code NNALNF to get 40% off on your first order on " + HotDealsModel.getHotDealsModel().getDealTitle() + " of " + " " + HotDealsModel.getHotDealsModel().getOutletName() + "" + "\n  market://details?id=com.hmi.dealsnxt");
+                    intent.putExtra(android.content.Intent.EXTRA_TEXT, " Check out this amazing deal I found on Xclusify.Register with referral code NNALNF to get 40% off on your first order on " + HotDealsModel.getHotDealsModel().getDealTitle() + " of " + " " + HotDealsModel.getHotDealsModel().getOutletName() + "" + "\n  market://details?id=com.hmi.dealsnxt");
                     intent.putExtra(Intent.EXTRA_STREAM, uri);
                     startActivity(Intent.createChooser(intent, "Share deal with friends"));
                 } catch (Exception e) {
@@ -488,9 +488,9 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                             tvoutletname.setText(outlet.optString("name"));
                             stroutletname=""+outlet.optString("name");
 
-                            tvoutletaddress.setText(outlet.optString("address") + "," + outlet.optString("city") + "," + outlet.optString("zipcode"));
+                            tvoutletaddress.setText("Address: "+outlet.optString("address") + "," + outlet.optString("city") + "," + outlet.optString("zipcode"));
                             //      tvphone.setText(outlet.optString("name"));
-                            tvphone.setText(outlet.optString("merchantPhone"));
+                            tvphone.setText("Phone: "+outlet.optString("merchantPhone"));
                             tvphone.setOnClickListener(new View.OnClickListener() {
                                 @SuppressLint("MissingPermission")
                                 @Override
@@ -706,11 +706,17 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
                     // linearLayoutManager.setStackFromEnd(true);
 
-                    viewlist.setLayoutManager(linearLayoutManager);
-                    viewlist.setClipToPadding(false);
-                    viewlist.setPadding(0,0,80,0);
+                    if (!intent.getStringExtra("numberOfOffes").equals("")) {
+                        int offers = Integer.parseInt(intent.getStringExtra("numberOfOffes"));
 
-                    //   viewlist.setLayoutManager(linearLayoutManager);
+                        if (offers > 1) {
+                            viewlist.setClipToPadding(false);
+                            viewlist.setPadding(0, 0, 40, 0);
+                        } else {
+                            viewlist.setPadding(0, 0, 0, 0);
+                        }
+                    }
+                    viewlist.setLayoutManager(linearLayoutManager);
                     viewlist.setAdapter(adapter);
                     CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(getApplicationContext(), dealimglist);
                     view_pager.setAdapter(mCustomPagerAdapter);
@@ -729,9 +735,10 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
 
                     if (dealimglist.size()>1){
 
-                        view_pager.setClipToPadding(false);
-                        view_pager.setPadding(0,0,40,0);
-                        view_pager.setPageMargin(10);
+                        viewlist.setLayoutManager(linearLayoutManager);
+                        viewlist.setClipToPadding(false);
+                        viewlist.setPadding(0,0,0,0);
+                        tvCountBanner.setText(1+"/"+dealimglist.size());
 
                     view_pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                         @Override

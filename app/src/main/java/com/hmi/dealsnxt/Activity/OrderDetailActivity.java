@@ -132,6 +132,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         if (bundle.containsKey("cancelVisible"))
         {
             if (bundle.getInt("cancelVisible") == 1)
+            //    Toast.makeText(this, "Cancel Visible" + bundle.getInt("cancelVisible"), Toast.LENGTH_SHORT).show();
             btnCancel.setVisibility(View.VISIBLE);
         }else{
             btnCancel.setVisibility(View.GONE);
@@ -277,6 +278,7 @@ public class OrderDetailActivity extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             OrderActivity.progressBar.setVisibility(View.GONE);
+                            Toast.makeText(OrderDetailActivity.this, "Can't cancel deal", Toast.LENGTH_SHORT).show();
                         }
                     }) {
                         @Override
@@ -306,13 +308,9 @@ public class OrderDetailActivity extends AppCompatActivity {
                             socketTimeout,
                             DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                             DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-                } else
-
-                {
+                } else{
                     Toast.makeText(getApplicationContext(), R.string.ConnectionErrorResponse, Toast.LENGTH_LONG).show();
                 }
-
-
             }
         });
 
@@ -346,7 +344,7 @@ String totalAmount,offerApplied="90000";
                                 System.out.println("data = "+orderArray.getJSONObject(i));
 
                               //  tvtotal.setText("\u20B9" + " " + orderJson.optString("total_amount"));
-                                totalAmount="\u20B9" + " " + orderJson.optString("total_amount");
+                                totalAmount=" " + orderJson.optString("total_amount");
                                 offerApplied=orderJson.optString("offer_applied");
 
                                 tvtransactionId.setText(orderJson.optString("transactions_no"));
@@ -378,8 +376,8 @@ String totalAmount,offerApplied="90000";
                                 JSONObject orderJson = dealArray.getJSONObject(i);
 
                                 if(orderJson.optString("final_price").equals("")){
-                                 tvtotal.setText(totalAmount);
-                                 total_amount.setText(totalAmount);
+                                 tvtotal.setText("\u20B9" + totalAmount);
+                                 total_amount.setText("\u20B9" + totalAmount);
                                  tvoff.setText("\u20B9" + " " +"0");
                                 }else {
                                     if (offerApplied.equals("1")){
@@ -387,16 +385,21 @@ String totalAmount,offerApplied="90000";
                                     }else {
                                         tv_offerText.setText("Offer Applied");
                                     }
-                                    totalAmount=orderJson.optString("final_price").replace(",", "");
+                                   // totalAmount=orderJson.optString("total_amount");
 
                                     tvtotal.setText("\u20B9" + " " + totalAmount);
 
                                     total_amount.setText("\u20B9" + " " +orderJson.optString("price"));
 
+                                    Double offer;
                                     int price=Integer.parseInt(orderJson.optString("price"));
-                                    Double offer=price-Double.valueOf(totalAmount);
-                                    System.out.println("werfwef "+Double.valueOf(totalAmount));
-                                    tvoff.setText("\u20B9" + " " +String.format("%.0f", offer));
+                                    if (price<Double.valueOf(totalAmount)){
+                                        offer=Double.valueOf(totalAmount)-price;
+                                    }else{
+                                        offer = price - Double.valueOf(totalAmount);
+                                    }System.out.println("werfwef "+Double.valueOf(totalAmount));
+
+                                    tvoff.setText("- \u20B9" + " " +String.format("%.0f", offer));
                                 }
 
                                 tvstartime.setText(" "+Customutils.dateFormat(orderJson.optString("timeFrom")) + "-" + Customutils.dateFormat(orderJson.optString("timeTo")));

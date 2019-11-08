@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/rll"
-    android:background="@drawable/gradiant_bottom_to_top">
+    android:background="@color/Black">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -107,7 +107,6 @@
                             android:gravity="right"
                             android:drawableTop="@drawable/ic_images"
                             android:text=""
-                            android:background="#A6292a2c"
                             android:textSize="@dimen/font_medium"
                             android:textColor="#ffffff"
                             android:textStyle="bold"
@@ -266,7 +265,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/RLdealdata"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
                     android:orientation="vertical"
                     android:padding="5dp">
 
@@ -301,6 +300,7 @@
                     android:id="@+id/LLlist"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="8dp"
                     android:layout_below="@+id/Lldetail"
                     android:orientation="horizontal">
 
@@ -343,9 +343,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/LLtnc"
+                    android:visibility="gone"
                     android:layout_marginBottom="10dp"
-                    android:orientation="vertical"
-                    android:visibility="gone">
+                    android:orientation="vertical">
 
                     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                         android:id="@+id/tvdealdetail"
@@ -406,8 +406,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         app:tabIndicatorColor="@color/white"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginRight="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
                         android:minHeight="20dp"
                         app:tabBackground="@drawable/tab_background"
                         app:tabIndicatorHeight="0dp"
@@ -440,22 +440,13 @@
                         <android.support.v4.view.ViewPager
                         android:id="@+id/htab_viewpager"
                         android:layout_width="match_parent"
-                        android:layout_height="300dp"
+                        android:layout_height="200dp"
                         android:background="@color/gray"
                         android:layout_below="@+id/htab_tabs"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
                     </android.support.v7.widget.CardView>
 
-                    <TextView
-                        android:id="@+id/getDirections"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Get Directions"
-                        android:layout_margin="5dp"
-                        android:textColor="@color/yellowcol"
-                        android:fontFamily="@font/avenir"
-                        android:textSize="@dimen/font_medium"
-                        android:textStyle="italic"/>
+
 
 
                     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
@@ -497,36 +488,44 @@
 
                     </android.support.v7.widget.RecyclerView>
 
-                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    <TextView
                         android:id="@+id/tvoutletaddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/tvoutletname"
                         android:gravity="center_vertical"
                         android:maxLines="2"
-                        android:paddingBottom="5dp"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
+                        android:layout_marginLeft="10dp"
                         android:fontFamily="@font/avenir"
+                        android:layout_marginTop="4dp"
                         android:textSize="@dimen/font_small"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 
-                    <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                    <TextView
                         android:id="@+id/tvphone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
                         android:maxLines="1"
-                        android:paddingBottom="5dp"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
                         android:fontFamily="@font/avenir"
-                        android:drawablePadding="5dp"
-                        android:layout_marginBottom="70dp"
+                        android:layout_marginTop="4dp"
                         android:textSize="@dimen/font_small"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_marginTop="4dp"
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/getDirections"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Get Directions"
+                        android:textColor="@color/yellowcol"
+                        android:fontFamily="@font/avenir"
+                        android:textSize="@dimen/font_medium"
+                        android:textStyle="italic"/>
 
 
                 </LinearLayout>
@@ -540,11 +539,11 @@
         <RelativeLayout
             android:id="@+id/LLpayment"
             android:layout_width="match_parent"
+            android:background="@color/Black"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:gravity="center"
             android:padding="4dp"
-            android:layout_margin="4dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -555,7 +554,7 @@
                 android:gravity="center_vertical"
                 android:orientation="vertical">
 
-                <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                <TextView
                     android:id="@+id/tvamount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -564,7 +563,7 @@
                     android:fontFamily="@font/avenir"
                     android:padding="2dp"
                     android:layout_margin="2dp"
-                    android:textSize="@dimen/font_small"
+                    android:textSize="@dimen/font_medium"
                     android:textColor="@color/White"
                     android:textStyle="bold" />
 
@@ -635,6 +634,31 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal">
+            <TextView
+                android:id="@+id/ivgift"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gift Now "
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="15dp"
+                android:paddingLeft="15dp"
+                android:layout_margin="4dp"
+                android:drawablePadding="8dp"
+                android:gravity="center"
+                android:textColor="@color/Black"
+                android:layout_toLeftOf="@+id/tvbuy"
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_medium"
+                android:background="@drawable/new_button_circle"
+                android:drawableLeft="@drawable/gift_deal" />
+
+
             <TextView
                 android:id="@+id/tvbuy"
                 android:layout_width="wrap_content"
@@ -645,11 +669,12 @@
                 android:paddingRight="15dp"
                 android:paddingLeft="15dp"
                 android:layout_margin="4dp"
-                android:background="@drawable/new_button_circle"
-                android:text="  Buy Now  "
+                android:background="@drawable/edittext_border"
+                android:text="  Buy  "
                 android:fontFamily="@font/avenir"
                 android:textSize="@dimen/font_medium"
                 android:textColor="@color/blackfontcolor" />
+            </LinearLayout>
         </RelativeLayout>
 
         <ImageView

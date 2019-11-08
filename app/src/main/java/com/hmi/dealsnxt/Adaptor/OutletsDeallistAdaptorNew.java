@@ -79,6 +79,8 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import me.biubiubiu.justifytext.library.JustifyTextView;
+
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeallistAdaptorNew.SimpleItemViewHolder> {
@@ -221,7 +223,7 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
         //loadData();
         if (items.get(position).getNumofOffers()==0){
 
-            viewHolder.LLcount.setVisibility(View.GONE);
+            viewHolder.LLcount.setVisibility(View.INVISIBLE);
             viewHolder.textView.setVisibility(View.VISIBLE);
         }
 
@@ -339,7 +341,7 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
 
                     if (pos == position) {
                         if (dealCount > 29) {
-                            Toast.makeText(activity, "You have choose max oder", Toast.LENGTH_LONG).show();
+                            Toast.makeText(activity, "You have choose max order", Toast.LENGTH_LONG).show();
                         } else if (dealCount+1 <=items.get(position).getNumofOffers()){
                             dealCount = dealCount + 1;
                             viewHolder.tvcount.setText("" + dealCount);
@@ -391,8 +393,8 @@ public class OutletsDeallistAdaptorNew extends RecyclerView.Adapter<OutletsDeall
                             activity.sendBroadcast(i);
 
                         } else {
-                            viewHolder.LLcount.setVisibility(View.GONE);
-                            viewHolder.textView.setVisibility(View.VISIBLE);
+                           // viewHolder.LLcount.setVisibility(View.GONE);
+                            //viewHolder.textView.setVisibility(View.VISIBLE);
                             Toast.makeText(activity, " Can not add more deals into this order", Toast.LENGTH_SHORT).show();
                         }
                         dealMap.put(Integer.valueOf(items.get(position).getDealid()), dealCount);

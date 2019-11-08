@@ -70,7 +70,7 @@
                                 android:textSize="@dimen/font_medium"
                                 android:textColor="@color/white" />
 
-                            <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                            <TextView
                                 android:id="@+id/tvvoucherid"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -224,8 +224,8 @@
 
                             <ImageView
                                 android:id="@+id/ivQR"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
                                 android:scaleType="fitXY"
                                 android:layout_alignParentRight="true"
                                 android:layout_marginLeft="5dp"
@@ -318,7 +318,7 @@
                             android:textSize="@dimen/font_medium"
                             android:textColor="@color/white" />
 
-                        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                        <TextView
                             android:id="@+id/total_amount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -347,7 +347,7 @@
                             android:textSize="@dimen/font_medium"
                             android:textColor="@color/white" />
 
-                        <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                        <TextView
                             android:id="@+id/tvoff"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

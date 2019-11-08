@@ -49,6 +49,7 @@ public class Events extends Fragment {
     LinearLayoutManager linearLayoutManager;
     AllinoneAdaptor adapter;
     ImageView ivmoveup;
+    String category_id;
     public List<HotDealsModel> arrayList = new ArrayList<>();
     //    private RelativeLayout rvMain;
 //    private HashMap<Integer, Boolean> isNew = new HashMap<>(0);
@@ -82,7 +83,6 @@ public class Events extends Fragment {
         ivmoveup = (ImageView) view.findViewById(R.id.ivmoveup);
         no_result= (TextView) getView().findViewById(R.id.no_result);
 
-
         ivmoveup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,7 +107,8 @@ public class Events extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-       loadOfflineDeals("");
+        loadOfflineDeals("");
+        //loadOfflineDeals(offlineDealsJSON);
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -116,7 +117,6 @@ public class Events extends Fragment {
         });
 
     }
-
 
     public void loadOfflineDeals(final String From) {
         // if (From.equals("PullToRefresh")) {
@@ -133,16 +133,19 @@ public class Events extends Fragment {
 
                     JSONObject jSONObject = new JSONObject(new String(response));
                     //   JSONObject jSONObject = new JSONObject(new String(""));
-
+                    System.out.println("data response "+ response);
                     if (From.equals("PullToRefresh")) {
                         swipeContainer.setRefreshing(false);
                     }
                     arrayList.clear();
+
                     int Status = jSONObject.optInt("status");
                     String Path = Constaints.BaseUrl + jSONObject.optString("dealsCdnpath");
                     //       dealsModel.setDealsName(Constaints.BaseUrl + merchant.optString("dealsCdnpath"));
                     if (Status == 1) {
                         JSONArray infoArray = jSONObject.getJSONArray("info");
+
+
                         //  scheduleJSONArray = infoArray.toString();
                         ////  JSONArray scheduleArray = new JSONArray(scheduleJSONArray);
                         //  arrayLength = scheduleArray.length();
@@ -160,9 +163,6 @@ public class Events extends Fragment {
 
                             JSONObject outlet = infoArray.getJSONObject(i);
                             JSONArray dealArray = outlet.optJSONArray("deals");
-                            //  JSONObject dealArray = outlet.optJSONObject("deals");
-
-                            JSONArray compaing_array = outlet.optJSONArray("compain");
                             if (infoArray.length() > 0) {
                                 for (int j = 0; j < dealArray.length(); j++) {
                                     JSONObject data = dealArray.getJSONObject(j);
@@ -174,15 +174,15 @@ public class Events extends Fragment {
                                     dealsModel.setOutletCity(outlet.optString("city"));
                                     dealsModel.setOutletzipcode(outlet.optString("zipcode"));
                                     dealsModel.setTndc(outlet.optString("termAndCondition"));
-                                    //dealsModel.setNumofOffers(outlet.optInt("dealCount"));
+                                    dealsModel.setNumofOffers(data.optString("stock_qty"));
+                                    dealsModel.setDealCount(outlet.optString("dealCount"));
                                     dealsModel.setOutletcontactperson(outlet.optString("contactPersonName"));
                                     dealsModel.setOutletcontactnumber(outlet.optString("contactNumber"));
                                     dealsModel.setOutletLatitude(outlet.optString("lat"));
                                     dealsModel.setOutletLongtitude(outlet.optString("lng"));
                                     dealsModel.setOutletdescription(outlet.optString("description"));
-                                    dealsModel.setNumofOffers(data.optString("stock_qty"));
-                                    dealsModel.setDealCount(outlet.optString("dealCount"));
                                     dealsModel.setDealid(data.optInt("id"));
+                                    dealsModel.setShowPercentage(data.getString("show_percentage"));
                                     dealsModel.setMerchantid(data.optString("user_id"));
                                     dealsModel.setDealTitle(data.optString("deal_title"));
                                     dealsModel.setActualPrice(data.optString("deal_price"));
@@ -196,6 +196,8 @@ public class Events extends Fragment {
                                     dealsModel.setDealimage(Path + "/" + data.optString("deal_display_photo"));
                                     dealsModel.setLikes(data.optString("like"));
                                     dealsModel.setLikesCount(data.optString("totalLike"));
+                                    System.out.println("data dealsmodel " +outlet.optString("stock_qty") +" "+dealsModel.getShowPercentage());
+                                    System.out.println(response);
 
                                     arrayList.add(dealsModel);
                                 }
@@ -243,24 +245,15 @@ public class Events extends Fragment {
                                     {
                                         e.printStackTrace();
                                     }
-
-
-
-
-
-
-
                                 }
-*/
-
-                            }
+*/                            }
                         }
                     } else {
                         Toast.makeText(getActivity(), jSONObject.optString("msg"), Toast.LENGTH_LONG).show();
                         swipeContainer.setRefreshing(false);
                         no_result.setVisibility(View.VISIBLE);
                     }
-                    String category_id="5";
+                    category_id="5";
                     adapter = new AllinoneAdaptor(arrayList, getActivity(), getActivity(),category_id);
                     mRecyclerView.setLayoutManager(linearLayoutManager);
                     mRecyclerView.setAdapter(adapter);
@@ -291,6 +284,7 @@ public class Events extends Fragment {
                 params.put("lng", SessionManager.getLongitude(getContext()));
                 params.put("city_id", SessionManager.getCityid(getContext()));
                 params.put("page", "0");
+                System.out.println("data "+params);
                 return params;
             }
 
@@ -448,10 +442,5 @@ public class Events extends Fragment {
     }
 */
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        //loadOfflineDeals("");
 
-    }
 }

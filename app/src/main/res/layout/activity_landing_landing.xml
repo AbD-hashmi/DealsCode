@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_below="@+id/toolbarnew"
-    android:background="@drawable/gradiant_bottom_to_top"
+    android:background="@color/Black"
     tools:openDrawer="right">
 
 
@@ -19,8 +19,6 @@
             layout="@layout/activity_toolbar"
             android:layout_width="match_parent"
             android:layout_height="60dp"/>
-
-
 
         <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -41,7 +39,7 @@
                     android:id="@+id/htab_appbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/darkGray"
+                    android:background="@android:color/transparent"
                     android:fitsSystemWindows="true"
                     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -67,7 +65,7 @@
                             <android.support.v4.view.ViewPager
                                 android:id="@+id/view_pager"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="200dp"
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentStart="true"
                                 android:scaleType="fitXY"
@@ -113,6 +111,7 @@
                 </android.support.design.widget.AppBarLayout>
 
                 <android.support.v4.view.ViewPager
+
                     android:id="@+id/htab_viewpager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

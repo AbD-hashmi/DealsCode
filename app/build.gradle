@@ -68,4 +68,6 @@ dependencies {
 
     implementation 'com.hbb20:ccp:1.7.1'
 
+    compile 'me.biubiubiu.justifytext:library:1.1'
+
 }

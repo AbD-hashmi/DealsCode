@@ -21,6 +21,7 @@
     <color name="notifBackgroundColor">#F19D13</color>
     <color name="footerColor">#01356F</color>
     <color name="darkGray">#E7E7E9</color>
+    <color name="border">#333333</color>
     <color name="redFont">#c04000</color>
     <color name="red">#CF1A21</color>
     <color name="darkBlue">#016698</color>

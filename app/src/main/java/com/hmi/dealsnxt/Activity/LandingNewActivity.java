@@ -31,6 +31,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -122,8 +123,8 @@ public class LandingNewActivity extends AppCompatActivity {
     int currentPage = 0;
     Timer timer;
     public ProgressBar progress_bar;
-    final long DELAY_MS = 5000;//delay in milliseconds before task is to be executed
-    final long PERIOD_MS = 3000;
+    final long DELAY_MS = 10000;//delay in milliseconds before task is to be executed
+    final long PERIOD_MS = 8000;
     com.nostra13.universalimageloader.core.ImageLoader imageLoader;
     DisplayImageOptions defaultOptions;
     public DrawerLayout drawer;
@@ -414,191 +415,6 @@ public class LandingNewActivity extends AppCompatActivity {
 
         }
 
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-/*
-                switch (position){
-                    case 0:
-                        tvTitle.setText("Dining");
-                        bannerimglist.clear();
-                        loadbannerImages(String.valueOf(position+1),LandingNewActivity.this);
-                        break;
-                    case 1:
-                        tvTitle.setText("Wellness");
-                        bannerimglist.clear();
-                        loadbannerImages(String.valueOf(position+1),LandingNewActivity.this);
-
-                        break;
-                    case 2:
-                        tvTitle.setText("Fashion");
-                        bannerimglist.clear();
-                        loadbannerImages(String.valueOf(position+1),LandingNewActivity.this);
-
-                        break;
-                    case 3:
-                        tvTitle.setText("Accessories");
-                        bannerimglist.clear();
-                        loadbannerImages(String.valueOf(position+1),LandingNewActivity.this);
-
-                        break;
-                    case 4:
-                        tvTitle.setText("Events");
-                        bannerimglist.clear();
-                        loadbannerImages(String.valueOf(position+1),LandingNewActivity.this);
-
-                        break;
-                    case 5:
-                        tvTitle.setText("Membership");
-                        bannerimglist.clear();
-                        loadbannerImages(String.valueOf(position+1),LandingNewActivity.this);
-                        break;
-
-                }
-*/
-            }
-
-            @Override
-            public void onPageSelected(int q) {
-                switch (q){
-                    case 0:
-                        tvTitle.setText("Dining");
-                        bannerimglist.clear();
-                        loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
-                        break;
-                    case 1:
-                        tvTitle.setText("Wellness");
-                        bannerimglist.clear();
-                        loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
-
-                        break;
-                    case 2:
-                        tvTitle.setText("Fashion");
-                        bannerimglist.clear();
-                        loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
-
-                        break;
-                    case 3:
-                        tvTitle.setText("Accessories");
-                        bannerimglist.clear();
-                        loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
-
-                        break;
-                    case 4:
-                        tvTitle.setText("Events");
-                        bannerimglist.clear();
-                        loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
-
-                        break;
-                    case 5:
-                        tvTitle.setText("Membership");
-                        bannerimglist.clear();
-                        loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
-                        break;
-
-                }
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
-
-/*
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener()
-        {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-                tabnum = tab.getPosition();
-
-                //   View firstTab = ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(0);
-                //    View secondTab = ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(1);
-                if (tabnum == 0) { // that means first tab
-                    //    Toast.makeText(getApplicationContext(), "This is my 1 message!",
-                    //   Toast.LENGTH_LONG).show();
-                    tvTitle.setText("Dining");
-                    bannerimglist.clear();
-                    loadbannerImages(String.valueOf(tabnum+1),LandingNewActivity.this);
-
-                   // mCustomPagerAdapter.notifyDataSetChanged();
-                } else if (tabnum == 1) { // that means it's a last tab
-                    // Toast.makeText(getApplicationContext(), "This is my 2 message!",
-                    //         Toast.LENGTH_LONG).show();
-
-                    tvTitle.setText("Wellness");
-                 */
-/*   loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
-                    mCustomPagerAdapter.notifyDataSetChanged();
-*//*
-              bannerimglist.clear();
-                    loadbannerImages(String.valueOf(tabnum+1),LandingNewActivity.this);
-
-
-                } else if (tabnum == 2) { // that means it's a last tab
-
-                    tvTitle.setText("Fashion");
-                    bannerimglist.clear();
-                    loadbannerImages(String.valueOf(tabnum+1),LandingNewActivity.this);
-
-                 */
-/*   loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
-                    mCustomPagerAdapter.notifyDataSetChanged();
-*//*
-
-                } else if (tabnum == 3) { // that means it's a last tab
-
-                    bannerimglist.clear();
-                    tvTitle.setText("Accessories");
-                    loadbannerImages(String.valueOf(tabnum+1),LandingNewActivity.this);
-
-              */
-/*      loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
-                    mCustomPagerAdapter.notifyDataSetChanged();
-*//*
-
-                }else if (tabnum == 4) { // that means it's a last tab
-
-                    tvTitle.setText("Events");
-                    bannerimglist.clear();
-                    loadbannerImages(String.valueOf(tabnum+1),LandingNewActivity.this);
-
-              */
-/*      loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
-                    mCustomPagerAdapter.notifyDataSetChanged();
-
-*//*
-
-                }else if (tabnum == 5) { // that means it's a last tab
-
-                    tvTitle.setText("Membership");
-                    bannerimglist.clear();
-                    loadbannerImages(String.valueOf(tabnum+1),LandingNewActivity.this);
-
-              */
-/*      loadbannerImages(String.valueOf(q+1),LandingNewActivity.this);
-                    mCustomPagerAdapter.notifyDataSetChanged();
-*//*
-
-                }
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-                bannerimglist.clear();
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-*/
-
         if (checkPlayServices()) {
             // Start IntentService to register this application with GCM.
             Intent intent = new Intent(this, RegistrationIntentService.class);
@@ -649,12 +465,16 @@ public class LandingNewActivity extends AppCompatActivity {
                     mCustomPagerAdapter = new CustomPagerAdapter(LandingNewActivity.this, bannerimglist);
                     mCustomPagerAdapter.notifyDataSetChanged();
                     //view_pager.notify();
-                    view_pager.setAdapter(mCustomPagerAdapter);
                     if(bannerimglist.size()>1) {
                         view_pager.setClipToPadding(false);
                         view_pager.setPadding(0, 0, 40, 0);
                         view_pager.setPageMargin(10);
+                    }else{
+                        view_pager.setPadding(0, 0, 0, 0);
+                       // view_pager.setPageMargin(3);
+
                     }
+                    view_pager.setAdapter(mCustomPagerAdapter);
                     mCustomPagerAdapter.notifyDataSetChanged();
                     mCustomPagerAdapter.notify();
                    // mCustomPagerAdapter.notify();
@@ -663,7 +483,7 @@ public class LandingNewActivity extends AppCompatActivity {
                     final Runnable Update = new Runnable() {
                         public void run() {
                             if (currentPage == bannerimglist.size() - 1) {
-                                currentPage = 0;
+                                currentPage=0;
                             }
                             view_pager.setCurrentItem(currentPage++, true);
                         }
@@ -816,7 +636,7 @@ CustomPagerAdapter mCustomPagerAdapter;
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((LinearLayout) object);
+            container.removeView((CardView) object);
         }
     }
     private void setupViewPager(ViewPager viewPager) {

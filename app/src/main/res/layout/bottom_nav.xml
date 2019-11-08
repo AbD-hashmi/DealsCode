@@ -77,12 +77,44 @@
                             android:textColor="@color/white" />
 
                     </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/llTop"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/menu_item_size"
+                        android:orientation="horizontal"
+                        android:paddingLeft="30dp"
+                        android:background="@color/gray"
+                        android:paddingTop="5dp"
+                        android:paddingRight="30dp"
+                        android:paddingBottom="5dp">
+
+                        <ImageView
+                            android:id="@+id/imTop"
+                            android:layout_width="@dimen/menu_item_imagesize"
+                            android:layout_height="@dimen/menu_item_imagesize"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/back"/>
+
+                        <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                            android:id="@+id/btnTop"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:drawablePadding="10dp"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:text="More onXclusify"
+                            android:fontFamily="@font/avenir"
+                            android:textSize="@dimen/font_medium"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:textColor="@color/white"
-                        android:visibility="gone" />
+                        android:layout_height="@dimen/divider"
+                        android:textColor="@color/border"/>
 
                     <LinearLayout
                         android:id="@+id/LLwishlistXnearby"
@@ -111,7 +143,7 @@
                             android:drawablePadding="10dp"
                             android:gravity="center|left"
                             android:paddingLeft="10dp"
-                            android:text="Near By"
+                            android:text="Experience near you"
                             android:fontFamily="@font/avenir"
                             android:textSize="@dimen/font_medium"
                             android:textColor="@color/white" />
@@ -191,7 +223,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/divider"
-                        android:background="#AEB0B2" />
+                        android:background="@color/border" />
 
                     <LinearLayout
                         android:id="@+id/LLshare"
@@ -230,7 +262,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/divider"
-                        android:background="#AEB0B2" />
+                        android:background="@color/border" />
 
                     <LinearLayout
                         android:id="@+id/LLrate"
@@ -269,7 +301,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/divider"
-                        android:background="#AEB0B2" />
+                        android:background="@color/border" />
 
                     <LinearLayout
                         android:id="@+id/LLNotification"
@@ -308,7 +340,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/divider"
-                        android:background="#AEB0B2" />
+                        android:background="@color/border" />
 
                     <LinearLayout
                         android:id="@+id/LLRefer"
@@ -348,7 +380,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/divider"
-                        android:background="#AEB0B2" />
+                        android:background="@color/border" />
 
                     <LinearLayout
                         android:id="@+id/LLPrivacy"
@@ -386,7 +418,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/divider"
-                        android:background="#AEB0B2" />
+                        android:background="@color/border" />
                     <LinearLayout
                         android:id="@+id/LLUse"
                         android:layout_width="match_parent"
@@ -425,7 +457,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/divider"
-                        android:background="#AEB0B2" />
+                        android:background="@color/border" />
 
                     <LinearLayout
                         android:id="@+id/LLAbout"
@@ -464,7 +496,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/divider"
-                        android:background="#AEB0B2" />
+                        android:background="@color/border" />
 
                     <LinearLayout
                         android:id="@+id/LLcontact"
@@ -539,7 +571,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/divider"
-                        android:background="#AEB0B2" />
+                        android:background="@color/border" />
 
                 </LinearLayout>
             </ScrollView>

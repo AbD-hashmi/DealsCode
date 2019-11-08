@@ -2,9 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="3dp"
-    android:layout_marginRight="3dp"
-    android:layout_marginTop="3dp"
     android:background="@color/gray"
     android:orientation="vertical">
 
@@ -20,16 +17,16 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight=".25">
+            android:layout_margin="3dp"
+            android:layout_weight="0.25">
 
             <ImageView
                 android:id="@+id/dealimg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:padding="3dp"
-                android:scaleType="fitXY"
-                android:background="@drawable/border_square"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher_round" />
         </LinearLayout>
 
@@ -176,6 +173,6 @@
 <View
     android:layout_width="match_parent"
     android:layout_height="1dp"
-    android:background="@color/greey"/>
+    android:background="@color/border"/>
 
 </LinearLayout>

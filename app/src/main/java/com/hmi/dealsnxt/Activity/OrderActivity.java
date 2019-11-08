@@ -107,7 +107,7 @@ public class OrderActivity extends FragmentActivity {
         tvTitle.setVisibility(View.VISIBLE);
         ivsearch.setVisibility(View.GONE);
         tvusername.setVisibility(View.GONE);
-        tvTitle.setText("My Orders");
+        tvTitle.setText("Orders");
 
         imBack.setOnClickListener(new View.OnClickListener() {
             @Override

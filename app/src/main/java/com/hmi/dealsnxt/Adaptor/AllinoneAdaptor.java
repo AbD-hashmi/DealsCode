@@ -192,6 +192,7 @@ public class AllinoneAdaptor extends RecyclerView.Adapter<AllinoneAdaptor.Simple
 
         System.out.println("count "+items.get(position).getNumofOffers());
         viewHolder.tvcount.setText( items.get(position).getNumofOffers()+" Left");
+
         /*if (items.get(position).getNumofOffers() == 1) {
             viewHolder.LLoffer.setVisibility(View.GONE);
         } else {
@@ -237,6 +238,8 @@ public class AllinoneAdaptor extends RecyclerView.Adapter<AllinoneAdaptor.Simple
                 i.putExtra("outletid", items.get(position).getOutletid());
                 i.putExtra("quantity", items.get(position).getNumofOffers());
                 i.putExtra("category_id",category_id);
+                System.out.println("numOfoffers "+ items.get(position).getDealCount());
+                i.putExtra("numberOfOffes",items.get(position).getDealCount());
                 activity.startActivity(i);
             }
         });

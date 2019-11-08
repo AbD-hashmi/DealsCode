@@ -175,8 +175,8 @@ public class SignInActivity extends AppCompatActivity {
         loginButton.registerCallback(callbackManager, callback);
 
         ArrayList<String> list = new ArrayList<String>();
-        list.add("Female");
         list.add("Male");
+        list.add("Female");
 
         spinnergender.setAdapter(new ArrayAdapter<String >(SignInActivity.this,R.layout.list_items_gender, list));
         spinnergender.setSelection(0);

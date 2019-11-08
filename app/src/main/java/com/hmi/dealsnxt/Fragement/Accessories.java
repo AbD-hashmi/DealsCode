@@ -284,6 +284,7 @@ public class Accessories extends Fragment {
                 params.put("lng", SessionManager.getLongitude(getContext()));
                 params.put("city_id", SessionManager.getCityid(getContext()));
                 params.put("page", "0");
+                System.out.println("data "+params);
                 return params;
             }
 

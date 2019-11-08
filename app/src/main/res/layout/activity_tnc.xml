@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/gradiant_bottom_to_top"
+    android:background="@color/gray"
     tools:context="com.hmi.dealsnxt.Activity.AboutUsActivity">
 
     <include
@@ -16,6 +16,7 @@
 
 
         <WebView
+            android:background="@color/Black"
             android:id="@+id/webView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
