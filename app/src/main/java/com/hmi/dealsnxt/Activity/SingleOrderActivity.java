@@ -74,7 +74,7 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
     TextView tvtotalamount, tvdesc, tvaddcart, tvpayment;
     RelativeLayout LLpayment;
     CheckBox checkBox;
-
+    String giftStatus="0";
     ArrayList<DealDetailsModel> arrayList = new ArrayList<DealDetailsModel>();
     public String Qtycount = "";
     com.nostra13.universalimageloader.core.ImageLoader imageLoader;
@@ -100,6 +100,7 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
     double max_discount;
     String coupon="0";
     TextView tnc;
+    String gifteeMobile="";
 
 
     @Override
@@ -175,6 +176,15 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
         Dealendtime = String.valueOf(getIntent().getStringExtra("Dealendtime"));
         path=String.valueOf(getIntent().getStringExtra("path"));
 
+        Bundle bundle=getIntent().getExtras();
+        if (bundle.containsKey("gifteeMobile")) {
+            gifteeMobile = getIntent().getStringExtra("gifteeMobile");
+            if (gifteeMobile != null) {
+                giftStatus = "1";
+            } else {
+                giftStatus = "0";
+            }
+        }
 
         tvstartime.setText(Customutils.dateFormat(Dealstarttime));
         tvendtime.setText(Customutils.dateFormat(Dealendtime));
@@ -284,7 +294,6 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
                 params.put("outlet_id", Outlet_Id);
                 params.put("total_amount", Dealprice);
                 params.put("merchant_id", Merhant_Id);
-
                 return params;
             }
 
@@ -318,7 +327,7 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
             options.put("image", "https://rzp-mobile.s3.amazonaws.com/images/rzp.png");
             Double payment = Double.valueOf(Dealprice);
             options.put("currency", "INR");
-            options.put("color", "#333333");
+            options.put("color ", "#333333");
            // options.put("background",R.color.blackfontcolor);
             //   double total = Double.parseDouble(payment);
             double total = payment * 100;
@@ -350,7 +359,6 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
                     JSONObject jSONObject = new JSONObject(new String(response));
                     int Status = jSONObject.optInt("status");
                     if (Status == 1) {
-
 /*
                         LayoutInflater layoutInflater = LayoutInflater.from(getApplicationContext());
                         promptView = layoutInflater.inflate(R.layout.dialouge_thanks, null);
@@ -394,10 +402,21 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
                         VCard QRdealdeatil = new VCard(TransactionId);
 
                         Bitmap myBitmap = QRCode.from(QRdealdeatil).withSize(300, 300).bitmap();
-                        finish();
 
-                        startActivity(new Intent(SingleOrderActivity.this,ThankyouActivity.class)
-                        .putExtra("trans_id", TransactionId).putExtra("qrCode", myBitmap));
+                        if (gifteeMobile.equals("") || gifteeMobile.equals(null) || giftStatus.equals("0")) {
+                            startActivity(new Intent(SingleOrderActivity.this, ThankyouActivity.class)
+                                    .putExtra("trans_id", TransactionId).putExtra("qrCode", myBitmap));
+                            finish();
+                        }else {
+                            JSONArray jsonArray=jSONObject.getJSONArray("v_code");
+                            JSONObject jsonObject=jsonArray.getJSONObject(0);
+                            String message=jsonObject.getString("message");
+                            startActivity(new Intent(SingleOrderActivity.this,GiftThankyou.class).
+                                    putExtra("order_id",order_id).putExtra("trans_id",TransactionId)
+                            .putExtra("gifteeMobile",gifteeMobile).putExtra("message",message));
+                            finish();
+                        }
+
                     } else {
                         Toast.makeText(getApplicationContext(), jSONObject.optString("message"), Toast.LENGTH_LONG).show();
                     }
@@ -419,12 +438,20 @@ public class SingleOrderActivity extends AppCompatActivity implements PaymentRes
                 params.put("XAPIKEY", "XXXXX");
                 params.put("transactions_no", TransactionId);
                 params.put("order_id", order_id);
+                params.put("user_id",SessionManager.getUserID(getApplicationContext()));
                 params.put("status", "1");
                 params.put("coupon_id",""+coupen_id);
                 params.put("final_amout",Dealprice);
+                params.put("referral_status","0");
+                params.put("referral_id","0");
+               // params.put("referral_type","0");
                 params.put("max_disocunt",""+max_discount);
                 params.put("coupon_status",coupon);
+                params.put("phones",gifteeMobile);
+                params.put("giftmessage","");
+                params.put("gift_status",giftStatus);
                 System.out.println("server "+params);
+
                 return params;
             }
 

@@ -149,10 +149,10 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
         try {
             String date = items.get(position).getDealpurchasedate();
             // SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-            SimpleDateFormat sf = new SimpleDateFormat("dd-MM-yyyy HH:mm aaa", Locale.US);
+            SimpleDateFormat sf = new SimpleDateFormat("dd-MM-yyyy HH:mm ");
             Date newDate = sf.parse(date);
             long startDate = newDate.getTime();
-            String dateString = new SimpleDateFormat("dd MMM yyyy HH:mm aaa").format(startDate);
+            String dateString = new SimpleDateFormat("dd MMM yyyy HH:mm ").format(startDate);
             viewHolder.tvdealdate.setText(dateString);
         } catch (Exception e) {
             e.printStackTrace();
@@ -162,38 +162,21 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
         viewHolder.tvoutletname.setText(items.get(position).getDealtitle());
         viewHolder.tvlocation.setText(items.get(position).getOutletaddress());
         viewHolder.tvwaiveoffrs.setText("\u20B9" + " " + items.get(position).getDealpurchaseamount());
+        // TODO: 11/13/2019 giftapplied
+        if(items.get(position).getGift_applied().equals("1")) {
+            viewHolder.tvcancel.setVisibility(View.VISIBLE);
+        }else{
+            viewHolder.tvcancel.setVisibility(View.GONE);
+        }
+
         //      orderModel.setDealimgurl(Path + "/" + dealobj.optString("dealImge"));
 
-        if (items.get(position).getRefundable_policy().equals("1")) {
-            cancelVisible=1;
-            if (!items.get(position).getGift_applied().equals("1")) {
-                cancelVisible=1;
+        if (!items.get(position).getGift_applied().equals("1")) {
+         //   cancelVisible=1;
+            if (items.get(position).getRefundable_policy().equals("1")) {
+           //     cancelVisible=1;
                 if (items.get(position).getDealstatus().equals("1")) {
                     cancelVisible = 1;
-/*
-                    try {
-                        Calendar c = Calendar.getInstance();
-                        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm aa");
-                        String getCurrentDateTime = sdf.format(c.getTime());
-                        String getMyTime=items.get(position).getDealavailtime_to();
-                        Log.d("getCurrentDateTime",getCurrentDateTime);
-                        // getCurrentDateTime: 05/23/2016 18:49 PM
-
-                        if (getCurrentDateTime.compareTo(getMyTime) > 0)
-                        {
-                            cancelVisible=0;
-                            // Toast.makeText(activity, "greater than 0", Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                        {
-                            cancelVisible=1;
-                            Log.d("Return","getMyTime older than getCurrentDateTime ");
-                        }
-                    } catch (Exception e) {
-
-                    }
-*/
-
                 } else {
                     cancelVisible = 0;
                 }
@@ -202,6 +185,7 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
             }
         }else {
             cancelVisible = 0;
+            
         }
 
         if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 0) {
@@ -209,6 +193,8 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
             viewHolder.tvdealstatus.setText("Failed");
             //  viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
             viewHolder.tvcancel.setVisibility(View.INVISIBLE);
+           // cancelVisible=0;
+
         } else if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 1) {
            /* if (Integer.valueOf(items.get(position).getDealstatus()) == 0) {
                 viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
@@ -216,16 +202,21 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
                 viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
                 viewHolder.tvcancel.setVisibility(View.INVISIBLE);
             } else {*/
+          //  cancelVisible=0;
+
             if (Integer.valueOf(items.get(position).getDealstatus()) == 1) {
                 //viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
                 //viewHolder.tvcancel.setVisibility(View.VISIBLE);
+                //cancelVisible=1;
                 viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
                 viewHolder.tvdealstatus.setText("Paid");
                 viewHolder.tvdealstatus.setTextColor(context.getResources().getColor(R.color.green));
                 //  viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.delivered, 0, 0, 0);
             } else if (Integer.valueOf(items.get(position).getDealstatus()) == 2) {
                 //  viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
-                viewHolder.tvcancel.setVisibility(View.INVISIBLE);
+                //viewHolder.tvcancel.setVisibility(View.INVISIBLE);
+              //  cancelVisible=0;
+
                 viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
                 viewHolder.tvdealstatus.setText("Cancelled");
                 viewHolder.tvdealstatus.setTextColor(context.getResources().getColor(R.color.red));
@@ -233,17 +224,21 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
                 //   viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
             } else if (Integer.valueOf(items.get(position).getDealstatus()) == 3) {
                 //  viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
-                viewHolder.tvcancel.setVisibility(View.INVISIBLE);
+                //viewHolder.tvcancel.setVisibility(View.INVISIBLE);
                 viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
+             //   cancelVisible=0;
+
                 viewHolder.tvdealstatus.setText("Redeemed");
                 viewHolder.tvdealstatus.setTextColor(context.getResources().getColor(R.color.green));
 
                 //viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.delivered, 0, 0, 0);
             } else if (Integer.valueOf(items.get(position).getDealstatus()) == 4) {
                 //  viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
-                viewHolder.tvcancel.setVisibility(View.INVISIBLE);
+                //viewHolder.tvcancel.setVisibility(View.INVISIBLE);
                 viewHolder.tvdealstatus.setVisibility(View.VISIBLE);
                 viewHolder.tvdealstatus.setText("Expired");
+           //     cancelVisible=0;
+
                 viewHolder.tvdealstatus.setTextColor(context.getResources().getColor(R.color.red));
 
                 //viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
@@ -253,13 +248,17 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
             // QR not SHown
             viewHolder.tvdealstatus.setText("Redeemed");
         //    viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.delivered, 0, 0, 0);
-            viewHolder.tvcancel.setVisibility(View.INVISIBLE);
+            //viewHolder.tvcancel.setVisibility(View.INVISIBLE);
+         //   cancelVisible=0;
+
         } else if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 3) {
             // QR not SHown
-            viewHolder.tvcancel.setVisibility(View.INVISIBLE);
+            //viewHolder.tvcancel.setVisibility(View.INVISIBLE);
+         //   cancelVisible=0;
+
             viewHolder.tvdealstatus.setText("Expired");
         //    viewHolder.tvdealstatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancelled, 0, 0, 0);
-            viewHolder.tvcancel.setVisibility(View.INVISIBLE);
+            //viewHolder.tvcancel.setVisibility(View.INVISIBLE);
         }
 
 
@@ -271,6 +270,7 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
                 i.putExtra("commingFrom", 1);
                 i.putExtra("id", items.get(position).getDealid());
                 activity.startActivity(i);
+                activity.finish();
             }
         });
 
@@ -278,7 +278,7 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
         list.add("Wrong Place");
         list.add("Others");
 
-        viewHolder.tvcancel.setOnClickListener(new View.OnClickListener() {
+        /*viewHolder.tvcancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -342,7 +342,7 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
                     }
                 });
 
-                /*   if (chkselect1.isChecked()) {
+                *//*   if (chkselect1.isChecked()) {
                     chkselect3.setChecked(false);
                     chkselect2.setChecked(false);
                     chkselect4.setChecked(false);
@@ -363,13 +363,13 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
                     chkselect1.setChecked(false);
                     othertext.setVisibility(View.VISIBLE);
                     val = othertext.getText().toString();
-                }*/
+                }*//*
 
-               /* if (chkselect4.isChecked()) {
+               *//* if (chkselect4.isChecked()) {
                     othertext.setVisibility(View.VISIBLE);
                 } else {
                     othertext.setVisibility(View.GONE);
-                }*/
+                }*//*
 
                 ok.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -452,7 +452,7 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
                 });
 
             }
-        });
+        })*/;
 
 
     }

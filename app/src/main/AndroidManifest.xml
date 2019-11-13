@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.hmi.dealsnxt">
-
+<uses-permission android:name="android.permission.SEND_SMS"/>
     <application
         android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.ThankyouActivity"></activity>
+        <activity android:name=".Activity.GiftThankyou"></activity>
+        <activity android:name=".Activity.ThankyouActivity" />
         <activity android:name=".Activity.UnverifiedUser" />
         <activity android:name=".Activity.Chat" />
         <activity android:name=".Activity.Dashboard">

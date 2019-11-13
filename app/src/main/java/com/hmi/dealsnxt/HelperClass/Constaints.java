@@ -31,6 +31,7 @@ public class Constaints {
 
     public static String OrderBookbforePay = BaseUrl + "api/v1/orderBook";
     public static String OrderpaidafterPay = BaseUrl + "api/v1/orderConfirm";
+    public static String GiftSms = BaseUrl + "api/v1/giftSMS";
 
     public static String OrderedListing = BaseUrl + "api/v1/myOrder";
     public static String OrderedCancel = BaseUrl + "api/v1/orderCancel";

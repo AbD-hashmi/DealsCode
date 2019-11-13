@@ -113,7 +113,8 @@ public class OrderDetailActivity extends AppCompatActivity {
         imBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                finish();
+                startActivity(new Intent(OrderDetailActivity.this,OrderActivity.class));
             }
         });
         options = new DisplayImageOptions.Builder()
@@ -129,9 +130,8 @@ public class OrderDetailActivity extends AppCompatActivity {
                 "http://dealsnxt.nuagedigitech.com/application/public/uploads/deals/"), ivdeal, options);
 
         Bundle bundle=getIntent().getExtras();
-        if (bundle.containsKey("cancelVisible"))
-        {
-            if (bundle.getInt("cancelVisible") == 1)
+
+        if (bundle.getInt("cancelVisible") == 1){
             //    Toast.makeText(this, "Cancel Visible" + bundle.getInt("cancelVisible"), Toast.LENGTH_SHORT).show();
             btnCancel.setVisibility(View.VISIBLE);
         }else{
@@ -502,4 +502,9 @@ String totalAmount,offerApplied="90000";
 
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(OrderDetailActivity.this,OrderActivity.class));
+    }
 }

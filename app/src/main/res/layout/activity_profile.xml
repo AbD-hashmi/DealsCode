@@ -368,9 +368,6 @@
 
             </LinearLayout>
 
-
-
-
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/userimage"
                 android:layout_width="120dp"

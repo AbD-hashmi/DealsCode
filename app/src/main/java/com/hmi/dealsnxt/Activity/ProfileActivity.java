@@ -613,7 +613,7 @@ String encoded;
         }
         Bitmap resized = Bitmap.createScaledBitmap(bmp, 150, 150, true);
 
-        userimage.setImageBitmap(bmp);
+        userimage.setImageBitmap(resized);
         thumbnail_final = resized;
         IsImageSelected = true;
     }

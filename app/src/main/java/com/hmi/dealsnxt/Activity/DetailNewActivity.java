@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -47,6 +48,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -118,7 +120,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class DetailNewActivity extends FragmentActivity implements OnMapReadyCallback {
     TextView tvlike, tvoutletname, tvoutletdistncekm, tvoutletaddress, tvstartime, tvendtime, tvtncdetail, tvdealdetail, tvshowextra;
-    TextView tvdealaddress, tvbuy, tvTitle, tvdetail, tvphone,tvCountBanner;
+    TextView tvdealaddress, tvbuy, tvTitle, tvdetail, tvphone,tvCountBanner,tvGift;
     LinearLayout LLlist, LLtnc, LLdeal, RLlocation, RLdealdata;
     RelativeLayout LLrember, LLpayment, RLAmount, RLtoolbar_new, RRl;
     ImageView ivdeal, ivshare, ivlikecount, ivgift, imBack;
@@ -220,6 +222,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
         getDirections=(TextView)findViewById(R.id.getDirections);
         tvfinalamount.setVisibility(View.INVISIBLE);
         tvbuy = (TextView) findViewById(R.id.tvbuy);
+        tvGift = (TextView) findViewById(R.id.ivgift);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         view_pager = (ViewPager) findViewById(R.id.view_pager);
         tvdetail = (TextView) findViewById(R.id.tvdetail);
@@ -590,7 +593,6 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
 
                                         if (Qtycount > 0) {
                                             Intent i = new Intent(DetailNewActivity.this, SingleOrderActivity.class);
-
                                             HotDealsModel hotDealsModel=new HotDealsModel();
                                             hotDealsModel.setOutletName(stroutletname);
                                             i.putExtra("Dealid", pos);
@@ -603,6 +605,18 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                                             i.putExtra("path", Path_deal + "/" );
                                             i.putExtra("order_list", SessionManager.setRecent1(orderarrayList, DetailNewActivity.this));
                                             startActivity(i);
+                                        } else {
+                                            Toast.makeText(getApplicationContext(), "Please choose any order", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                });
+                                // TODO: 11/13/2019 add gift functionality here
+                                tvGift.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        if (Qtycount > 0) {
+                                            giftPopup(listModel.getDealimg(),listModel.getDealimg(),Path_deal);
+
                                         } else {
                                             Toast.makeText(getApplicationContext(), "Please choose any order", Toast.LENGTH_LONG).show();
                                         }
@@ -1166,5 +1180,49 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
             return mFragmentTitleList.get(position);
         }
 
+    }
+
+    View promptView;
+    android.app.AlertDialog alert;
+    String gifteeMobile;
+
+    public void giftPopup(String dealimgname, String dealImg, String path){
+            LayoutInflater layoutInflater = LayoutInflater.from(DetailNewActivity.this);
+            promptView = layoutInflater.inflate(R.layout.new_gift_popup, null);
+            android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(DetailNewActivity.this);
+            alertDialogBuilder.setView(promptView);
+            alertDialogBuilder.setCancelable(true);
+            alert = alertDialogBuilder.create();
+            alert.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            alert.show();
+            EditText tvmob1 = (EditText) promptView.findViewById(R.id.tvmob1);
+            TextView giftButton = (TextView) promptView.findViewById(R.id.tvgift);
+
+            giftButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    gifteeMobile = tvmob1.getText().toString();
+                    if (tvmob1.getText().toString().trim().length() == 10 || tvmob1.getText().toString().trim().length() == 13) {
+
+                        Intent i = new Intent(DetailNewActivity.this, SingleOrderActivity.class);
+                        HotDealsModel hotDealsModel = new HotDealsModel();
+                        hotDealsModel.setOutletName(stroutletname);
+                        i.putExtra("Dealid", pos);
+                        i.putExtra("Qtycount", Qtycount);
+                        i.putExtra("Fromdiscount", Fromdiscount);
+                        i.putExtra("Dealimgname", dealimgname);
+                        System.out.println("deal image " + dealImg);
+                        i.putExtra("Dealstarttime", Dealstarttime);
+                        i.putExtra("Dealendtime", Dealendtime);
+                        i.putExtra("path", path + "/");
+                        i.putExtra("order_list", SessionManager.setRecent1(orderarrayList, DetailNewActivity.this));
+                        i.putExtra("gifteeMobile", gifteeMobile);
+
+                        startActivity(i);
+                    }else{
+                        tvmob1.setError("Please enter a Valid mobile number");
+                    }
+                }
+            });
     }
 }

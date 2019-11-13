@@ -643,7 +643,7 @@
                 android:id="@+id/ivgift"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gift Now "
+                android:text="Gift "
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:paddingRight="15dp"

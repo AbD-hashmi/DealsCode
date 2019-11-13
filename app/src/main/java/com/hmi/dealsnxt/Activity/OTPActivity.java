@@ -411,11 +411,10 @@ public class OTPActivity extends AppCompatActivity {
                         etotp = (EditText) findViewById(R.id.etotp);
                         final ImageButton tverify = (ImageButton) findViewById(R.id.tverify);
                         final ImageView image = (ImageView) findViewById(R.id.image);
-                        tvnmobile.setText(/*ccp.getSelectedCountryCodeWithPlus() + */" " + etmobno.getText().toString());
+                        tvnmobile.setText(ccp.getSelectedCountryCodeWithPlus() + " " + etmobno.getText().toString());
 
 
                         //  etotp.setText(OTP.toString());
-
 
                         final Runnable r = new Runnable() {
                             public void run() {
@@ -478,7 +477,7 @@ public class OTPActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("XAPIKEY", "XXXXX");
-                params.put("phone", etmobno.getText().toString());
+                params.put("phone", etmobno.getText().toString().replace("+91",""));
                 params.put("userTycpe", "User");
 
                 // params.put("device_imei", SessionManager.getDeviceIMEI(RegistrationActivity.this));

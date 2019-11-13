@@ -87,7 +87,7 @@ public class UpcommingOrderfragment extends Fragment {
             @Override
             public void onRefresh() {
               //  loadOfflineDeals("PullToRefresh");
-                loadDetailist("PullToRefresh");
+                loadDetailist("");
 
             }
         });
@@ -135,8 +135,7 @@ public class UpcommingOrderfragment extends Fragment {
                                 orderModel.setDealavailtime_to(dealobj.optString("timeTo"));
                                 orderModel.setDealavailtime_from(dealobj.optString("timeFrom"));
                                 orderModel.setRefundable_policy(dealobj.optString("refundable_policy"));
-                                orderModel.setGift_applied(dealobj.optString("gift_applied"));
-
+                                orderModel.setGift_applied(orderJson.optString("gift_applied"));
                                 arrayList.add(orderModel);
                             }
 

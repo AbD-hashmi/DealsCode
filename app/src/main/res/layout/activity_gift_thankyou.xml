@@ -121,6 +121,15 @@
                 android:visibility="gone"
                 android:layout_marginTop="5dp" />
 
+            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp"
+                android:text="Please present the QR code from MY Orders section to redeem the deal. Click on send SMS button to share the deal with your friend."
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_medium"
+                android:textColor="@color/white" />
 
             <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
                 android:id="@+id/ins"
@@ -129,7 +138,7 @@
                 android:layout_height="wrap_content" />
 
             <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
-                android:id="@+id/tvsubmit"
+                android:id="@+id/tvSendsms"
                 android:layout_width="match_parent"
                 android:layout_marginRight="50dp"
                 android:layout_marginLeft="50dp"
@@ -139,11 +148,36 @@
                 android:background="@drawable/button_gradient"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="Order Summary"
+                android:text="Send SMS"
                 android:fontFamily="@font/avenir"
                 android:textSize="@dimen/font_medium"
                 android:textColor="@color/blackfontcolor" />
 
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansRegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp"
+                android:text="Standard SMS Charges..."
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_medium"
+                android:textColor="@color/white" />
+
+            <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
+                android:id="@+id/tvCancel"
+                android:layout_width="match_parent"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Cancel"
+                android:fontFamily="@font/avenir"
+                android:textSize="@dimen/font_medium"
+                android:textColor="@color/White" />
         </LinearLayout>
 
     </LinearLayout>

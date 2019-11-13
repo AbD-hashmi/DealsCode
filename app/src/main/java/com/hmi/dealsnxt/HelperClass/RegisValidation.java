@@ -71,7 +71,7 @@ public class RegisValidation {
         String To = editTextto.getText().toString().trim();
         //  editTextTo.setError(null);
         // length 0 means there is no text
-        if (To.length() < 10) {
+        if (To.length()!=10) {
             editTextto.setError("Please enter 10 digit Mobile number");
             return false;
         /*} else {

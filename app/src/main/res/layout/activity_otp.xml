@@ -84,14 +84,13 @@
 
                 <com.hbb20.CountryCodePicker
                     android:id="@+id/ccp"
-                    android:layout_width="50dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:background="@color/Black"
                     android:fontFamily="@font/avenir"
                     android:gravity="center_vertical"
                     android:onClick="onCountryPickerClick"
-                    app:contentColor="@color/Black"
-
+                    app:contentColor="@color/white"
                     app:hideNameCode="true"/>
 
                 <TextView
@@ -134,11 +133,10 @@
                     android:inputType="phone"
                     android:padding="5dp"
                     android:fontFamily="@font/avenir"
-                    android:maxLength="13"
+                    android:maxLength="10"
                     android:gravity="center_vertical"
                     android:textSize="@dimen/font_medium"
                     android:maxLines="1"
-                    android:hint="Enter Mobile Number"
                     android:textColorHint="@color/white"
                     android:singleLine="true"
                     android:layout_weight="1"
