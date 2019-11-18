@@ -85,6 +85,9 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.orm.dsl.Table;
 import com.squareup.picasso.Picasso;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
+import com.synnapps.carouselview.ViewListener;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -165,7 +168,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
     RecyclerView time_recycler_view;
     LinearLayout LLfilter1, LLfilter2, LLfilter3, LLfilter4;
     TextView tvpricerangend, tvpricerangstart;
-
+    CarouselView carouselView;
     /*@Override
     protected void onStart() {
         super.onStart();
@@ -265,6 +268,9 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         });
 
 
+        carouselView = (CarouselView) findViewById(R.id.carouselView);
+
+
         int displayWidth = getWindowManager().getDefaultDisplay().getWidth();
         TableLayout linearLayout1 = (TableLayout) findViewById(R.id.tabTable);
         linearLayout1.getLayoutParams().height = displayWidth*10 ;
@@ -296,8 +302,8 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         } catch (Exception e) {
 
         }
-        loadbannerImages();
 
+        loadbannerImages();
         //final ViewPager viewPager = (ViewPager) findViewById(R.id.htab_viewpager);
        //tabLayout = (TabLayout) findViewById(R.id.htab_tabs);
         //tabLayout.setupWithViewPager(viewPager);
@@ -665,6 +671,10 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
 
                        //
                     }
+
+                    carouselView.setViewListener(viewListener);
+                    carouselView.setPageCount(bannerimglist.size()-1);
+
 
                     view_pager.setAdapter(mCustomPagerAdapter);
 
@@ -1463,4 +1473,15 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         }
     }
 
+    ViewListener viewListener = new ViewListener() {
+
+        @Override
+        public View setViewForPosition(int position) {
+            View customView = getLayoutInflater().inflate(R.layout.pager, null);
+            //set view attributes here
+            ImageView imageView = (ImageView) customView.findViewById(R.id.bannerimg);
+            Picasso.with(Dashboard.this).load(bannerimglist.get(position).getBannerimages_url().replace("_138x138","")).into(imageView);
+            return customView;
+        }
+    };
 }

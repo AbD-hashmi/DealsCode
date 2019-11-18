@@ -60,6 +60,11 @@ import java.util.Map;
 
 public class OrderActivity extends FragmentActivity {
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(OrderActivity.this,Dashboard.class));
+    }
 
     RecyclerView recycleVIew;
     public static ProgressBar progressBar;
@@ -112,9 +117,12 @@ public class OrderActivity extends FragmentActivity {
         imBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                //onBackPressed();
+                finish();
+                startActivity(new Intent(OrderActivity.this,Dashboard.class));
             }
         });
+
 
         ivmoveup = (ImageView) findViewById(R.id.ivmoveup);
         ivmoveup.setOnClickListener(new View.OnClickListener() {

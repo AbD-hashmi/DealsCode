@@ -355,9 +355,6 @@ public class LandingNewActivity extends AppCompatActivity {
 
         }
 
-
-
-
         final ViewPager viewPager = (ViewPager) findViewById(R.id.htab_viewpager);
         tabLayout = (TabLayout) findViewById(R.id.htab_tabs);
         tabLayout.setupWithViewPager(viewPager);
@@ -373,6 +370,61 @@ public class LandingNewActivity extends AppCompatActivity {
         navigationView = (BottomNavigationView) findViewById(R.id.nav_view);
         filter_view = (NavigationView) findViewById(R.id.filter_view);
        // filter_view.setVisibility(View.GONE);
+
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()){
+                    case 0:
+                        tvTitle.setText("Dining");
+                        bannerimglist.clear();
+                        loadbannerImages(String.valueOf(tab.getPosition()),LandingNewActivity.this);
+                        break;
+                    case 1:
+                        tvTitle.setText("Wellness");
+                        bannerimglist.clear();
+                        loadbannerImages(String.valueOf(tab.getPosition()),LandingNewActivity.this);
+
+                        break;
+                    case 2:
+                        tvTitle.setText("Fashion");
+                        bannerimglist.clear();
+                        loadbannerImages(String.valueOf(tab.getPosition()),LandingNewActivity.this);
+
+                        break;
+                    case 3:
+                        tvTitle.setText("Accessories");
+                        bannerimglist.clear();
+                        loadbannerImages(String.valueOf(tab.getPosition()),LandingNewActivity.this);
+
+                        break;
+                    case 4:
+                        tvTitle.setText("Events");
+                        bannerimglist.clear();
+                        loadbannerImages(String.valueOf(tab.getPosition()),LandingNewActivity.this);
+
+                        break;
+                    case 5:
+                        tvTitle.setText("Membership");
+                        bannerimglist.clear();
+                        loadbannerImages(String.valueOf(tab.getPosition()),LandingNewActivity.this);
+                        break;
+
+                }
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
 
         int q=getIntent().getIntExtra("tab", 0);

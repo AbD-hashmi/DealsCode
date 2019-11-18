@@ -185,7 +185,7 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
             }
         }else {
             cancelVisible = 0;
-            
+
         }
 
         if (Integer.valueOf(items.get(position).getOutletorderstatus()) == 0) {
@@ -270,7 +270,7 @@ public class OrderBookedAdaptor extends RecyclerView.Adapter<OrderBookedAdaptor.
                 i.putExtra("commingFrom", 1);
                 i.putExtra("id", items.get(position).getDealid());
                 activity.startActivity(i);
-                activity.finish();
+               // activity.finish();
             }
         });
 

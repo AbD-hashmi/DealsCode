@@ -61,6 +61,7 @@ public class GiftThankyou extends AppCompatActivity {
                 sendIntent.putExtra("address", mobile);
                 sendIntent.putExtra("sms_body", message);
                 startActivity(sendIntent);
+                finish();
             }
         });
         tvcancel.setOnClickListener(new View.OnClickListener() {

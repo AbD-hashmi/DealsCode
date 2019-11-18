@@ -135,8 +135,6 @@
                     android:background="@drawable/edittext_border_new"
                     android:gravity="center"
                     android:hint="Giftee mobile number"
-
-
                     android:inputType="number"
                     android:padding="10dp"
                     android:drawableRight="@drawable/mobile"
@@ -148,7 +146,6 @@
                     android:layout_width="wrap_content"
                     android:src="@drawable/mobile"
                     android:layout_gravity="center"
-                    android:visibility="gone"
                     android:layout_height="wrap_content" />
 
 

@@ -1109,6 +1109,30 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
 
 
             }
+
+            if (resultCode == 0) {
+
+                Uri uri = intent.getData();
+                String[] projection = { ContactsContract.CommonDataKinds.Phone.NUMBER, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME };
+
+                Cursor cursor = getContentResolver().query(uri, projection,
+                        null, null, null);
+                cursor.moveToFirst();
+
+                int numberColumnIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                String number = cursor.getString(numberColumnIndex);
+
+                int nameColumnIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+                String name = cursor.getString(nameColumnIndex);
+
+                Log.e("number is", "ZZZ number : " + number +" , name : "+name);
+
+                tvmob1.setText(""+number);
+
+
+
+            }
+
         }        super.onActivityResult(requestCode, resultCode, intent);
 
     }
@@ -1185,6 +1209,7 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
     View promptView;
     android.app.AlertDialog alert;
     String gifteeMobile;
+    EditText tvmob1 ;
 
     public void giftPopup(String dealimgname, String dealImg, String path){
             LayoutInflater layoutInflater = LayoutInflater.from(DetailNewActivity.this);
@@ -1195,15 +1220,23 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
             alert = alertDialogBuilder.create();
             alert.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
             alert.show();
-            EditText tvmob1 = (EditText) promptView.findViewById(R.id.tvmob1);
+            tvmob1 = (EditText) promptView.findViewById(R.id.tvmob1);
             TextView giftButton = (TextView) promptView.findViewById(R.id.tvgift);
-
+        final ImageView pick_contact = (ImageView) promptView.findViewById(R.id.pick_contact);
+       /* pick_contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Uri.parse("content://contacts");
+                Intent intent = new Intent(Intent.ACTION_PICK, uri);
+                intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
+                startActivityForResult(intent, 0);
+            }
+        });*/
             giftButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     gifteeMobile = tvmob1.getText().toString();
                     if (tvmob1.getText().toString().trim().length() == 10 || tvmob1.getText().toString().trim().length() == 13) {
-
                         Intent i = new Intent(DetailNewActivity.this, SingleOrderActivity.class);
                         HotDealsModel hotDealsModel = new HotDealsModel();
                         hotDealsModel.setOutletName(stroutletname);
@@ -1217,12 +1250,14 @@ public class DetailNewActivity extends FragmentActivity implements OnMapReadyCal
                         i.putExtra("path", path + "/");
                         i.putExtra("order_list", SessionManager.setRecent1(orderarrayList, DetailNewActivity.this));
                         i.putExtra("gifteeMobile", gifteeMobile);
-
                         startActivity(i);
+                        alert.dismiss();
                     }else{
                         tvmob1.setError("Please enter a Valid mobile number");
                     }
                 }
             });
     }
+
+
 }

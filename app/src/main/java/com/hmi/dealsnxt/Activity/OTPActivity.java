@@ -570,6 +570,20 @@ public class OTPActivity extends AppCompatActivity {
                     et5.setText("");
                     et6.setText("");
                     otp="";
+                    if (SessionManager.getUserGender(getApplicationContext()).trim().equals("")) {
+                        SessionManager.setIs_verified(getApplicationContext(),"1");
+                        SessionManager.setIsotp(getApplicationContext(), true);
+                        SessionManager.setMobileno(getApplicationContext(), etotp.getText().toString());
+                        Intent i = new Intent(OTPActivity.this, SignInActivity.class);
+                        startActivity(i);
+                        finish();
+                    } else {
+                        SessionManager.setIs_verified(getApplicationContext(),"1");
+                        SessionManager.setIssignup(getApplicationContext(), true);
+                        Intent i = new Intent(OTPActivity.this, LocationActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
                     Log.e("", e.getMessage());
                     Toast.makeText(OTPActivity.this, R.string.ConnectionErrorResponse, Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();

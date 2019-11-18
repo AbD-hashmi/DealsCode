@@ -131,14 +131,15 @@ public class OrderDetailActivity extends AppCompatActivity {
 
         Bundle bundle=getIntent().getExtras();
 
-        if (bundle.getInt("cancelVisible") == 1){
+      /*  if (bundle.getInt("cancelVisible") == 1){
             //    Toast.makeText(this, "Cancel Visible" + bundle.getInt("cancelVisible"), Toast.LENGTH_SHORT).show();
             btnCancel.setVisibility(View.VISIBLE);
         }else{
             btnCancel.setVisibility(View.GONE);
         }
 
-
+*/
+      btnCancel.setVisibility(View.GONE);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -325,6 +326,8 @@ public class OrderDetailActivity extends AppCompatActivity {
 
     }
 String totalAmount,offerApplied="90000";
+    String gift_applied,refundable,deal_status;
+
     public void orderdetail() {
 
         if (Global.isInternetAvail(OrderDetailActivity.this)) {
@@ -342,6 +345,7 @@ String totalAmount,offerApplied="90000";
                             for (int i = 0; i < orderArray.length(); i++) {
                                 JSONObject orderJson = orderArray.getJSONObject(i);
                                 System.out.println("data = "+orderArray.getJSONObject(i));
+                                gift_applied=orderJson.optString("gift_applied");
 
                               //  tvtotal.setText("\u20B9" + " " + orderJson.optString("total_amount"));
                                 totalAmount=" " + orderJson.optString("total_amount");
@@ -375,6 +379,8 @@ String totalAmount,offerApplied="90000";
                             for (int i = 0; i < dealArray.length(); i++) {
                                 JSONObject orderJson = dealArray.getJSONObject(i);
 
+                                refundable=orderJson.optString("refundable_policy");
+                                deal_status=orderJson.optString("status");
                                 if(orderJson.optString("final_price").equals("")){
                                  tvtotal.setText("\u20B9" + totalAmount);
                                  total_amount.setText("\u20B9" + totalAmount);
@@ -452,6 +458,23 @@ String totalAmount,offerApplied="90000";
                     } catch (Exception e) {
                         Log.e("", e.getMessage());
                     }
+
+                    if (!gift_applied.equals("1")) {
+                        //   cancelVisible=1;
+                        if (refundable.equals("1")) {
+                            //     cancelVisible=1;
+                            if (deal_status.equals("1")) {
+                                btnCancel.setVisibility(View.VISIBLE);
+                            } else {
+                                btnCancel.setVisibility(View.GONE);
+                            }
+                        } else {
+                            btnCancel.setVisibility(View.GONE);
+                        }
+                    }else {
+                        btnCancel.setVisibility(View.GONE);
+
+                    }
                     progressBar.setVisibility(View.GONE);
                 }
             }, new Response.ErrorListener() {
@@ -504,7 +527,6 @@ String totalAmount,offerApplied="90000";
 
     @Override
     public void onBackPressed() {
-        finish();
-        startActivity(new Intent(OrderDetailActivity.this,OrderActivity.class));
+        super.onBackPressed();
     }
 }

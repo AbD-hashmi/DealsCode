@@ -10,15 +10,9 @@
     android:background="@drawable/gradiant_bottom_to_top"
     tools:openDrawer="right">
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="match_parent">
 
         <include
             layout="@layout/activity_toolbar"
@@ -97,13 +91,29 @@
                         android:background="@android:color/transparent"
                         app:layout_collapseMode="parallax">
 
+                        <com.synnapps.carouselview.CarouselView
+                            android:id="@+id/carouselView"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            app:fillColor="#FFFFFFFF"
+                            app:pageColor="#00000000"
+                            app:radius="6dp"
+                            app:indicatorVisibility="gone"
+                            app:slideInterval="3000"
+                            app:strokeColor="#FF777777"
+                            app:strokeWidth="1dp"
+                            android:background="@android:color/transparent"
+                            android:minHeight="160dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:scaleType="fitXY"/>
 
                         <android.support.v4.view.ViewPager
                             android:id="@+id/view_pager"
                             android:layout_width="match_parent"
                             android:layout_height="195dp"
                             android:background="@android:color/transparent"
-
+                            android:visibility="gone"
                             android:minHeight="160dp"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
@@ -286,9 +296,6 @@
         </RelativeLayout>
 
     </RelativeLayout>
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

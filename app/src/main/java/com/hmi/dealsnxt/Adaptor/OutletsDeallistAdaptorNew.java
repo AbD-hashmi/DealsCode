@@ -79,7 +79,6 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import me.biubiubiu.justifytext.library.JustifyTextView;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 

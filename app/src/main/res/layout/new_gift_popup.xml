@@ -35,19 +35,21 @@
     </RelativeLayout>
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
     <com.hmi.dealsnxt.HelperClass.JosefinSansRegularEditText
         android:id="@+id/tvmob1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="25dp"
         android:gravity="center"
         android:hint="Giftee mobile number"
         android:inputType="number"
         android:padding="10dp"
-        android:drawableRight="@drawable/mobile"
+        android:layout_weight="1"
         android:textSize="@dimen/font_small"
         android:textColor="@color/Black"
         android:textColorHint="#80000000" />
@@ -56,16 +58,15 @@
         android:layout_width="wrap_content"
         android:src="@drawable/mobile"
         android:layout_gravity="center"
-        android:visibility="gone"
         android:layout_height="wrap_content" />
 
-
+    </LinearLayout>
             <com.hmi.dealsnxt.HelperClass.JosefinSansBoldTextView
             android:id="@+id/tvgift"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/LL"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="80dp"
             android:background="@drawable/button_gradient"
             android:gravity="center"
             android:maxLength="10"
